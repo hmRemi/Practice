@@ -1,0 +1,107 @@
+SETTINGS-INVENTORY:
+  TITLE: '&4&lPlayer Settings'
+  NAME: <setting_name>
+  SIZE: 1
+  ENABLED: '&a&l   > '
+  DISABLED: '&4&l   > '
+  UNSELECTED: '&7    '
+  NO-PERMISSION: '&4This feature requires a rank to be accessed, buy it at https://store.hy-pvp.net'
+  TOP-SPLITTER: '&8&m----------------------------'
+  BOTTOM-SPLITTER: '&8&m----------------------------'
+  SETTINGS:
+    DUEL_REQUEST:
+      NAME: '&4&lToggle Duel Requests'
+      SLOT: 0
+      ICON: DIAMOND_SWORD
+      LORE:
+        - ''
+        - '&7If enabled, players will be'
+        - '&7able to send you duel requests.'
+        - ' '
+      O-ENABLED: '&7Allow other players duel you'
+      O-DISABLED: '&7Don''t allow other players duel you'
+      SHOW: true
+    NEW-CONVERSATIONS:
+      NAME: '&4&lToggle New Conversations'
+      SLOT: 1
+      ICON: BOOK
+      LORE:
+        - ''
+        - '&7If enabled, players will be'
+        - '&7able to message you privately.'
+        - ' '
+      O-ENABLED: '&7Allow other players message you'
+      O-DISABLED: '&7Don''t allow other message you'
+      SHOW: true
+    PUBLIC-CHAT:
+      NAME: '&4&lToggle Public Chat'
+      SLOT: 2
+      ICON: PAPER
+      LORE:
+        - ''
+        - '&7If enabled, you will be'
+        - '&7able to see public chat'
+        - ' '
+      O-ENABLED: '&7Allow yourself to see public chat'
+      O-DISABLED: '&7Don''t allow yourself to see public chat'
+      SHOW: true
+    ALLOW_SPECTATORS:
+      NAME: '&4&lAllow Spectators'
+      SLOT: 3
+      ICON: EMERALD
+      LORE:
+        - '&7If enabled, players can spectate'
+        - '&7your matches with /spectate.'
+        - ' '
+      O-ENABLED: '&7Let players spectate your matches'
+      O-DISABLED: '&7Don''t let players spectate your matches'
+      SHOW: true
+    TOGGLE_SCOREBOARD:
+      NAME: '&4&lToggle Scoreboard'
+      SLOT: 4
+      ICON: PAINTING
+      LORE:
+        - '&7If enabled, you will be'
+        - '&7able to see the scoreboard.'
+        - ' '
+      O-ENABLED: '&7Show match scoreboard'
+      O-DISABLED: '&7Hide match scoreboard'
+      SHOW: true
+    MESSAGE-SOUNDS:
+      NAME: '&4&lToggle Message Sounds'
+      SLOT: 5
+      ICON: FLINT
+      LORE:
+        - '&7If enabled, you will be able'
+        - '&7to be pinged upon mention'
+        - ' '
+      O-ENABLED: '&7Hear sound on mention'
+      O-DISABLED: '&7Deafen sound on mention'
+      SHOW: true
+    VANILLA_TAB:
+      NAME: '&4&lShow Vanilla Tablist'
+      SLOT: 6
+      ICON: QUARTZ
+      LORE:
+        - '&7If enabled, you will be able'
+        - '&7to see players on the tablist.'
+        - ' '
+      O-ENABLED: '&7Show vanilla tablist'
+      O-DISABLED: '&7Show modern tablist'
+      SHOW: true
+    DEATH_EFFECT_SETTINGS:
+      NAME: '&4&lDeath Effects'
+      SLOT: 7
+      ICON: SKULL_ITEM
+      LORE:
+        - '&7Click here to select your'
+        - '&7preferred death effect.'
+      SHOW: true
+    MATCHMAKING_SETTINGS:
+      NAME: '&4&lMatchmaking Settings'
+      SLOT: 8
+      ICON: ENCHANTED_BOOK
+      LORE:
+        - '&7Click here to modify your'
+        - '&7matchmaking settings.'
+      SHOW: true

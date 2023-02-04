@@ -1,0 +1,245 @@
+TABLIST:
+  LEFT:
+    '1':
+      text: '{bars}'
+      head: '{gray}'
+    '2':
+      text: ''
+      head: ''
+    '3':
+      text: ''
+      head: ''
+    '4':
+      text: ''
+      head: ''
+    '5':
+      text: ''
+      head: ''
+    '6':
+      text: ''
+      head: ''
+    '7':
+      text: ''
+      head: ''
+    '8':
+      text: '&4In Queue&7: &f{inqueue}'
+      head: '{dark_blue}'
+    '9':
+      text: '&4In Fight&7: &f{infight}'
+      head: '{dark_blue}'
+    '10':
+      text: '&4Event&7: {event}'
+      head: '{dark_blue}'
+    '11':
+      text: ''
+      head: ''
+    '12':
+      text: ''
+      head: ''
+    '13':
+      text: ''
+      head: ''
+    '14':
+      text: ''
+      head: ''
+    '15':
+      text: ''
+      head: ''
+    '16':
+      text: ''
+      head: ''
+    '17':
+      text: ''
+      head: ''
+    '18':
+      text: '&4Store'
+      head: '{discord}'
+    '19':
+      text: '&7store.crystal.rip'
+      head: '{light_purple}'
+    '20':
+      text: '{bars}'
+      head: '{gray}'
+  CENTER:
+    '1':
+      text: '{bars}'
+      head: '{gray}'
+    '2':
+      text: '&4&lSeason 1'
+      head: ''
+    '3':
+      text: '&7{online}/{slots}'
+      head: ''
+    '4':
+      text: ''
+      head: ''
+    '5':
+      text: ''
+      head: ''
+    '6':
+      text: ''
+      head: ''
+    '7':
+      text: ''
+      head: ''
+    '8':
+      text: ''
+      head: ''
+    '9':
+      text: ''
+      head: ''
+    '10':
+      text: ''
+      head: ''
+    '11':
+      text: ''
+      head: ''
+    '12':
+      text: ''
+      head: ''
+    '13':
+      text: ''
+      head: ''
+    '14':
+      text: ''
+      head: ''
+    '15':
+      text: ''
+      head: ''
+    '16':
+      text: ''
+      head: ''
+    '17':
+      text: ''
+      head: ''
+    '18':
+      text: '&4Twitter'
+      head: '{twitter}'
+    '19':
+      text: '&7@CrystalNetwork'
+      head: '{light_purple}'
+    '20':
+      text: '{bars}'
+      head: '{gray}'
+  RIGHT:
+    '1':
+      text: '{bars}'
+      head: '{gray}'
+    '2':
+      text: ''
+      head: ''
+    '3':
+      text: ''
+      head: ''
+    '4':
+      text: '&4Global Elo&7: &f{globalelo}'
+      head: '{dark_green}'
+    '5':
+      text: '&4NoDebuff&7: &f{nodebuff_elo}'
+      head: '{green}'
+    '6':
+      text: '&4Boxing&7: &f{boxing_elo}'
+      head: '{green}'
+    '7':
+      text: ''
+      head: ''
+    '8':
+      text: ''
+      head: ''
+    '9':
+      text: ''
+      head: ''
+    '10':
+      text: ''
+      head: ''
+    '11':
+      text: ''
+      head: ''
+    '12':
+      text: ''
+      head: ''
+    '13':
+      text: ''
+      head: ''
+    '14':
+      text: ''
+      head: ''
+    '15':
+      text: ''
+      head: ''
+    '16':
+      text: ''
+      head: ''
+    '17':
+      text: ''
+      head: ''
+    '18':
+      text: '&4Discord'
+      head: '{brayding}'
+    '19':
+      text: '&7discord.gg/crystal'
+      head: '{light_purple}'
+    '20':
+      text: '{bars}'
+      head: '{gray}'
+  EXTERNAL-RIGHT:
+    '1':
+      text: '{bars}'
+      head: '{gray}'
+    '2':
+      text: ''
+      head: ''
+    '3':
+      text: ''
+      head: ''
+    '4':
+      text: ''
+      head: ''
+    '5':
+      text: ''
+      head: ''
+    '6':
+      text: ''
+      head: ''
+    '7':
+      text: ''
+      head: ''
+    '8':
+      text: ''
+      head: ''
+    '9':
+      text: '&4&lYour Information'
+      head: '{player}'
+    '10':
+      text: ' &7➥ &4Name&7: &f{name}'
+      head: ''
+    '11':
+      text: ' &7➥ &4Rank&7: &f{rank-suffix}'
+      head: ''
+    '12':
+      text: ' &7➥ &4Ping&7: &f{ping}'
+      head: ''
+    '13':
+      text: ''
+      head: ''
+    '14':
+      text: ''
+      head: ''
+    '15':
+      text: ''
+      head: ''
+    '16':
+      text: ''
+      head: ''
+    '17':
+      text: ''
+      head: ''
+    '18':
+      text: '&4Website'
+      head: '{ziue}'
+    '19':
+      text: '&7store.crystal.rip'
+      head: '{light_purple}'
+    '20':
+      text: '{bars}'
+      head: '{gray}'

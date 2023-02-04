@@ -1,0 +1,23 @@
+KITEDITOR:
+  SELECT-KIT:
+    TITLE: '&4&lSelect a kit'
+    NAMECOLOR: '&4&l'
+    LORE:
+    - '&7&m----------------------'
+    - '&7Click to edit kit'
+    - '&7&m----------------------'
+  MANAGE:
+    TITLE: '&7Viewing &4{kit} &7kits'
+    NAMECOLOR: '&4'
+  DeleteKitButton:
+    NAME: '&4Delete'
+  CreateKitButton:
+    NAME: '&4Create Kit'
+  RenameKitButton:
+    NAME: '&4Rename'
+    LORE: '&4Click to rename this kit.'
+  LoadKitButton:
+    NAME: '&4Load/Edit'
+    LORE: '&4Click to edit this kit.'
+  KitDisplayButton:
+    NAME: '&4{kit}'

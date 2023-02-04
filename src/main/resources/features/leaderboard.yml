@@ -1,0 +1,35 @@
+INVENTORY:
+  TITLE: '&4&lLeaderboard'
+  GLOBAL_STATS:
+    TITLE: '&4&lTop 10 Global'
+    POSITIONS:
+      '1':
+        - '&4{pos} {name}&7: &7{data}'
+      '2':
+        - '&4{pos} {name}&7: &7{data}'
+      '3':
+        - '&4{pos} {name}&7: &7{data}'
+        - '{bars}'
+      ANOTHER:
+        - '&4{pos} {name}&7: &7{data}'
+  PERSONAL_STATS:
+    TITLE: '&4&lStatistics'
+    KITS_FORMAT: '&4{kit}&7: &7{data}'
+    DESCRIPTION:
+      - '{bars}'
+      - '{kits}'
+      - ''
+      - '&4Global&7: &7{elo}'
+      - '{bars}'
+  KIT:
+    TITLE: '&4&lTop 10 {kit}'
+    POSITIONS:
+      '1':
+        - '&4{pos} {name}&7: &7{data}'
+      '2':
+        - '&4{pos} {name}&7: &7{data}'
+      '3':
+        - '&4{pos} {name}&7: &7{data}'
+        - '{bars}'
+      ANOTHER:
+        - '&4{pos} {name}&7: &7{data}'
