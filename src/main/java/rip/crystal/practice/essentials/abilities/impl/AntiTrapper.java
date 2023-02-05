@@ -22,6 +22,7 @@ import java.util.Map;
 
 public class AntiTrapper extends Ability {
 
+    private final cPractice plugin = cPractice.get();
     public static Map<String, Long> cooldownvic;
     public int count;
 
@@ -53,13 +54,13 @@ public class AntiTrapper extends Ability {
             }
             if (isAbility(damager.getItemInHand())) {
                 if (profile.getAntitrapper().onCooldown(damager)) {
-                    damager.sendMessage(CC.translate("&7You are on &4&lAntiTrapper &4cooldown for &4" + DurationFormatter.getRemaining(profile.getAntitrapper().getRemainingMilis(damager), true, true)));
+                    damager.sendMessage(CC.translate("&7You are on &4&lAntiTrapper &7cooldown for &4" + DurationFormatter.getRemaining(profile.getAntitrapper().getRemainingMilis(damager), true, true)));
                     damager.updateInventory();
                     return;
                 }
 
                 if (profile.getPartneritem().onCooldown(damager)) {
-                    damager.sendMessage(CC.translate("&7You are on &4&lPartner Item &4cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(damager), true, true)));
+                    damager.sendMessage(CC.translate("&7You are on &4&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(damager), true, true)));
                     damager.updateInventory();
                     return;
                 }
@@ -74,10 +75,12 @@ public class AntiTrapper extends Ability {
 
                     // Apply cooldown on victim to prevent interaction
                     AntiTrapper.cooldownvic.put(victim.getName(), System.currentTimeMillis() + (15 * 1000));
+                    plugin.getAbilityManager().playerMessage(damager, this.getAbility());
+                    plugin.getAbilityManager().targetMessage(victim, damager, this.getAbility());
 
-                    damager.sendMessage(CC.translate(cPractice.get().getAbilityConfig().getString("ANTI_TRAPPER.MESSAGE.PLAYER")).replace("%target%", victim.getName()));
-                    victim.sendMessage(CC.translate(cPractice.get().getAbilityConfig().getString("ANTI_TRAPPER.MESSAGE.TARGET"))
-                            .replace("%player%", damager.getName()));
+                    //damager.sendMessage(CC.translate(cPractice.get().getAbilityConfig().getString("ANTI_TRAPPER.MESSAGE.PLAYER")).replace("%target%", victim.getName()));
+                    //victim.sendMessage(CC.translate(cPractice.get().getAbilityConfig().getString("ANTI_TRAPPER.MESSAGE.TARGET"))
+                            //.//replace("%player%", damager.getName()));
                     PlayerUtil.decrement(damager);
                     return;
                 }

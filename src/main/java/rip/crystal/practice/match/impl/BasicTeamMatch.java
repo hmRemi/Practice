@@ -51,7 +51,7 @@ public class BasicTeamMatch extends Match {
 	}
 
 	/**
-	 * Setup the player according to {@link Kit},
+	 * Set up the player according to {@link Kit},
 	 * {@link Arena}
 	 * <p>
 	 * This also teleports the player to the specified arena,

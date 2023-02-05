@@ -32,13 +32,13 @@ public class TankIngot extends Ability {
             Profile profile = Profile.get(player.getUniqueId());
 
             if (profile.getTankingot().onCooldown(player)) {
-                player.sendMessage(CC.translate("&7You are on &4&lTank Ingot &4cooldown for &4" + DurationFormatter.getRemaining(profile.getTankingot().getRemainingMilis(player), true, true)));
+                player.sendMessage(CC.translate("&7You are on &4&lTank Ingot &7cooldown for &4" + DurationFormatter.getRemaining(profile.getTankingot().getRemainingMilis(player), true, true)));
                 player.updateInventory();
                 return;
             }
 
             if(profile.getPartneritem().onCooldown(player)){
-                player.sendMessage(CC.translate("&7You are on &4&lPartner Item &4cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
+                player.sendMessage(CC.translate("&7You are on &4&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
                 player.updateInventory();
                 return;
             }

@@ -239,7 +239,7 @@ public abstract class Match {
 
 						profile.getPartneritem().applyCooldown(player, 0);
 						profile.getAntitrapper().applyCooldown(player, 0);
-						profile.getBeacom().applyCooldown(player, 0);
+						profile.getCombo().applyCooldown(player, 0);
 						profile.getCookie().applyCooldown(player, 0);
 						profile.getEffectdisabler().applyCooldown(player, 0);
 						profile.getGuardianangel().applyCooldown(player, 0);

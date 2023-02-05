@@ -82,14 +82,14 @@ public class TimeWarp extends Ability {
 
         if (profile.getTimewarp().onCooldown(player)) {
             event.setCancelled(true);
-            player.sendMessage(CC.translate("&7You are on &4&lTime Warp &4cooldown for &4" + DurationFormatter.getRemaining(profile.getTimewarp().getRemainingMilis(player), true, true)));
+            player.sendMessage(CC.translate("&7You are on &4&lTime Warp &7cooldown for &4" + DurationFormatter.getRemaining(profile.getTimewarp().getRemainingMilis(player), true, true)));
             player.updateInventory();
             event.setCancelled(true);
             return;
         }
 
         if (profile.getPartneritem().onCooldown(player)) {
-            player.sendMessage(CC.translate("&7You are on &4&lPartner Item &4cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
+            player.sendMessage(CC.translate("&7You are on &4&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
             player.updateInventory();
             event.setCancelled(true);
             return;
@@ -108,12 +108,12 @@ public class TimeWarp extends Ability {
         profile.getPartneritem().applyCooldown(player, 10 * 1000);
 
         player.sendMessage(CC.translate(
-                "&7You &aactivated &ba Time Warp, so you will be teleported to your last thrown enderpearl's location in &33 &bseconds!"));
+                "&7You &a4ctivated &7a Time Warp, so you will be teleported to your last thrown enderpearl's location in &43 &7seconds!"));
 
         Bukkit.getScheduler().runTaskLater(cPractice.get(), () -> {
             player.teleport(location);
             player.sendMessage(
-                    CC.translate("&7You have been &ateleported &bto your last thrown enderpearl's location!"));
+                    CC.translate("&7You have been &4teleported &7to your last thrown enderpearl's location!"));
 
             this.lastPearl.remove(player.getUniqueId());
         }, 60L);

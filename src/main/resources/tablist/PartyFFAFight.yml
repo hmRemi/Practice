@@ -218,7 +218,7 @@ TABLIST:
       head: ''
     '12':
       text: ' &4Ping&7: &f{ping}'
-    head: ''
+      head: ''
     '13':
       text: ''
       head: ''

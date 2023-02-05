@@ -139,6 +139,30 @@ public class TabAdapter implements GhostlyAdapter {
                                         .slot(i)
                                         .ping(0)
                                         .column(TabColumn.FAR_RIGHT));
+                                /*tabObjects.add(new BufferedTabObject()
+                                        .text(replacePartyTeamFighting(plugin.getTabPartyTeamFightConfig().getString("TABLIST.LEFT." + i + ".text"), match, player))
+                                        .skin(skin(plugin.getTabPartyTeamFightConfig().getString("TABLIST.LEFT." + i + ".head"), player))
+                                        .slot(i)
+                                        .ping(0)
+                                        .column(TabColumn.LEFT));
+                                tabObjects.add(new BufferedTabObject()
+                                        .text(replacePartyTeamFighting(plugin.getTabPartyTeamFightConfig().getString("TABLIST.CENTER." + i + ".text"), match, player))
+                                        .skin(skin(plugin.getTabPartyTeamFightConfig().getString("TABLIST.CENTER." + i + ".head"), player))
+                                        .slot(i)
+                                        .ping(0)
+                                        .column(TabColumn.MIDDLE));
+                                tabObjects.add(new BufferedTabObject()
+                                        .text(replacePartyTeamFighting(plugin.getTabPartyTeamFightConfig().getString("TABLIST.RIGHT." + i + ".text"), match, player))
+                                        .skin(skin(plugin.getTabPartyTeamFightConfig().getString("TABLIST.RIGHT." + i + ".head"), player))
+                                        .slot(i)
+                                        .ping(0)
+                                        .column(TabColumn.RIGHT));
+                                tabObjects.add(new BufferedTabObject()
+                                        .text(replacePartyTeamFighting(plugin.getTabPartyTeamFightConfig().getString("TABLIST.EXTERNAL-RIGHT." + i + ".text"), match, player))
+                                        .skin(skin(plugin.getTabPartyTeamFightConfig().getString("TABLIST.EXTERNAL-RIGHT." + i + ".head"), player))
+                                        .slot(i)
+                                        .ping(0)
+                                        .column(TabColumn.FAR_RIGHT));*/
                             }
                         } else {
                             if (match instanceof BasicFreeForAllMatch) {

@@ -43,13 +43,13 @@ public class EffectDisabler extends Ability {
             if (isBard(victim) || isArcher(victim) || isRogue(victim) || isMiner(victim)) return;
             
             if (profile.getEffectdisabler().onCooldown(damager)) {
-                damager.sendMessage(CC.translate("&7You are on &4&lEffect Disabler &4cooldown for &4" + DurationFormatter.getRemaining(profile.getEffectdisabler().getRemainingMilis(damager), true, true)));
+                damager.sendMessage(CC.translate("&7You are on &4&lEffect Disabler &7cooldown for &4" + DurationFormatter.getRemaining(profile.getEffectdisabler().getRemainingMilis(damager), true, true)));
                 damager.updateInventory();
                 return;
             }
 
             if(profile.getPartneritem().onCooldown(damager)){
-                damager.sendMessage(CC.translate("&7You are on &4&lPartner Item &4cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(damager), true, true)));
+                damager.sendMessage(CC.translate("&7You are on &4&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(damager), true, true)));
                 damager.updateInventory();
                 return;
             }

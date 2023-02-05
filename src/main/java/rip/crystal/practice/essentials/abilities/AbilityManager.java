@@ -121,7 +121,8 @@ public class AbilityManager {
         cPractice.get().getAbilityConfig().getStringList(ability + ".MESSAGE.TARGET").forEach(
                 message -> CC.message(target, message
                         .replace("%ABILITY%", displayName)
-                        .replace("%PLAYER%", player.getName())));
+                        .replace("%PLAYER%", player.getName())
+                        .replace("%TARGET%", target.getName())));
     }
 
     public void cooldown(Player player, String abilityName, String cooldown) {

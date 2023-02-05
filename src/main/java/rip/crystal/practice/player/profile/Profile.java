@@ -64,7 +64,7 @@ public class Profile {
 	private BasicTeamMatch basicTeamMatch;
 	private QueueProfile queueProfile;
 	private Cooldown enderpearlCooldown, voteCooldown, chatCooldown, partyAnnounceCooldown;
-	private AbilityCooldown partneritem, beacom, combo, effectdisabler, guardianangel, ninjastar, pocketbard, scrammbler,
+	private AbilityCooldown partneritem, combo, effectdisabler, guardianangel, ninjastar, pocketbard, scrammbler,
 			strength, swapperaxe, timewarp, switcher, tankingot, cookie, fakelogger, rocket, antitrapper;
 
 	private ProfileConversations conversations;
@@ -99,7 +99,6 @@ public class Profile {
 		this.chatCooldown = new Cooldown(0);
 		this.partneritem = new AbilityCooldown();
 		this.antitrapper = new AbilityCooldown();
-		this.beacom = new AbilityCooldown();
 		this.combo = new AbilityCooldown();
 		this.cookie = new AbilityCooldown();
 		this.effectdisabler = new AbilityCooldown();

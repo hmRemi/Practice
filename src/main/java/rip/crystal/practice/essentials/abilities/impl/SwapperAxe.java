@@ -31,13 +31,13 @@ public class SwapperAxe extends Ability {
             if (!isAbility(damager.getItemInHand())) return;
 
             if (profile.getSwapperaxe().onCooldown(damager)) {
-                damager.sendMessage(CC.translate("&7You are on &4&lSwapper Axe &4cooldown for &4" + DurationFormatter.getRemaining(profile.getSwapperaxe().getRemainingMilis(damager), true, true)));
+                damager.sendMessage(CC.translate("&7You are on &4&lSwapper Axe &7cooldown for &4" + DurationFormatter.getRemaining(profile.getSwapperaxe().getRemainingMilis(damager), true, true)));
                 damager.updateInventory();
                 return;
             }
 
             if(profile.getPartneritem().onCooldown(damager)){
-                damager.sendMessage(CC.translate("&7You are on &4&lPartner Item &4cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(damager), true, true)));
+                damager.sendMessage(CC.translate("&7You are on &4&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(damager), true, true)));
                 damager.updateInventory();
                 return;
             }

@@ -47,10 +47,15 @@ public class PartyEventSelectKitMenu extends Menu {
 
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 		for (Kit kit : Kit.getKits()) {
-			if ((partyEvent == PartyEvent.SPLIT || /*!kit.getGameRules().isBridge() &&*/ party.getListOfPlayers().size() <= 8)) {
+			if ((partyEvent == PartyEvent.SPLIT /*||*/ /*!kit.getGameRules().isBridge() &&*/ /*party.getListOfPlayers().size() <= 8*/)) {
+				if (kit.isEnabled()) {
+					buttons.put(kit.getSlot(), new SelectKitButton(partyEvent, kit));
+				}
+			} else if ((partyEvent == PartyEvent.FFA)) {
 				if (kit.isEnabled() && !kit.getGameRules().isHcftrap()) {
 					buttons.put(kit.getSlot(), new SelectKitButton(partyEvent, kit));
 				}
+
 			}
 		}
 		return buttons;
