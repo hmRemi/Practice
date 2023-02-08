@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.material.Gate;
 import rip.crystal.practice.match.Match;
 import rip.crystal.practice.match.MatchState;
 import rip.crystal.practice.player.profile.Profile;
@@ -81,5 +82,27 @@ public class MatchPearlListener implements Listener {
         if (event.getDamager().getType().equals(EntityType.ENDER_PEARL)) {
             event.setCancelled(true);
         }
+    }
+
+    protected boolean checkFenceGate(Location location, Player player) {
+        Block block = location.getBlock();
+        Block b2 = block.getRelative(BlockFace.DOWN);
+        Material type = block.getType();
+        if (type.toString().contains("FENCE_GATE")) {
+            if (!((Gate)block.getState().getData()).isOpen()) {
+                return b2.getType().toString().contains("FENCE_GATE") && ((Gate)b2.getState().getData()).isOpen();
+            } else {
+                this.setToBlock(location);
+                return true;
+            }
+        } else {
+            return true;
+        }
+    }
+
+    private void setToBlock(Location location) {
+        location.setX((double)location.getBlockX() + 0.5D);
+        location.setY((double)location.getBlockY());
+        location.setZ((double)location.getBlockZ() + 0.5D);
     }
 }

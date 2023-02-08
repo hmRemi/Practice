@@ -1,6 +1,8 @@
 package rip.crystal.practice.match.command;
 
 import rip.crystal.practice.cPractice;
+import rip.crystal.practice.chunk.ChunkRestorationManager;
+import rip.crystal.practice.game.arena.impl.StandaloneArena;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.api.command.BaseCommand;
@@ -37,6 +39,9 @@ public class CancelMatchCommand extends BaseCommand {
 		}
 		for (String message : cPractice.get().getLang().getStringList("MATCH.CANCELLED")) {
 			targetProfile.getMatch().sendMessage(CC.translate(message.replaceAll("<cancelled_by>", player.getName())));
+		}
+		if(targetProfile.getMatch().getArena() instanceof StandaloneArena) {
+			ChunkRestorationManager.getIChunkRestoration().reset(targetProfile.getMatch().getArena());
 		}
 		targetProfile.getMatch().end();
 		player.sendMessage(CC.translate("&cYou have cancelled " + target.getName() + "'s match."));

@@ -1,8 +1,10 @@
 package rip.crystal.practice.match;
 
 import rip.crystal.practice.Locale;
+import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.cPractice;
+import rip.crystal.practice.game.arena.impl.StandaloneArena;
 import rip.crystal.practice.game.kit.Kit;
 import rip.crystal.practice.game.knockback.Knockback;
 import rip.crystal.practice.match.events.MatchEndEvent;
@@ -790,9 +792,10 @@ public abstract class Match {
 
 	public static void cleanup() {
 		for (Match match : matches) {
-			match.getPlacedBlocks().forEach(location -> location.getBlock().setType(Material.AIR));
-			match.getChangedBlocks().forEach((blockState) -> blockState.getLocation().getBlock().setType(blockState.getType()));
 			match.getDroppedItems().forEach(Entity::remove);
+			if(match.getArena() instanceof StandaloneArena) {
+				ChunkRestorationManager.getIChunkRestoration().reset(match.getArena());
+			}
 		}
 	}
 
