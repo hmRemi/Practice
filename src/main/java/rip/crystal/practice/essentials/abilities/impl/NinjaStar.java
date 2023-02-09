@@ -1,6 +1,8 @@
 package rip.crystal.practice.essentials.abilities.impl;
 
 import com.google.common.collect.Maps;
+import com.lunarclient.bukkitapi.LunarClientAPI;
+import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.essentials.abilities.Ability;
 import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
 import rip.crystal.practice.cPractice;
@@ -68,6 +70,10 @@ public class NinjaStar extends Ability {
 
             profile.getNinjastar().applyCooldown(player, 60 * 1000);
             profile.getPartneritem().applyCooldown(player,  10 * 1000);
+
+            if(LunarClientAPI.getInstance().isRunningLunarClient(player)) {
+                LunarClientAPICooldown.sendCooldown(player, "NinjaStar");
+            }
 
             new BukkitRunnable() {
                 @Override

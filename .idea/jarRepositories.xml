@@ -12,6 +12,11 @@
       <option name="url" value="https://maven.sk89q.com/repo/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="lunarclient-public" />
+      <option name="name" value="lunarclient-public" />
+      <option name="url" value="https://maven.moonsworth.com/repository/lunarclient-public/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Central Repository" />
       <option name="url" value="https://repo.maven.apache.org/maven2" />

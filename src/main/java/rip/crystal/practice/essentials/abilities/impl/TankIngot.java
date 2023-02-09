@@ -1,5 +1,7 @@
 package rip.crystal.practice.essentials.abilities.impl;
 
+import com.lunarclient.bukkitapi.LunarClientAPI;
+import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.essentials.abilities.Ability;
 import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
 import rip.crystal.practice.cPractice;
@@ -47,6 +49,10 @@ public class TankIngot extends Ability {
 
             profile.getTankingot().applyCooldown(player, 60 * 1000);
             profile.getPartneritem().applyCooldown(player,  10 * 1000);
+
+            if(LunarClientAPI.getInstance().isRunningLunarClient(player)) {
+                LunarClientAPICooldown.sendCooldown(player, "TankIngot");
+            }
 
             player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
             player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20 * 6, 2));

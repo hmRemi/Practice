@@ -107,8 +107,10 @@ public class BasicTeamMatch extends Match {
 		// Teleport the player to their spawn point
 		Location spawn = participantA.containsPlayer(player.getUniqueId()) ? getArena().getSpawnA() : getArena().getSpawnB();
 
-		if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
-		else player.teleport(spawn.add(0, 2, 0));
+		TaskUtil.runLater(() -> {
+			if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
+			else player.teleport(spawn.add(0, 2, 0));
+		}, 2L);
 	}
 
 	@Override

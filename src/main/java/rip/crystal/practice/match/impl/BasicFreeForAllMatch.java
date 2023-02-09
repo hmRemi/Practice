@@ -4,6 +4,7 @@ import rip.crystal.practice.Locale;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.kit.Kit;
+import rip.crystal.practice.utilities.TaskUtil;
 import rip.crystal.practice.utilities.lag.LagRunnable;
 import rip.crystal.practice.match.Match;
 import rip.crystal.practice.match.MatchSnapshot;
@@ -80,11 +81,10 @@ public class BasicFreeForAllMatch extends Match {
 		// Teleport the player to their spawn point
 		Location spawn = arena.getSpawnA();
 
-		if (spawn.getBlock().getType() == Material.AIR) {
-			player.teleport(spawn);
-		} else {
-			player.teleport(spawn.add(0, 2, 0));
-		}
+		TaskUtil.runLater(() -> {
+			if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
+			else player.teleport(spawn.add(0, 2, 0));
+		}, 2L);
 	}
 
 	@Override

@@ -55,7 +55,6 @@
             <id>papermc</id>
             <url>https://papermc.io/repo/repository/maven-public/</url>
         </repository>
-
         <repository>
             <id>enginehub-maven</id>
             <url>https://maven.enginehub.org/repo/</url>
@@ -144,6 +143,7 @@
         </dependency>
 
         <!--lib-->
+
         <dependency>
             <groupId>xyz.refine.spigot</groupId>
             <artifactId>knockback</artifactId>

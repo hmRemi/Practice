@@ -1,5 +1,7 @@
 package rip.crystal.practice.essentials.abilities.impl;
 
+import com.lunarclient.bukkitapi.LunarClientAPI;
+import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.essentials.abilities.Ability;
 import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
 import rip.crystal.practice.cPractice;
@@ -49,6 +51,11 @@ public class PocketBard extends Ability {
 
             profile.getPocketbard().applyCooldown(player, 60 * 1000);
             profile.getPartneritem().applyCooldown(player,  10 * 1000);
+
+            if(LunarClientAPI.getInstance().isRunningLunarClient(player)) {
+                LunarClientAPICooldown.sendCooldown(player, "PocketBard");
+            }
+
             this.giveRandomEffect(player);
 
             plugin.getAbilityManager().cooldownExpired(player, this.getName(), this.getAbility());
@@ -57,7 +64,7 @@ public class PocketBard extends Ability {
     }
 
     private void giveRandomEffect(Player player) {
-        switch (ThreadLocalRandom.current().nextInt(3)) {
+        switch (ThreadLocalRandom.current().nextInt(4)) {
             case 0:
                 player.removePotionEffect(PotionEffectType.REGENERATION);
                 player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20 * 11, 1));

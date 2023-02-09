@@ -1,5 +1,7 @@
 package rip.crystal.practice.match;
 
+import com.lunarclient.bukkitapi.LunarClientAPI;
+import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.game.arena.Arena;
@@ -213,6 +215,48 @@ public abstract class Match {
 		new MatchStartEvent(this).call();
 	}
 
+	/**
+	 * Call {@link Player}
+	 * This method resets the ability cooldowns
+	 * and the lunar client cooldowns for the player.
+	 */
+
+	private void clearCooldowns(Player player) {
+		Profile profile = Profile.get(player.getUniqueId());
+
+		profile.getPartneritem().applyCooldown(player, 0);
+		profile.getAntitrapper().applyCooldown(player, 0);
+		profile.getCombo().applyCooldown(player, 0);
+		profile.getCookie().applyCooldown(player, 0);
+		profile.getEffectdisabler().applyCooldown(player, 0);
+		profile.getGuardianangel().applyCooldown(player, 0);
+		profile.getNinjastar().applyCooldown(player, 0);
+		profile.getPocketbard().applyCooldown(player, 0);
+		profile.getRocket().applyCooldown(player, 0);
+		profile.getScrammbler().applyCooldown(player, 0);
+		profile.getStrength().applyCooldown(player, 0);
+		profile.getSwapperaxe().applyCooldown(player, 0);
+		profile.getSwitcher().applyCooldown(player, 0);
+		profile.getTankingot().applyCooldown(player, 0);
+		profile.getTimewarp().applyCooldown(player, 0);
+
+		if(LunarClientAPI.getInstance().isRunningLunarClient(player)) {
+			LunarClientAPICooldown.clearCooldown(player, "AntiTrapper");
+			LunarClientAPICooldown.clearCooldown(player, "Combo");
+			LunarClientAPICooldown.clearCooldown(player, "Cookie");
+			LunarClientAPICooldown.clearCooldown(player, "EffectDisabler");
+			LunarClientAPICooldown.clearCooldown(player, "GuardianAngel");
+			LunarClientAPICooldown.clearCooldown(player, "NinjaStar");
+			LunarClientAPICooldown.clearCooldown(player, "PocketBard");
+			LunarClientAPICooldown.clearCooldown(player, "Rocket");
+			LunarClientAPICooldown.clearCooldown(player, "Scrambler");
+			LunarClientAPICooldown.clearCooldown(player, "Strength");
+			LunarClientAPICooldown.clearCooldown(player, "SwapperAxe");
+			LunarClientAPICooldown.clearCooldown(player, "Switcher");
+			LunarClientAPICooldown.clearCooldown(player, "TankIngot");
+			LunarClientAPICooldown.clearCooldown(player, "TimeWarp");
+		}
+	}
 
 	/**
 	 * Call {@link MatchEndEvent}
@@ -239,21 +283,7 @@ public abstract class Match {
 						profile.setEnderpearlCooldown(new Cooldown(0));
 						profile.setSelectedKit(null);
 
-						profile.getPartneritem().applyCooldown(player, 0);
-						profile.getAntitrapper().applyCooldown(player, 0);
-						profile.getCombo().applyCooldown(player, 0);
-						profile.getCookie().applyCooldown(player, 0);
-						profile.getEffectdisabler().applyCooldown(player, 0);
-						profile.getGuardianangel().applyCooldown(player, 0);
-						profile.getNinjastar().applyCooldown(player, 0);
-						profile.getPocketbard().applyCooldown(player, 0);
-						profile.getRocket().applyCooldown(player, 0);
-						profile.getScrammbler().applyCooldown(player, 0);
-						profile.getStrength().applyCooldown(player, 0);
-						profile.getSwapperaxe().applyCooldown(player, 0);
-						profile.getSwitcher().applyCooldown(player, 0);
-						profile.getTankingot().applyCooldown(player, 0);
-						profile.getTimewarp().applyCooldown(player, 0);
+						this.clearCooldowns(player);
 
 						if (getKit().getGameRules().isShowHealth()) {
 							Objective objective = player.getScoreboard().getObjective(DisplaySlot.BELOW_NAME);

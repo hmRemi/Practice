@@ -1,5 +1,7 @@
 package rip.crystal.practice.essentials.abilities.impl;
 
+import com.lunarclient.bukkitapi.LunarClientAPI;
+import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.essentials.abilities.Ability;
 import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
 import rip.crystal.practice.cPractice;
@@ -47,6 +49,11 @@ public class Scrammbler extends Ability {
 
             profile.getScrammbler().applyCooldown(damager, 60 * 1000);
             profile.getPartneritem().applyCooldown(damager,  10 * 1000);
+
+            if(LunarClientAPI.getInstance().isRunningLunarClient(damager)) {
+                LunarClientAPICooldown.sendCooldown(damager, "Scrambler");
+            }
+
             this.random(victim);
 
             plugin.getAbilityManager().cooldownExpired(damager, this.getName(), this.getAbility());

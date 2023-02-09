@@ -2,6 +2,8 @@ package rip.crystal.practice.essentials.abilities.impl;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.lunarclient.bukkitapi.LunarClientAPI;
+import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.essentials.abilities.Ability;
 import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
 import rip.crystal.practice.cPractice;
@@ -106,6 +108,10 @@ public class TimeWarp extends Ability {
 
         profile.getTimewarp().applyCooldown(player, 60 * 1000);
         profile.getPartneritem().applyCooldown(player, 10 * 1000);
+
+        if(LunarClientAPI.getInstance().isRunningLunarClient(player)) {
+            LunarClientAPICooldown.sendCooldown(player, "TimeWarp");
+        }
 
         player.sendMessage(CC.translate(
                 "&7You &a4ctivated &7a Time Warp, so you will be teleported to your last thrown enderpearl's location in &43 &7seconds!"));
