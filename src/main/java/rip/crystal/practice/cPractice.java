@@ -1,7 +1,5 @@
 package rip.crystal.practice;
 
-import com.lunarclient.bukkitapi.cooldown.LCCooldown;
-import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.database.MongoConnection;
 import rip.crystal.practice.essentials.abilities.AbilityManager;
@@ -16,6 +14,7 @@ import rip.crystal.practice.essentials.chat.impl.ChatListener;
 import rip.crystal.practice.essentials.chat.impl.command.ClearChatCommand;
 import rip.crystal.practice.essentials.chat.impl.command.MuteChatCommand;
 import rip.crystal.practice.essentials.chat.impl.command.SlowChatCommand;
+import rip.crystal.practice.game.tournament.managers.TournamentManager;
 import rip.crystal.practice.match.listeners.impl.MatchBuildListener;
 import rip.crystal.practice.match.listeners.impl.MatchPearlListener;
 import rip.crystal.practice.match.listeners.impl.MatchPlayerListener;
@@ -103,7 +102,7 @@ import rip.crystal.practice.shop.command.ShopCommand;
 import rip.crystal.practice.shop.command.staff.CoinsStaffCommand;
 import rip.crystal.practice.visual.tablist.TabAdapter;
 import rip.crystal.practice.visual.tablist.impl.TabList;
-import rip.crystal.practice.game.tournament.TournamentListener;
+import rip.crystal.practice.game.tournament.listeners.TournamentListener;
 import rip.crystal.practice.game.tournament.commands.TournamentCommand;
 import rip.crystal.practice.utilities.Animation;
 import rip.crystal.practice.utilities.InventoryUtil;
@@ -144,6 +143,7 @@ public class cPractice extends JavaPlugin {
     private ShopSystem shopSystem;
     private ChunkRestorationManager chunkRestorationManager;
     private Hotbar hotbar;
+    private TournamentManager tournamentManager;
 
     private EntityHider entityHider;
 
@@ -229,7 +229,7 @@ public class cPractice extends JavaPlugin {
         this.entityHider = new EntityHider(this, EntityHider.Policy.BLACKLIST);
         this.entityHider.init();
 
-        this.registerCooldowns();
+        this.tournamentManager = new TournamentManager();
 
         Kit.init();
         Arena.init();
@@ -258,23 +258,6 @@ public class cPractice extends JavaPlugin {
             new PlaceholderAPI().register();
             Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "Placeholder API expansion successfully registered."));
         }
-    }
-
-    private void registerCooldowns() {
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("AntiTrapper", 60, Material.BONE));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("Combo", 60, Material.RAW_FISH));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("Cookie", 60, Material.COOKIE));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("EffectDisabler", 60, Material.SLIME_BALL));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("GuardianAngel", 60, Material.GOLD_NUGGET));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("NinjaStar", 60, Material.NETHER_STAR));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("PocketBard", 60, Material.INK_SACK));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("Rocket", 60, Material.FIREWORK));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("Scrambler", 60, Material.GOLD_INGOT));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("Strength", 60, Material.BLAZE_POWDER));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("SwapperAxe", 60, Material.DIAMOND_AXE));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("Switcher", 60, Material.SNOW_BALL));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("TankIngot", 60, Material.IRON_INGOT));
-        LunarClientAPICooldown.registerCooldown(new LCCooldown("TimeWarp", 60, Material.FEATHER));
     }
 
     private void loadConfig() {
@@ -380,8 +363,8 @@ public class cPractice extends JavaPlugin {
     }
 
     private void runTasks() {
-        TaskUtil.runTimer(() -> Bukkit.getOnlinePlayers().forEach(player -> Bukkit.getOnlinePlayers().forEach(other -> TaskUtil.runAsync(() -> GxNameTag.reloadPlayer(player, other)))), 20L, 20L);
-        TaskUtil.runTimerAsync(new ClassTask(), 5L, 5L);
+        TaskUtil.runTimer(() -> Bukkit.getOnlinePlayers().forEach(player -> Bukkit.getOnlinePlayers().forEach(other -> TaskUtil.run(() -> GxNameTag.reloadPlayer(player, other)))), 20L, 20L);
+        TaskUtil.runTimer(new ClassTask(), 5L, 5L);
         TaskUtil.runTimer(new BardEnergyTask(), 15L, 20L);
         TaskUtil.runTimer(() ->
             Profile.getProfiles().values().stream()

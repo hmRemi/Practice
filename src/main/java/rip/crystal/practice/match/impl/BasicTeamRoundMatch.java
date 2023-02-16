@@ -128,10 +128,8 @@ public class BasicTeamRoundMatch extends BasicTeamMatch {
                     Location spawn = getParticipantA().containsPlayer(player.getUniqueId()) ?
                         getArena().getSpawnA() : getArena().getSpawnB();
 
-                    TaskUtil.runLater(() -> {
-                        if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
-                        else player.teleport(spawn.add(0, 2, 0));
-                    }, 2L);
+                    if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
+                    else player.teleport(spawn.add(0, 2, 0));
 
                     if(getKit().getGameRules().isSumo()){
                         PlayerUtil.denyMovement(player);

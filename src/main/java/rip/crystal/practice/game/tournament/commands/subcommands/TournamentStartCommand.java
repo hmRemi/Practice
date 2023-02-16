@@ -14,6 +14,12 @@ import rip.crystal.practice.api.command.CommandArgs;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
+
 public class TournamentStartCommand extends BaseCommand {
 
     @Command(name = "tournament.start", permission = "tournament.admin")
@@ -39,8 +45,7 @@ public class TournamentStartCommand extends BaseCommand {
         }
 
         if (Tournament.getTournament() != null) {
-            new MessageFormat(Locale.TOURNAMENT_ALREADY_CREATED.format(Profile.get(player.getUniqueId()).getLocale()))
-                    .send(player);
+            new MessageFormat(Locale.TOURNAMENT_ALREADY_CREATED.format(Profile.get(player.getUniqueId()).getLocale())).send(player);
             return;
         }
 

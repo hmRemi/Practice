@@ -1,8 +1,4 @@
 package rip.crystal.practice.game.tournament.commands.subcommands;
-/* 
-   Made by cpractice Development Team
-   Created on 10.10.2021
-*/
 
 import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.game.tournament.TournamentState;
@@ -12,6 +8,12 @@ import rip.crystal.practice.api.command.Command;
 import rip.crystal.practice.api.command.CommandArgs;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
 
 public class TournamentStatusCommand extends BaseCommand {
 
@@ -29,12 +31,11 @@ public class TournamentStatusCommand extends BaseCommand {
         }
 
         player.sendMessage(CC.CHAT_BAR);
-        player.sendMessage(CC.translate( "&7(*) &4&lTournament &7(*)"));
-        player.sendMessage(ChatColor.RED + "Current Matches: " + ChatColor.WHITE + tournament.getMatches().size());
-        player.sendMessage(ChatColor.RED + "Players Limit: " + ChatColor.WHITE + tournament.getLimit());
-        player.sendMessage(ChatColor.RED + "Players: " + ChatColor.WHITE + tournament.getPlayers().size());
-        player.sendMessage(ChatColor.RED + "Stage: " + ChatColor.WHITE + tournament.getState());
-        player.sendMessage(ChatColor.RED + "Kit: " + ChatColor.WHITE + tournament.getKit().getName());
+        player.sendMessage(CC.translate( "&4&lTournament &7&m-&r &4&lStatus"));
+        player.sendMessage(CC.translate(" &7▢ &4Players: &7" + tournament.getPlayers().size() + "/" + tournament.getLimit()));
+        player.sendMessage(CC.translate(" &7▢ &4Matches: &7" + tournament.getMatches().size()));
+        player.sendMessage(CC.translate(" &7▢ &4Stage: &7" + tournament.getState().getName()));
+        player.sendMessage(CC.translate(" &7▢ &4Kit: &7" + tournament.getKit().getName()));
         player.sendMessage(CC.CHAT_BAR);
     }
 }

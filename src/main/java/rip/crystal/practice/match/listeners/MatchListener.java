@@ -5,12 +5,12 @@ import org.bukkit.*;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.knockback.Knockback;
+import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.match.Match;
 import rip.crystal.practice.match.MatchState;
 import rip.crystal.practice.match.events.MatchEndEvent;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.profile.ProfileState;
-import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.utilities.*;
 import rip.crystal.practice.utilities.chat.CC;
 import org.apache.commons.lang.StringEscapeUtils;
@@ -449,26 +449,5 @@ public class MatchListener implements Listener {
 
 			Knockback.getKnockbackProfiler().setKnockback(player.getPlayer(), "default");
 		}));
-
-		Tournament<?> tournament = Tournament.getTournament();
-		if(tournament == null) return;
-		match.getParticipants().forEach(gameParticipant -> {
-			if (gameParticipant.isAllDead()) {
-				tournament.eliminatedTeam(gameParticipant);
-			}
-		});
-
-		if (tournament.getMatches().contains(match)) {
-			tournament.getMatches().remove(match);
-			if (tournament.getMatches().isEmpty()) {
-				if (tournament.getTeams().size() == 1) {
-					tournament.end(tournament.getTeams().get(0));
-				} else if(tournament.getTeams().isEmpty()) {
-					tournament.end(null);
-				} else {
-					tournament.nextRound();
-				}
-			}
-		}
 	}
 }

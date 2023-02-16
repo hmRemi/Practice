@@ -1,7 +1,5 @@
 package rip.crystal.practice.essentials.abilities.impl;
 
-import com.lunarclient.bukkitapi.LunarClientAPI;
-import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.essentials.abilities.Ability;
 import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
 import rip.crystal.practice.cPractice;
@@ -62,12 +60,27 @@ public class Switcher extends Ability {
             profile.getSwitcher().applyCooldown(shooter, 8 * 1000);
             profile.getPartneritem().applyCooldown(shooter,  10 * 1000);
 
-            if(LunarClientAPI.getInstance().isRunningLunarClient(shooter)) {
-                LunarClientAPICooldown.sendCooldown(shooter, "Switcher");
-            }
-
             plugin.getAbilityManager().cooldownExpired(shooter, this.getName(), this.getAbility());
             plugin.getAbilityManager().playerMessage(shooter, this.getAbility());
+        }
+    }
+
+    @EventHandler
+    public void checkCooldown(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        Action action = event.getAction();
+        Profile profile = Profile.get(player.getUniqueId());
+        if (action.equals(Action.LEFT_CLICK_AIR) || action.equals(Action.LEFT_CLICK_BLOCK)) {
+            if (!isAbility(player.getItemInHand())) {
+                return;
+            }
+            if (isAbility(player.getItemInHand())) {
+                if (this.hasCooldown(player)) {
+                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getSwitcher().getRemainingMilis(player), true)));
+                    event.setCancelled(true);
+                    player.updateInventory();
+                }
+            }
         }
     }
 

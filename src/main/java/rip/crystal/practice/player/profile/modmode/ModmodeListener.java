@@ -64,7 +64,10 @@ public class ModmodeListener implements Listener {
                             .send(player);
                 }
                 else if (hotbarItem == HotbarItem.RESET) {
-                    if (profile.getMatch() != null) profile.setMatch(null);
+                    if (profile.getMatch() != null) {
+                        profile.getMatch().removeSpectator(player);
+                        profile.setMatch(null);
+                    }
                     cPractice.get().getEssentials().teleportToSpawn(player);
                     for (Player otherPlayer : Bukkit.getOnlinePlayers()) {
                         VisibilityLogic.handle(player, otherPlayer);

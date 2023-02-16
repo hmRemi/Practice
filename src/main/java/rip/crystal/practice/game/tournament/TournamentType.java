@@ -3,6 +3,12 @@ package rip.crystal.practice.game.tournament;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
+
 @AllArgsConstructor
 @Getter
 public enum TournamentType {

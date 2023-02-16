@@ -243,7 +243,6 @@
             <scope>provided</scope>
         </dependency>
         -->
-
         <dependency>
             <groupId>net.luckperms</groupId>
             <artifactId>api</artifactId>

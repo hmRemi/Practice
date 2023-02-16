@@ -30,39 +30,27 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
+
 @Getter
 public class TournamentClans extends Tournament<Clan> {
 
-    private final Map<Clan, TeamGameParticipant<MatchGamePlayer>> clans = Maps.newHashMap();
-    Countdown countdown;
+    public static final Map<Clan, TeamGameParticipant<MatchGamePlayer>> clans = Maps.newHashMap();
 
     public void start(){
         nextRound();
     }
 
     public void join(Clan clan){
-        Player clanLeader = Bukkit.getPlayer(clan.getLeader());
+        cPractice.get().getTournamentManager().handleJoin(clan);
 
-        MatchGamePlayer leader = new MatchGamePlayer(clanLeader.getUniqueId(), clanLeader.getName());
-
-        TeamGameParticipant<MatchGamePlayer> teamGameParticipant = new TeamGameParticipant<>(leader);
-
-        clan.getOnPlayers().forEach(player -> {
-            getPlayers().add(player.getUniqueId());
-            Profile.get(player.getPlayer().getUniqueId()).setInTournament(true);
-            if (!player.getPlayer().equals(clanLeader)) {
-                MatchGamePlayer gamePlayer = new MatchGamePlayer(player.getUniqueId(), player.getName());
-                teamGameParticipant.getPlayers().add(gamePlayer);
-            }
-        });
-        getTeams().add(teamGameParticipant);
-
-        clans.put(clan, teamGameParticipant);
-
-        broadcast("&7Clan &f&l" + clan.getName() + "&7 has join to tournament.");
         if (getTeams().size() == getLimit()) {
-            countdown = Countdown.of(15, TimeUnit.SECONDS)
-                .players(getOnlinePlayers())
+            Countdown.of(15, TimeUnit.SECONDS)
+                    .players(getOnlinePlayers())
                 .broadcastAt(15, TimeUnit.SECONDS)
                 .broadcastAt(10, TimeUnit.SECONDS)
                 .broadcastAt(5, TimeUnit.SECONDS)
@@ -85,8 +73,8 @@ public class TournamentClans extends Tournament<Clan> {
         //Count down
         String round = "&7Next round in&4 {time}";
         if (getRound() == 1) round = "&7Starting in &4{time}";
-        countdown = Countdown.of(10, TimeUnit.SECONDS)
-            .players(getOnlinePlayers())
+        Countdown.of(10, TimeUnit.SECONDS)
+                .players(getOnlinePlayers())
             .broadcastAt(10, TimeUnit.SECONDS)
             .broadcastAt(5, TimeUnit.SECONDS)
             .broadcastAt(4, TimeUnit.SECONDS)
@@ -163,10 +151,9 @@ public class TournamentClans extends Tournament<Clan> {
             Bukkit.broadcastMessage(CC.translate("&c" + clan.getColoredName() + "&f has won the tournament."));
             clan.setTournamentWins(clan.getTournamentWins() + 1);
         } else {
-            Bukkit.broadcastMessage(CC.translate("Tournament has been stopped."));
+            Bukkit.broadcastMessage(CC.translate("&cTournament has been cancelled."));
         }
         TaskUtil.runLater(() -> setTournament(null), 20 * 15L);
-        if (countdown != null) countdown.stop();
     }
 
     @Override

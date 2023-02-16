@@ -8,6 +8,12 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import rip.crystal.practice.game.tournament.impl.TournamentSolo;
 
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
+
 public class TournamentJoinCommand extends BaseCommand {
 
     @Command(name = "tournament.join")
@@ -31,7 +37,6 @@ public class TournamentJoinCommand extends BaseCommand {
             return;
         }
 
-        profile.setInTournament(true);
         tournament.join(player);
     }
 }

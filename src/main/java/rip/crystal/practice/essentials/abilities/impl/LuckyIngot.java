@@ -1,28 +1,37 @@
 package rip.crystal.practice.essentials.abilities.impl;
 
-import rip.crystal.practice.essentials.abilities.Ability;
-import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
-import rip.crystal.practice.cPractice;
-import rip.crystal.practice.player.profile.Profile;
-import rip.crystal.practice.utilities.PlayerUtil;
-import rip.crystal.practice.utilities.chat.CC;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import rip.crystal.practice.cPractice;
+import rip.crystal.practice.essentials.abilities.Ability;
+import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
+import rip.crystal.practice.player.profile.Profile;
+import rip.crystal.practice.utilities.PlayerUtil;
+import rip.crystal.practice.utilities.chat.CC;
 
-public class Cookie extends Ability {
+import java.util.concurrent.ThreadLocalRandom;
+
+import static club.vaxel.core.SynthAPI.plugin;
+
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/15/2023
+ */
+public class LuckyIngot extends Ability {
 
     private final cPractice plugin = cPractice.get();
 
-    public Cookie() {
-        super("COOKIE");
+    public LuckyIngot() {
+        super("LUCKY_INGOT");
     }
 
     @EventHandler
-    private void onInteract(PlayerInteractEvent event) {
+    public void onInteract(PlayerInteractEvent event) {
         if (!isAbility(event.getItem())) return;
 
         if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -31,8 +40,8 @@ public class Cookie extends Ability {
             Player player = event.getPlayer();
             Profile profile = Profile.get(player.getUniqueId());
 
-            if (profile.getCookie().onCooldown(player)) {
-                player.sendMessage(CC.translate("&7You are on &4&lCookie &7cooldown for &4" + DurationFormatter.getRemaining(profile.getCookie().getRemainingMilis(player), true, true)));
+            if (profile.getPocketbard().onCooldown(player)) {
+                player.sendMessage(CC.translate("&7You are on &4&lLucky Ingot &7cooldown for &4" + DurationFormatter.getRemaining(profile.getPocketbard().getRemainingMilis(player), true, true)));
                 player.updateInventory();
                 return;
             }
@@ -45,13 +54,10 @@ public class Cookie extends Ability {
 
             PlayerUtil.decrement(player);
 
-            profile.getCookie().applyCooldown(player, 60 * 1000);
+            profile.getPocketbard().applyCooldown(player, 60 * 1000);
             profile.getPartneritem().applyCooldown(player,  10 * 1000);
 
-            player.removePotionEffect(PotionEffectType.REGENERATION);
-            player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-            player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 7, 1));
-            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20 * 7, 4));
+            this.giveRandomEffect(player);
 
             plugin.getAbilityManager().cooldownExpired(player, this.getName(), this.getAbility());
             plugin.getAbilityManager().playerMessage(player, this.getAbility());
@@ -69,11 +75,30 @@ public class Cookie extends Ability {
             }
             if (isAbility(player.getItemInHand())) {
                 if (this.hasCooldown(player)) {
-                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getCookie().getRemainingMilis(player), true)));
+                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getNinjastar().getRemainingMilis(player), true)));
                     event.setCancelled(true);
                     player.updateInventory();
                 }
             }
+        }
+    }
+
+    private void giveRandomEffect(Player player) {
+        switch (ThreadLocalRandom.current().nextInt(2)) {
+            case 0:
+                player.removePotionEffect(PotionEffectType.REGENERATION);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20 * 11, 1));
+
+                player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20 * 11, 1));
+                break;
+            case 1:
+                player.removePotionEffect(PotionEffectType.WEAKNESS);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20 * 11, 1));
+
+                player.removePotionEffect(PotionEffectType.WITHER);
+                player.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, 20 * 11, 1));
+
         }
     }
 }

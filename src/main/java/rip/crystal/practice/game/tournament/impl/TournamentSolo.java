@@ -7,8 +7,6 @@ import rip.crystal.practice.match.Match;
 import rip.crystal.practice.match.impl.BasicTeamMatch;
 import rip.crystal.practice.match.participant.MatchGamePlayer;
 import rip.crystal.practice.player.profile.Profile;
-import rip.crystal.practice.player.profile.ProfileState;
-import rip.crystal.practice.player.profile.hotbar.Hotbar;
 import rip.crystal.practice.player.profile.participant.alone.GameParticipant;
 import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.game.tournament.TournamentState;
@@ -28,22 +26,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
+
 @Getter @Setter
 public class TournamentSolo extends Tournament<Player> {
 
     @Override
     public void join(Player player){
-        Profile profile = Profile.get(player.getUniqueId());
-        MatchGamePlayer playerA = new MatchGamePlayer(player.getUniqueId(), player.getName());
-        getTeams().add(new GameParticipant<>(playerA));
-
-        broadcast(player.getName() + "&7 has joined the tournament.");
-
-        profile.setInTournament(true);
-        profile.setState(ProfileState.TOURNAMENT);
-        Hotbar.giveHotbarItems(player);
-
-        getPlayers().add(player.getUniqueId());
+        cPractice.get().getTournamentManager().handleJoin(player);
 
         if(getTeams().size() == getLimit()) {
             Countdown.of(1, TimeUnit.MINUTES)
@@ -101,7 +95,7 @@ public class TournamentSolo extends Tournament<Player> {
                         GameParticipant<MatchGamePlayer> teamA = teamsShuffle.poll();
                         if (teamsShuffle.isEmpty()) {
                             teamA.getPlayers().forEach(matchGamePlayer ->
-                                matchGamePlayer.getPlayer().sendMessage(CC.translate("&4No other player found," + " you should wait in this round.")));
+                                matchGamePlayer.getPlayer().sendMessage(CC.translate("&7No other player found," + " you should wait in this round.")));
                             return;
                         }
                         GameParticipant<MatchGamePlayer> teamB = teamsShuffle.poll();
@@ -109,11 +103,8 @@ public class TournamentSolo extends Tournament<Player> {
                         Arena arena = Arena.getRandomArena(getKit());
 
                         if (arena == null) {
-                            teamA.getPlayers().forEach(matchGamePlayer -> matchGamePlayer.getPlayer()
-                                    .sendMessage(CC.translate("&cTried to start a match but there are no available arenas.")));
-                            teamB.getPlayers().forEach(matchGamePlayer ->
-                                matchGamePlayer.getPlayer()
-                                    .sendMessage(CC.translate("&cTried to start a match but there are no available arenas.")));
+                            teamA.getPlayers().forEach(matchGamePlayer -> matchGamePlayer.getPlayer().sendMessage(CC.translate("&7Tried to start a match but there are no available arenas.")));
+                            teamB.getPlayers().forEach(matchGamePlayer -> matchGamePlayer.getPlayer().sendMessage(CC.translate("&7Tried to start a match but there are no available arenas.")));
                             return;
                         }
                         arena.setActive(true);
@@ -131,7 +122,7 @@ public class TournamentSolo extends Tournament<Player> {
             Profile.get(matchGamePlayer.getPlayer().getUniqueId()).setInTournament(false);
             getPlayers().remove(matchGamePlayer.getUuid());
             Player player = matchGamePlayer.getPlayer();
-            if(player != null) player.sendMessage(CC.translate("&c" + teamEliminated.getConjoinedNames() + "&f has been &celiminated."));
+            if(player != null) player.sendMessage(CC.translate("&4" + teamEliminated.getConjoinedNames() + "&7 has been &4eliminated."));
         }));
     }
 
@@ -147,9 +138,9 @@ public class TournamentSolo extends Tournament<Player> {
             new TournamentEndEvent(winner, true, false).call();
             Bukkit.broadcastMessage(CC.CHAT_BAR);
             Bukkit.broadcastMessage(CC.translate("&7(*) &cTournament Ended &7(*)"));
-            Bukkit.broadcastMessage(CC.translate("&fWinner: &c" + winner.getConjoinedNames()));
+            Bukkit.broadcastMessage(CC.translate("&7Winner: &c" + winner.getConjoinedNames()));
             Bukkit.broadcastMessage(CC.CHAT_BAR);
-        }else {
+        } else {
             Bukkit.broadcastMessage(CC.CHAT_BAR);
             Bukkit.broadcastMessage(CC.translate("&cTournament has been cancelled."));
             Bukkit.broadcastMessage(CC.CHAT_BAR);

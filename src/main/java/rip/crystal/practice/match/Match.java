@@ -1,7 +1,5 @@
 package rip.crystal.practice.match;
 
-import com.lunarclient.bukkitapi.LunarClientAPI;
-import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.game.arena.Arena;
@@ -9,6 +7,7 @@ import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.arena.impl.StandaloneArena;
 import rip.crystal.practice.game.kit.Kit;
 import rip.crystal.practice.game.knockback.Knockback;
+import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.match.events.MatchEndEvent;
 import rip.crystal.practice.match.events.MatchStartEvent;
 import rip.crystal.practice.match.impl.BasicTeamMatch;
@@ -24,7 +23,6 @@ import rip.crystal.practice.player.profile.participant.alone.GameParticipant;
 import rip.crystal.practice.player.profile.participant.GamePlayer;
 import rip.crystal.practice.player.profile.visibility.VisibilityLogic;
 import rip.crystal.practice.player.queue.Queue;
-import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.utilities.*;
 import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.utilities.chat.ChatComponentBuilder;
@@ -226,6 +224,7 @@ public abstract class Match {
 
 		profile.getPartneritem().applyCooldown(player, 0);
 		profile.getAntitrapper().applyCooldown(player, 0);
+		profile.getLuckyingot().applyCooldown(player, 0);
 		profile.getCombo().applyCooldown(player, 0);
 		profile.getCookie().applyCooldown(player, 0);
 		profile.getEffectdisabler().applyCooldown(player, 0);
@@ -239,23 +238,6 @@ public abstract class Match {
 		profile.getSwitcher().applyCooldown(player, 0);
 		profile.getTankingot().applyCooldown(player, 0);
 		profile.getTimewarp().applyCooldown(player, 0);
-
-		if(LunarClientAPI.getInstance().isRunningLunarClient(player)) {
-			LunarClientAPICooldown.clearCooldown(player, "AntiTrapper");
-			LunarClientAPICooldown.clearCooldown(player, "Combo");
-			LunarClientAPICooldown.clearCooldown(player, "Cookie");
-			LunarClientAPICooldown.clearCooldown(player, "EffectDisabler");
-			LunarClientAPICooldown.clearCooldown(player, "GuardianAngel");
-			LunarClientAPICooldown.clearCooldown(player, "NinjaStar");
-			LunarClientAPICooldown.clearCooldown(player, "PocketBard");
-			LunarClientAPICooldown.clearCooldown(player, "Rocket");
-			LunarClientAPICooldown.clearCooldown(player, "Scrambler");
-			LunarClientAPICooldown.clearCooldown(player, "Strength");
-			LunarClientAPICooldown.clearCooldown(player, "SwapperAxe");
-			LunarClientAPICooldown.clearCooldown(player, "Switcher");
-			LunarClientAPICooldown.clearCooldown(player, "TankIngot");
-			LunarClientAPICooldown.clearCooldown(player, "TimeWarp");
-		}
 	}
 
 	/**
@@ -500,9 +482,12 @@ public abstract class Match {
 			winner.addCoins(10);
 		}
 
+
 		if (killer != null) { // If killer isn't null then add a kill to the player.
-			MatchGamePlayer matchGamePlayer = getGamePlayer(killer);
-			matchGamePlayer.incrementKills();
+			if(PlayerUtil.getLastAttacker(dead) != null) {
+				MatchGamePlayer matchGamePlayer = getGamePlayer(killer);
+				matchGamePlayer.incrementKills();
+			}
 		}
 
 		dead.setVelocity(new Vector());
@@ -627,6 +612,8 @@ public abstract class Match {
 			profile.setState(ProfileState.SPECTATING);
 			Hotbar.giveHotbarItems(spectator);
 			spectator.updateInventory();
+		} else {
+			spectators.add(spectator.getUniqueId());
 		}
 
 		VisibilityLogic.handle(spectator);
@@ -657,14 +644,19 @@ public abstract class Match {
 		spectators.remove(spectator.getUniqueId());
 
 		Profile profile = Profile.get(spectator.getUniqueId());
-		profile.setState(ProfileState.LOBBY);
-		profile.setMatch(null);
 
-		PlayerUtil.reset(spectator);
-		Hotbar.giveHotbarItems(spectator);
-		cPractice.get().getEssentials().teleportToSpawn(spectator);
-		VisibilityLogic.handle(spectator);
+		if (profile.getState() != ProfileState.STAFF_MODE) {
+			profile.setState(ProfileState.LOBBY);
+			profile.setMatch(null);
 
+			PlayerUtil.reset(spectator);
+			Hotbar.giveHotbarItems(spectator);
+			cPractice.get().getEssentials().teleportToSpawn(spectator);
+			VisibilityLogic.handle(spectator);
+		} else {
+			profile.setMatch(null);
+			cPractice.get().getEssentials().teleportToSpawn(spectator);
+		}
 		for (GameParticipant<MatchGamePlayer> gameParticipant : getParticipants()) {
 			for (MatchGamePlayer gamePlayer : gameParticipant.getPlayers()) {
 				if (!gamePlayer.isDisconnected()) {
@@ -815,8 +807,8 @@ public abstract class Match {
 	}
 
 	public static void init() {
-		new MatchPearlCooldownTask().runTaskTimerAsynchronously(cPractice.get(), 2L, 2L);
-		new MatchSnapshotCleanupTask().runTaskTimerAsynchronously(cPractice.get(), 20L * 5, 20L * 5);
+		new MatchPearlCooldownTask().runTaskTimer(cPractice.get(), 2L, 2L);
+		new MatchSnapshotCleanupTask().runTaskTimer(cPractice.get(), 20L * 5, 20L * 5);
 		cPractice.get().getServer().getScheduler().runTaskTimer(cPractice.get(), new MatchLiquidTask(), 20L, 8L);
 	}
 

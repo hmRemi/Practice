@@ -2,8 +2,6 @@ package rip.crystal.practice.essentials.abilities.impl;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.lunarclient.bukkitapi.LunarClientAPI;
-import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.essentials.abilities.Ability;
 import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
 import rip.crystal.practice.cPractice;
@@ -65,9 +63,6 @@ public class Combo extends Ability {
             profile.getCombo().applyCooldown(player, 60 * 1000);
             profile.getPartneritem().applyCooldown(player,  10 * 1000);
 
-            if(LunarClientAPI.getInstance().isRunningLunarClient(player)) {
-                LunarClientAPICooldown.sendCooldown(player, "Combo");
-            }
             this.giveComboEffects(player);
 
             COMBO.add(player.getUniqueId());
@@ -102,5 +97,24 @@ public class Combo extends Ability {
             HITS.remove(player.getUniqueId());
             COMBO.remove(player.getUniqueId());
         }, 20 * 6);
+    }
+
+    @EventHandler
+    public void checkCooldown(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        Action action = event.getAction();
+        Profile profile = Profile.get(player.getUniqueId());
+        if (action.equals(Action.LEFT_CLICK_AIR) || action.equals(Action.LEFT_CLICK_BLOCK)) {
+            if (!isAbility(player.getItemInHand())) {
+                return;
+            }
+            if (isAbility(player.getItemInHand())) {
+                if (this.hasCooldown(player)) {
+                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getCombo().getRemainingMilis(player), true)));
+                    event.setCancelled(true);
+                    player.updateInventory();
+                }
+            }
+        }
     }
 }

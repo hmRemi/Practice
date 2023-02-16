@@ -15,5 +15,6 @@ public class CarbonSpigot implements KnockbackProfiler {
             profile = api.getDefaultProfile();
         }
         api.setPlayerProfile(player, profile);
+
     }
 }

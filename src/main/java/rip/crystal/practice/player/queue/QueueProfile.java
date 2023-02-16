@@ -28,7 +28,7 @@ public class QueueProfile {
 		ticked++;
 
 		if (ticked % 6 == 0) {
-			range += 3;
+			range += 10;
 
 			if (ticked >= 50) {
 				ticked = 0;

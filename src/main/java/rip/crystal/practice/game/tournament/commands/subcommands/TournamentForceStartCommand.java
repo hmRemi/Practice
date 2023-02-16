@@ -11,6 +11,13 @@ import rip.crystal.practice.api.command.Command;
 import rip.crystal.practice.api.command.CommandArgs;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import rip.crystal.practice.utilities.chat.CC;
+
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
 
 public class TournamentForceStartCommand extends BaseCommand {
 
@@ -26,7 +33,7 @@ public class TournamentForceStartCommand extends BaseCommand {
 
         if(!tournament.isStarted()) {
             tournament.start();
-            player.sendMessage(ChatColor.RED + "You have force started the tournament!");
+            player.sendMessage(CC.translate("&7You have force started the tournament!"));
         }
     }
 }

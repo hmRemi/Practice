@@ -54,13 +54,13 @@ public class PartyAnnounceCommand extends BaseCommand {
         }
 
         profile.setPartyAnnounceCooldown(new Cooldown(60_000)); // Set the party announce cooldown to 60 seconds (1 minute)
+
         // Message to broadcast
         Bukkit.broadcastMessage(CC.CHAT_BAR);
         Bukkit.broadcastMessage(CC.translate("&4&lPARTY ANNOUNCEMENT"));
-        Bukkit.broadcastMessage(CC.translate("  &7* &4&l" + player.getName() + " &cis hosting a public party!"));
-        Clickable clickHereToJoin = new Clickable(CC.translate("  &7* &cClick &c&lhere &cto join"), CC.translate("&cClick here to join"), "/p join " + player.getName());
+        Bukkit.broadcastMessage(CC.translate("  &7* &4&l" + player.getName() + " &7is hosting a public party!"));
+        Clickable clickHereToJoin = new Clickable(CC.translate("  &7* &7Click &4&lhere &7to join"), CC.translate("&7Click here to join"), "/p join " + player.getName());
         Bukkit.getOnlinePlayers().forEach(clickHereToJoin::sendToPlayer);
-        Bukkit.broadcastMessage(CC.translate("  &7* &cOr use /party join " + player.getName()));
         Bukkit.broadcastMessage(CC.CHAT_BAR);
     }
 }

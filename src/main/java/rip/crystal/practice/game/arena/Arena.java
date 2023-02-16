@@ -2,12 +2,14 @@ package rip.crystal.practice.game.arena;
 
 import com.google.common.collect.Maps;
 import org.bukkit.*;
+import org.bukkit.entity.Entity;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.game.arena.cuboid.Cuboid;
 import rip.crystal.practice.game.arena.impl.SharedArena;
 import rip.crystal.practice.game.arena.impl.StandaloneArena;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.kit.Kit;
+import rip.crystal.practice.match.Match;
 import rip.crystal.practice.utilities.ItemBuilder;
 import rip.crystal.practice.utilities.LocationUtil;
 import lombok.Getter;
@@ -70,7 +72,11 @@ public class Arena extends Cuboid {
 	}
 
 	public void save() {
-
+		for (Arena arena : Arena.getArenas()) {
+			if (arena instanceof StandaloneArena) {
+				ChunkRestorationManager.getIChunkRestoration().copy(arena);
+			}
+		}
 	}
 
 	public void delete() {

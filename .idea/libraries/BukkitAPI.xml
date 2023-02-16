@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="BukkitAPI">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/BukkitAPI.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

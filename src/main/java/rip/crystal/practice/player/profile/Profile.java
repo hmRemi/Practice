@@ -65,7 +65,7 @@ public class Profile {
 	private QueueProfile queueProfile;
 	private Cooldown enderpearlCooldown, voteCooldown, chatCooldown, partyAnnounceCooldown;
 	private AbilityCooldown partneritem, combo, effectdisabler, guardianangel, ninjastar, pocketbard, scrammbler,
-			strength, swapperaxe, timewarp, switcher, tankingot, cookie, fakelogger, rocket, antitrapper;
+			strength, swapperaxe, timewarp, switcher, tankingot, cookie, fakelogger, rocket, antitrapper, luckyingot;
 
 	private ProfileConversations conversations;
 	private Clan clan;
@@ -99,6 +99,7 @@ public class Profile {
 		this.chatCooldown = new Cooldown(0);
 		this.partneritem = new AbilityCooldown();
 		this.antitrapper = new AbilityCooldown();
+		this.luckyingot = new AbilityCooldown();
 		this.combo = new AbilityCooldown();
 		this.cookie = new AbilityCooldown();
 		this.effectdisabler = new AbilityCooldown();

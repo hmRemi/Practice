@@ -1,8 +1,4 @@
 package rip.crystal.practice.game.tournament.commands.subcommands;
-/*
-   Made by cpractice Development Team
-   Created on 10.10.2021
-*/
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -17,6 +13,12 @@ import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.game.tournament.TournamentState;
 import rip.crystal.practice.utilities.PlayerUtil;
 
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
+
 public class TournamentLeaveCommand extends BaseCommand {
 
     @Command(name = "tournament.leave")
@@ -30,15 +32,6 @@ public class TournamentLeaveCommand extends BaseCommand {
             return;
         }
 
-        tournament.removePlayer(player.getUniqueId());
-        tournament.getPlayers().remove(player.getUniqueId());
-
-        // Reset players' state
-        profile.setState(ProfileState.LOBBY);
-        profile.setInTournament(false);
-
-        PlayerUtil.reset(player);
-        player.teleport(cPractice.get().getEssentials().getSpawn());
-        Hotbar.giveHotbarItems(player);
+        cPractice.get().getTournamentManager().handleLeave(player);
     }
 }

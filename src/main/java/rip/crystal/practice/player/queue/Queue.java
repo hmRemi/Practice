@@ -109,8 +109,8 @@ public class Queue {
 	}
 
 	public static void init() {
-		TaskUtil.runTimerAsync(new QueueTask(), 10L, 10L);
-		TaskUtil.runTimerAsync(() -> {
+		TaskUtil.runTimer(new QueueTask(), 10L, 10L);
+		TaskUtil.runTimer(() -> {
 			cPractice.get().inQueues = (int) Profile.getProfiles().values()
 					.stream()
 					.filter(profile -> profile.getPlayer() != null && profile.getPlayer().isOnline())

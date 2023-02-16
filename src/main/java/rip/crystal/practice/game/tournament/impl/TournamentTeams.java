@@ -9,7 +9,6 @@ import rip.crystal.practice.match.participant.MatchGamePlayer;
 import rip.crystal.practice.player.party.Party;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.profile.participant.alone.GameParticipant;
-import rip.crystal.practice.player.profile.participant.team.TeamGameParticipant;
 import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.game.tournament.TournamentState;
 import rip.crystal.practice.game.tournament.events.TournamentEndEvent;
@@ -28,6 +27,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
+
 @Getter @Setter
 public class TournamentTeams extends Tournament<Party> {
 
@@ -36,24 +41,9 @@ public class TournamentTeams extends Tournament<Party> {
         nextRound();
     }
 
-    public void join(Party party){
-        Player partyLeader = party.getLeader();
+    public void join(Party party) {
+        cPractice.get().getTournamentManager().handleJoin(party);
 
-        MatchGamePlayer leader = new MatchGamePlayer(partyLeader.getUniqueId(), partyLeader.getName());
-
-        TeamGameParticipant<MatchGamePlayer> teamGameParticipant = new TeamGameParticipant<>(leader);
-
-        party.getListOfPlayers().forEach(player -> {
-            getPlayers().add(player.getUniqueId());
-            Profile.get(player.getPlayer().getUniqueId()).setInTournament(true);
-            if (!player.getPlayer().equals(partyLeader)) {
-                MatchGamePlayer gamePlayer = new MatchGamePlayer(player.getUniqueId(), player.getName());
-                teamGameParticipant.getPlayers().add(gamePlayer);
-            }
-        });
-        getTeams().add(teamGameParticipant);
-
-        broadcast("&7Party of " + partyLeader.getDisplayName() + "&7 has join to tournament.");
         if(getTeams().size() == getLimit()){
             Countdown.of(15, TimeUnit.SECONDS)
                 .players(getOnlinePlayers())
@@ -153,9 +143,10 @@ public class TournamentTeams extends Tournament<Party> {
         if(winner != null){
             new TournamentEndEvent(winner, false, false).call();
             Bukkit.broadcastMessage(CC.translate("&c" + winner.getConjoinedNames() + "&f has won the tournament."));
-        }else {
-            Bukkit.broadcastMessage(CC.translate("Tournament has been stopped."));
+        } else {
+            Bukkit.broadcastMessage(CC.translate("&cTournament has been cancelled."));
         }
+        TaskUtil.runLater(() -> setTournament(null), 20 * 10L);
     }
 
     @Override

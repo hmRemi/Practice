@@ -1,6 +1,7 @@
 package rip.crystal.practice.match.impl;
 
 import com.google.common.collect.Lists;
+import org.bukkit.Bukkit;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.cPractice;
@@ -107,10 +108,9 @@ public class BasicTeamMatch extends Match {
 		// Teleport the player to their spawn point
 		Location spawn = participantA.containsPlayer(player.getUniqueId()) ? getArena().getSpawnA() : getArena().getSpawnB();
 
-		TaskUtil.runLater(() -> {
-			if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
-			else player.teleport(spawn.add(0, 2, 0));
-		}, 2L);
+		//if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
+		//else player.teleport(spawn.add(0, 2, 0));
+		player.teleport(spawn);
 	}
 
 	@Override

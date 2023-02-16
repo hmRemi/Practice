@@ -16,21 +16,30 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
+
 @Getter @Setter
 public abstract class Tournament<T>{
 
     @Getter @Setter private static Tournament<?> tournament;
 
-    private boolean started = false;
-    private TournamentState state = TournamentState.WAITING;
-    private final List<UUID> players = Lists.newArrayList();
-    private int size, limit = 5;
     private List<GameParticipant<MatchGamePlayer>> teams = Lists.newArrayList();
-    private Kit kit;
+
     private final List<Match> matches = Lists.newArrayList();
+    private final List<UUID> players = Lists.newArrayList();
+
+    private TournamentState state = TournamentState.WAITING;
+    private GameParticipant<MatchGamePlayer> winner;
+
+    private boolean started = false;
+    private int size, limit = 5;
     private boolean clans;
     private int round = 0;
-    private GameParticipant<MatchGamePlayer> winner;
+    private Kit kit;
 
     public abstract void join(T type);
 

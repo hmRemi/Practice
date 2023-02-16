@@ -1,7 +1,5 @@
 package rip.crystal.practice.essentials.abilities.impl;
 
-import com.lunarclient.bukkitapi.LunarClientAPI;
-import com.lunarclient.bukkitapi.cooldown.LunarClientAPICooldown;
 import rip.crystal.practice.essentials.abilities.Ability;
 import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
 import rip.crystal.practice.cPractice;
@@ -75,9 +73,6 @@ public class AntiTrapper extends Ability {
                     profile.getAntitrapper().applyCooldown(damager, 60 * 1000);
                     profile.getPartneritem().applyCooldown(damager,  10 * 1000);
 
-                    if(LunarClientAPI.getInstance().isRunningLunarClient(damager)) {
-                        LunarClientAPICooldown.sendCooldown(damager, "AntiTrapper");
-                    }
                     // Apply cooldown on victim to prevent interaction
                     AntiTrapper.cooldownvic.put(victim.getName(), System.currentTimeMillis() + (15 * 1000));
                     plugin.getAbilityManager().playerMessage(damager, this.getAbility());
@@ -102,7 +97,7 @@ public class AntiTrapper extends Ability {
                 return;
             }
             if (isAbility(player.getItemInHand())) {
-                if (profile.getAntitrapper().onCooldown(player)) {
+                if (this.hasCooldown(player)) {
                     player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getAntitrapper().getRemainingMilis(player), true)));
                     event.setCancelled(true);
                     player.updateInventory();

@@ -1,22 +1,4 @@
 # ABILITIES CONFIGURATION
-BEACON:
-  ICON:
-    DISPLAYNAME: '&4&lBeacon'
-    DESCRIPTION:
-      - '&7&m------------------------------------------'
-      - '&7When placed, the beacon will instantly disappear and'
-      - '&7the trapper will not be able to build, break or interact'
-      - '&7with blocks for 15 seconds if they are in the radius of 10 blocks.'
-      - '&7&m------------------------------------------'
-    MATERIAL: BEACON
-    DATA: 0
-  COOLDOWN: 60
-  MESSAGE:
-    PLAYER:
-      - ''
-      - ' &4►  &7You have successfully used %ABILITY%'
-      - ' &4►  &7Now on cooldown for &4%COOLDOWN% &7seconds.'
-      - ''
 SWITCHER:
   ICON:
     DISPLAYNAME: '&4&lSwitcher'
@@ -35,7 +17,7 @@ SWITCHER:
       - ''
     TARGET:
       - ''
-      - ' &4►  &7%PLAYER% have been hit you with %ABILITY%'
+      - ' &4►  &7%PLAYER% has hit you with %ABILITY%'
       - ' &4►  &7You has been swap to %PLAYER% position.'
       - ''
 GUARDIAN_ANGEL:
@@ -74,7 +56,7 @@ NINJA_STAR:
       - ''
     TARGET:
       - ''
-      - ' &4►  &7%PLAYER% have been used %ABILITY%'
+      - ' &4►  &7%PLAYER% has used %ABILITY%'
       - ' &4►  &7%PLAYER% teleport to your position.'
       - ''
 TANK_INGOT:
@@ -140,7 +122,7 @@ SWAPPER_AXE:
       - ''
     TARGET:
       - ''
-      - ' &4►  &7%PLAYER% have been used %ABILITY%'
+      - ' &4►  &7%PLAYER% has used %ABILITY%'
       - ' &4►  &7Your helmet take off in 5 seconds.'
       - ''
 SCRAMMBLER:
@@ -150,7 +132,7 @@ SCRAMMBLER:
       - '&7&m------------------------------------------'
       - '&7Hit a player to scramble their inventory.'
       - '&7&m------------------------------------------'
-    MATERIAL: GOLD_INGOT
+    MATERIAL: STICK
     DATA: 0
   COOLDOWN: 60
   MESSAGE:
@@ -161,8 +143,8 @@ SCRAMMBLER:
       - ''
     TARGET:
       - ''
-      - ' &4►  &7%PLAYER% have been used %ABILITY%'
-      - ' &4►  &7Your inventory has been scrambled.'
+      - ' &4►  &7%PLAYER% has used %ABILITY%'
+      - ' &4►  &7Your inventory has been scrammbler.'
       - ''
 COMBO:
   ICON:
@@ -198,8 +180,25 @@ EFFECT_DISABLER:
       - ''
     TARGET:
       - ''
-      - ' &4►  &7%PLAYER% have been used %ABILITY%'
+      - ' &4►  &7%PLAYER% has used %ABILITY%'
       - ' &4►  &7Your effects has been removed.'
+      - ''
+LUCKY_INGOT:
+  ICON:
+    DISPLAYNAME: '&4&lLucky Ingot'
+    DESCRIPTION:
+      - '&7&m------------------------------------------'
+      - '&7Right Click to activate ability.'
+      - '&7Contains either bad or good effects'
+      - '&7&m------------------------------------------'
+    MATERIAL: GOLD_INGOT
+    DATA: 0
+  COOLDOWN: 60
+  MESSAGE:
+    PLAYER:
+      - ''
+      - ' &4►  &7You have successfully used %ABILITY%'
+      - ' &4►  &7Now on cooldown for &4%COOLDOWN% &7seconds.'
       - ''
 WAYPOINT:
   ICON:
@@ -233,12 +232,12 @@ ANTI_TRAPPER:
   MESSAGE:
     PLAYER:
       - ''
-      - ' &4►  &7You have successfully used %ABILITY% against &4%target%'
+      - ' &4►  &7You have successfully used &4%ABILITY%'
       - ' &4►  &7Now on cooldown for &4%COOLDOWN% &7seconds.'
       - ''
     TARGET:
       - ''
-      - ' &4►  &7%player% have been used %ABILITY%'
+      - ' &4►  &7%PLAYER% has used %ABILITY%'
       - ' &4►  &7You can no longer build.'
       - ''
 COOKIE:

@@ -13,9 +13,9 @@ import rip.crystal.practice.player.queue.Queue;
 import rip.crystal.practice.player.queue.QueueProfile;
 import rip.crystal.practice.utilities.MessageFormat;
 import rip.crystal.practice.utilities.PlayerUtil;
-import rip.crystal.practice.utilities.TaskUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import rip.crystal.practice.utilities.TaskUtil;
 
 public class QueueTask implements Runnable {
 
@@ -133,7 +133,9 @@ public class QueueTask implements Runnable {
                                 .send(secondPlayer);
                     }
 
-                    TaskUtil.run(match::start);
+                    synchronized(match) {
+                        match.start();
+                    }
                 }
             }
         }

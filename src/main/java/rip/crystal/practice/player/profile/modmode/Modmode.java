@@ -8,6 +8,7 @@ import net.audidevelopment.core.plugin.cCoreAPI;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.match.Match;
+import rip.crystal.practice.utilities.TaskUtil;
 import rip.crystal.practice.utilities.lag.LagRunnable;
 import rip.crystal.practice.match.impl.BasicTeamMatch;
 import rip.crystal.practice.player.profile.Profile;
@@ -56,11 +57,17 @@ public class Modmode {
         Profile profile = Profile.get(player.getUniqueId());
 
         profile.setState(ProfileState.LOBBY);
-        if (profile.getMatch() != null) profile.setMatch(null);
+        if (profile.getMatch() != null) {
+            profile.getMatch().removeSpectator(player);
+            profile.setMatch(null);
+        }
 
         PlayerUtil.reset(player);
         Hotbar.giveHotbarItems(player);
-        cPractice.get().getEssentials().teleportToSpawn(player);
+        TaskUtil.runLater(() -> {
+            cPractice.get().getEssentials().teleportToSpawn(player);
+
+        }, 2L);
         VisibilityLogic.handle(player);
 
         staffmode.remove(player.getUniqueId());
@@ -81,7 +88,7 @@ public class Modmode {
                         lines.add(s
                             .replace("{playerA}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getPlayer().getName()))
                             .replace("{playerB}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getPlayer().getName()))
-                            .replace("{duration}", profile.getMatch().getDuration())
+                            .replace("{duration}", profile.getMatch().getDuration().replace("{arena}", profile.getMatch().getArena().getName()))
                             .replace("{kit}", profile.getMatch().getKit().getName())
                             .replace("{playerA_hits}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getHits()))
                             .replace("{playerB_hits}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getHits()))));

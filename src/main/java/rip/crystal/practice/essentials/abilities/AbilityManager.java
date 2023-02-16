@@ -31,6 +31,7 @@ public class AbilityManager {
     private final NinjaStar ninjaStar;
     private final PocketBard pocketBard;
     private final AntiTrapper antitrapper;
+    private final LuckyIngot luckyIngot;
 
     public AbilityManager() {
         this.guardianAngel = new GuardianAngel();
@@ -47,6 +48,7 @@ public class AbilityManager {
         this.rocket = new Rocket();
         this.cookie = new Cookie();
         this.timeWarp = new TimeWarp();
+        this.luckyIngot = new LuckyIngot();
     }
 
 

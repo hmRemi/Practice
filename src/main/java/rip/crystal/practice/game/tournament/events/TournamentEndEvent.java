@@ -7,6 +7,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
+
 @Getter @Setter
 @AllArgsConstructor
 public class TournamentEndEvent extends CustomEvent {

@@ -81,10 +81,8 @@ public class BasicFreeForAllMatch extends Match {
 		// Teleport the player to their spawn point
 		Location spawn = arena.getSpawnA();
 
-		TaskUtil.runLater(() -> {
-			if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
-			else player.teleport(spawn.add(0, 2, 0));
-		}, 2L);
+		if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
+		else player.teleport(spawn.add(0, 2, 0));
 	}
 
 	@Override
@@ -152,7 +150,7 @@ public class BasicFreeForAllMatch extends Match {
 		List<String> lines = new ArrayList<>();
 		BasicConfigurationFile config = cPractice.get().getScoreboardConfig();
 		Profile profile = Profile.get(player.getUniqueId());
-		if (profile.getMatch() != null && profile.getState() == ProfileState.STAFF_MODE) { // remove / change later
+		if (profile.getMatch() != null && profile.getState() == ProfileState.STAFF_MODE) {
 			cPractice.get().getScoreboardConfig().getStringList("STAFF_MODE.SPECTATING").forEach(s ->
 					lines.add(s
 							.replace("{playerA}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getPlayer().getName()))
