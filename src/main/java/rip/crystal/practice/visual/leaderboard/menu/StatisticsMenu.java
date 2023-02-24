@@ -1,10 +1,13 @@
 package rip.crystal.practice.visual.leaderboard.menu;
 
 import com.google.common.collect.Maps;
+import org.bukkit.Material;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.kit.Kit;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.profile.meta.ProfileKitData;
+import rip.crystal.practice.player.queue.Queue;
+import rip.crystal.practice.player.queue.menus.QueueSelectKitMenu;
 import rip.crystal.practice.utilities.ItemBuilder;
 import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.utilities.menu.Button;
@@ -13,6 +16,7 @@ import lombok.AllArgsConstructor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import rip.crystal.practice.visual.leaderboard.menu.button.KitButton;
 import rip.crystal.practice.visual.scoreboard.BoardAdapter;
 
 import java.util.ArrayList;
@@ -45,9 +49,22 @@ public class StatisticsMenu extends Menu {
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = Maps.newHashMap();
         int pos = 0;
-        for (Kit kit : Kit.getKits()) {
-            if (kit.getGameRules().isRanked()) buttons.put(pos++, new KitsItems(kit));
-        }
+        /*for (Kit kit : Kit.getKits()) {
+            if (kit.getGameRules().isRanked()) buttons.put(queue.getKit().getSlot(), new KitsItems(kit));
+        }*/
+
+        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(cPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(cPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+
+        this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
+        Kit.getKits().stream()
+                .filter(Kit::isEnabled)
+                .filter(kit -> kit.getGameRules().isRanked())
+                .filter(kit -> kit.getDisplayIcon() != null)
+                .forEach(kit -> {
+
+            buttons.put(kit.getSlot(), new KitsItems(kit));
+        });
+
         return buttons;
     }
 

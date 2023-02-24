@@ -1,0 +1,126 @@
+Pearl-Checks:
+  Thru:
+    Chests:
+      enabled: true
+      diagonal: true
+      critblock: true
+      crosspearl: true
+    Slabs:
+      enabled: true
+      diagonal: true
+      critblock: true
+      crosspearl: true
+    Stairs:
+      enabled: true
+      diagonal: true
+      critblock: true
+      crosspearl: true
+    Bed:
+      enabled: true
+      diagonal: true
+      critblock: true
+      crosspearl: true
+    CobbleWall:
+      enabled: true
+      diagonal: true
+      critblock: true
+      crosspearl: true
+    Pistons:
+      enabled: true
+      diagonal: true
+      critblock: true
+      crosspearl: true
+    PortalFrame:
+      enabled: true
+      diagonal: true
+      critblock: true
+      crosspearl: true
+    EnchantTable:
+      enabled: true
+      diagonal: true
+      critblock: true
+      crosspearl: true
+    Anvil:
+      enabled: true
+      diagonal: true
+      critblock: true
+      crosspearl: true
+    DayLightSensor:
+      enabled: true
+      diagonal: true
+      critblock: true
+      crosspearl: true
+    TrapDoor:
+      enabled: true
+      crosspearl: true
+      critblock: true
+      diagonal: true
+
+    Cobweb: true
+    String: true
+    FenceGates: true
+
+  EntityTeleport:
+    getOutFromOneByOne: true
+    betterHitDetection: true
+
+  Pearl-Thru:
+    PreThruBlock: true
+    HitThruBlock: true
+    InstantlyPassThru: false
+
+  Prevent-Suffocation:
+    RefundRiskyPearl: true
+    RefundIfSoClose: true
+    RefundIfSoCloseDistance: 1.0
+    RefundPearlIfSuffocating: true
+
+  Anti-Glitch:
+    FixWallsGlitch: true
+    FixFencegateGlitch: true
+    ChestFenceEnabled: true
+    HopperFenceEnabled: true
+
+  #I`m recommending set it to false
+  TaliTeleport: false
+  TaliTeleportXZ: 1.0
+  TaliTeleportY: 0.5
+
+  MaxPearlPassThruBlocks: 1
+
+Cooldown:
+  haveAnotherCooldown: false # If this is true, the functions below will not work.
+  time: 20
+  nowCan: "&7(&d&l!&7) &fYou can now use Enderpearl!" # '' to disable
+  cantUse: "&7(&d&l!&7) &fYou can`t use Enderpearl another &5%time% seconds&f!" # '' to disable
+  KohiDisplay: "&dEnderpearl&7: &f%time%" # '' to disable
+  onQuitRemoveCooldown: false # If you have a combat tag plugin, set it to true.
+  onGlitchRemoveCooldown: true
+
+Other:
+  PearlDamage: 5.0 # 0.0 to disable all pearl damage
+  PearlParticles: true
+  ParticlesAmount: 32 # 30 = default, lower than 30 = more optimization.
+  #When you clicks on the blocks, pearl will launch automatically.
+  onOpenFencegateLaunch: true
+
+  onClickAutoLaunch:
+    - FURNACE
+    - ANVIL
+    - SIGN
+    - SIGN_POST
+    - WALL_SIGN
+    - HOPPER
+    - CHEST
+    - ENDER_CHEST
+    - TRAPPED_CHEST
+    - WORKBENCH
+    - ENCHANTMENT_TABLE
+    - BEACON
+    - ANVIL
+
+  onGlitchReturnPearl: true
+  LazarusCooldownRemoveNoMessageOnGlitch: true
+  onGlitchMessage: "&7(&d&l!&7) &fYour pearl was refunded!" # '' to disable
+  #%player% returns player name. Example: 'timer set enderpearl %player% 0'
+  onGlitchConsoleCommand: ''  # '' to disable

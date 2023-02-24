@@ -51,11 +51,14 @@ public class PartyEventSelectKitMenu extends Menu {
 				if (kit.isEnabled()) {
 					buttons.put(kit.getSlot(), new SelectKitButton(partyEvent, kit));
 				}
+				buttons.put(28, new SelectKitButton(partyEvent, Kit.getByName("HCF")));
+
 			} else if ((partyEvent == PartyEvent.FFA)) {
-				if (kit.isEnabled() && !kit.getGameRules().isHcftrap()) {
+				if (kit.isEnabled() && (!kit.getGameRules().isHcftrap() && !kit.getGameRules().isHcf())) {
 					buttons.put(kit.getSlot(), new SelectKitButton(partyEvent, kit));
 				}
-
+			} else {
+				buttons.put(kit.getSlot(), new SelectKitButton(partyEvent, kit));
 			}
 		}
 		return buttons;
@@ -64,7 +67,7 @@ public class PartyEventSelectKitMenu extends Menu {
 
 	@Override
 	public int getSize() {
-		return 5 * 9;
+		return 4 * 9;
 	}
 
 	@AllArgsConstructor
@@ -92,12 +95,12 @@ public class PartyEventSelectKitMenu extends Menu {
 			Profile profile = Profile.get(player.getUniqueId());
 
 			if (profile.getParty() == null) {
-				player.sendMessage(CC.RED + "You are not in a party.");
+				player.sendMessage(CC.translate("&8[&4&lParty&8] &7You are not in a party."));
 				return;
 			}
 
 			if (profile.getParty().getPlayers().size() <= 1) {
-				player.sendMessage(CC.RED + "You do not have enough players in your party to start an event.");
+				player.sendMessage(CC.translate("&8[&4&lParty&8] &7You do not have enough players in your party to start an event."));
 				return;
 			}
 
@@ -105,7 +108,7 @@ public class PartyEventSelectKitMenu extends Menu {
 			Arena arena = Arena.getRandomArena(kit);
 
 			if (arena == null) {
-				player.sendMessage(CC.RED + "There are no available arenas.");
+				player.sendMessage(CC.translate("&8[&4&lParty&8] &7There are no available arenas."));
 				return;
 			}
 

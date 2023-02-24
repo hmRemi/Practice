@@ -7,6 +7,11 @@
       <option name="url" value="http://nexus.hc.to/content/repositories/pub_releases" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="citizens-repo" />
+      <option name="name" value="citizens-repo" />
+      <option name="url" value="https://maven.citizensnpcs.co/repo" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="sk89q-repo" />
       <option name="name" value="sk89q-repo" />
       <option name="url" value="https://maven.sk89q.com/repo/" />

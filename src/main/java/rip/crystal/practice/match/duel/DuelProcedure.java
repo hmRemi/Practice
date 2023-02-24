@@ -5,6 +5,7 @@ import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.game.kit.Kit;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.utilities.MessageFormat;
+import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.utilities.chat.ChatComponentBuilder;
 import rip.crystal.practice.utilities.chat.ChatHelper;
 import lombok.Getter;
@@ -109,6 +110,8 @@ public class DuelProcedure {
 						target.sendMessage(msg);
 					}
 				}
+			} else {
+				sender.sendMessage(CC.translate("&7No arenas found"));
 			}
 		}
 	}

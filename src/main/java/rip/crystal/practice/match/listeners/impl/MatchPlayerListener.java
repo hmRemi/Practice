@@ -17,6 +17,7 @@ import rip.crystal.practice.match.Match;
 import rip.crystal.practice.match.MatchState;
 import rip.crystal.practice.match.impl.BasicFreeForAllMatch;
 import rip.crystal.practice.match.impl.BasicTeamMatch;
+import rip.crystal.practice.match.impl.BotMatch;
 import rip.crystal.practice.match.menu.ViewInventoryMenu;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.profile.ProfileState;
@@ -106,6 +107,7 @@ public class MatchPlayerListener implements Listener {
         Profile profile = Profile.get(player.getUniqueId());
 
         if(profile.getMatch() instanceof BasicFreeForAllMatch) return;
+        if(profile.getMatch() instanceof BotMatch) return;
 
         BasicTeamMatch teamMatch = (BasicTeamMatch) profile.getMatch();
 

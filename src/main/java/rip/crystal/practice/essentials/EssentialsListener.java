@@ -30,7 +30,9 @@ public class EssentialsListener implements Listener {
 			"/minecraft:me",
 			"/about",
 			"/plugins",
-			"/pl"
+			"/pl",
+			"/karhu",
+			"/karhuloader"
 	);
 
 	@EventHandler
@@ -53,7 +55,7 @@ public class EssentialsListener implements Listener {
 					}
 				}
 
-				player.sendMessage(CC.RED + "You cannot perform this command.");
+				player.sendMessage(CC.WHITE + "Unknown command. Type \"/help\" for help.");
 				event.setCancelled(true);
 				return;
 			}

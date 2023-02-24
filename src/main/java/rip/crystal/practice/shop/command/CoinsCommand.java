@@ -1,6 +1,7 @@
 package rip.crystal.practice.shop.command;
 
 import org.bukkit.entity.Player;
+import rip.crystal.practice.api.chat.ChatUtil;
 import rip.crystal.practice.api.command.BaseCommand;
 import rip.crystal.practice.api.command.Command;
 import rip.crystal.practice.api.command.CommandArgs;
@@ -15,6 +16,10 @@ public class CoinsCommand extends BaseCommand {
         Player player = commandArgs.getPlayer();
         Profile profile = Profile.get(player.getUniqueId());
 
-        CC.sender(player, " &4Coins: &7" + profile.getCoins());
+        CC.sender(player, ChatUtil.NORMAL_LINE);
+        CC.sender(player, " &4&lCoins");
+        CC.sender(player, "");
+        CC.sender(player, "&4Your coins: &7" + profile.getCoins());
+        CC.sender(player, ChatUtil.NORMAL_LINE);
     }
 }

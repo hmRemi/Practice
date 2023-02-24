@@ -9,6 +9,7 @@ public enum PartyEvent {
 
 	FFA("FFA"),
 	SPLIT("Split"),
+	REDROVER("Red Rover"),
 	HCFClass("HCFClass");
 
 	private final String name;

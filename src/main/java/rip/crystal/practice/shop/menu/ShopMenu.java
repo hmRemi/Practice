@@ -3,8 +3,10 @@ package rip.crystal.practice.shop.menu;
 import org.bukkit.ChatColor;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.shop.buttons.KillEffectsShopButton;
-import rip.crystal.practice.shop.buttons.TrailsEffectsShopButton;
+import rip.crystal.practice.shop.buttons.RankShopButton;
+import rip.crystal.practice.shop.buttons.TagShopButton;
 import rip.crystal.practice.utilities.ItemBuilder;
+import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.utilities.menu.Button;
 import rip.crystal.practice.utilities.menu.Menu;
 import org.bukkit.Material;
@@ -18,7 +20,7 @@ public class ShopMenu extends Menu {
 
     @Override
     public String getTitle(Player player) {
-        return ChatColor.DARK_GRAY + "Coins Shop";
+        return CC.translate("&4&lCoins Shop");
     }
 
     {
@@ -37,7 +39,8 @@ public class ShopMenu extends Menu {
         this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 
         buttons.put(11, new KillEffectsShopButton());
-        buttons.put(13, new TrailsEffectsShopButton());
+        buttons.put(13, new RankShopButton());
+        buttons.put(15, new TagShopButton());
 
         return buttons;
     }

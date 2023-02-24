@@ -14,12 +14,12 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-public class Scrammbler extends Ability {
+public class Scrambler extends Ability {
 
     private final cPractice plugin = cPractice.get();
 
-    public Scrammbler() {
-        super("SCRAMMBLER");
+    public Scrambler() {
+        super("SCRAMBLER");
     }
 
     @EventHandler
@@ -29,8 +29,8 @@ public class Scrammbler extends Ability {
             Profile profile = Profile.get(damager.getUniqueId());
             if (!isAbility(damager.getItemInHand())) return;
 
-            if (profile.getScrammbler().onCooldown(damager)) {
-                damager.sendMessage(CC.translate("&7You are on &4&lScrammbler &7cooldown for &4" + DurationFormatter.getRemaining(profile.getScrammbler().getRemainingMilis(damager), true, true)));
+            if (profile.getScrambler().onCooldown(damager)) {
+                damager.sendMessage(CC.translate("&7You are on &4&lScrambler &7cooldown for &4" + DurationFormatter.getRemaining(profile.getScrambler().getRemainingMilis(damager), true, true)));
                 damager.updateInventory();
                 return;
             }
@@ -45,7 +45,7 @@ public class Scrammbler extends Ability {
 
             Player victim = (Player) event.getEntity();
 
-            profile.getScrammbler().applyCooldown(damager, 60 * 1000);
+            profile.getScrambler().applyCooldown(damager, 60 * 1000);
             profile.getPartneritem().applyCooldown(damager,  10 * 1000);
 
             this.random(victim);

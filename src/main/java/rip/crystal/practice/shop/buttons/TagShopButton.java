@@ -1,18 +1,18 @@
 package rip.crystal.practice.shop.buttons;
 
-import rip.crystal.practice.player.profile.Profile;
-import rip.crystal.practice.shop.impl.killeffects.KillEffectsShopMenu;
-import rip.crystal.practice.utilities.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import rip.crystal.practice.player.profile.Profile;
+import rip.crystal.practice.shop.impl.tag.TagShopMenu;
+import rip.crystal.practice.utilities.ItemBuilder;
 import rip.crystal.practice.utilities.menu.Button;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class KillEffectsShopButton extends Button {
+public class TagShopButton extends Button {
 
     @Override
     public ItemStack getButtonItem(Player player) {
@@ -22,19 +22,19 @@ public class KillEffectsShopButton extends Button {
         lore.add("&8&m--------------------------------------");
         lore.add("&7Your coins: " + profile.getCoins());
         lore.add("");
-        lore.add("&7&oClick here to purchase Kill Effects!");
+        lore.add("&7&oClick here to purchase Tags!");
         lore.add("&8&m--------------------------------------");
 
 
-        return new ItemBuilder(Material.REDSTONE)
-                .name("&4&lKill Effects")
+        return new ItemBuilder(Material.NAME_TAG)
+                .name("&4&lTags")
                 .lore(lore)
                 .build();
     }
 
     @Override
     public void clicked(Player player, ClickType clickType) {
-        new KillEffectsShopMenu().openMenu(player);
+        new TagShopMenu().openMenu(player);
     }
 }
 

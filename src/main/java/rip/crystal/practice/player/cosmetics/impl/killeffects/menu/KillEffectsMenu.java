@@ -45,7 +45,6 @@ public class KillEffectsMenu extends PaginatedMenu
             final Profile profile = Profile.get(player.getUniqueId());
             return new ItemBuilder(type.getMaterial())
                     .name((profile.getKillEffectType() == this.type) ? "&4&l" + this.type.getName() : (this.type.hasPermission(player) ? (CC.translate("&4&l")) : "&4&l") + this.type.getName())
-                    .durability((profile.getKillEffectType() == this.type) ? 5 : (this.type.hasPermission(player) ? 3 : 14))
                     .lore(CC.MENU_BAR)
                     .lore("&7Left click to change your")
                     .lore("&7death effect to to " + "&4" + this.type.getName() + "&7.")

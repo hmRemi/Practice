@@ -41,7 +41,7 @@ public class KitEditorSelectKitMenu extends Menu {
 
 	@Override
 	public int getSize() {
-		return 5/*cPractice.get().getMainConfig().getInteger("QUEUES.SIZE")*/ * 9;
+		return 4/*cPractice.get().getMainConfig().getInteger("QUEUES.SIZE")*/ * 9;
 	}
 
 	@AllArgsConstructor

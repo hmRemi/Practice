@@ -1,10 +1,12 @@
 package rip.crystal.practice;
 
+import org.bukkit.entity.Item;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.database.MongoConnection;
 import rip.crystal.practice.essentials.abilities.AbilityManager;
 import rip.crystal.practice.essentials.abilities.command.AbilityCommand;
 import rip.crystal.practice.essentials.chat.cPracticeChatFormat;
+import rip.crystal.practice.essentials.command.player.*;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.game.arena.ArenaListener;
 import rip.crystal.practice.game.arena.command.ArenaCommand;
@@ -15,6 +17,7 @@ import rip.crystal.practice.essentials.chat.impl.command.ClearChatCommand;
 import rip.crystal.practice.essentials.chat.impl.command.MuteChatCommand;
 import rip.crystal.practice.essentials.chat.impl.command.SlowChatCommand;
 import rip.crystal.practice.game.tournament.managers.TournamentManager;
+import rip.crystal.practice.match.command.*;
 import rip.crystal.practice.match.listeners.impl.MatchBuildListener;
 import rip.crystal.practice.match.listeners.impl.MatchPearlListener;
 import rip.crystal.practice.match.listeners.impl.MatchPlayerListener;
@@ -35,10 +38,6 @@ import rip.crystal.practice.essentials.command.management.AdminInformationComman
 import rip.crystal.practice.essentials.command.management.SetSlotsCommand;
 import rip.crystal.practice.essentials.command.management.SetSpawnCommand;
 import rip.crystal.practice.essentials.command.management.cPracticeCommand;
-import rip.crystal.practice.essentials.command.player.LangCommand;
-import rip.crystal.practice.essentials.command.player.PingCommand;
-import rip.crystal.practice.essentials.command.player.ResetCommand;
-import rip.crystal.practice.essentials.command.player.SpawnCommand;
 import rip.crystal.practice.essentials.command.staff.*;
 import rip.crystal.practice.game.event.Event;
 import rip.crystal.practice.game.event.command.EventCommand;
@@ -68,10 +67,6 @@ import rip.crystal.practice.visual.leaderboard.PlaceholderAPI;
 import rip.crystal.practice.visual.leaderboard.commands.*;
 import rip.crystal.practice.match.Match;
 import rip.crystal.practice.match.listeners.MatchListener;
-import rip.crystal.practice.match.command.CancelMatchCommand;
-import rip.crystal.practice.match.command.SpectateCommand;
-import rip.crystal.practice.match.command.StopSpectatingCommand;
-import rip.crystal.practice.match.command.ViewInventoryCommand;
 import rip.crystal.practice.player.nametags.GxNameTag;
 import rip.crystal.practice.player.party.Party;
 import rip.crystal.practice.player.party.listeners.PartyListener;
@@ -84,7 +79,6 @@ import rip.crystal.practice.player.party.command.PartyCommand;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.profile.ProfileListener;
 import rip.crystal.practice.essentials.command.donator.FlyCommand;
-import rip.crystal.practice.essentials.command.player.ViewMatchCommand;
 import rip.crystal.practice.player.profile.conversation.command.MessageCommand;
 import rip.crystal.practice.player.profile.conversation.command.ReplyCommand;
 import rip.crystal.practice.player.profile.file.impl.FlatFileIProfile;
@@ -121,6 +115,8 @@ import org.bukkit.Difficulty;
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 
 @Getter @Setter
@@ -133,7 +129,7 @@ public class cPractice extends JavaPlugin {
             scoreboardConfig, coloredRanksConfig, tabLobbyConfig, tabEventConfig, tabSingleFFAFightConfig,
             tabSingleTeamFightConfig, tabPartyFFAFightConfig, tabPartyTeamFightConfig, leaderboardConfig,
             langConfig, hotbarConfig, playersConfig, clansConfig, categoriesConfig, abilityConfig, kiteditorConfig,
-            npcConfig, queueConfig, lunarConfig, tabFFAConfig, potionConfig, menuConfig, ffaConfig;
+            npcConfig, queueConfig, lunarConfig, tabFFAConfig, potionConfig, menuConfig, ffaConfig, pearlConfig;
 
     private Essentials essentials;
 
@@ -277,6 +273,7 @@ public class cPractice extends JavaPlugin {
         this.leaderboardConfig = new BasicConfigurationFile(this, "features/leaderboard");
         this.hotbarConfig = new BasicConfigurationFile(this, "features/hotbar");
         this.abilityConfig = new BasicConfigurationFile(this, "features/ability");
+        this.pearlConfig = new BasicConfigurationFile(this, "features/pearl");
 
         this.kiteditorConfig = new BasicConfigurationFile(this, "settings/kiteditor");
         this.coloredRanksConfig = new BasicConfigurationFile(this, "settings/colored-ranks");
@@ -440,6 +437,7 @@ public class cPractice extends JavaPlugin {
         new CoinsCommand();
         new CoinsStaffCommand();
         new KillEffectCommand();
+        new MatchListCommand();
         new TrailEffectCommand();
         new TrollCommand();
         new FFACommand();
@@ -508,6 +506,7 @@ public class cPractice extends JavaPlugin {
         new ToggleScoreboardCommand();
         new ToggleSoundsCommand();
         new ToggleSpectatorsCommand();
+        new BotFight();
         if (getMainConfig().getBoolean("MOD_MODE")) new StaffModeCommand();
     }
 

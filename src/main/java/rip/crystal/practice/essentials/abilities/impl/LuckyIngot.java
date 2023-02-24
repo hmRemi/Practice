@@ -40,8 +40,8 @@ public class LuckyIngot extends Ability {
             Player player = event.getPlayer();
             Profile profile = Profile.get(player.getUniqueId());
 
-            if (profile.getPocketbard().onCooldown(player)) {
-                player.sendMessage(CC.translate("&7You are on &4&lLucky Ingot &7cooldown for &4" + DurationFormatter.getRemaining(profile.getPocketbard().getRemainingMilis(player), true, true)));
+            if (profile.getLuckyingot().onCooldown(player)) {
+                player.sendMessage(CC.translate("&7You are on &4&lLucky Ingot &7cooldown for &4" + DurationFormatter.getRemaining(profile.getLuckyingot().getRemainingMilis(player), true, true)));
                 player.updateInventory();
                 return;
             }
@@ -54,7 +54,7 @@ public class LuckyIngot extends Ability {
 
             PlayerUtil.decrement(player);
 
-            profile.getPocketbard().applyCooldown(player, 60 * 1000);
+            profile.getLuckyingot().applyCooldown(player, 60 * 1000);
             profile.getPartneritem().applyCooldown(player,  10 * 1000);
 
             this.giveRandomEffect(player);

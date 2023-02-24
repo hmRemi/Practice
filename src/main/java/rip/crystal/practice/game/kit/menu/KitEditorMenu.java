@@ -210,8 +210,7 @@ public class KitEditorMenu extends Menu {
 
 			Profile profile = Profile.get(player.getUniqueId());
 
-			player.getInventory()
-			      .setContents(profile.getKitEditorData().getSelectedKit().getKitLoadout().getContents());
+			player.getInventory().setContents(profile.getKitEditorData().getSelectedKit().getKitLoadout().getContents());
 			player.updateInventory();
 		}
 

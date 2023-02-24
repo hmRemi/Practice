@@ -1,9 +1,11 @@
 package rip.crystal.practice.match.command;
 
+import rip.crystal.practice.Locale;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.game.arena.impl.StandaloneArena;
 import rip.crystal.practice.player.profile.Profile;
+import rip.crystal.practice.utilities.MessageFormat;
 import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.api.command.BaseCommand;
 import rip.crystal.practice.api.command.Command;
@@ -37,9 +39,13 @@ public class CancelMatchCommand extends BaseCommand {
 			player.sendMessage(CC.RED + "Player is not in a match.");
 			return;
 		}
-		for (String message : cPractice.get().getLang().getStringList("MATCH.CANCELLED")) {
+		/*for (String message : cPractice.get().getLang().getStringList("MATCH.CANCELLED")) {
 			targetProfile.getMatch().sendMessage(CC.translate(message.replaceAll("<cancelled_by>", player.getName())));
-		}
+		}*/
+		new MessageFormat(Locale.MATCH_CANCELLED.format(targetProfile.getLocale()))
+				.add("<cancelled_by>", player.getName())
+				.send(player);
+
 		if(targetProfile.getMatch().getArena() instanceof StandaloneArena) {
 			ChunkRestorationManager.getIChunkRestoration().reset(targetProfile.getMatch().getArena());
 		}

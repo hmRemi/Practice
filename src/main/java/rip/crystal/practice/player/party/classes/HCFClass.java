@@ -26,7 +26,7 @@ public enum HCFClass {
                     Material.LEATHER_LEGGINGS, Material.LEATHER_BOOTS}),
     ROGUE("Rogue",
             Lists.newArrayList(
-                    new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 1),
+                    new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 2),
                     new PotionEffect(PotionEffectType.JUMP, Integer.MAX_VALUE, 2)
             ),
             new Material[] {

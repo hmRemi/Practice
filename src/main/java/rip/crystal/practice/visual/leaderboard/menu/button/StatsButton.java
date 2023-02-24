@@ -28,7 +28,7 @@ public class StatsButton extends Button {
 
         for (String s : cPractice.get().getLeaderboardConfig().getStringList("INVENTORY.PERSONAL_STATS.DESCRIPTION")) {
             if (s.contains("{kits}")) {
-                Kit.getKits().stream().filter(kit -> kit.getGameRules().isRanked()).forEach(kit ->
+                Kit.getKits().stream().filter(kit -> kit.getGameRules().isRanked() && kit.isEnabled()).forEach(kit ->
                         lore.add(cPractice.get().getLeaderboardConfig().getString("INVENTORY.PERSONAL_STATS.KITS_FORMAT")
                                 .replace("{kit}", kit.getName())
                                 .replace("{color}", profile.getColor())

@@ -2,6 +2,7 @@ package rip.crystal.practice.utilities;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.github.paperspigot.Title;
 import rip.crystal.practice.utilities.chat.CC;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -92,6 +93,8 @@ public class MessageFormat {
             Bukkit.broadcastMessage(CC.translate(formatted));
         }
     }
+
+
 
     public List<String> toList() {
         List<String> lines = Lists.newArrayList();

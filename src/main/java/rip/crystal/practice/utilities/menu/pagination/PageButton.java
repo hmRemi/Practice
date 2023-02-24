@@ -33,8 +33,8 @@ public class PageButton extends Button {
 				return new ItemBuilder(Material.LEVER)
 						.name(CC.translate("&4Next Page"))
 						.lore(Arrays.asList(
-								ChatColor.RED + "There is no available",
-								ChatColor.RED + "next page."
+								ChatColor.GRAY + "There is no available",
+								ChatColor.GRAY + "next page."
 						))
 						.build();
 			}
@@ -43,16 +43,16 @@ public class PageButton extends Button {
 				return new ItemBuilder(Material.REDSTONE_TORCH_ON)
 						.name(CC.translate("&4Previous Page"))
 						.lore(Arrays.asList(
-								ChatColor.RED + "Click here to jump",
-								ChatColor.RED + "to the previous page."
+								ChatColor.GRAY + "Click here to jump",
+								ChatColor.GRAY + "to the previous page."
 						))
 						.build();
 			} else {
 				return new ItemBuilder(Material.LEVER)
 						.name(CC.translate("&4Previous Page"))
 						.lore(Arrays.asList(
-								ChatColor.RED + "There is no available",
-								ChatColor.RED + "previous page."
+								ChatColor.GRAY + "There is no available",
+								ChatColor.GRAY + "previous page."
 						))
 						.build();
 			}

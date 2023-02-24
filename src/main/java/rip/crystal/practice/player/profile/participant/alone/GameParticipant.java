@@ -1,5 +1,6 @@
 package rip.crystal.practice.player.profile.participant.alone;
 
+import org.github.paperspigot.Title;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.profile.participant.GamePlayer;
@@ -97,6 +98,18 @@ public class GameParticipant<T extends GamePlayer> {
 
 				if (player != null) {
 					player.playSound(player.getLocation(), sound, volume, pitch);
+				}
+			}
+		}
+	}
+
+	public void sendTitle(Title title) {
+		for (GamePlayer gamePlayer : getPlayers()) {
+			if (!gamePlayer.isDisconnected()) {
+				Player player = gamePlayer.getPlayer();
+
+				if (player != null) {
+					player.sendTitle(title);
 				}
 			}
 		}

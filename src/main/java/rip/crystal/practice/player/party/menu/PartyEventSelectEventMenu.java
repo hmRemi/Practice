@@ -1,5 +1,6 @@
 package rip.crystal.practice.player.party.menu;
 
+import rip.crystal.practice.cPractice;
 import rip.crystal.practice.player.party.enums.PartyEvent;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.profile.ProfileState;
@@ -26,9 +27,18 @@ public class PartyEventSelectEventMenu extends Menu {
 	@Override
 	public Map<Integer, Button> getButtons(Player player) {
 		Map<Integer, Button> buttons = new HashMap<>();
-		buttons.put(3, new SelectEventButton(PartyEvent.FFA));
-		buttons.put(5, new SelectEventButton(PartyEvent.SPLIT));
+		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(cPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(cPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
+
+		buttons.put(11, new SelectEventButton(PartyEvent.FFA));
+		buttons.put(13, new SelectEventButton(PartyEvent.SPLIT));
+		buttons.put(15, new SelectEventButton(PartyEvent.REDROVER));
 		return buttons;
+	}
+
+	@Override
+	public int getSize() {
+		return 3 * 9;
 	}
 
 	@AllArgsConstructor
@@ -46,15 +56,25 @@ public class PartyEventSelectEventMenu extends Menu {
 					.lore("&7And the last one to stay alive wins")
 					.lore(CC.SB_BAR)
 					.build();
+			} else if (partyEvent == PartyEvent.SPLIT) {
+				return new ItemBuilder(Material.REDSTONE)
+						.name("&4" + partyEvent.getName())
+						.lore(CC.SB_BAR)
+						.lore("&7The party is divided into two")
+						.lore("&7Teams and they fight")
+						.lore(CC.SB_BAR)
+						.build();
+			} else {
+				return new ItemBuilder(Material.DIAMOND_AXE)
+						.name("&4" + partyEvent.getName())
+						.lore(CC.SB_BAR)
+						.lore("&7Fight in a series of 1v1's")
+						.lore("&7until there is a winner")
+						.lore("")
+						.lore("&4&lWIP")
+						.lore(CC.SB_BAR)
+						.build();
 			}
-
-			return new ItemBuilder(Material.REDSTONE)
-					.name("&4" + partyEvent.getName())
-					.lore(CC.SB_BAR)
-					.lore("&7The party is divided into two")
-					.lore("&7Teams and they fight")
-					.lore(CC.SB_BAR)
-					.build();
 		}
 
 		@Override

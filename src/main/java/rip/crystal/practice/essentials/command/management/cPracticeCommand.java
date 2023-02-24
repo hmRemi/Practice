@@ -23,6 +23,8 @@ public class cPracticeCommand extends BaseCommand {
             cPractice.get().getLang().reload();
             sender.sendMessage(CC.translate("&7▢ &4Lang reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));
             cPractice.get().getLangConfig().reload();
+            sender.sendMessage(CC.translate("&7▢ &4Pearls reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));
+            cPractice.get().getPearlConfig().reload();
             sender.sendMessage(CC.translate("&7▢ &4LangConfig reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));
             cPractice.get().getHotbarConfig().reload();
             sender.sendMessage(CC.translate("&7▢ &4HotbarConfig reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));
@@ -70,8 +72,8 @@ public class cPracticeCommand extends BaseCommand {
             sender.sendMessage(CC.translate("&4&lSetup &7&m-&r &4&lHelp"));
             sender.sendMessage(CC.CHAT_BAR);
             sender.sendMessage(CC.translate(" &7▢ &4/arena &8(&7&oSetup arenas&8&o)"));
-            sender.sendMessage(CC.translate(" &7▢ &4/kit &8(&7&oSetup kits&8&o)"));
             sender.sendMessage(CC.translate(" &7▢ &4/event &8(&7&oSetup events&8&o)"));
+            sender.sendMessage(CC.translate(" &7▢ &4/kit &8(&7&oSetup kits&8&o)"));
             sender.sendMessage(CC.CHAT_BAR);
             sender.sendMessage(CC.translate("&4&lCommands &7&m-&r &4&lHelp"));
             sender.sendMessage(CC.CHAT_BAR);

@@ -31,6 +31,7 @@ public class KitCommand extends BaseCommand {
         player.sendMessage(CC.translate("&4&lKit &7&m-&r &4&lHelp"));
         player.sendMessage(CC.CHAT_BAR);
         player.sendMessage(CC.translate(" &7▢ &4/kit &8(&7&oShows this help menu&8&o)"));
+        player.sendMessage(CC.translate(" &7▢ &4/kits &8(&7&oList all kits&8&o)"));
         player.sendMessage(CC.translate(" &7▢ &4/kit delete &8<&7kit&8> &8(&7&oDelete a kit&8&o)"));
         player.sendMessage(CC.translate(" &7▢ &4/kit create &8<&7kit&8> &8(&7&oCreate a kit&8&o)"));
         player.sendMessage(CC.translate(" &7▢ &4/kit toggle &8<&7kit&8> &8(&7&oToggle a kit&8&o)"));

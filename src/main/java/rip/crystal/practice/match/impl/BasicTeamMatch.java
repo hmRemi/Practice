@@ -71,7 +71,7 @@ public class BasicTeamMatch extends Match {
 			if (getKit().getGameRules().isHcf()) {
 				Kit kit;
 				if (party.getArchers().contains(player.getUniqueId())) {
-					kit = Kit.getByName("Archer");
+					kit = Kit.getByName("HCFArcher");
 					player.getInventory().setArmorContents(Objects.requireNonNull(kit).getKitLoadout().getArmor());
 					player.getInventory().setContents(kit.getKitLoadout().getContents());
 				} else if (party.getBards().contains(player.getUniqueId())) {
@@ -80,6 +80,10 @@ public class BasicTeamMatch extends Match {
 					player.getInventory().setContents(kit.getKitLoadout().getContents());
 				} else if (party.getRogues().contains(player.getUniqueId())) {
 					kit = Kit.getByName("Rogue");
+					player.getInventory().setArmorContents(Objects.requireNonNull(kit).getKitLoadout().getArmor());
+					player.getInventory().setContents(kit.getKitLoadout().getContents());
+				} else {
+					kit = Kit.getByName("Diamond");
 					player.getInventory().setArmorContents(Objects.requireNonNull(kit).getKitLoadout().getArmor());
 					player.getInventory().setContents(kit.getKitLoadout().getContents());
 				}

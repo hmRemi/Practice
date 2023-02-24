@@ -14,7 +14,7 @@ import java.util.Arrays;
 public enum KillEffectType
 {
     ANGRY("Angry", "ANGRY", Material.RED_ROSE, 500, location -> ParticleEffect.VILLAGER_ANGRY.display(0.5f, 0.5f, 0.5f, 0.01f, 25, location, 20.0)),
-    BLOOD("Blood", "BLOOD", Material.REDSTONE_COMPARATOR, 500, location -> {
+    BLOOD("Blood", "BLOOD", Material.REDSTONE, 500, location -> {
         ParticleEffect.ITEM_CRACK.display(new ParticleEffect.ItemData(Material.REDSTONE, (byte)0), 0.2f, 0.2f, 0.2f, 0.1f, 5, location, 20.0);
         ParticleEffect.BLOCK_DUST.display(new ParticleEffect.BlockData(Material.REDSTONE_BLOCK, (byte)0), 0.2f, 0.2f, 0.2f, 0.1f, 5, location, 20.0);
         ParticleEffect.ITEM_CRACK.display(new ParticleEffect.ItemData(Material.REDSTONE, (byte)0), 0.2f, 0.2f, 0.2f, 0.1f, 5, location, 20.0);
@@ -85,7 +85,7 @@ public enum KillEffectType
         return;
     }),
     LAVA("Lava", "LAVA", Material.LAVA_BUCKET, 500, location -> ParticleEffect.LAVA.display(0.5f, 0.5f, 0.5f, 0.1f, 12, location, 20.0)),
-    LIGHTING("Lighting", "LIGHTNING", Material.STICK, 500, location -> location.getWorld().strikeLightningEffect(location)),
+    LIGHTNING("Lightning", "LIGHTNING", Material.STICK, 500, location -> location.getWorld().strikeLightningEffect(location)),
     NOTE("Note", "NOTE", Material.NOTE_BLOCK, 500, location -> ParticleEffect.NOTE.display(0.5f, 0.5f, 0.5f, 1.0f, 12, location, 20.0)),
     THUNDER("Thunder", "THUNDER", Material.NETHER_STAR, 500, location -> {
         ParticleEffect.CLOUD.display(0.3f, 0.3f, 0.3f, 0.1f, 20, location, 20.0);

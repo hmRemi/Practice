@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.game.kit.Kit;
+import rip.crystal.practice.player.party.menu.PartyEventSelectKitMenu;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.utilities.ItemBuilder;
 import rip.crystal.practice.utilities.chat.CC;
@@ -27,11 +28,16 @@ public class DuelSelectKitMenu extends Menu {
 	public Map<Integer, Button> getButtons(Player player) {
 		Map<Integer, Button> buttons = Maps.newHashMap();
 		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(cPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(cPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+		Profile profile = Profile.get(player.getUniqueId());
 
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 		for (Kit kit : Kit.getKits()) {
 			if (kit.isEnabled()) {
 				buttons.put(kit.getSlot(), new SelectKitButton(kit));
+			}
+
+			if(profile.getParty() != null) {
+				buttons.put(28, new SelectKitButton(Kit.getByName("HCF")));
 			}
 		}
 
@@ -41,7 +47,7 @@ public class DuelSelectKitMenu extends Menu {
 
 	@Override
 	public int getSize() {
-		return 5/*cPractice.get().getMainConfig().getInteger("QUEUES.SIZE")*/ * 9;
+		return 4/*cPractice.get().getMainConfig().getInteger("QUEUES.SIZE")*/ * 9;
 	}
 
 	@Override

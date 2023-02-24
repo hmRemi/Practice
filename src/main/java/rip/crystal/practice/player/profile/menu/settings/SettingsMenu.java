@@ -2,8 +2,10 @@ package rip.crystal.practice.player.profile.menu.settings;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.player.profile.menu.settings.SettingUpdateButton;
+import rip.crystal.practice.utilities.ItemBuilder;
 import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.utilities.file.type.BasicConfigurationFile;
 import rip.crystal.practice.utilities.menu.Button;
@@ -26,12 +28,16 @@ public class SettingsMenu extends Menu {
 
     @Override
     public int getSize() {
-        return 9;
+        return cPractice.get().getMenuConfig().getInteger("SETTINGS-INVENTORY.SIZE") * 9;
     }
 
     @Override
     public Map<Integer, Button> getButtons(Player player) {
         HashMap<Integer, Button> hashMap = new HashMap<>();
+        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(cPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(cPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+
+        this.fillEmptySlots(hashMap, PLACEHOLDER_ITEM);
+
         BasicConfigurationFile menuUtil = cPractice.get().getMenuConfig();
         if (menuUtil.getBoolean("SETTINGS-INVENTORY.SETTINGS.NEW-CONVERSATIONS.SHOW")) {
             hashMap.put(menuUtil.getInteger("SETTINGS-INVENTORY.SETTINGS.NEW-CONVERSATIONS.SLOT"), new SettingUpdateButton(menuUtil.getString("SETTINGS-INVENTORY.SETTINGS.NEW-CONVERSATIONS.NAME"), Material.valueOf(menuUtil.getString("SETTINGS-INVENTORY.SETTINGS.NEW-CONVERSATIONS.ICON")), 0, menuUtil.getStringList("SETTINGS-INVENTORY.SETTINGS.NEW-CONVERSATIONS.LORE"), "togglenewconversations", "receivingnewconversations"));

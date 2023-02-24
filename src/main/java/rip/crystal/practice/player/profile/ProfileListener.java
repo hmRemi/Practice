@@ -164,7 +164,7 @@ public class ProfileListener implements Listener {
 		Profile profile = Profile.get(player.getUniqueId());
 
 		Weight weight = new Weight(player.getUniqueId(), cPractice.get().getRankManager().getRank().getWeight(player.getUniqueId()));
-		weight.setFormat(cPractice.get().getRankManager().getRank().getPrefix(player.getUniqueId()) + " " + player.getName());
+		weight.setFormat(cPractice.get().getRankManager().getRank().getPrefix(player.getUniqueId()) + player.getName());
 		profile.setWeight(weight);
 		TabAdapter.getRanks().add(weight);
 

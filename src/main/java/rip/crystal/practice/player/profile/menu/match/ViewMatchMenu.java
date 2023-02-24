@@ -20,7 +20,7 @@ public class ViewMatchMenu extends PaginatedMenu {
 
     @Override
     public String getPrePaginatedTitle(Player player) {
-        return "&c&lRecent Matches &7: &f" + profile.getName();
+        return "&4&lRecent Matches&7: &7" + profile.getName();
     }
 
     @Override
@@ -33,20 +33,20 @@ public class ViewMatchMenu extends PaginatedMenu {
     }
 
     @RequiredArgsConstructor
-    private static class MatchButton extends Button{
+    private static class MatchButton extends Button {
 
         private final MatchInfo matchInfo;
 
         @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(Material.PAPER)
-                .name(matchInfo.getWinningParticipant() + " &cvs&f " + matchInfo.getLosingParticipant())
+                .name("&7" + matchInfo.getWinningParticipant() + " &4vs&7 " + matchInfo.getLosingParticipant())
                 .lore("&7" + matchInfo.getDate())
                 .lore("")
-                //.lore("&cDuration&7:&f " + matchInfo.getDuration())
-                .lore("&fKit&7:&c " + matchInfo.getKit().getName())
-                .lore(" &7✦ &fWinner&7:&c " + matchInfo.getWinningParticipant() + " &7(&a+" + matchInfo.getNewWinnerElo() + "&7)")
-                .lore(" &7✦ &fLoser&7:&c " + matchInfo.getLosingParticipant() + " &7(&c-" + matchInfo.getNewLoserElo() + "&7)")
+                .lore("&4Duration&7:&7 " + matchInfo.getDuration())
+                .lore("&4Kit&7:&7 " + matchInfo.getKit().getName())
+                .lore(" &7✦ &aWinner&7:&7 " + matchInfo.getWinningParticipant() + " &7(&a+" + matchInfo.getNewWinnerElo() + "&7)")
+                .lore(" &7✦ &4Loser&7:&7 " + matchInfo.getLosingParticipant() + " &7(&c-" + matchInfo.getNewLoserElo() + "&7)")
                 .build();
         }
     }

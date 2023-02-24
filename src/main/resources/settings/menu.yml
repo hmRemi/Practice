@@ -105,3 +105,16 @@ SETTINGS-INVENTORY:
         - '&7Click here to modify your'
         - '&7matchmaking settings.'
       SHOW: true
+MATCH-LIST:
+  TITLE: "&4Current matches &7({amount})"
+  SIZE: 3
+  NAME: "&4&l{p1} vs {p2}"
+  LORE:
+    - "&7{type}"
+    - ""
+    - "&4Kit: &7{kit}"
+    - "&4Arena: &7{arena}"
+    - "&4Duration: &7{duration}"
+    - "&4Spectators: &7{spectators}"
+    - ""
+    - "&7» Click to spectate «"

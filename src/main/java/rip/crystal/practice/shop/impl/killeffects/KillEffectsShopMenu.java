@@ -1,4 +1,4 @@
-package rip.crystal.practice.shop.impl.killeffects.menu;
+package rip.crystal.practice.shop.impl.killeffects;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,6 +19,11 @@ import java.util.Map;
 
 public class KillEffectsShopMenu extends PaginatedMenu
 {
+
+    {
+        setUpdateAfterClick(true);
+        setAutoUpdate(true);
+    }
 
     @Override
     public String getPrePaginatedTitle(final Player player) {
@@ -41,13 +46,11 @@ public class KillEffectsShopMenu extends PaginatedMenu
 
         @Override
         public ItemStack getButtonItem(final Player player) {
-            final Profile profile = Profile.get(player.getUniqueId());
             return new ItemBuilder(type.getMaterial())
-                    .name((this.type.hasPermission(player) ? (CC.translate("&a&l")) : "&c&l") + this.type.getName())
-                    .durability((profile.getKillEffectType() == this.type) ? 5 : (this.type.hasPermission(player) ? 3 : 14))
+                    .name((this.type.hasPermission(player) ? (CC.translate("&4&l")) : "&4&l") + this.type.getName())
                     .lore(CC.MENU_BAR)
                     .lore(this.type.hasPermission(player) ? "&7You already own this death effect!" : "&7You don't own this death effect.")
-                    .lore(this.type.hasPermission(player) ? "&7Price: None!" : "&7Price: &f" + this.type.getPrice())
+                    .lore(this.type.hasPermission(player) ? "&7Price: None!" : "&4Price: &7" + this.type.getPrice())
                     .lore(CC.MENU_BAR)
                     .build();
         }
@@ -56,15 +59,15 @@ public class KillEffectsShopMenu extends PaginatedMenu
         public void clicked(final Player player, final ClickType clickType) {
             Profile profile = Profile.get(player.getUniqueId());
 
-            if (this.type.hasPermission(player)) { // If player has permission.
-                player.sendMessage(CC.translate("&aYou already own this death effect."));
+            if (this.type.hasPermission(player)) {
+                player.sendMessage(CC.translate("&7You already own this death effect."));
                 return;
             } else {
                 if(profile.getCoins() == type.getPrice() || profile.getCoins() > type.getPrice()) {
                     profile.setCoins(profile.getCoins() - type.getPrice());
-                    player.sendMessage(CC.translate("&aYou have purchased &4" + type.getName() + " &ffor &4" + type.getPrice() + " &fcoins."));
+                    player.sendMessage(CC.translate("&7You have purchased &4" + type.getName() + " &7for &4" + type.getPrice() + " &7coins."));
 
-                    Bukkit.dispatchCommand(player, cPractice.get().getMainConfig().getString("PURCHASE-COSMETICS-CMD").replace("{player}", player.getName()).replace("{effect}", type.getName()));
+                    Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), cPractice.get().getMainConfig().getString("PURCHASE-COSMETICS-CMD").replace("{player}", player.getName()).replace("{effect}", type.getName()));
                     return;
                 } else {
                     player.sendMessage(CC.translate("&cYou don't have enough funds to buy this."));

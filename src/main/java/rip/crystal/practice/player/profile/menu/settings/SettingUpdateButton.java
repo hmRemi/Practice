@@ -94,7 +94,7 @@ public class SettingUpdateButton extends Button {
             case "scoreboardToggled": {
                 Profile profile = Profile.get(player.getUniqueId());
                 profile.getOptions().showScoreboard(!profile.getOptions().showScoreboard());
-                if(profile.getOptions().vanillaTab()) {
+                if(profile.getOptions().showScoreboard()) {
                     player.sendMessage(CC.translate("&aYou have enabled scoreboard!"));
                 } else {
                     player.sendMessage(CC.translate("&cYou have disabled scoreboard!"));

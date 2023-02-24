@@ -24,7 +24,7 @@ public class AbilityManager {
     private final Combo combo;
     private final TankIngot tankIngot;
     private final EffectDisabler effectDisabler;
-    private final Scrammbler scrammbler;
+    private final Scrambler scrambler;
     private final Strength strength;
     private final SwapperAxe swapperAxe;
     private final Switcher switcher;
@@ -40,7 +40,7 @@ public class AbilityManager {
         this.effectDisabler = new EffectDisabler();
         this.ninjaStar = new NinjaStar();
         this.pocketBard = new PocketBard();
-        this.scrammbler = new Scrammbler();
+        this.scrambler = new Scrambler();
         this.strength = new Strength();
         this.swapperAxe = new SwapperAxe();
         this.switcher = new Switcher();

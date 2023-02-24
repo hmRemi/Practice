@@ -31,15 +31,6 @@ public class LeaderBoardMenu extends Menu {
     @Override
     public Map<Integer, Button> getButtons(Player player){
         Map<Integer, Button> buttons = Maps.newHashMap();
-        Button empty = new Button() {
-            @Override
-            public ItemStack getButtonItem(Player player) {
-                return new ItemBuilder(Material.STAINED_GLASS_PANE)
-                        .durability(15)
-                        .name("")
-                        .build();
-            }
-        };
 
         buttons.put(2, new StatsButton(target));
         buttons.put(4, new PlayerStatsButton());

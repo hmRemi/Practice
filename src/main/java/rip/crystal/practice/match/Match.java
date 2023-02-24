@@ -1,5 +1,7 @@
 package rip.crystal.practice.match;
 
+import org.bukkit.inventory.ItemStack;
+import org.github.paperspigot.Title;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.game.arena.Arena;
@@ -232,7 +234,7 @@ public abstract class Match {
 		profile.getNinjastar().applyCooldown(player, 0);
 		profile.getPocketbard().applyCooldown(player, 0);
 		profile.getRocket().applyCooldown(player, 0);
-		profile.getScrammbler().applyCooldown(player, 0);
+		profile.getScrambler().applyCooldown(player, 0);
 		profile.getStrength().applyCooldown(player, 0);
 		profile.getSwapperaxe().applyCooldown(player, 0);
 		profile.getSwitcher().applyCooldown(player, 0);
@@ -459,6 +461,8 @@ public abstract class Match {
 		// Get killer
 		Player killer = PlayerUtil.getLastAttacker(dead);
 
+
+
 		// Set player as dead
 		if (getKit().getGameRules().isBridge()) {
 			getParticipant(dead).getPlayers().forEach(gamePlayer -> gamePlayer.setDead(false));
@@ -468,13 +472,22 @@ public abstract class Match {
 
 		if(killer != null) {
 			Profile winner = Profile.get(killer.getUniqueId());
+			Match match = winner.getMatch();
 
 			KillEffectType effect = winner.getKillEffectType();
 			if (effect != null && effect.getCallable() != null) {
 				for (GameParticipant<MatchGamePlayer> gameParticipant : getParticipants()) {
 					for (MatchGamePlayer gamePlayer : gameParticipant.getPlayers()) {
-						effect.getCallable().call(gamePlayer.getPlayer().getLocation().clone().add(0.0, 1.0, 0.0));
+						effect.getCallable().call(dead.getPlayer().getLocation().clone().add(0.0, 1.0, 0.0));
 					}
+				}
+			}
+
+			if(match.getKit().getGameRules().isSumo() || match.getKit().getGameRules().isSpleef() || match.getKit().getGameRules().isBoxing()) {
+				winner.getKitData().get(match.getKit()).incrementStreak();
+
+				if (profile.getKitData().get(match.getKit()).hasStreak()) {
+					profile.getKitData().get(match.getKit()).resetStreak();
 				}
 			}
 
@@ -483,10 +496,14 @@ public abstract class Match {
 		}
 
 
+
+
 		if (killer != null) { // If killer isn't null then add a kill to the player.
 			if(PlayerUtil.getLastAttacker(dead) != null) {
 				MatchGamePlayer matchGamePlayer = getGamePlayer(killer);
-				matchGamePlayer.incrementKills();
+				if (matchGamePlayer != null) {
+					matchGamePlayer.incrementKills();
+				}
 			}
 		}
 
@@ -715,6 +732,15 @@ public abstract class Match {
 			messageFormat.send(player);
 		}
 	}
+
+
+	public void broadcastTitle(String message, String subMessage) {
+		Title title = new Title(CC.translate(message), CC.translate(subMessage), 1, 20, 0);
+		for (GameParticipant<MatchGamePlayer> gameParticipant : getParticipants()) {
+			gameParticipant.sendTitle(title);
+		}
+	}
+
 
 	/**
 	 * Send a {@link Sound} to all match participants

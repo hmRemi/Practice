@@ -5,6 +5,9 @@ import rip.crystal.practice.game.kit.Kit;
 import rip.crystal.practice.match.Match;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.queue.Queue;
+import rip.crystal.practice.player.queue.menus.buttons.FFAButton;
+import rip.crystal.practice.player.queue.menus.buttons.RankedButton;
+import rip.crystal.practice.player.queue.menus.buttons.UnrankedButton;
 import rip.crystal.practice.utilities.ItemBuilder;
 import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.utilities.file.type.BasicConfigurationFile;
@@ -17,6 +20,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import rip.crystal.practice.visual.leaderboard.menu.button.StatsButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,6 +44,11 @@ public class QueueSelectKitMenu extends Menu {
 		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(cPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(cPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
+
+		buttons.put(38, new RankedButton());
+		buttons.put(40, new FFAButton());
+		buttons.put(42, new UnrankedButton());
+
 		for(Kit kit : Kit.getKits()) {
 			for (Queue queue : Queue.getQueues()) {
 				if (queue.isRanked() == ranked) buttons.put(queue.getKit().getSlot(), new SelectKitButton(kit, queue));
@@ -50,7 +59,7 @@ public class QueueSelectKitMenu extends Menu {
 
 	@Override
 	public int getSize() {
-		return 5/*cPractice.get().getMainConfig().getInteger("QUEUES.SIZE")*/ * 9;
+		return cPractice.get().getMainConfig().getInteger("QUEUES.SIZE") * 9;
 	}
 
 	@AllArgsConstructor

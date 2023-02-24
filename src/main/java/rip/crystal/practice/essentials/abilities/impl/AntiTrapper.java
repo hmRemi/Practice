@@ -1,5 +1,6 @@
 package rip.crystal.practice.essentials.abilities.impl;
 
+import org.bukkit.event.player.PlayerMoveEvent;
 import rip.crystal.practice.essentials.abilities.Ability;
 import rip.crystal.practice.essentials.abilities.utils.DurationFormatter;
 import rip.crystal.practice.cPractice;
@@ -75,6 +76,7 @@ public class AntiTrapper extends Ability {
 
                     // Apply cooldown on victim to prevent interaction
                     AntiTrapper.cooldownvic.put(victim.getName(), System.currentTimeMillis() + (15 * 1000));
+
                     plugin.getAbilityManager().playerMessage(damager, this.getAbility());
                     plugin.getAbilityManager().targetMessage(victim, damager, this.getAbility());
 

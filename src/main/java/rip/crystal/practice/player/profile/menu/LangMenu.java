@@ -1,6 +1,7 @@
 package rip.crystal.practice.player.profile.menu;
 
 import com.google.common.collect.Maps;
+import rip.crystal.practice.cPractice;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.utilities.ItemBuilder;
 import rip.crystal.practice.utilities.chat.CC;
@@ -22,7 +23,7 @@ import java.util.UUID;
 public class LangMenu extends Menu {
     @Override
     public String getTitle(Player player) {
-        return "&aSelect Lang";
+        return "&4Select Language";
     }
 
     @Override
@@ -33,6 +34,9 @@ public class LangMenu extends Menu {
     @Override
     public Map<Integer, Button> getButtons(Player player) {
         Map<Integer, Button> buttons = Maps.newHashMap();
+        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(cPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(cPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+        this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
+
         buttons.put(getSlot(3, 1), new SpanishButton());
         buttons.put(getSlot(5, 1), new EnglishButton());
         return buttons;
@@ -44,7 +48,7 @@ public class LangMenu extends Menu {
         @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(getSkull("e3RleHR1cmVzOntTS0lOOnt1cmw6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzJiZDQ1MjE5ODMzMDllMGFkNzZjMWVlMjk4NzQyODc5NTdlYzNkOTZmOGQ4ODkzMjRkYThjODg3ZTQ4NWVhOCJ9fX0="))
-                .name("&eSpanish")
+                .name("&4Spanish")
                 .build();
         }
 
@@ -52,7 +56,7 @@ public class LangMenu extends Menu {
         public void clicked(Player player, ClickType clickType) {
             Profile profile = Profile.get(player.getUniqueId());
             profile.setLocale(Lang.SPANISH);
-            player.sendMessage(CC.translate("&aAhora todos los mensajes estaran en español."));
+            player.sendMessage(CC.translate("&7Ahora todos los mensajes estaran en español."));
         }
     }
 
@@ -61,7 +65,7 @@ public class LangMenu extends Menu {
         @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(getSkull("e3RleHR1cmVzOntTS0lOOnt1cmw6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGNhYzk3NzRkYTEyMTcyNDg1MzJjZTE0N2Y3ODMxZjY3YTEyZmRjY2ExY2YwY2I0YjM4NDhkZTZiYzk0YjQifX19"))
-                .name("&eEnglish")
+                .name("&4English")
                 .build();
         }
 
@@ -69,13 +73,9 @@ public class LangMenu extends Menu {
         public void clicked(Player player, ClickType clickType) {
             Profile profile = Profile.get(player.getUniqueId());
             profile.setLocale(Lang.ENGLISH);
-            player.sendMessage(CC.translate("&aNow all messages will be in english."));
+            player.sendMessage(CC.translate("&7All messages will now be in English."));
         }
     }
-
-    //e3RleHR1cmVzOntTS0lOOnt1cmw6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzJiZDQ1MjE5ODMzMDllMGFkNzZjMWVlMjk4NzQyODc5NTdlYzNkOTZmOGQ4ODkzMjRkYThjODg3ZTQ4NWVhOCJ9fX0=
-
-    //e3RleHR1cmVzOntTS0lOOnt1cmw6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGNhYzk3NzRkYTEyMTcyNDg1MzJjZTE0N2Y3ODMxZjY3YTEyZmRjY2ExY2YwY2I0YjM4NDhkZTZiYzk0YjQifX19
 
     public static ItemStack getSkull(String url) {
         ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
