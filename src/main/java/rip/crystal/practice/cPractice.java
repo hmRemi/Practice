@@ -6,6 +6,7 @@ import rip.crystal.practice.database.MongoConnection;
 import rip.crystal.practice.essentials.abilities.AbilityManager;
 import rip.crystal.practice.essentials.abilities.command.AbilityCommand;
 import rip.crystal.practice.essentials.chat.cPracticeChatFormat;
+import rip.crystal.practice.essentials.command.donator.*;
 import rip.crystal.practice.essentials.command.player.*;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.game.arena.ArenaListener;
@@ -31,9 +32,6 @@ import rip.crystal.practice.player.cosmetics.impl.trails.command.TrailEffectComm
 import rip.crystal.practice.match.duel.command.*;
 import rip.crystal.practice.essentials.Essentials;
 import rip.crystal.practice.essentials.EssentialsListener;
-import rip.crystal.practice.essentials.command.donator.RenameCommand;
-import rip.crystal.practice.essentials.command.donator.ShowAllPlayersCommand;
-import rip.crystal.practice.essentials.command.donator.ShowPlayerCommand;
 import rip.crystal.practice.essentials.command.management.AdminInformationCommand;
 import rip.crystal.practice.essentials.command.management.SetSlotsCommand;
 import rip.crystal.practice.essentials.command.management.SetSpawnCommand;
@@ -78,7 +76,6 @@ import rip.crystal.practice.player.party.classes.rogue.RogueClass;
 import rip.crystal.practice.player.party.command.PartyCommand;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.profile.ProfileListener;
-import rip.crystal.practice.essentials.command.donator.FlyCommand;
 import rip.crystal.practice.player.profile.conversation.command.MessageCommand;
 import rip.crystal.practice.player.profile.conversation.command.ReplyCommand;
 import rip.crystal.practice.player.profile.file.impl.FlatFileIProfile;
@@ -218,6 +215,8 @@ public class cPractice extends JavaPlugin {
         this.abilityManager.load();
 
         this.ffaManager = new FFAManager();
+        this.ffaManager.init();
+
         this.shopSystem = new ShopSystem();
         this.chunkRestorationManager = new ChunkRestorationManager();
         this.hotbar = new Hotbar();
@@ -432,6 +431,7 @@ public class cPractice extends JavaPlugin {
             new MessageCommand();
             new ReplyCommand();
         }
+        new StreamingCommand();
         new CosmeticsCommand();
         new ShopCommand();
         new CoinsCommand();

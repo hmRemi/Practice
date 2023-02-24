@@ -1,17 +1,21 @@
 package rip.crystal.practice.match.menu;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.match.Match;
 import rip.crystal.practice.match.impl.BasicTeamMatch;
+import rip.crystal.practice.player.party.menu.manage.impl.PartyKickMenu;
 import rip.crystal.practice.utilities.ItemBuilder;
 import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.utilities.menu.Button;
 import rip.crystal.practice.utilities.menu.pagination.PaginatedMenu;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -43,6 +47,34 @@ public class MatchList extends PaginatedMenu {
             buttons.put(slot, new MatchButton(match));
            slot++;
         }
+        return buttons;
+    }
+
+    @AllArgsConstructor
+    public static class RefreshButton extends Button {
+
+        @Override
+        public ItemStack getButtonItem(Player player) {
+            return new ItemBuilder(Material.CARPET)
+                    .name("&4Refresh")
+                    .lore("&7Click here to update player list")
+                    .durability(5)
+                    .build();
+        }
+
+        @Override
+        public void clicked(Player player, int slot, ClickType clickType, int hotbarButton) {
+            playNeutral(player);
+            new MatchList().openMenu(player);
+        }
+    }
+
+
+    @Override
+    public Map<Integer, Button> getGlobalButtons(Player player) {
+        Map<Integer, Button> buttons = new HashMap<>();
+        buttons.put(4, new RefreshButton());
+
         return buttons;
     }
 

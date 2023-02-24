@@ -89,5 +89,4 @@ public class StandaloneArena extends Arena {
 			e.printStackTrace();
 		}
 	}
-
 }

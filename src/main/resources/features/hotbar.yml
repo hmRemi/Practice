@@ -54,11 +54,17 @@ HOTBAR_ITEMS:
     NAME: '&7(&4!&7) &4&lLeave Party &7 (&4!&7)'
     LORE: []
   PARTY_INFORMATION:
-    SLOT: 5
+    SLOT: 4
     MATERIAL: SKULL_ITEM
     DURABILITY: 3
     NAME: '&7(&4!&7) &4&lParty Information &7(&4!&7)'
     LORE: []
+  PARTY_MANAGE:
+    SLOT: 5
+    MATERIAL: WATCH
+    DURABILITY: 0
+    NAME: '&7(&4!&7) &4&lParty Management &7(&4!&7)'
+    LORE: [ ]
   CLASS_SELECT:
     SLOT: 3
     MATERIAL: DIAMOND
@@ -66,7 +72,7 @@ HOTBAR_ITEMS:
     NAME: '&7(&4!&7) &4&lHCF Kits &7(&4!&7)'
     LORE: []
   OTHER_PARTIES:
-    SLOT: 2
+    SLOT: 6
     MATERIAL: CHEST
     DURABILITY: 0
     NAME: '&7(&4!&7) &4&lOther Parties &7(&4!&7)'

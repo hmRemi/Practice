@@ -36,6 +36,7 @@ public class KitStatusCommand extends BaseCommand {
 		player.sendMessage(CC.translate(" &7▢ &4Parkour&f: " + (kit.getGameRules().isParkour() ? "&a\u2713" : "&c\u2717")));
 		player.sendMessage(CC.translate(" &7▢ &4HCF&f: " + (kit.getGameRules().isHcf() ? "&a\u2713" : "&c\u2717")));
 		player.sendMessage(CC.translate(" &7▢ &4HCFTrap&f: " + (kit.getGameRules().isHcftrap() ? "&a\u2713" : "&c\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &4Battle Rush&f: " + (kit.getGameRules().isBattlerush() ? "&a\u2713" : "&c\u2717")));
 		player.sendMessage(CC.translate(" &7▢ &4Bridge&f: " + (kit.getGameRules().isBridge() ? "&a\u2713" : "&c\u2717")));
 		player.sendMessage(CC.translate(" &7▢ &4BedFight&f: " + (kit.getGameRules().isBedFight() ? "&a\u2713" : "&c\u2717")));
 		player.sendMessage(CC.translate(" &7▢ &4Health Regeneration&f: " + (kit.getGameRules().isHealthRegeneration() ? "&a\u2713" : "&c\u2717")));

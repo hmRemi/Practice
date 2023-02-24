@@ -1,5 +1,6 @@
 package rip.crystal.practice.match.impl;
 
+import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.kit.Kit;
@@ -68,18 +69,22 @@ public class BasicTeamRoundMatch extends BasicTeamMatch {
 
                     if (bukkitPlayer != null) {
                         if (getWinningParticipant().getConjoinedNames().equals(getParticipantA().getConjoinedNames())) {
-                            bukkitPlayer.sendMessage(CC.translate("&c&l" + getWinningParticipant().getConjoinedNames() + " win"));
-                            bukkitPlayer.sendMessage(CC.translate("&cRed Points&7:&f " +
+                            bukkitPlayer.sendMessage(CC.CHAT_BAR);
+                            bukkitPlayer.sendMessage(CC.translate("&4&l" + getWinningParticipant().getConjoinedNames() + " &7is the winner!"));
+                            bukkitPlayer.sendMessage(CC.translate("&cRed Points&7:&7 " +
                                     StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.RED, getRoundsToWin())));
-                            bukkitPlayer.sendMessage(CC.translate("&4Blue Points&7:&f " +
+                            bukkitPlayer.sendMessage(CC.translate("&4Blue Points&7:&7 " +
                                     StringUtils.getStringPoint(getParticipantB().getRoundWins(), org.bukkit.ChatColor.BLUE, getRoundsToWin())));
+                            bukkitPlayer.sendMessage(CC.CHAT_BAR);
                         }
                         else if (getWinningParticipant().getConjoinedNames().equals(getParticipantB().getConjoinedNames())) {
-                            bukkitPlayer.sendMessage(CC.translate("&4&l" + getWinningParticipant().getConjoinedNames() + " win"));
-                            bukkitPlayer.sendMessage(CC.translate("&4Blue Points&7:&f " +
+                            bukkitPlayer.sendMessage(CC.CHAT_BAR);
+                            bukkitPlayer.sendMessage(CC.translate("&4&l" + getWinningParticipant().getConjoinedNames() + " &7is the winner!"));
+                            bukkitPlayer.sendMessage(CC.translate("&4Blue Points&7:&7 " +
                                     StringUtils.getStringPoint(getParticipantB().getRoundWins(), org.bukkit.ChatColor.BLUE, getRoundsToWin())));
-                            bukkitPlayer.sendMessage(CC.translate("&cRed Points&7:&f " +
+                            bukkitPlayer.sendMessage(CC.translate("&cRed Points&7:&7 " +
                                     StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.RED, getRoundsToWin())));
+                            bukkitPlayer.sendMessage(CC.CHAT_BAR);
                         }
                         if (bukkitPlayer.hasMetadata("lastAttacker")) {
                             bukkitPlayer.removeMetadata("lastAttacker", cPractice.get());
@@ -95,7 +100,7 @@ public class BasicTeamRoundMatch extends BasicTeamMatch {
         // Store winning participant
         setWinningParticipant(getParticipantA().isAllDead() ? getParticipantB() : getParticipantA());
         getWinningParticipant().setRoundWins(getWinningParticipant().getRoundWins() + 1);
-        sendMessage(CC.translate("&c" + getWinningParticipant().getConjoinedNames() + " &fhas won this round"));
+        //sendMessage(CC.translate("&c" + getWinningParticipant().getConjoinedNames() + " &fhas won this round"));
 
         // Store losing participant
         setLosingParticipant(getParticipantA().isAllDead() ? getParticipantA() : getParticipantB());
@@ -104,18 +109,7 @@ public class BasicTeamRoundMatch extends BasicTeamMatch {
             if (!getKit().getGameRules().isBridge()) cleanup();
             //int roundsToWin = (ranked ? 3 : 1) - winningParticipant.getRoundWins();
             if (cPractice.get().getMainConfig().getBoolean("MATCH.REMOVE_BLOCKS_ON_ROUND_END_BRIDGE")) {
-                EditSession editSession = new EditSession(BukkitUtil.getLocalWorld(getArena().getSpawnA().getWorld()), 500);
-                editSession.setFastMode(true);
-
-                for (Location location : getPlacedBlocks()) {
-                    try {
-                        editSession.setBlock(new com.sk89q.worldedit.Vector(location.getBlockX(), location.getBlockY(), location.getZ()), new BaseBlock(0));
-                    } catch (Exception ignored) { }
-                }
-
-                editSession.flushQueue();
-
-                TaskUtil.run(() -> getPlacedBlocks().clear());
+                ChunkRestorationManager.getIChunkRestoration().reset(getArena());
             }
 
             state = MatchState.ENDING_ROUND;

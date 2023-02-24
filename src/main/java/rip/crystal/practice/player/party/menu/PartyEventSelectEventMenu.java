@@ -95,6 +95,8 @@ public class PartyEventSelectEventMenu extends Menu {
 				}
 			}
 
+			if(partyEvent == PartyEvent.REDROVER) return;
+
 			new PartyEventSelectKitMenu(partyEvent).openMenu(player);
 		}
 	}

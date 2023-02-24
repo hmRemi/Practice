@@ -127,14 +127,19 @@ public class Arena extends Cuboid {
 					}
 				}
 
-				if (arena instanceof StandaloneArena && configuration.contains(path + ".spawnred") && configuration.contains(path + ".spawnblue")) {
-					StandaloneArena standaloneArena = (StandaloneArena) arena;
-					location1 = LocationUtil.deserialize(configuration.getString(path + ".spawnred.location1"));
-					location2 = LocationUtil.deserialize(configuration.getString(path + ".spawnred.location2"));
-					standaloneArena.setSpawnRed(new Cuboid(location1, location2));
-					location1 = LocationUtil.deserialize(configuration.getString(path + ".spawnblue.location1"));
-					location2 = LocationUtil.deserialize(configuration.getString(path + ".spawnblue.location2"));
-					standaloneArena.setSpawnBlue(new Cuboid(location1, location2));
+				if (arena instanceof StandaloneArena) {
+					if(configuration.contains(path + ".spawnred")) {
+						StandaloneArena standaloneArena = (StandaloneArena) arena;
+						location1 = LocationUtil.deserialize(configuration.getString(path + ".spawnred.location1"));
+						location2 = LocationUtil.deserialize(configuration.getString(path + ".spawnred.location2"));
+						standaloneArena.setSpawnRed(new Cuboid(location1, location2));
+					}
+					if(configuration.contains(path + ".spawnblue")) {
+						StandaloneArena standaloneArena = (StandaloneArena) arena;
+						location1 = LocationUtil.deserialize(configuration.getString(path + ".spawnblue.location1"));
+						location2 = LocationUtil.deserialize(configuration.getString(path + ".spawnblue.location2"));
+						standaloneArena.setSpawnBlue(new Cuboid(location1, location2));
+					}
 				}
 
 				if (arena instanceof StandaloneArena && configuration.contains(path + ".duplicates")) {

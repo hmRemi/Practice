@@ -5,6 +5,17 @@ CONVERSATION:
   RECEIVE_MESSAGE: '&7(From &r{sender_color}{sender_name}&7) {msg}'
 JOIN_MESSAGES:
   - '  '
+FFA:
+  JOIN_MESSAGE:
+  - '&7&m------------------------------------------------'
+  - '&4&lFree For All &7┃ {kit}'
+  - '  &4Players: {players}'
+  - ' '
+  - '&7&oTo leave, use /ffa leave'
+  - '&7&m------------------------------------------------'
+  REFILL_COOLDOWN: '&cYou may not use your &c&lEnderpearl &cfor another &c&l{time}
+    second{context}&c.'
+  REFILL_COOLDOWN_EXPIRED: '&cYour enderpearl cooldown has now expired.'
 ARENA:
   REACHED_MAXIMUM: '&cYou have reached the maximum build height.'
   BUILD_OUTSIDE: '&cYou cannot build outside of the arena!'

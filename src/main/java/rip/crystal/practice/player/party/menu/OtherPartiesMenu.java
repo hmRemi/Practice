@@ -90,6 +90,5 @@ public class OtherPartiesMenu extends PaginatedMenu {
 				}
 			}
 		}
-
 	}
 }

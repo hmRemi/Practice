@@ -45,17 +45,18 @@ public class MessageCommand extends BaseCommand {
         }
 
         Profile playerProfile = Profile.get(player.getUniqueId());
+        Profile targetProfile = Profile.get(target.getUniqueId());
 
-        //if (targetProfile.getConversations().canBeMessagedBy(player)) {
-        Conversation conversation = playerProfile.getConversations().getOrCreateConversation(target);
+        if (targetProfile.getOptions().receivingNewConversations()) {
+            Conversation conversation = playerProfile.getConversations().getOrCreateConversation(target);
 
-        if (conversation.validate()) {
-            conversation.sendMessage(player, target, message.toString());
+            if (conversation.validate()) {
+                conversation.sendMessage(player, target, message.toString());
+            } else {
+                player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
+            }
         } else {
             player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
         }
-/*        } else {
-            player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
-        }*/
     }
 }

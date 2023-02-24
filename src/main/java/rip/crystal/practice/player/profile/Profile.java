@@ -63,7 +63,7 @@ public class Profile {
 	private Match match;
 	private BasicTeamMatch basicTeamMatch;
 	private QueueProfile queueProfile;
-	private Cooldown enderpearlCooldown, voteCooldown, chatCooldown, partyAnnounceCooldown;
+	private Cooldown enderpearlCooldown, voteCooldown, chatCooldown, partyAnnounceCooldown, refillCooldown;
 	private AbilityCooldown partneritem, combo, effectdisabler, guardianangel, ninjastar, pocketbard, scrambler,
 			strength, swapperaxe, timewarp, switcher, tankingot, cookie, fakelogger, rocket, antitrapper, luckyingot;
 
@@ -92,6 +92,7 @@ public class Profile {
 		this.kitData = Maps.newHashMap();
 		this.duelRequests = Lists.newArrayList();
 		this.enderpearlCooldown = new Cooldown(0);
+		this.refillCooldown = new Cooldown(0);
 		this.partyAnnounceCooldown = new Cooldown(0);
 		this.voteCooldown = new Cooldown(0);
 		this.matches = Lists.newArrayList();

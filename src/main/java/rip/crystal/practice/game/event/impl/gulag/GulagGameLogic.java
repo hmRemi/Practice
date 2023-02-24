@@ -17,10 +17,7 @@ import rip.crystal.practice.player.profile.hotbar.impl.HotbarItem;
 import rip.crystal.practice.player.profile.participant.alone.GameParticipant;
 import rip.crystal.practice.player.profile.participant.GamePlayer;
 import rip.crystal.practice.player.profile.visibility.VisibilityLogic;
-import rip.crystal.practice.utilities.BlockUtil;
-import rip.crystal.practice.utilities.Cooldown;
-import rip.crystal.practice.utilities.MessageFormat;
-import rip.crystal.practice.utilities.PlayerUtil;
+import rip.crystal.practice.utilities.*;
 import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.utilities.file.type.BasicConfigurationFile;
 import lombok.Getter;
@@ -424,6 +421,7 @@ public class GulagGameLogic implements EventGameLogic {
 	public void onDeath(Player player, Player killer) {
 		GamePlayer deadGamePlayer = game.getGamePlayer(player);
 		Knockback.getKnockbackProfiler().setKnockback(player, "default");
+		TaskUtil.runLater(() -> player.spigot().respawn(), 1L);
 
 		if (deadGamePlayer != null) {
 			deadGamePlayer.setDead(true);

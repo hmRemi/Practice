@@ -10,7 +10,7 @@ import java.util.List;
 @Getter @Setter
 public class KitGameRules {
 
-	private boolean build, spleef, sumo, parkour, healthRegeneration, ranked, showHealth, hcf, bridge, boxing, nofalldamage, soup, antiFood, bedFight, hcftrap;
+	private boolean build, spleef, sumo, parkour, healthRegeneration, ranked, showHealth, hcf, bridge, boxing, nofalldamage, soup, antiFood, bedFight, hcftrap, battlerush;
 	private int hitDelay = 20;
 	private String kbProfile = "default";
 	private List<PotionEffect> effects = Lists.newArrayList();

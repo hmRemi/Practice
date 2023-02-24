@@ -46,7 +46,6 @@ public class LocationUtil {
 	public static boolean isTeamPortal(Player player) {
 		Profile profile = Profile.get(player.getUniqueId());
 		BasicTeamMatch match = (BasicTeamMatch) profile.getMatch();
-
 		StandaloneArena arena = (StandaloneArena) match.getArena();
 
 		if (match.getParticipantA().containsPlayer(player.getUniqueId())) {

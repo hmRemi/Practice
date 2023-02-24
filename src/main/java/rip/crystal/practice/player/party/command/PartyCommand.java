@@ -27,6 +27,7 @@ public class PartyCommand extends BaseCommand {
         new PartyBanCommand();
         new PartyUnbanCommand();
         new PartyAnnounceCommand();
+        new PartyManageCommand();
     }
 
     @Command(name = "party", aliases = {"p"})

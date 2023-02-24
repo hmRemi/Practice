@@ -100,9 +100,12 @@ public class MatchListener implements Listener {
 
 	@EventHandler
 	public void onPlayerDeathEvent(PlayerDeathEvent event) {
-		event.setDeathMessage(null);
-
 		Profile profile = Profile.get(event.getEntity().getUniqueId());
+
+		if(!profile.getMatch().getKit().getGameRules().isBridge()) {
+			TaskUtil.runLater(() -> event.getEntity().spigot().respawn(), 1L);
+		}
+		event.setDeathMessage(null);
 
 		if (profile.getState() == ProfileState.FIGHTING) {
 			Match match = profile.getMatch();
@@ -115,12 +118,13 @@ public class MatchListener implements Listener {
 				return;
 			}
 			Profile killerProfile = Profile.get(killer.getUniqueId());
-			killerProfile.getKitData().get(match.getKit()).incrementStreak();
+			if (!match.getKit().getGameRules().isBridge()) {
+				killerProfile.getKitData().get(match.getKit()).incrementStreak();
 
-			if(profile.getKitData().get(match.getKit()).hasStreak()) {
-				profile.getKitData().get(match.getKit()).resetStreak();
+				if (profile.getKitData().get(match.getKit()).hasStreak()) {
+					profile.getKitData().get(match.getKit()).resetStreak();
+				}
 			}
-
 			if (match.getKit().getGameRules().isBridge()) event.getDrops().clear();
 
 			if (cPractice.get().getMainConfig().getBoolean("MATCH.DROP_ITEMS_ON_DEATH")) {
@@ -150,7 +154,7 @@ public class MatchListener implements Listener {
 		Profile profile = Profile.get(player.getUniqueId());
 		Match match = profile.getMatch();
 		if (profile.getState() == ProfileState.FIGHTING) {
-			if (match.getKit().getGameRules().isBridge()) {
+			if (match.getKit().getGameRules().isBridge() || match.getKit().getGameRules().isBattlerush()) {
 				if (player.getLocation().getBlockY() <= 30) {
 					Player killer = PlayerUtil.getLastAttacker(event.getPlayer());
 					match.sendDeathMessage(event.getPlayer(), killer);
@@ -300,7 +304,7 @@ public class MatchListener implements Listener {
 				}
 
 				if (profile.getMatch().getKit().getGameRules().isSumo() || profile.getMatch().getKit().getGameRules().isSpleef()
-						|| profile.getMatch().getKit().getGameRules().isBoxing()) {
+						|| profile.getMatch().getKit().getGameRules().isBoxing() || profile.getMatch().getKit().getGameRules().isBattlerush()) {
 					event.setDamage(0);
 					player.setHealth(20.0);
 					player.updateInventory();

@@ -16,6 +16,8 @@ public enum HotbarItem {
 	PARTY_DISBAND("party disband"),
 	PARTY_LEAVE("party leave"),
 	PARTY_INFORMATION("party info"),
+	PARTY_MANAGE("party manage"),
+
 	OTHER_PARTIES(null),
 	KIT_EDITOR(null),
 	SPECTATE_STOP("stopspectating"),

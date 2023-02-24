@@ -111,6 +111,7 @@ public class Hotbar {
 						if (profile.getParty().getListOfPlayers().size() > 3)
 							itemStacks[getSlot(HotbarItem.CLASS_SELECT)] = getItem(HotbarItem.CLASS_SELECT);
 						itemStacks[getSlot(HotbarItem.PARTY_INFORMATION)] = getItem(HotbarItem.PARTY_INFORMATION);
+						itemStacks[getSlot(HotbarItem.PARTY_MANAGE)] = getItem(HotbarItem.PARTY_MANAGE);
 						itemStacks[getSlot(HotbarItem.OTHER_PARTIES)] = getItem(HotbarItem.OTHER_PARTIES);
 						itemStacks[getSlot(HotbarItem.PARTY_DISBAND)] = getItem(HotbarItem.PARTY_DISBAND);
 					} else {

@@ -33,7 +33,7 @@ public class FFAButton extends Button {
 
     @Override
     public void clicked(Player player, int slot, ClickType clickType, int hotbarButton) {
-        cPractice.get().getFfaManager().joinFFA(player, Arena.getByName("FFA"));
+        cPractice.get().getFfaManager().firstJoinFfa(player, Arena.getByName("FFA"));
     }
 }
 

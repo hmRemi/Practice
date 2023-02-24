@@ -152,7 +152,11 @@ public class MatchSpecialListener implements Listener {
         if (profile.getState() == ProfileState.FIGHTING) {
             if (profile.getMatch().getKit().getGameRules().isBridge()) {
                 if (player.getLocation().getBlock().getType() == Material.ENDER_PORTAL || player.getLocation().getBlock().getType() == Material.ENDER_PORTAL_FRAME) {
-                    if (LocationUtil.isTeamPortal(player)) return;
+                    if (LocationUtil.isTeamPortal(player)) {
+                        player.sendMessage(CC.translate("&8[&4&lMatch&8] &7You can't enter your own portal"));
+                        profile.getMatch().onDeath(player);
+                        return;
+                    }
                     BasicTeamRoundMatch match = (BasicTeamRoundMatch) profile.getMatch();
                     if (match.getState() == MatchState.ENDING_ROUND || match.getState() == MatchState.ENDING_MATCH) return;
                     match.getParticipants().forEach(gamePlayerGameParticipant ->

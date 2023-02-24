@@ -30,14 +30,21 @@ public class ReplyCommand extends BaseCommand {
         Profile playerProfile = Profile.get(player.getUniqueId());
         Conversation conversation = playerProfile.getConversations().getLastRepliedConversation();
 
-        if (conversation != null) {
+        if(conversation == null) {
+            player.sendMessage(CC.RED + "You have nobody to reply to.");
+            return;
+        }
+
+        Profile targetProfile = Profile.get(conversation.getPartner(player.getUniqueId()));
+
+        if (targetProfile.getOptions().receivingNewConversations()) {
             if (conversation.validate()) {
                 conversation.sendMessage(player, Bukkit.getPlayer(conversation.getPartner(player.getUniqueId())), message.toString());
             } else {
                 player.sendMessage(CC.RED + "You can no longer reply to that player.");
             }
         } else {
-            player.sendMessage(CC.RED + "You have nobody to reply to.");
+            player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
         }
     }
 }

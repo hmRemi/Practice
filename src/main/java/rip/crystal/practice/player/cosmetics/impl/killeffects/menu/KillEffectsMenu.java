@@ -22,6 +22,11 @@ public class KillEffectsMenu extends PaginatedMenu
 {
 
     @Override
+    public boolean isUpdateAfterClick() {
+        return true;
+    }
+
+    @Override
     public String getPrePaginatedTitle(final Player player) {
         return CC.translate("&4&lDeath Effects");
     }

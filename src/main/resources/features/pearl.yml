@@ -1,126 +1,48 @@
-Pearl-Checks:
-  Thru:
-    Chests:
-      enabled: true
-      diagonal: true
-      critblock: true
-      crosspearl: true
-    Slabs:
-      enabled: true
-      diagonal: true
-      critblock: true
-      crosspearl: true
-    Stairs:
-      enabled: true
-      diagonal: true
-      critblock: true
-      crosspearl: true
-    Bed:
-      enabled: true
-      diagonal: true
-      critblock: true
-      crosspearl: true
-    CobbleWall:
-      enabled: true
-      diagonal: true
-      critblock: true
-      crosspearl: true
-    Pistons:
-      enabled: true
-      diagonal: true
-      critblock: true
-      crosspearl: true
-    PortalFrame:
-      enabled: true
-      diagonal: true
-      critblock: true
-      crosspearl: true
-    EnchantTable:
-      enabled: true
-      diagonal: true
-      critblock: true
-      crosspearl: true
-    Anvil:
-      enabled: true
-      diagonal: true
-      critblock: true
-      crosspearl: true
-    DayLightSensor:
-      enabled: true
-      diagonal: true
-      critblock: true
-      crosspearl: true
-    TrapDoor:
-      enabled: true
-      crosspearl: true
-      critblock: true
-      diagonal: true
+# Change the server names under 'servers' to the same names in your bungee config.
+# Only add servers below if you want them to have a queue to join.
+# The limit is the amount of players you want to allow on that server before they are put into a queue. You can set the limit to -1 for unlimited.
+# The send delay is the delay between sending players to the server in seconds (decimals are accepted)
+# Use '/play <server>' to be put into the queue if the server is full.
 
-    Cobweb: true
-    String: true
-    FenceGates: true
+servers:
+  practice:
+    limit: -1
+    send-delay: 5
 
-  EntityTeleport:
-    getOutFromOneByOne: true
-    betterHitDetection: true
+# These are the servers with the EzQueueClient on them. This would usually be all your lobby servers
+lobbies:
+  - lobby
 
-  Pearl-Thru:
-    PreThruBlock: true
-    HitThruBlock: true
-    InstantlyPassThru: false
+# Lower the priority number, they get further to the front of the queue.
+# For example, if player One is already in the queue with 5 priority, then player Two joins the queue
+# with a priority of 1, player Two will be put in front of player One in the queue.
+#
+# --- COPY THIS SECTION EXACTLY TO ALL YOUR SPIGOT SERVERS WITH EZQUEUESPIGOT ---
+ranks:
+  rank1:
+    permission: "ezq.rank1"
+    priority: 1
+  rank2:
+    permission: "ezq.rank2"
+    priority: 2
+  rank3:
+    permission: "ezq.rank3"
+    priority: 3
 
-  Prevent-Suffocation:
-    RefundRiskyPearl: true
-    RefundIfSoClose: true
-    RefundIfSoCloseDistance: 1.0
-    RefundPearlIfSuffocating: true
+messages:
+  join-message: "&7You are position &4#%position% &7in the &4%server% &7queue."
+  leave-message: "&7You have left the &4%server% &7queue."
+  move-up-message: "&7You are position &4#%position% &7out of &4%outof% &7in the &4%server% &7queue."
+  move-down-message: "&7Someone with &4higher priority &7has joined the &4%server% &7queue. You are now position &4#%position% &7 out of &4%outof% &7in the queue."
+  already-in-message: "&7You are already in the &4%server% &7queue! You are position &4#%position% &7out of &4%outof%&7."
+  available-queues-message: "&cAvailable servers: %servers%"
+  invalid-queue-message: "&cThat's not a valid server! Available servers: %servers%"
+  already-connected-message: "&cYou're already connected to that server!"
+  not-in-queue-message: "&cYou aren't in a queue!"
+  pause-queue-message: "&7Queue for &4%server% &7has been paused!"
+  unpause-queue-message: "&7Queue for &4%server% &7has been unpaused!"
 
-  Anti-Glitch:
-    FixWallsGlitch: true
-    FixFencegateGlitch: true
-    ChestFenceEnabled: true
-    HopperFenceEnabled: true
-
-  #I`m recommending set it to false
-  TaliTeleport: false
-  TaliTeleportXZ: 1.0
-  TaliTeleportY: 0.5
-
-  MaxPearlPassThruBlocks: 1
-
-Cooldown:
-  haveAnotherCooldown: false # If this is true, the functions below will not work.
-  time: 20
-  nowCan: "&7(&d&l!&7) &fYou can now use Enderpearl!" # '' to disable
-  cantUse: "&7(&d&l!&7) &fYou can`t use Enderpearl another &5%time% seconds&f!" # '' to disable
-  KohiDisplay: "&dEnderpearl&7: &f%time%" # '' to disable
-  onQuitRemoveCooldown: false # If you have a combat tag plugin, set it to true.
-  onGlitchRemoveCooldown: true
-
-Other:
-  PearlDamage: 5.0 # 0.0 to disable all pearl damage
-  PearlParticles: true
-  ParticlesAmount: 32 # 30 = default, lower than 30 = more optimization.
-  #When you clicks on the blocks, pearl will launch automatically.
-  onOpenFencegateLaunch: true
-
-  onClickAutoLaunch:
-    - FURNACE
-    - ANVIL
-    - SIGN
-    - SIGN_POST
-    - WALL_SIGN
-    - HOPPER
-    - CHEST
-    - ENDER_CHEST
-    - TRAPPED_CHEST
-    - WORKBENCH
-    - ENCHANTMENT_TABLE
-    - BEACON
-    - ANVIL
-
-  onGlitchReturnPearl: true
-  LazarusCooldownRemoveNoMessageOnGlitch: true
-  onGlitchMessage: "&7(&d&l!&7) &fYour pearl was refunded!" # '' to disable
-  #%player% returns player name. Example: 'timer set enderpearl %player% 0'
-  onGlitchConsoleCommand: ''  # '' to disable
+# The interval in seconds that all players in a queue will be updated on their queue position (decimals are accepted)
+send-position-message-interval: 10
+# Enabling this will update every player on their new position if they move up or down.
+send-position-move-message: true

@@ -54,7 +54,7 @@ public class PartyEventSelectKitMenu extends Menu {
 				buttons.put(28, new SelectKitButton(partyEvent, Kit.getByName("HCF")));
 
 			} else if ((partyEvent == PartyEvent.FFA)) {
-				if (kit.isEnabled() && (!kit.getGameRules().isHcftrap() && !kit.getGameRules().isHcf())) {
+				if (kit.isEnabled() && (!kit.getGameRules().isHcftrap() && !kit.getGameRules().isHcf() && !kit.getGameRules().isBattlerush() && !kit.getGameRules().isBridge())) {
 					buttons.put(kit.getSlot(), new SelectKitButton(partyEvent, kit));
 				}
 			} else {

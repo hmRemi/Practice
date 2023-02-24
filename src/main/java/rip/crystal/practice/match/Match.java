@@ -1,6 +1,8 @@
 package rip.crystal.practice.match;
 
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.github.paperspigot.Title;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
@@ -299,6 +301,7 @@ public abstract class Match {
 
 		droppedItems.forEach(Entity::remove);
 		new MatchResetTask(this).runTask(cPractice.get());
+		ChunkRestorationManager.getIChunkRestoration().reset(getArena());
 		matches.remove(this);
 		logicTask.cancel();
 	}
@@ -448,8 +451,6 @@ public abstract class Match {
 	}
 
 	public void onDeath(Player dead) {
-		TaskUtil.runLater(() -> dead.spigot().respawn(), 1L);
-
 		// Don't continue if the match is already ending
 		if (!(state == MatchState.STARTING_ROUND || state == MatchState.PLAYING_ROUND)) return;
 
@@ -460,8 +461,6 @@ public abstract class Match {
 
 		// Get killer
 		Player killer = PlayerUtil.getLastAttacker(dead);
-
-
 
 		// Set player as dead
 		if (getKit().getGameRules().isBridge()) {
@@ -494,9 +493,6 @@ public abstract class Match {
 			// Add coins to winner
 			winner.addCoins(10);
 		}
-
-
-
 
 		if (killer != null) { // If killer isn't null then add a kill to the player.
 			if(PlayerUtil.getLastAttacker(dead) != null) {
@@ -561,21 +557,115 @@ public abstract class Match {
 					addSpectator(dead, killer);
 				}, 10L);
 			} else {
+				if(getKit().getGameRules().isBattlerush()) {
+					BasicTeamRoundMatch teamRoundMatch = (BasicTeamRoundMatch) this;
+
+					Location spawn = teamRoundMatch.getParticipantA().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getArena().getSpawnA() : teamRoundMatch.getArena().getSpawnB();
+					PotionEffect weakness = new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0);
+
+					if(profile.getMatch().getState() == MatchState.PLAYING_ROUND) {
+						new BukkitRunnable() {
+							int respawn = 4;
+
+							@Override
+							public void run() {
+								if (respawn <= 1 && profile.getMatch().getState() == MatchState.PLAYING_ROUND) {
+									dead.removePotionEffect(PotionEffectType.WEAKNESS);
+									dead.teleport(spawn.add(0, 2, 0));
+
+									if (killer != null) {
+										killer.showPlayer(dead);
+									}
+
+									dead.setFallDistance(50);
+									dead.setAllowFlight(false);
+									dead.setFlying(false);
+
+									dead.setHealth(dead.getMaxHealth());
+									dead.setFoodLevel(20);
+
+									dead.sendMessage(CC.translate("&aYou have respawned!"));
+									dead.playSound(dead.getLocation(), Sound.ORB_PICKUP, 10, 1);
+
+									Bukkit.getScheduler().runTaskLater(cPractice.get(), () -> {
+										dead.spigot().respawn();
+										PlayerUtil.reset(dead);
+
+										if (profile.getSelectedKit() == null) {
+											dead.getInventory().setContents(getKit().getKitLoadout().getContents());
+										} else {
+											dead.getInventory().setContents(profile.getSelectedKit().getContents());
+										}
+
+										KitUtils.giveBridgeKit(dead);
+										dead.sendTitle(new Title(CC.translate("&aRespawning..."), "", 1, 20, 0));
+										cancel();
+									}, 2L);
+								}
+
+								if (respawn == 4 && profile.getMatch().getState() == MatchState.PLAYING_ROUND) {
+									dead.addPotionEffect(weakness);
+
+									if (killer != null) {
+										killer.hidePlayer(dead);
+									}
+
+									dead.getInventory().clear();
+									dead.getInventory().setArmorContents(null);
+									dead.updateInventory();
+
+									dead.setHealth(dead.getMaxHealth());
+									dead.setFoodLevel(20);
+
+									dead.setVelocity(dead.getVelocity().add(new org.bukkit.util.Vector(0, 0.25, 0)));
+									dead.setAllowFlight(true);
+									dead.setFlying(true);
+									dead.setVelocity(dead.getVelocity().add(new Vector(0, 0.15, 0)));
+									dead.setAllowFlight(true);
+									dead.setFlying(true);
+
+									if (killer != null) {
+										dead.teleport(killer.getLocation());
+									}
+								}
+
+								respawn--;
+								dead.sendTitle(new Title(CC.translate("&a") + respawn, "", 1, 20, 0));
+								dead.playSound(dead.getLocation(), Sound.NOTE_PLING, 10, 1);
+							}
+						}.runTaskTimer(cPractice.get(), 0L, 20L);
+					} else {
+						TaskUtil.runLater(() -> {
+							dead.spigot().respawn();
+							PlayerUtil.reset(dead);
+							if (profile.getSelectedKit() == null) {
+								dead.getInventory().setContents(getKit().getKitLoadout().getContents());
+							} else {
+								dead.getInventory().setContents(profile.getSelectedKit().getContents());
+							}
+							dead.teleport(spawn.add(0, 2, 0));
+							KitUtils.giveBridgeKit(dead);
+						}, 1L);
+					}
+					return;
+				}
 				if (getKit().getGameRules().isBridge()) {
+
 					BasicTeamRoundMatch teamRoundMatch = (BasicTeamRoundMatch) this;
 
 					Location spawn = teamRoundMatch.getParticipantA().containsPlayer(dead.getUniqueId()) ?
 							teamRoundMatch.getArena().getSpawnA() : teamRoundMatch.getArena().getSpawnB();
-					dead.teleport(spawn.add(0, 2, 0));
 					TaskUtil.runLater(() -> {
+						dead.spigot().respawn();
 						PlayerUtil.reset(dead);
 						if (profile.getSelectedKit() == null) {
 							dead.getInventory().setContents(getKit().getKitLoadout().getContents());
 						} else {
 							dead.getInventory().setContents(profile.getSelectedKit().getContents());
 						}
+						dead.teleport(spawn.add(0, 2, 0));
 						KitUtils.giveBridgeKit(dead);
-					}, 5L);
+					}, 1L);
 				}
 			}
 		}

@@ -4,13 +4,20 @@ package rip.crystal.practice.game.ffa;
    Created on 27.11.2021
 */
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.EnderPearl;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.cPractice;
@@ -46,6 +53,7 @@ public class FFAListener implements Listener {
                 this.broadcastMessage("&4" + player.getName() + " &fwas slain by &4" + killer.getName() + "&f.");
             }
 
+            profile.setRefillCooldown(new Cooldown(0));
             event.setDeathMessage(null);
             event.setDroppedExp(0);
             player.setHealth(20.0);
@@ -93,6 +101,25 @@ public class FFAListener implements Listener {
         Profile profile = Profile.get(event.getPlayer().getUniqueId());
         if (profile.getState() == ProfileState.FFA) {
             event.setCancelled(false);
+        }
+    }
+
+    @EventHandler
+    public void onConsume(PlayerItemConsumeEvent event) {
+        Player player = event.getPlayer();
+        Profile profile = Profile.get(player.getUniqueId());
+
+        if(profile.getState() == ProfileState.FFA) {
+            if (!event.getItem().getType().equals(Material.POTION)) {
+                return;
+            }
+            int heldSlot = player.getInventory().getHeldItemSlot();
+            Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(cPractice.get(), () -> {
+                ItemStack held = player.getInventory().getItem(heldSlot);
+                if (held != null && held.getType() == Material.GLASS_BOTTLE) {
+                    held.setAmount(0);
+                }
+            }, 1L);
         }
     }
 
@@ -180,6 +207,47 @@ public class FFAListener implements Listener {
                 if (profile.getEnderpearlCooldown().hasExpired()) {
                     profile.setEnderpearlCooldown(new Cooldown(16_000));
                 }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onSignChange(SignChangeEvent e) {
+        if (e.getLine(0).equalsIgnoreCase("[Refill]")) {
+            e.setLine(0, "§4[Refill]");
+            e.setLine(1, "§fRight Click");
+            e.setLine(2, "§fTo refill!!");
+        }
+    }
+
+
+    public Inventory refillInv = Bukkit.createInventory(null, 36, "§7Refill Potions");
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent e) {
+        Player player = e.getPlayer();
+        Profile profile = Profile.get(player.getUniqueId());
+
+        if (e.getAction() != Action.RIGHT_CLICK_BLOCK) {
+            return;
+        }
+        if (e.getClickedBlock().getState() instanceof Sign && ((Sign)(e.getClickedBlock().getState())).getLine(0).equalsIgnoreCase("§4[Refill]")) {
+            if (!profile.getRefillCooldown().hasExpired()) {
+                e.setCancelled(true);
+                String time = TimeUtil.millisToSeconds(profile.getRefillCooldown().getRemaining());
+                new MessageFormat(Locale.FFA_REFILL_COOLDOWN.format(profile.getLocale())).add("{context}", (time.equalsIgnoreCase("1.0") ? "" : "s")).add("{time}", time).send(player);
+                return;
+            }
+            int i = 0;
+            while (i < this.refillInv.getSize()) {
+                this.refillInv.setItem(i, new ItemStack(Material.POTION, 1, (short) 16421));
+                ++i;
+            }
+            e.getPlayer().openInventory(this.refillInv);
+
+
+            if (profile.getRefillCooldown().hasExpired()) {
+                profile.setRefillCooldown(new Cooldown(30_000));
             }
         }
     }

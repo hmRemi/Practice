@@ -88,6 +88,12 @@ public class KitGameRuleCommand extends BaseCommand {
                     else player.sendMessage(CC.RED + "Successfully disabled AntiFood for " + kit.getName());
                     break;
                 }
+                case "battlerush": {
+                    kit.getGameRules().setBattlerush(Boolean.parseBoolean(value));
+                    if (Boolean.parseBoolean(value)) player.sendMessage(CC.GREEN + "Successfully enabled Battle Rush for " + kit.getName());
+                    else player.sendMessage(CC.RED + "Successfully disabled Battle Rush for " + kit.getName());
+                    break;
+                }
                 case "soup": {
                     kit.getGameRules().setSoup(Boolean.parseBoolean(value));
                     if (Boolean.parseBoolean(value)) player.sendMessage(CC.GREEN + "Successfully enabled Soup mode for " + kit.getName());

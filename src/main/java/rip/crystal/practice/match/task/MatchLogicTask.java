@@ -1,5 +1,7 @@
 package rip.crystal.practice.match.task;
 
+import org.bukkit.Location;
+import org.bukkit.Material;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
@@ -40,6 +42,9 @@ public class MatchLogicTask extends BukkitRunnable {
 				match.setState(MatchState.PLAYING_ROUND);
 				match.sendMessage(Locale.MATCH_STARTED, new MessageFormat());
 				match.sendSound(Sound.ORB_PICKUP, 1.0F, 1.0F);
+				if(match.getKit().getGameRules().isBattlerush()) {
+
+				}
 				match.sendMessage(Locale.MATCH_WARNING, new MessageFormat());
 			} else {
 				match.broadcastTitle("&4&lMatch starting in", "&4" + nextAction);

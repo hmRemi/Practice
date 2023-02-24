@@ -26,6 +26,6 @@ public class FFAJoinCommand extends BaseCommand {
             return;
         }
 
-        cPractice.get().getFfaManager().joinFFA(player, Arena.getByName("FFA"));
+        cPractice.get().getFfaManager().firstJoinFfa(player, Arena.getByName("FFA"));
     }
 }

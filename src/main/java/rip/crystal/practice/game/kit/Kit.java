@@ -68,6 +68,7 @@ public class Kit {
 		configFile.set(path + ".game-rules.ranked", gameRules.isRanked());
 		configFile.set(path + ".game-rules.hcf", gameRules.isHcf());
 		configFile.set(path + ".game-rules.hcftrap", gameRules.isHcftrap());
+		configFile.set(path + ".game-rules.battlerush", gameRules.isBattlerush());
 		configFile.set(path + ".game-rules.effects",
 				gameRules.getEffects().stream().map(PotionUtil::convertPotionEffectToString).collect(Collectors.toList()));
 		configFile.set(path + ".game-rules.boxing", gameRules.isBoxing());
@@ -136,6 +137,7 @@ public class Kit {
 			kit.getGameRules().setRanked(config.getBoolean(path + ".game-rules.ranked"));
 			kit.getGameRules().setHcf(config.getBoolean(path + ".game-rules.hcf"));
 			kit.getGameRules().setHcftrap(config.getBoolean(path + ".game-rules.hcftrap"));
+			kit.getGameRules().setBattlerush(config.getBoolean(path + ".game-rules.battlerush"));
 			kit.getGameRules().setBoxing(config.getBoolean(path + ".game-rules.boxing"));
 			kit.getGameRules().setBedFight(config.getBoolean(path + ".game-rules.bedfight"));
 			for (PotionEffect potionEffect : config.getStringList(path + ".game-rules.effects").stream()
