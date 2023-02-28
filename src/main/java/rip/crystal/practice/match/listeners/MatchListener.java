@@ -2,6 +2,7 @@ package rip.crystal.practice.match.listeners;
 
 import com.google.common.collect.Lists;
 import org.bukkit.*;
+import org.github.paperspigot.Title;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.knockback.Knockback;
@@ -102,30 +103,32 @@ public class MatchListener implements Listener {
 	public void onPlayerDeathEvent(PlayerDeathEvent event) {
 		Profile profile = Profile.get(event.getEntity().getUniqueId());
 
-		if(!profile.getMatch().getKit().getGameRules().isBridge()) {
+		if (profile.getState() == ProfileState.FIGHTING) {
+			if (!profile.getMatch().getKit().getGameRules().isBridge() && !profile.getMatch().getKit().getGameRules().isBedFight()) {
+				TaskUtil.runLater(() -> event.getEntity().spigot().respawn(), 1L);
+			}
+		} else if(profile.getState() == ProfileState.FFA) {
 			TaskUtil.runLater(() -> event.getEntity().spigot().respawn(), 1L);
 		}
 		event.setDeathMessage(null);
 
 		if (profile.getState() == ProfileState.FIGHTING) {
 			Match match = profile.getMatch();
-			if (match.getKit().getGameRules().isBridge()) {
+			if (match.getKit().getGameRules().isBridge() || match.getKit().getGameRules().isBedFight()) {
 				Player killer = PlayerUtil.getLastAttacker(event.getEntity());
 				match.sendDeathMessage(event.getEntity(), killer);
 			}
 			Player killer = PlayerUtil.getLastAttacker(event.getEntity());
+
 			if(killer == null) {
 				return;
 			}
 			Profile killerProfile = Profile.get(killer.getUniqueId());
-			if (!match.getKit().getGameRules().isBridge()) {
-				killerProfile.getKitData().get(match.getKit()).incrementStreak();
 
-				if (profile.getKitData().get(match.getKit()).hasStreak()) {
-					profile.getKitData().get(match.getKit()).resetStreak();
-				}
-			}
 			if (match.getKit().getGameRules().isBridge()) event.getDrops().clear();
+			if (match.getKit().getGameRules().isBedFight()) {
+				if (match.canEndMatch()) match.setState(MatchState.ENDING_MATCH);
+			}
 
 			if (cPractice.get().getMainConfig().getBoolean("MATCH.DROP_ITEMS_ON_DEATH")) {
 				TaskUtil.run(() -> {
@@ -148,21 +151,16 @@ public class MatchListener implements Listener {
 		}
 	}
 
-	@EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
 	public void onLow(final PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		Profile profile = Profile.get(player.getUniqueId());
 		Match match = profile.getMatch();
 		if (profile.getState() == ProfileState.FIGHTING) {
-			if (match.getKit().getGameRules().isBridge() || match.getKit().getGameRules().isBattlerush()) {
+			if (match.getKit().getGameRules().isBridge() || match.getKit().getGameRules().isBattlerush() || match.getKit().getGameRules().isBedFight()) {
 				if (player.getLocation().getBlockY() <= 30) {
 					Player killer = PlayerUtil.getLastAttacker(event.getPlayer());
 					match.sendDeathMessage(event.getPlayer(), killer);
-					profile.getMatch().onDeath(player);
-				}
-			}
-			if (match.getKit().getGameRules().isBuild()) {
-				if (player.getLocation().getBlockY() <= 30) {
 					profile.getMatch().onDeath(player);
 				}
 			}
@@ -218,10 +216,27 @@ public class MatchListener implements Listener {
 
 				if (shooterData.getState() == ProfileState.FIGHTING) {
 					shooterData.getMatch().getGamePlayer(shooter).handleHit();
+
+					shooterData.getMatch().removeEntityToRemove(event.getEntity());
+					if (event.getEntityType() == EntityType.ARROW) {
+						event.getEntity().remove();
+					}
 				}
 			}
 		}
 	}
+
+	@EventHandler
+	public void onProjectileLaunch(ProjectileLaunchEvent event) {
+		if (event.getEntity().getShooter() instanceof Player) {
+			Player shooter = (Player) event.getEntity().getShooter();
+			Profile shooterData = Profile.get(shooter.getUniqueId());
+			if (shooterData.getState() == ProfileState.FIGHTING) {
+				shooterData.getMatch().addEntityToRemove(event.getEntity());
+			}
+		}
+	}
+
 
 	@EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
 	public void onPotionSplashEvent(PotionSplashEvent event) {
@@ -275,7 +290,7 @@ public class MatchListener implements Listener {
 			if (profile.getState() == ProfileState.FIGHTING) {
 				if (event.getCause() == EntityDamageEvent.DamageCause.VOID) {
 					Match match = profile.getMatch();
-					if (match.getKit().getGameRules().isBridge()) {
+					if (match.getKit().getGameRules().isBridge() || match.getKit().getGameRules().isBedFight()) {
 						Player killer = PlayerUtil.getLastAttacker(player);
 						match.sendDeathMessage(player, killer);
 					}

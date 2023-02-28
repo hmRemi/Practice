@@ -141,9 +141,9 @@ QUEUES:
 # Party configuration
 PARTY:
   # Default host party size limit
-  DEFAULT_LIMIT: 20
+  DEFAULT_LIMIT: 50
   # Vip host party size limit
-  VIP_LIMIT: 50
+  VIP_LIMIT: 100
 
 # Name-tag configuration
 NAMETAGS:

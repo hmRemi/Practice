@@ -23,6 +23,8 @@ public class cPracticeCommand extends BaseCommand {
             cPractice.get().getLang().reload();
             sender.sendMessage(CC.translate("&7▢ &4Lang reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));
             cPractice.get().getLangConfig().reload();
+            sender.sendMessage(CC.translate("&7▢ &4NPCs reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));
+            cPractice.get().getNpcConfig().reload();
             sender.sendMessage(CC.translate("&7▢ &4Pearls reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));
             cPractice.get().getPearlConfig().reload();
             sender.sendMessage(CC.translate("&7▢ &4LangConfig reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));

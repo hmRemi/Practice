@@ -136,6 +136,11 @@ FIGHTS:
       - '{points}'
     RED: '&c[R]&7:&7 {string-points}'
     BLUE: '&4[B]&7:&7 {string-points}'
+  BEDFIGHT-FORMAT:
+    LINES:
+      - ''
+    RED: '&c[RED]&7 {hasBed}'
+    BLUE: '&9[BLUE]&7 {hasBed}'
   ON-END-ROUND-FOR-NEXT:
     - '&4&lDuration&7: &7{duration}'
     - '&4&lAuthor&7: &7{arena-author}'

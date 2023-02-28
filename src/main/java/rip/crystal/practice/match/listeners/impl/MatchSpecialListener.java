@@ -7,13 +7,16 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Damageable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.inventory.ItemStack;
 import rip.crystal.practice.Locale;
+import rip.crystal.practice.match.Match;
 import rip.crystal.practice.match.MatchState;
 import rip.crystal.practice.match.impl.BasicTeamRoundMatch;
 import rip.crystal.practice.match.participant.MatchGamePlayer;
@@ -168,6 +171,8 @@ public class MatchSpecialListener implements Listener {
                                         .add("{color}", match.getRelationColor(other, player).toString())
                                         .add("{player}", player.getName())
                                         .send(other);
+
+                                match.broadcastTitle("&4&l" + player.getName() + " &7has scored!", "");
                             }));
 
                     GameParticipant<MatchGamePlayer> otherTeam = match.getParticipantA()

@@ -1,9 +1,11 @@
 package rip.crystal.practice.player.party.command.subcommands;
 
 import rip.crystal.practice.Locale;
+import rip.crystal.practice.cPractice;
 import rip.crystal.practice.player.party.Party;
 import rip.crystal.practice.player.party.enums.PartyPrivacy;
 import rip.crystal.practice.player.profile.Profile;
+import rip.crystal.practice.player.profile.ProfileState;
 import rip.crystal.practice.utilities.MessageFormat;
 import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.api.command.BaseCommand;
@@ -40,6 +42,11 @@ public class PartyJoinCommand extends BaseCommand {
 			return;
 		}
 
+		if(profile.getState() != ProfileState.LOBBY) {
+			player.sendMessage(CC.RED + "You must be in spawn");
+			return;
+		}
+
 		Profile targetProfile = Profile.get(target.getUniqueId());
 		Party party = targetProfile.getParty();
 
@@ -55,7 +62,7 @@ public class PartyJoinCommand extends BaseCommand {
 			}
 		}
 
-		if (party.getPlayers().size() >= 32) {
+		if (party.getPlayers().size() >= profile.getParty().getLimit()) {
 			player.sendMessage(CC.RED + "That party is full and cannot hold anymore players.");
 			return;
 		}

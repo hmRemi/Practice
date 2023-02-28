@@ -69,8 +69,7 @@ public class SettingUpdateButton extends Button {
                 new KillEffectsMenu().openMenu(player);
                 SettingUpdateButton.playSuccess(player);
                 break;
-            }
-            case "matchmakingSettings": {
+            } case "matchmakingSettings": {
                 if (!player.hasPermission("cpractice.matchmaking_settings")) {
                     player.sendMessage(CC.translate(this.plugin.getMenuConfig().getString("SETTINGS-INVENTORY.NO-PERMISSION")));
                     SettingUpdateButton.playFail(player);
@@ -79,8 +78,7 @@ public class SettingUpdateButton extends Button {
                 new MatchMakingMenu().openMenu(player);
                 SettingUpdateButton.playSuccess(player);
                 break;
-            }
-            case "publicChat": {
+            } case "publicChat": {
                 Profile profile = Profile.get(player.getUniqueId());
                 profile.getOptions().publicChatEnabled(!profile.getOptions().publicChatEnabled());
                 if(profile.getOptions().publicChatEnabled()) {
@@ -90,8 +88,7 @@ public class SettingUpdateButton extends Button {
                 }
                 SettingUpdateButton.playSuccess(player);
                 break;
-            }
-            case "scoreboardToggled": {
+            } case "scoreboardToggled": {
                 Profile profile = Profile.get(player.getUniqueId());
                 profile.getOptions().showScoreboard(!profile.getOptions().showScoreboard());
                 if(profile.getOptions().showScoreboard()) {
@@ -101,8 +98,7 @@ public class SettingUpdateButton extends Button {
                 }
                 SettingUpdateButton.playSuccess(player);
                 break;
-            }
-            case "spectatorsAllowed": {
+            } case "spectatorsAllowed": {
                 Profile profile = Profile.get(player.getUniqueId());
                 profile.getOptions().allowSpectators(!profile.getOptions().allowSpectators());
                 if(profile.getOptions().allowSpectators()) {
@@ -112,8 +108,7 @@ public class SettingUpdateButton extends Button {
                 }
                 SettingUpdateButton.playSuccess(player);
                 break;
-            }
-            case "receivingnewconversations": {
+            } case "receivingnewconversations": {
                 Profile profile = Profile.get(player.getUniqueId());
                 profile.getOptions().receivingNewConversations(!profile.getOptions().receivingNewConversations());
                 if(profile.getOptions().receivingNewConversations()) {
@@ -123,8 +118,7 @@ public class SettingUpdateButton extends Button {
                 }
                 SettingUpdateButton.playSuccess(player);
                 break;
-            }
-            case "duelrequest": {
+            } case "duelrequest": {
                 Profile profile = Profile.get(player.getUniqueId());
                 profile.getOptions().receiveDuelRequests(!profile.getOptions().receiveDuelRequests());
                 if(profile.getOptions().receiveDuelRequests()) {
@@ -156,6 +150,16 @@ public class SettingUpdateButton extends Button {
                     player.sendMessage(CC.translate("&cYou have disabled vanilla tab!"));
                 }
                 SettingUpdateButton.playSuccess(player);
+                break;
+            } case "resetSettings": {
+                Profile profile = Profile.get(player.getUniqueId());
+                profile.getOptions().publicChatEnabled(true);
+                profile.getOptions().showScoreboard(true);
+                profile.getOptions().allowSpectators(true);
+                profile.getOptions().receivingNewConversations(true);
+                profile.getOptions().receiveDuelRequests(true);
+                profile.getOptions().playingMessageSounds(true);
+                profile.getOptions().vanillaTab(false);
                 break;
             }
             default: {

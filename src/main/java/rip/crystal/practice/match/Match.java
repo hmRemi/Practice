@@ -1,8 +1,5 @@
 package rip.crystal.practice.match;
 
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.github.paperspigot.Title;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
@@ -14,6 +11,7 @@ import rip.crystal.practice.game.knockback.Knockback;
 import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.match.events.MatchEndEvent;
 import rip.crystal.practice.match.events.MatchStartEvent;
+import rip.crystal.practice.match.impl.BasicTeamBedFight;
 import rip.crystal.practice.match.impl.BasicTeamMatch;
 import rip.crystal.practice.match.impl.BasicTeamRoundMatch;
 import rip.crystal.practice.match.participant.MatchGamePlayer;
@@ -61,6 +59,7 @@ public abstract class Match {
 	protected Arena arena;
 	protected Kit kit;
 
+	private final Set<Entity> entitiesToRemove = new HashSet<>();
 	protected List<UUID> spectators;
 	protected List<Item> droppedItems;
 	private final List<Location> placedBlocks;
@@ -299,9 +298,14 @@ public abstract class Match {
 			removeSpectator(player);
 		}
 
+
+		getEntitiesToRemove().forEach(Entity::remove);
 		droppedItems.forEach(Entity::remove);
 		new MatchResetTask(this).runTask(cPractice.get());
-		ChunkRestorationManager.getIChunkRestoration().reset(getArena());
+		if(getArena() instanceof StandaloneArena) {
+			ChunkRestorationManager.getIChunkRestoration().reset(getArena());
+		}
+
 		matches.remove(this);
 		logicTask.cancel();
 	}
@@ -458,6 +462,7 @@ public abstract class Match {
 
 		// Don't continue if the player is already dead
 		if (deadGamePlayer.isDead()) return;
+		Profile profile = Profile.get(dead.getUniqueId());
 
 		// Get killer
 		Player killer = PlayerUtil.getLastAttacker(dead);
@@ -465,9 +470,16 @@ public abstract class Match {
 		// Set player as dead
 		if (getKit().getGameRules().isBridge()) {
 			getParticipant(dead).getPlayers().forEach(gamePlayer -> gamePlayer.setDead(false));
-		} else deadGamePlayer.setDead(true);
+		} else if (getKit().getGameRules().isBedFight()) {
+			if(getParticipant(dead).isHasBed()) {
+				getParticipant(dead).getPlayers().forEach(gamePlayer -> gamePlayer.setDead(false));
+			} else {
+				deadGamePlayer.setDead(true);
+			}
+		} else {
+			deadGamePlayer.setDead(true);
+		}
 
-		Profile profile = Profile.get(dead.getUniqueId());
 
 		if(killer != null) {
 			Profile winner = Profile.get(killer.getUniqueId());
@@ -482,7 +494,7 @@ public abstract class Match {
 				}
 			}
 
-			if(match.getKit().getGameRules().isSumo() || match.getKit().getGameRules().isSpleef() || match.getKit().getGameRules().isBoxing()) {
+			if(!match.getKit().getGameRules().isBattlerush() && !match.getKit().getGameRules().isBridge() && !match.getKit().getGameRules().isBedFight()) {
 				winner.getKitData().get(match.getKit()).incrementStreak();
 
 				if (profile.getKitData().get(match.getKit()).hasStreak()) {
@@ -519,10 +531,10 @@ public abstract class Match {
 					Player player = gamePlayer.getPlayer();
 
 					if (player != null) {
-						if (!getKit().getGameRules().isSumo() && !getKit().getGameRules().isBridge()) {
+						if (!getKit().getGameRules().isSumo() && !getKit().getGameRules().isBridge() && !getKit().getGameRules().isBedFight()) {
 							VisibilityLogic.handle(player, dead);
 						}
-						if (!getKit().getGameRules().isBridge()) {
+						if (!getKit().getGameRules().isBridge() || !getKit().getGameRules().isBedFight()) {
 							sendDeathMessage(player, dead, killer);
 						}
 					}
@@ -533,10 +545,10 @@ public abstract class Match {
 		// Handle visibility for spectators
 		// Send death message
 		for (Player player : getSpectatorsAsPlayers()) {
-			if (!getKit().getGameRules().isSumo() && !getKit().getGameRules().isBridge()) {
+			if (!getKit().getGameRules().isSumo() && !getKit().getGameRules().isBridge() && !getKit().getGameRules().isBedFight()) {
 				VisibilityLogic.handle(player, dead);
 			}
-			if (!getKit().getGameRules().isBridge()) {
+			if (!getKit().getGameRules().isBridge() && !getKit().getGameRules().isBedFight()) {
 				sendDeathMessage(player, dead, killer);
 			}
 		}
@@ -547,114 +559,27 @@ public abstract class Match {
 
 			if (canEndMatch()) {
 				state = MatchState.ENDING_MATCH;
+				if (killer != null) {
+					killer.sendTitle(new Title(CC.translate("&a&lYou have won"), CC.translate(""), 1, 20, 0));
+				}
+
+				dead.sendTitle(new Title(CC.translate("&4&lYou have lost"), CC.translate("&7Requeue to try again"), 1, 20, 0));
+
 				//TaskUtil.runLater(() -> dead.spigot().respawn(), 1L);
 			}
 			logicTask.setNextAction(4);
 		} else {
-			if (!(this instanceof BasicTeamRoundMatch)) {
+			if (!(this instanceof BasicTeamRoundMatch) & (!(this instanceof BasicTeamBedFight))) {
 				TaskUtil.runLater(() -> {
 					PlayerUtil.reset(dead);
 					addSpectator(dead, killer);
 				}, 10L);
 			} else {
-				if(getKit().getGameRules().isBattlerush()) {
-					BasicTeamRoundMatch teamRoundMatch = (BasicTeamRoundMatch) this;
-
-					Location spawn = teamRoundMatch.getParticipantA().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getArena().getSpawnA() : teamRoundMatch.getArena().getSpawnB();
-					PotionEffect weakness = new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0);
-
-					if(profile.getMatch().getState() == MatchState.PLAYING_ROUND) {
-						new BukkitRunnable() {
-							int respawn = 4;
-
-							@Override
-							public void run() {
-								if (respawn <= 1 && profile.getMatch().getState() == MatchState.PLAYING_ROUND) {
-									dead.removePotionEffect(PotionEffectType.WEAKNESS);
-									dead.teleport(spawn.add(0, 2, 0));
-
-									if (killer != null) {
-										killer.showPlayer(dead);
-									}
-
-									dead.setFallDistance(50);
-									dead.setAllowFlight(false);
-									dead.setFlying(false);
-
-									dead.setHealth(dead.getMaxHealth());
-									dead.setFoodLevel(20);
-
-									dead.sendMessage(CC.translate("&aYou have respawned!"));
-									dead.playSound(dead.getLocation(), Sound.ORB_PICKUP, 10, 1);
-
-									Bukkit.getScheduler().runTaskLater(cPractice.get(), () -> {
-										dead.spigot().respawn();
-										PlayerUtil.reset(dead);
-
-										if (profile.getSelectedKit() == null) {
-											dead.getInventory().setContents(getKit().getKitLoadout().getContents());
-										} else {
-											dead.getInventory().setContents(profile.getSelectedKit().getContents());
-										}
-
-										KitUtils.giveBridgeKit(dead);
-										dead.sendTitle(new Title(CC.translate("&aRespawning..."), "", 1, 20, 0));
-										cancel();
-									}, 2L);
-								}
-
-								if (respawn == 4 && profile.getMatch().getState() == MatchState.PLAYING_ROUND) {
-									dead.addPotionEffect(weakness);
-
-									if (killer != null) {
-										killer.hidePlayer(dead);
-									}
-
-									dead.getInventory().clear();
-									dead.getInventory().setArmorContents(null);
-									dead.updateInventory();
-
-									dead.setHealth(dead.getMaxHealth());
-									dead.setFoodLevel(20);
-
-									dead.setVelocity(dead.getVelocity().add(new org.bukkit.util.Vector(0, 0.25, 0)));
-									dead.setAllowFlight(true);
-									dead.setFlying(true);
-									dead.setVelocity(dead.getVelocity().add(new Vector(0, 0.15, 0)));
-									dead.setAllowFlight(true);
-									dead.setFlying(true);
-
-									if (killer != null) {
-										dead.teleport(killer.getLocation());
-									}
-								}
-
-								respawn--;
-								dead.sendTitle(new Title(CC.translate("&a") + respawn, "", 1, 20, 0));
-								dead.playSound(dead.getLocation(), Sound.NOTE_PLING, 10, 1);
-							}
-						}.runTaskTimer(cPractice.get(), 0L, 20L);
-					} else {
-						TaskUtil.runLater(() -> {
-							dead.spigot().respawn();
-							PlayerUtil.reset(dead);
-							if (profile.getSelectedKit() == null) {
-								dead.getInventory().setContents(getKit().getKitLoadout().getContents());
-							} else {
-								dead.getInventory().setContents(profile.getSelectedKit().getContents());
-							}
-							dead.teleport(spawn.add(0, 2, 0));
-							KitUtils.giveBridgeKit(dead);
-						}, 1L);
-					}
-					return;
-				}
 				if (getKit().getGameRules().isBridge()) {
-
+					assert this instanceof BasicTeamRoundMatch;
 					BasicTeamRoundMatch teamRoundMatch = (BasicTeamRoundMatch) this;
+					Location spawn = teamRoundMatch.getParticipantA().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getArena().getSpawnA() : teamRoundMatch.getArena().getSpawnB();
 
-					Location spawn = teamRoundMatch.getParticipantA().containsPlayer(dead.getUniqueId()) ?
-							teamRoundMatch.getArena().getSpawnA() : teamRoundMatch.getArena().getSpawnB();
 					TaskUtil.runLater(() -> {
 						dead.spigot().respawn();
 						PlayerUtil.reset(dead);
@@ -665,6 +590,23 @@ public abstract class Match {
 						}
 						dead.teleport(spawn.add(0, 2, 0));
 						KitUtils.giveBridgeKit(dead);
+					}, 1L);
+				}
+				if (getKit().getGameRules().isBedFight()) {
+					assert this instanceof BasicTeamBedFight;
+					BasicTeamBedFight teamRoundMatch = (BasicTeamBedFight) this;
+					Location spawn = teamRoundMatch.getParticipantA().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getArena().getSpawnA() : teamRoundMatch.getArena().getSpawnB();
+
+					TaskUtil.runLater(() -> {
+						dead.spigot().respawn();
+						PlayerUtil.reset(dead);
+						if (profile.getSelectedKit() == null) {
+							dead.getInventory().setContents(getKit().getKitLoadout().getContents());
+						} else {
+							dead.getInventory().setContents(profile.getSelectedKit().getContents());
+						}
+						dead.teleport(spawn.add(0, 2, 0));
+						KitUtils.giveBedFightKit(dead);
 					}, 1L);
 				}
 			}
@@ -941,8 +883,7 @@ public abstract class Match {
 		int i = 0;
 
 		for (Match match : matches) {
-			if (match.getQueue() != null &&
-					(match.getState() == MatchState.STARTING_ROUND || match.getState() == MatchState.PLAYING_ROUND)) {
+			if (match.getQueue() != null && (match.getState() == MatchState.STARTING_ROUND || match.getState() == MatchState.PLAYING_ROUND)) {
 				if (match.getQueue().equals(queue)) {
 					for (GameParticipant<? extends GamePlayer> gameParticipant : match.getParticipants()) {
 						i += gameParticipant.getPlayers().size();
@@ -993,5 +934,13 @@ public abstract class Match {
 		}
 
 		return builder.create();
+	}
+
+	public void addEntityToRemove(Entity entity) {
+		this.entitiesToRemove.add(entity);
+	}
+
+	public void removeEntityToRemove(Entity entity) {
+		this.entitiesToRemove.remove(entity);
 	}
 }

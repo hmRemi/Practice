@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import rip.crystal.practice.player.party.enums.PartyPrivacy;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.shop.impl.killeffects.KillEffectsShopMenu;
 import rip.crystal.practice.utilities.Cooldown;
@@ -68,6 +69,10 @@ public class PartyAnnounceButton extends Button {
         }
 
         if (profile.getPartyAnnounceCooldown().hasExpired()) {
+            if(profile.getParty().getPrivacy() != PartyPrivacy.OPEN) { // If party isn't public while command is executed, make party public.
+                profile.getParty().setPrivacy(PartyPrivacy.OPEN);
+            }
+
             profile.setPartyAnnounceCooldown(new Cooldown(60_000));
 
             Bukkit.broadcastMessage(CC.CHAT_BAR);

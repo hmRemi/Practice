@@ -13,7 +13,7 @@ public class ProfileOptions {
 	@Getter @Setter private boolean showScoreboard = true;
 	@Getter @Setter private boolean publicChatEnabled = true;
 	@Getter @Setter private boolean allowSpectators = true;
-	@Getter @Setter private boolean receivingNewConversations = false;
+	@Getter @Setter private boolean receivingNewConversations = true;
 	@Getter @Setter private boolean playingMessageSounds = false;
 
 	private final KillEffectType specialEffect = KillEffectType.NONE;

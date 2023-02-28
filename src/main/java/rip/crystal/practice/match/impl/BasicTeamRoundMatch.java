@@ -3,6 +3,7 @@ package rip.crystal.practice.match.impl;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.cPractice;
+import rip.crystal.practice.game.arena.impl.StandaloneArena;
 import rip.crystal.practice.game.kit.Kit;
 import rip.crystal.practice.match.MatchState;
 import rip.crystal.practice.match.mongo.MatchInfo;
@@ -68,23 +69,24 @@ public class BasicTeamRoundMatch extends BasicTeamMatch {
                     Player bukkitPlayer = gamePlayer.getPlayer();
 
                     if (bukkitPlayer != null) {
-                        if (getWinningParticipant().getConjoinedNames().equals(getParticipantA().getConjoinedNames())) {
-                            bukkitPlayer.sendMessage(CC.CHAT_BAR);
-                            bukkitPlayer.sendMessage(CC.translate("&4&l" + getWinningParticipant().getConjoinedNames() + " &7is the winner!"));
-                            bukkitPlayer.sendMessage(CC.translate("&cRed Points&7:&7 " +
-                                    StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.RED, getRoundsToWin())));
-                            bukkitPlayer.sendMessage(CC.translate("&4Blue Points&7:&7 " +
-                                    StringUtils.getStringPoint(getParticipantB().getRoundWins(), org.bukkit.ChatColor.BLUE, getRoundsToWin())));
-                            bukkitPlayer.sendMessage(CC.CHAT_BAR);
-                        }
-                        else if (getWinningParticipant().getConjoinedNames().equals(getParticipantB().getConjoinedNames())) {
-                            bukkitPlayer.sendMessage(CC.CHAT_BAR);
-                            bukkitPlayer.sendMessage(CC.translate("&4&l" + getWinningParticipant().getConjoinedNames() + " &7is the winner!"));
-                            bukkitPlayer.sendMessage(CC.translate("&4Blue Points&7:&7 " +
-                                    StringUtils.getStringPoint(getParticipantB().getRoundWins(), org.bukkit.ChatColor.BLUE, getRoundsToWin())));
-                            bukkitPlayer.sendMessage(CC.translate("&cRed Points&7:&7 " +
-                                    StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.RED, getRoundsToWin())));
-                            bukkitPlayer.sendMessage(CC.CHAT_BAR);
+                        if(getWinningParticipant() != null) {
+                            if (getWinningParticipant().getConjoinedNames().equals(getParticipantA().getConjoinedNames())) {
+                                bukkitPlayer.sendMessage(CC.CHAT_BAR);
+                                bukkitPlayer.sendMessage(CC.translate("&4&l" + getWinningParticipant().getConjoinedNames() + " &7is the winner!"));
+                                bukkitPlayer.sendMessage(CC.translate("&cRed Points&7:&7 " +
+                                        StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.RED, getRoundsToWin())));
+                                bukkitPlayer.sendMessage(CC.translate("&4Blue Points&7:&7 " +
+                                        StringUtils.getStringPoint(getParticipantB().getRoundWins(), org.bukkit.ChatColor.BLUE, getRoundsToWin())));
+                                bukkitPlayer.sendMessage(CC.CHAT_BAR);
+                            } else if (getWinningParticipant().getConjoinedNames().equals(getParticipantB().getConjoinedNames())) {
+                                bukkitPlayer.sendMessage(CC.CHAT_BAR);
+                                bukkitPlayer.sendMessage(CC.translate("&4&l" + getWinningParticipant().getConjoinedNames() + " &7is the winner!"));
+                                bukkitPlayer.sendMessage(CC.translate("&4Blue Points&7:&7 " +
+                                        StringUtils.getStringPoint(getParticipantB().getRoundWins(), org.bukkit.ChatColor.BLUE, getRoundsToWin())));
+                                bukkitPlayer.sendMessage(CC.translate("&cRed Points&7:&7 " +
+                                        StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.RED, getRoundsToWin())));
+                                bukkitPlayer.sendMessage(CC.CHAT_BAR);
+                            }
                         }
                         if (bukkitPlayer.hasMetadata("lastAttacker")) {
                             bukkitPlayer.removeMetadata("lastAttacker", cPractice.get());
@@ -92,6 +94,7 @@ public class BasicTeamRoundMatch extends BasicTeamMatch {
                     }
                 }
             }
+            matches.remove(this);
         }
     }
 
@@ -100,7 +103,6 @@ public class BasicTeamRoundMatch extends BasicTeamMatch {
         // Store winning participant
         setWinningParticipant(getParticipantA().isAllDead() ? getParticipantB() : getParticipantA());
         getWinningParticipant().setRoundWins(getWinningParticipant().getRoundWins() + 1);
-        //sendMessage(CC.translate("&c" + getWinningParticipant().getConjoinedNames() + " &fhas won this round"));
 
         // Store losing participant
         setLosingParticipant(getParticipantA().isAllDead() ? getParticipantA() : getParticipantB());
@@ -112,6 +114,12 @@ public class BasicTeamRoundMatch extends BasicTeamMatch {
                 ChunkRestorationManager.getIChunkRestoration().reset(getArena());
             }
 
+            if(getKit().getGameRules().isBattlerush()) {
+                if(getArena() instanceof StandaloneArena) {
+                    ChunkRestorationManager.getIChunkRestoration().reset(getArena());
+                }
+            }
+
             state = MatchState.ENDING_ROUND;
             logicTask.setNextAction(3);
             this.getParticipants().forEach(participant ->
@@ -119,8 +127,7 @@ public class BasicTeamRoundMatch extends BasicTeamMatch {
                     Player player = gamePlayer.getPlayer();
                     player.setVelocity(new Vector());
                     gamePlayer.setDead(false);
-                    Location spawn = getParticipantA().containsPlayer(player.getUniqueId()) ?
-                        getArena().getSpawnA() : getArena().getSpawnB();
+                    Location spawn = getParticipantA().containsPlayer(player.getUniqueId()) ? getArena().getSpawnA() : getArena().getSpawnB();
 
                     if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
                     else player.teleport(spawn.add(0, 2, 0));

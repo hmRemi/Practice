@@ -90,14 +90,13 @@ public class BasicTeamMatch extends Match {
 			}
 		}
 
-		if (getKit().getGameRules().isBridge()){
+		if (getKit().getGameRules().isBridge()) {
 			ProfileKitData kitData = profile.getKitData().get(getKit());
 			if (kitData.getKitCount() == 0) {
 				player.getInventory().setContents(getKit().getKitLoadout().getContents());
 				KitUtils.giveBridgeKit(player);
 			}
 		}
-
 
 		if (getKit().getGameRules().isHcftrap()) {
 			ProfileKitData kitData = profile.getKitData().get(getKit());

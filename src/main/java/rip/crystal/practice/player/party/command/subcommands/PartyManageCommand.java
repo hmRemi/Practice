@@ -23,7 +23,7 @@ public class PartyManageCommand extends BaseCommand {
 		Profile profile = Profile.get(player.getUniqueId());
 
 		if (profile.getParty() == null) {
-			player.sendMessage(CC.RED + "&8[&4&lParty&8] &7You do not have a party.");
+			player.sendMessage(CC.translate("&8[&4&lParty&8] &7You do not have a party."));
 			return;
 		}
 

@@ -9,6 +9,14 @@ SETTINGS-INVENTORY:
   TOP-SPLITTER: '&8&m----------------------------'
   BOTTOM-SPLITTER: '&8&m----------------------------'
   SETTINGS:
+    RESET_SETTINGS:
+      NAME: '&4&lReset Settings'
+      SLOT: 8
+      ICON: WATCH
+      LORE:
+        - '&7Click here to reset'
+        - '&7all of your settings.'
+      SHOW: true
     DUEL_REQUEST:
       NAME: '&4&lToggle Duel Requests'
       SLOT: 0

@@ -1,5 +1,7 @@
 package rip.crystal.practice;
 
+import com.comphenix.protocol.ProtocolLibrary;
+import com.comphenix.protocol.ProtocolManager;
 import org.bukkit.entity.Item;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
 import rip.crystal.practice.database.MongoConnection;
@@ -115,6 +117,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.logging.Level;
 
 @Getter @Setter
 public class cPractice extends JavaPlugin {
@@ -141,6 +144,8 @@ public class cPractice extends JavaPlugin {
     private EntityHider entityHider;
 
     private MongoConnection mongoConnection;
+
+    private ProtocolManager protocolManager;
 
     public boolean placeholderAPI = false;
     public int inQueues, inFights, bridgeRounds, rankedSumoRounds;
@@ -214,6 +219,8 @@ public class cPractice extends JavaPlugin {
         this.abilityManager = new AbilityManager();
         this.abilityManager.load();
 
+        this.protocolManager = ProtocolLibrary.getProtocolManager();
+
         this.ffaManager = new FFAManager();
         this.ffaManager.init();
 
@@ -278,6 +285,7 @@ public class cPractice extends JavaPlugin {
         this.coloredRanksConfig = new BasicConfigurationFile(this, "settings/colored-ranks");
         this.eventsConfig = new BasicConfigurationFile(this, "settings/events");
         this.menuConfig = new BasicConfigurationFile(this, "settings/menu");
+        this.npcConfig = new BasicConfigurationFile(this, "settings/npc");
 
         this.tabEventConfig = new BasicConfigurationFile(this, "tablist/event");
         this.tabLobbyConfig = new BasicConfigurationFile(this, "tablist/lobby");
@@ -431,6 +439,7 @@ public class cPractice extends JavaPlugin {
             new MessageCommand();
             new ReplyCommand();
         }
+        new CancelAllMatchesCommand();
         new StreamingCommand();
         new CosmeticsCommand();
         new ShopCommand();

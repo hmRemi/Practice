@@ -1,10 +1,5 @@
 package rip.crystal.practice.match.bot;
 
-import net.citizensnpcs.api.ai.Navigator;
-import net.citizensnpcs.api.npc.NPC;
-import java.util.Iterator;
-import org.bukkit.entity.Entity;
-import org.bukkit.Bukkit;
 import org.bukkit.util.Vector;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.potion.Potion;

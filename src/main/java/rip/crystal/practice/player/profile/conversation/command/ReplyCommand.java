@@ -1,7 +1,10 @@
 package rip.crystal.practice.player.profile.conversation.command;
 
+import rip.crystal.practice.Locale;
 import rip.crystal.practice.player.profile.Profile;
+import rip.crystal.practice.player.profile.ProfileState;
 import rip.crystal.practice.player.profile.conversation.Conversation;
+import rip.crystal.practice.utilities.MessageFormat;
 import rip.crystal.practice.utilities.chat.CC;
 import rip.crystal.practice.api.command.BaseCommand;
 import rip.crystal.practice.api.command.Command;
@@ -44,7 +47,16 @@ public class ReplyCommand extends BaseCommand {
                 player.sendMessage(CC.RED + "You can no longer reply to that player.");
             }
         } else {
-            player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
+            if(player.hasPermission("cpractice.tpmbypass")) {
+                if (conversation.validate()) {
+                    conversation.sendMessage(player, Bukkit.getPlayer(conversation.getPartner(player.getUniqueId())), message.toString());
+
+                } else {
+                    player.sendMessage(CC.RED + "You can no longer reply to that player.");
+                }
+            } else {
+                player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
+            }
         }
     }
 }

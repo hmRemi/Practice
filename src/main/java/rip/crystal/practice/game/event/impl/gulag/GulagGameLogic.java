@@ -1,5 +1,7 @@
 package rip.crystal.practice.game.event.impl.gulag;
 
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.event.game.EventGame;
@@ -579,6 +581,11 @@ public class GulagGameLogic implements EventGameLogic {
 		}
 
 		return array;
+	}
+
+	@EventHandler
+	private void onDeath(PlayerDeathEvent event) {
+		event.setDeathMessage(null);
 	}
 
 	private GameParticipant getWinningParticipant() {

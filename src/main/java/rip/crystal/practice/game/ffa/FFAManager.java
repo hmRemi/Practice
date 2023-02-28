@@ -14,6 +14,7 @@ import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.arena.cuboid.Cuboid;
 import rip.crystal.practice.game.kit.Kit;
 import rip.crystal.practice.game.knockback.Knockback;
+import rip.crystal.practice.match.task.FFAVisiblityTask;
 import rip.crystal.practice.match.task.MatchPearlCooldownTask;
 import rip.crystal.practice.match.task.RefillCooldownTask;
 import rip.crystal.practice.player.profile.Profile;
@@ -32,6 +33,8 @@ public class FFAManager {
 
     public void init() {
         new RefillCooldownTask().runTaskTimer(cPractice.get(), 2L, 2L);
+        new FFAVisiblityTask().runTaskTimer(cPractice.get(), 2L, 2L);
+
     }
 
     public void firstJoinFfa(Player player, Arena arena) {

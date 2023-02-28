@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.match.Match;
+import rip.crystal.practice.match.impl.BasicFreeForAllMatch;
 import rip.crystal.practice.match.impl.BasicTeamMatch;
 import rip.crystal.practice.player.party.menu.manage.impl.PartyKickMenu;
 import rip.crystal.practice.utilities.ItemBuilder;
@@ -44,7 +45,9 @@ public class MatchList extends PaginatedMenu {
         int slot = 0;
 
         for (Match match : Match.getMatches()) {
-            buttons.put(slot, new MatchButton(match));
+            if(match instanceof BasicTeamMatch) {
+                buttons.put(slot, new MatchButton(match));
+            }
            slot++;
         }
         return buttons;

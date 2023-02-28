@@ -4,6 +4,7 @@ import rip.crystal.practice.Locale;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.match.Match;
+import rip.crystal.practice.match.impl.BasicTeamBedFight;
 import rip.crystal.practice.match.impl.BasicTeamMatch;
 import rip.crystal.practice.match.impl.BasicTeamRoundMatch;
 import rip.crystal.practice.match.participant.MatchGamePlayer;
@@ -95,6 +96,10 @@ public class QueueTask implements Runnable {
                     if (queue.getKit().getGameRules().isBridge()) {
                         match = new BasicTeamRoundMatch(queue, queue.getKit(), arena, queue.isRanked(),
                                 participantA, participantB, cPractice.get().getBridgeRounds());
+                    }
+                    else if (queue.getKit().getGameRules().isBedFight()) {
+                        match = new BasicTeamBedFight(queue, queue.getKit(), arena, queue.isRanked(),
+                                participantA, participantB);
                     }
                     else if (queue.isRanked() && queue.getKit().getGameRules().isSumo()) {
                         match = new BasicTeamRoundMatch(queue, queue.getKit(), arena, queue.isRanked(),

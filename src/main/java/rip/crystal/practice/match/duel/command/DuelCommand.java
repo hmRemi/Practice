@@ -1,5 +1,6 @@
 package rip.crystal.practice.match.duel.command;
 
+import net.audidevelopment.core.plugin.cCore;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.match.duel.DuelProcedure;
 import rip.crystal.practice.match.duel.DuelRequest;
@@ -21,6 +22,11 @@ public class DuelCommand extends BaseCommand {
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();
 		String[] args = commandArgs.getArgs();
+
+		if(cCore.INSTANCE.getServerManagement().isServerRebooting()) {
+			player.sendMessage(CC.translate("&7You cannot duel during a reboot"));
+			return;
+		}
 
 		if (args.length == 0) {
 			player.sendMessage(CC.RED + "Please usage: /duel (player)");

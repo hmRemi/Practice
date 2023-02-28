@@ -66,6 +66,9 @@ public class SettingsMenu extends Menu {
         if (menuUtil.getBoolean("SETTINGS-INVENTORY.SETTINGS.DUEL_REQUEST.SHOW")) {
             hashMap.put(menuUtil.getInteger("SETTINGS-INVENTORY.SETTINGS.DUEL_REQUEST.SLOT"), new SettingUpdateButton(menuUtil.getString("SETTINGS-INVENTORY.SETTINGS.DUEL_REQUEST.NAME"), Material.valueOf(menuUtil.getString("SETTINGS-INVENTORY.SETTINGS.DUEL_REQUEST.ICON")), 0, menuUtil.getStringList("SETTINGS-INVENTORY.SETTINGS.DUEL_REQUEST.LORE"), "toggleduelrequest", "duelrequest"));
         }
+        if (menuUtil.getBoolean("SETTINGS-INVENTORY.SETTINGS.RESET_SETTINGS.SHOW")) {
+            hashMap.put(menuUtil.getInteger("SETTINGS-INVENTORY.SETTINGS.RESET_SETTINGS.SLOT"), new SettingUpdateButton(menuUtil.getString("SETTINGS-INVENTORY.SETTINGS.RESET_SETTINGS.NAME"), Material.valueOf(menuUtil.getString("SETTINGS-INVENTORY.SETTINGS.RESET_SETTINGS.ICON")), 0, menuUtil.getStringList("SETTINGS-INVENTORY.SETTINGS.RESET_SETTINGS.LORE"), "", "resetSettings"));
+        }
         return hashMap;
     }
 }

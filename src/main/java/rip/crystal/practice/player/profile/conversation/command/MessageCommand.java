@@ -2,6 +2,7 @@ package rip.crystal.practice.player.profile.conversation.command;
 
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.player.profile.Profile;
+import rip.crystal.practice.player.profile.ProfileState;
 import rip.crystal.practice.player.profile.conversation.Conversation;
 import rip.crystal.practice.utilities.MessageFormat;
 import rip.crystal.practice.utilities.chat.CC;
@@ -47,6 +48,13 @@ public class MessageCommand extends BaseCommand {
         Profile playerProfile = Profile.get(player.getUniqueId());
         Profile targetProfile = Profile.get(target.getUniqueId());
 
+        if (targetProfile.getState() == ProfileState.STAFF_MODE) {
+            new MessageFormat(Locale.PLAYER_NOT_FOUND
+                    .format(Profile.get(player.getUniqueId()).getLocale()))
+                    .send(player);
+            return;
+        }
+
         if (targetProfile.getOptions().receivingNewConversations()) {
             Conversation conversation = playerProfile.getConversations().getOrCreateConversation(target);
 
@@ -56,7 +64,17 @@ public class MessageCommand extends BaseCommand {
                 player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
             }
         } else {
-            player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
+            if(player.hasPermission("cpractice.tpmbypass")) {
+                Conversation conversation = playerProfile.getConversations().getOrCreateConversation(target);
+
+                if (conversation.validate()) {
+                    conversation.sendMessage(player, target, message.toString());
+                } else {
+                    player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
+                }
+            } else {
+                player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
+            }
         }
     }
 }

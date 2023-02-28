@@ -7,6 +7,7 @@ import rip.crystal.practice.api.command.BaseCommand;
 import rip.crystal.practice.api.command.Command;
 import rip.crystal.practice.api.command.CommandArgs;
 import org.bukkit.entity.Player;
+import rip.crystal.practice.utilities.chat.CC;
 
 public class TogglePrivateMessagesCommand extends BaseCommand {
 
@@ -19,13 +20,9 @@ public class TogglePrivateMessagesCommand extends BaseCommand {
         profile.getConversations().expireAllConversations();
 
         if (profile.getOptions().receivingNewConversations()) {
-            new MessageFormat(Locale.OPTIONS_PRIVATE_MESSAGES_ENABLED
-                    .format(profile.getLocale()))
-                    .send(player);
+            player.sendMessage(CC.translate("&7Private messages has been enabled"));
         } else {
-            new MessageFormat(Locale.OPTIONS_PRIVATE_MESSAGES_DISABLED
-                    .format(profile.getLocale()))
-                    .send(player);
+            player.sendMessage(CC.translate("&7Private messages has been disabled"));
         }
     }
 }

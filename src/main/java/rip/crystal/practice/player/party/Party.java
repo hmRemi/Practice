@@ -49,7 +49,7 @@ public class Party {
 
 		this.players.add(player.getUniqueId());
 
-		if (leader.hasPermission("party.vip")){
+		if (leader.hasPermission("cpractice.party.vip")){
 			limit = cPractice.get().getMainConfig().getInteger("PARTY.VIP_LIMIT");
 		} else {
 			limit = cPractice.get().getMainConfig().getInteger("PARTY.DEFAULT_LIMIT");
@@ -120,8 +120,6 @@ public class Party {
 	public void join(Player player) {
 		invites.removeIf(invite -> invite.getUuid().equals(player.getUniqueId()));
 		players.add(player.getUniqueId());
-
-		//sendMessage(Locale.PARTY_JOIN.format(GxAPI.getColoredName(player)));
 
 		Profile profile = Profile.get(player.getUniqueId());
 		getListOfPlayers().forEach(member ->

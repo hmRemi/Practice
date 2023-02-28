@@ -3,6 +3,7 @@ package rip.crystal.practice.visual.scoreboard;
 import com.google.common.collect.Lists;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.event.game.EventGame;
+import rip.crystal.practice.game.kit.Kit;
 import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.player.party.Party;
 import rip.crystal.practice.player.profile.Profile;
@@ -129,7 +130,6 @@ public class BoardAdapter implements AssembleAdapter {
 	public static String getDivision(Player player) {
 		Profile profile = Profile.get(player.getUniqueId());
 		int elo = EloUtil.getGlobalElo(profile);
-
 		String division = "";
 
 		if (elo <= 1000) {

@@ -80,7 +80,7 @@ public class Clan {
     public void show(Player player) {
         new MessageFormat(Locale.CLAN_SHOW.format(Profile.get(player.getUniqueId()).getLocale()))
             .add("{name}", name)
-            .add("{members}", members())
+            .add("{members}", Objects.requireNonNull(Bukkit.getOfflinePlayer(members()).getName()))
             .add("{points}", String.valueOf(points))
             .add("{leader}", Objects.requireNonNull(Bukkit.getOfflinePlayer(leader)).getName())
             .add("{tournament_wins}", String.valueOf(tournamentWins))

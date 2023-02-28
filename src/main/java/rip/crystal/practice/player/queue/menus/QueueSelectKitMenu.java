@@ -45,14 +45,16 @@ public class QueueSelectKitMenu extends Menu {
 		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(cPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(cPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 
-		buttons.put(38, new RankedButton());
-		buttons.put(40, new FFAButton());
-		buttons.put(42, new UnrankedButton());
+		buttons.put(39, new FFAButton());
 
-		for(Kit kit : Kit.getKits()) {
-			for (Queue queue : Queue.getQueues()) {
-				if (queue.isRanked() == ranked) buttons.put(queue.getKit().getSlot(), new SelectKitButton(kit, queue));
+		for (Queue queue : Queue.getQueues()) {
+			if(queue.isRanked() == ranked) {
+				buttons.put(41, new UnrankedButton());
+			} else {
+				buttons.put(41, new RankedButton());
 			}
+
+			if (queue.isRanked() == ranked) buttons.put(queue.getKit().getSlot(), new SelectKitButton(queue));
 		}
 		return buttons;
 	}
@@ -65,7 +67,6 @@ public class QueueSelectKitMenu extends Menu {
 	@AllArgsConstructor
 	private static class SelectKitButton extends Button {
 
-		private final Kit kit;
 		private final Queue queue;
 
 		@Override

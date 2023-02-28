@@ -1,8 +1,10 @@
 package rip.crystal.practice.match.listeners.impl;
 
+import com.sun.javafx.tk.quantum.MasterTimer;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,10 +20,14 @@ import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.game.arena.impl.StandaloneArena;
 import rip.crystal.practice.match.Match;
 import rip.crystal.practice.match.MatchState;
+import rip.crystal.practice.match.impl.BasicTeamBedFight;
 import rip.crystal.practice.match.impl.BasicTeamMatch;
+import rip.crystal.practice.match.participant.MatchGamePlayer;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.profile.ProfileState;
+import rip.crystal.practice.player.profile.participant.alone.GameParticipant;
 import rip.crystal.practice.utilities.MessageFormat;
+import rip.crystal.practice.utilities.chat.CC;
 
 public class MatchBuildListener implements Listener {
 
@@ -81,7 +87,16 @@ public class MatchBuildListener implements Listener {
                 int n2 = (int)blockPlaceEvent.getBlockPlaced().getLocation().getY();
                 int n3 = (int)blockPlaceEvent.getBlockPlaced().getLocation().getZ();
 
-                if (n2 > arena.getMaxBuildHeight()) {
+                if(match.getKit().getGameRules().isBedFight()) {
+                    int highest = (int) (Math.max(arena.getSpawnA().getY(), arena.getSpawnB().getY()));
+                    highest += 10;
+
+                    if (n2 > highest) {
+                        new MessageFormat(Locale.ARENA_REACHED_MAXIMUM.format(profile.getLocale())).send(player);
+                        blockPlaceEvent.setCancelled(true);
+                        return;
+                    }
+                } else if (n2 > arena.getMaxBuildHeight()) {
                     new MessageFormat(Locale.ARENA_REACHED_MAXIMUM.format(profile.getLocale())).send(player);
                     blockPlaceEvent.setCancelled(true);
                     return;
@@ -142,7 +157,26 @@ public class MatchBuildListener implements Listener {
                     }
                     blockBreakEvent.getBlock().setType(Material.AIR);
                     blockBreakEvent.setCancelled(true);
-                } else if (!match.getPlacedBlocks().remove(blockBreakEvent.getBlock().getLocation())) {
+                } else if (match.getKit().getGameRules().isBedFight()) {
+                    if(blockBreakEvent.getBlock().getType() == Material.BED_BLOCK) {
+                        BasicTeamMatch teamMatch = (BasicTeamMatch) profile.getMatch();
+                        GameParticipant<MatchGamePlayer> opposingTeam = teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? teamMatch.getParticipantB() : teamMatch.getParticipantA();
+
+                        if (teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnA()) > blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnB()) : blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnB()) > blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnA())) {
+                            if(teamMatch.getState() != MatchState.ENDING_MATCH && opposingTeam.isHasBed()) {
+                                opposingTeam.destroyBed();
+                                blockBreakEvent.getBlock().setType(Material.AIR);
+
+                                teamMatch.sendMessage(CC.translate((teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? "&c" : "&9") + player.getName() + " &7has destroyed the bed of " + (teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? "&9Blue" : "&cRed")));
+                                teamMatch.sendSound(Sound.ENDERDRAGON_GROWL, 10, 1);
+                            }
+                        } else {
+                            player.sendMessage(CC.translate("&7You cannot break your own bed."));
+                            blockBreakEvent.setCancelled(true);
+                        }
+                    }
+                }
+                else if (!match.getPlacedBlocks().remove(blockBreakEvent.getBlock().getLocation())) {
                     blockBreakEvent.setCancelled(true);
                 }
             } else {
