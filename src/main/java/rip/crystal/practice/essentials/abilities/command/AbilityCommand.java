@@ -67,7 +67,7 @@ public class AbilityCommand extends BaseCommand {
                 break;
             case "list":
                 CC.sender(player, "&7&m-----------------------------");
-                CC.sender(player, "&4&lAbilities List &7(" + Ability.getAbilities().size() + ")");
+                CC.sender(player, "&c&lAbilities List &7(" + Ability.getAbilities().size() + ")");
                 CC.sender(player, "");
                 plugin.getAbilityManager().getAbilities().forEach(
                         ability -> CC.sender(player, " &7- &4" + ability));
@@ -79,7 +79,7 @@ public class AbilityCommand extends BaseCommand {
 
     private void getUsage(CommandSender sender, String label) {
         CC.sender(sender, "&7&m-----------------------------");
-        CC.sender(sender, "&4&lAbility Help");
+        CC.sender(sender, "&c&lAbility Help");
         CC.sender(sender, "");
         CC.sender(sender, "&4/" + label + " give <player> <ability|all> <amount>");
         CC.sender(sender, "&4/" + label + " list");

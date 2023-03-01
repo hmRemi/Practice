@@ -31,7 +31,7 @@ public class MatchMakingMenu extends Menu {
     @Override
     public Map<Integer, Button> getButtons(Player player) {
         HashMap<Integer, Button> hashMap = new HashMap<>();
-        hashMap.put(4, new PingRangeButton("&4&lPing Range", Material.REDSTONE_COMPARATOR, 0, Arrays.asList(CC.CHAT_BAR, "&7Change the maximum Ping difference", "&7between you and the other players.", "", "&8 ● &7Left-Click to increase", "&8 ● &7Right-Click to decrease", "&8 ● &7Shift-Click to reset", "")));
+        hashMap.put(4, new PingRangeButton("&c&lPing Range", Material.REDSTONE_COMPARATOR, 0, Arrays.asList(CC.CHAT_BAR, "&7Change the maximum Ping difference", "&7between you and the other players.", "", "&8 ● &7Left-Click to increase", "&8 ● &7Right-Click to decrease", "&8 ● &7Shift-Click to reset", "")));
         return hashMap;
     }
 

@@ -20,7 +20,7 @@ public class ShopMenu extends Menu {
 
     @Override
     public String getTitle(Player player) {
-        return CC.translate("&4&lCoins Shop");
+        return CC.translate("&c&lCoins Shop");
     }
 
     {

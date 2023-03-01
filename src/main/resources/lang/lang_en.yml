@@ -8,7 +8,7 @@ JOIN_MESSAGES:
 FFA:
   JOIN_MESSAGE:
   - '&7&m------------------------------------------------'
-  - '&4&lFree For All &7┃ {kit}'
+  - '&c&lFree For All &7┃ {kit}'
   - '  &4Players: {players}'
   - ' '
   - '&7&oTo leave, use /ffa leave'
@@ -27,7 +27,7 @@ KIT_EDITOR:
 PARTY:
   HELP:
   - '&7&m------------------------------------------------'
-  - '&4&lParty Help'
+  - '&c&lParty Help'
   - '&4/party create &7- &fCreate a party'
   - '&4/party disband &7- &fDisband your party'
   - '&4/party leave &7- &fLeave your party'
@@ -53,7 +53,7 @@ PARTY:
   INVITE_BROADCAST: '{player_name} &4has been invited to your party.'
   JOIN: '{player_name} &4has joined your party.'
   LEAVE: '{player_name} &4has {context} your party.'
-  PRIVACY_CHANGE: '&4Your party privacy has been set to &4&l{new_privacy}&4.'
+  PRIVACY_CHANGE: '&4Your party privacy has been set to &c&l{new_privacy}&4.'
   CHAT_PREFIX: '&d[Party] &r'
   CONTEXT:
     KICK: been kicked from
@@ -62,7 +62,7 @@ EVENT:
   CANT_HOST: '&cYou cannot host that event.'
   HELP:
   - '&7&m------------------------------------------------'
-  - '&4&lEvent Help'
+  - '&c&lEvent Help'
   - '&c/events &7- &fShow events that can be hosted'
   - '&c/host <type> &7- &fHost an event by name'
   - '&c/event info &7- &fShows active event information'
@@ -72,28 +72,28 @@ EVENT:
   JOIN_BROADCAST:
   - '&7███████'
   - '&7██&4███&7██'
-  - '&7██&4█&7████  &4&l[{event_name} Event]'
+  - '&7██&4█&7████  &c&l[{event_name} Event]'
   - '&7██&4███&7██  &r{host_name} &fis hosting an event!'
-  - '&7██&4█&7████  &r&4&lClick to join!'
+  - '&7██&4█&7████  &r&c&lClick to join!'
   - '&7██&4███&7██'
   - '&7███████'
   JOIN_HOVER: '&cClick to join,'
-  PLAYER_JOIN: '&7[&4&lEvent&7] &r{player_name} &chas joined the event. &7&o({size}/{maximum})'
-  PLAYER_LEAVE: '&7[&4&lEvent&7] &r{player_name} &chas left the event. &7&o({remaining}/{maximum})'
-  PLAYER_VOTE: '&7[&4&lEvent&7] &r{player_name} &chas voted for the &4{map_name} &cmap.
+  PLAYER_JOIN: '&7[&c&lEvent&7] &r{player_name} &chas joined the event. &7&o({size}/{maximum})'
+  PLAYER_LEAVE: '&7[&c&lEvent&7] &r{player_name} &chas left the event. &7&o({remaining}/{maximum})'
+  PLAYER_VOTE: '&7[&c&lEvent&7] &r{player_name} &chas voted for the &4{map_name} &cmap.
     &7&o({votes} votes)'
-  ROUND_START: '&7[&4&lEvent&7] &4{participant_a} &cvs &4{participant_b}'
-  ROUND_START_TIMER: '&7[&4&lEvent&7] &4Round {round} &cwill start in &4{time} {context}&c.'
-  ROUND_ELIMINATION: '&7[&4&lEvent&7] &4{loser_name} &c{context} eliminated.'
-  ROUND_OPPONENT: '&7[&4&lEvent&7] &cYour Opponent{context}: &4{name}'
+  ROUND_START: '&7[&c&lEvent&7] &4{participant_a} &cvs &4{participant_b}'
+  ROUND_START_TIMER: '&7[&c&lEvent&7] &4Round {round} &cwill start in &4{time} {context}&c.'
+  ROUND_ELIMINATION: '&7[&c&lEvent&7] &4{loser_name} &c{context} eliminated.'
+  ROUND_OPPONENT: '&7[&c&lEvent&7] &cYour Opponent{context}: &4{name}'
   STARTED:
-  - '&7[&4&lEvent&7] &4{event_name} &chas started. &7&o({size}/{maximum})'
+  - '&7[&c&lEvent&7] &4{event_name} &chas started. &7&o({size}/{maximum})'
   FINISHED:
   - '&7███████'
   - '&7██&4███&7██'
-  - '&7██&4█&7████  &4&l[{event_name} Event]'
+  - '&7██&4█&7████  &c&l[{event_name} Event]'
   - '&7██&4███&7██  &r{winner} {context} won the event!'
-  - '&7██&4█&7████  &r&4&lGood game!'
+  - '&7██&4█&7████  &r&c&lGood game!'
   - '&7██&4███&7██'
   - '&7███████'
   MATCH_REMAINING: '&cThere are {seconds} second{context} left to finish this round!'
@@ -175,7 +175,7 @@ MATCH:
   PLAYING_ARENA_AUTHOR: '&cYou are playing on arena &4{arena_name}&c, created by &b&l{author}&c.'
   START_TIMER: '&cThe match starts in &4{time} &csecond{context}...'
   STARTED: '&cThe match has started.'
-  WARNING: '&4&lWARNING &7| &cButterfly clicking will likely result in a ban.'
+  WARNING: '&c&lWARNING &7| &cButterfly clicking will likely result in a ban.'
   CANCELLED:
   - '&7&m------------------------------------------------'
   - '&c&lMatch Cancelled!'
@@ -221,14 +221,14 @@ VIEWING_INVENTORY: '&cYou are viewing &b{target_name}&c''s inventory...'
 CLAN:
   CREATE: '&4Clan {name} create successfully.'
   SHOW:
-  - '&4&l{name}''s &4&lClan'
+  - '&c&l{name}''s &c&lClan'
   - '&c&lLeader&7:&f {leader}'
   - '&c&lMembers&7:&r {members}'
   - '&c&lPoints&7:&f {points}'
   - '&c&lCategory&7:&f {category}'
   - '&c&lTournament Wins&7:&f {tournament_wins}'
   HELP:
-  - '&4&lClan Help'
+  - '&c&lClan Help'
   - '&7/clan create (name)'
   - '&7/clan info (name)'
   - '&7/clan rename (new_name)'

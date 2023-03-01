@@ -55,13 +55,13 @@ public class AntiTrapper extends Ability {
             }
             if (isAbility(damager.getItemInHand())) {
                 if (profile.getAntitrapper().onCooldown(damager)) {
-                    damager.sendMessage(CC.translate("&7You are on &4&lAntiTrapper &7cooldown for &4" + DurationFormatter.getRemaining(profile.getAntitrapper().getRemainingMilis(damager), true, true)));
+                    damager.sendMessage(CC.translate("&7You are on &c&lAntiTrapper &7cooldown for &4" + DurationFormatter.getRemaining(profile.getAntitrapper().getRemainingMilis(damager), true, true)));
                     damager.updateInventory();
                     return;
                 }
 
                 if (profile.getPartneritem().onCooldown(damager)) {
-                    damager.sendMessage(CC.translate("&7You are on &4&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(damager), true, true)));
+                    damager.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(damager), true, true)));
                     damager.updateInventory();
                     return;
                 }

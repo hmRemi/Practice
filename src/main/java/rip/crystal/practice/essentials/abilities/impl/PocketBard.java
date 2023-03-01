@@ -34,13 +34,13 @@ public class PocketBard extends Ability {
             Profile profile = Profile.get(player.getUniqueId());
             
             if (profile.getPocketbard().onCooldown(player)) {
-                player.sendMessage(CC.translate("&7You are on &4&lPocket Bard &7cooldown for &4" + DurationFormatter.getRemaining(profile.getPocketbard().getRemainingMilis(player), true, true)));
+                player.sendMessage(CC.translate("&7You are on &c&lPocket Bard &7cooldown for &4" + DurationFormatter.getRemaining(profile.getPocketbard().getRemainingMilis(player), true, true)));
                 player.updateInventory();
                 return;
             }
 
             if(profile.getPartneritem().onCooldown(player)){
-                player.sendMessage(CC.translate("&7You are on &4&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
+                player.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
                 player.updateInventory();
                 return;
             }

@@ -14,7 +14,7 @@ public class KitRulesCommand extends BaseCommand {
 		Player player = commandArgs.getPlayer();
 
 		player.sendMessage(CC.CHAT_BAR);
-		player.sendMessage(CC.translate("&4&lKit Rules"));
+		player.sendMessage(CC.translate("&c&lKit Rules"));
 		player.sendMessage(CC.translate(""));
 		player.sendMessage(CC.translate("&4Settings:"));
 		player.sendMessage(CC.translate(" &7- &4Health Regeneration &7(true/false)"));

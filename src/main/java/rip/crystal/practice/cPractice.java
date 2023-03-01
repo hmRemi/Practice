@@ -323,9 +323,9 @@ public class cPractice extends JavaPlugin {
                 if (databaseConfig.getBoolean("MONGO.URI")) {
                     this.mongoConnection = new MongoConnection(databaseConfig.getString("MONGO.URI_LINK"));
                     Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "         &4&lSuccessfully initialized MongoDB"));
+                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "         &c&lSuccessfully initialized MongoDB"));
                     Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "        &cMongoDB initialized using URI String"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "                &4&lLoading cPractice"));
+                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "                &c&lLoading cPractice"));
                     Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
 
                 } else if (databaseConfig.getBoolean("MONGO.AUTHENTICATION.ENABLED")) {
@@ -337,9 +337,9 @@ public class cPractice extends JavaPlugin {
                             databaseConfig.getString("MONGO.AUTHENTICATION.DATABASE"));
 
                     Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "         &4&lSuccessfully initialized MongoDB"));
+                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "         &c&lSuccessfully initialized MongoDB"));
                     Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "      &cMongoDB initialized using no authentication"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "                &4&lLoading cPractice"));
+                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "                &c&lLoading cPractice"));
                     Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
                 } else {
                     this.mongoConnection = new MongoConnection(
@@ -348,17 +348,17 @@ public class cPractice extends JavaPlugin {
                             databaseConfig.getString("MONGO.DATABASE"));
 
                     Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "         &4&lSuccessfully initialized MongoDB"));
+                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "         &c&lSuccessfully initialized MongoDB"));
                     Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "      &cMongoDB initialized using authentication"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "                &4&lLoading cPractice"));
+                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "                &c&lLoading cPractice"));
                     Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
                 }
             } catch (Exception e) {
                 Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
-                Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "            &4&lMongo Internal Error"));
+                Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "            &c&lMongo Internal Error"));
                 Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "        &cMongo is not setup correctly!"));
                 Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "      &cPlease check your mongo and try again."));
-                Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "              &4&lDisabling cPractice"));
+                Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "              &c&lDisabling cPractice"));
                 Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
                 Bukkit.getServer().getPluginManager().disablePlugin(this);
                 return;

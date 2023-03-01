@@ -89,7 +89,8 @@ public class Modmode {
                             .replace("{playerA}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getPlayer().getName()))
                             .replace("{playerB}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getPlayer().getName()))
                             .replace("{duration}", profile.getMatch().getDuration().replace("{arena}", profile.getMatch().getArena().getName()))
-                            .replace("{kit}", profile.getMatch().getKit().getName())
+                                .replace("{kit}", profile.getMatch().getKit().getName())
+                            .replace("{arena}", profile.getMatch().getArena().getName())
                             .replace("{playerA_hits}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getHits()))
                             .replace("{playerB_hits}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getHits()))));
                 } else {

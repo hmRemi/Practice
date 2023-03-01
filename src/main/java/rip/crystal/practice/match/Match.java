@@ -1,5 +1,7 @@
 package rip.crystal.practice.match;
 
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.github.paperspigot.Title;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.chunk.ChunkRestorationManager;
@@ -412,7 +414,9 @@ public abstract class Match {
 
 					if (player != null) {
 						for (BaseComponent[] components : generateEndComponents(player)) {
-							player.spigot().sendMessage(components);
+							if(!getKit().getGameRules().isBedFight()) {
+								player.spigot().sendMessage(components);
+							}
 						}
 					}
 				}
@@ -434,6 +438,14 @@ public abstract class Match {
 	public void onDisconnect(Player dead) {
 		if (getKit().getGameRules().isBridge()) {
 			BasicTeamRoundMatch match = (BasicTeamRoundMatch) this;
+			if (match.getParticipantA().containsPlayer(dead.getUniqueId())) match.setWinningParticipant(match.getParticipantB());
+			else match.setWinningParticipant(match.getParticipantA());
+			end();
+			return;
+		}
+
+		if (getKit().getGameRules().isBedFight()) {
+			BasicTeamBedFight match = (BasicTeamBedFight) this;
 			if (match.getParticipantA().containsPlayer(dead.getUniqueId())) match.setWinningParticipant(match.getParticipantB());
 			else match.setWinningParticipant(match.getParticipantA());
 			end();
@@ -534,7 +546,7 @@ public abstract class Match {
 						if (!getKit().getGameRules().isSumo() && !getKit().getGameRules().isBridge() && !getKit().getGameRules().isBedFight()) {
 							VisibilityLogic.handle(player, dead);
 						}
-						if (!getKit().getGameRules().isBridge() || !getKit().getGameRules().isBedFight()) {
+						if (!getKit().getGameRules().isBridge() && !getKit().getGameRules().isBedFight()) {
 							sendDeathMessage(player, dead, killer);
 						}
 					}
@@ -563,7 +575,7 @@ public abstract class Match {
 					killer.sendTitle(new Title(CC.translate("&a&lYou have won"), CC.translate(""), 1, 20, 0));
 				}
 
-				dead.sendTitle(new Title(CC.translate("&4&lYou have lost"), CC.translate("&7Requeue to try again"), 1, 20, 0));
+				dead.sendTitle(new Title(CC.translate("&c&lYou have lost"), CC.translate("&7Requeue to try again"), 1, 20, 0));
 
 				//TaskUtil.runLater(() -> dead.spigot().respawn(), 1L);
 			}
@@ -596,8 +608,85 @@ public abstract class Match {
 					assert this instanceof BasicTeamBedFight;
 					BasicTeamBedFight teamRoundMatch = (BasicTeamBedFight) this;
 					Location spawn = teamRoundMatch.getParticipantA().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getArena().getSpawnA() : teamRoundMatch.getArena().getSpawnB();
+					GameParticipant<MatchGamePlayer> opposingTeam = teamRoundMatch.getParticipantA().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getParticipantA() : teamRoundMatch.getParticipantB();
 
-					TaskUtil.runLater(() -> {
+					if (opposingTeam.isHasBed() && teamRoundMatch.getState() != MatchState.ENDING_MATCH) {
+						PotionEffect weakness = new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0);
+						new BukkitRunnable() {
+							int respawn = 4;
+
+							@Override
+							public void run() {
+								if (respawn <= 1) {
+									if (profile.getState() != ProfileState.FIGHTING) {
+										cancel();
+										return;
+									}
+									dead.removePotionEffect(PotionEffectType.WEAKNESS);
+									dead.teleport(spawn.add(0, 2, 0));
+
+									Player player = teamRoundMatch.getParticipantB().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getParticipantA().getLeader().getPlayer() : teamRoundMatch.getParticipantB().getLeader().getPlayer();
+									player.showPlayer(dead);
+
+									dead.setFallDistance(50);
+									dead.setAllowFlight(false);
+									dead.setFlying(false);
+
+									dead.setHealth(dead.getMaxHealth());
+									dead.setFoodLevel(20);
+
+									dead.sendMessage(CC.translate("&aYou have respawned!"));
+									dead.playSound(dead.getLocation(), Sound.ORB_PICKUP, 10, 1);
+
+									Bukkit.getScheduler().runTaskLater(cPractice.get(), () -> {
+										dead.resetMaxHealth();
+										dead.setHealth(dead.getMaxHealth());
+										dead.setFoodLevel(20);
+
+										PlayerUtil.reset(dead);
+										if (profile.getSelectedKit() == null) {
+											dead.getInventory().setContents(getKit().getKitLoadout().getContents());
+										} else {
+											dead.getInventory().setContents(profile.getSelectedKit().getContents());
+										}
+										KitUtils.giveBedFightKit(dead);
+										dead.sendTitle(new Title(CC.translate("&aRespawning..."), "", 1, 20, 0));
+										cancel();
+									}, 2L);
+								}
+
+								if (respawn == 4) {
+									dead.spigot().respawn();
+									dead.teleport(teamRoundMatch.getParticipantB().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getParticipantA().getLeader().getPlayer().getLocation() : teamRoundMatch.getParticipantB().getLeader().getPlayer().getLocation());
+									dead.addPotionEffect(weakness);
+
+									Player player = teamRoundMatch.getParticipantB().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getParticipantA().getLeader().getPlayer() : teamRoundMatch.getParticipantB().getLeader().getPlayer();
+									player.hidePlayer(dead);
+
+									dead.getInventory().clear();
+									dead.getInventory().setArmorContents(null);
+									dead.updateInventory();
+
+									dead.setHealth(dead.getMaxHealth());
+									dead.setFoodLevel(20);
+
+									dead.setVelocity(dead.getVelocity().add(new org.bukkit.util.Vector(0, 0.25, 0)));
+									dead.setAllowFlight(true);
+									dead.setFlying(true);
+									dead.setVelocity(dead.getVelocity().add(new Vector(0, 0.15, 0)));
+									dead.setAllowFlight(true);
+									dead.setFlying(true);
+
+								}
+
+								respawn--;
+								dead.sendTitle(new Title(CC.translate("&a") + respawn, "", 1, 20, 0));
+								dead.playSound(dead.getLocation(), Sound.NOTE_PLING, 10, 1);
+							}
+						}.runTaskTimer(cPractice.get(), 0L, 20L);
+
+					}
+					/*TaskUtil.runLater(() -> {
 						dead.spigot().respawn();
 						PlayerUtil.reset(dead);
 						if (profile.getSelectedKit() == null) {
@@ -607,7 +696,7 @@ public abstract class Match {
 						}
 						dead.teleport(spawn.add(0, 2, 0));
 						KitUtils.giveBedFightKit(dead);
-					}, 1L);
+					}, 1L);*/
 				}
 			}
 		}
@@ -766,8 +855,8 @@ public abstract class Match {
 	}
 
 
-	public void broadcastTitle(String message, String subMessage) {
-		Title title = new Title(CC.translate(message), CC.translate(subMessage), 1, 20, 0);
+	public void broadcastTitle(String message, String subMessage, int stay) {
+		Title title = new Title(CC.translate(message), CC.translate(subMessage), 1, stay, 0);
 		for (GameParticipant<MatchGamePlayer> gameParticipant : getParticipants()) {
 			gameParticipant.sendTitle(title);
 		}

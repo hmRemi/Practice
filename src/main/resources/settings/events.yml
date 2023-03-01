@@ -1,5 +1,5 @@
 EVENTS:
-  TITLE: '&4&lEvent'
+  TITLE: '&c&lEvent'
   HOST_DESCRIPTION:
     NO_PERMISSION:
       - ''
@@ -10,7 +10,7 @@ EVENTS:
       - ' &4You can host this event.'
       - ' &4Maximum Slots&7: &7{slots}'
   SUMO:
-    DISPLAYNAME: '&4&lSumo'
+    DISPLAYNAME: '&c&lSumo'
     ICON: FEATHER
     DESCRIPTION:
       - '{bars}'
@@ -24,7 +24,7 @@ EVENTS:
       - ChinaTown
       - Imposter
   SPLEEF:
-    DISPLAYNAME: '&4&lSpleef'
+    DISPLAYNAME: '&c&lSpleef'
     ICON: DIAMOND_SPADE
     DESCRIPTION:
       - '{bars}'
@@ -35,7 +35,7 @@ EVENTS:
     LOBBY_LOCATION: 'null'
     ALLOWED_MAPS: []
   TNTRUN:
-    DISPLAYNAME: '&4&lTNTRun'
+    DISPLAYNAME: '&c&lTNTRun'
     ICON: TNT
     DESCRIPTION:
       - '{bars}'
@@ -46,7 +46,7 @@ EVENTS:
     LOBBY_LOCATION: 'null'
     ALLOWED_MAPS: []
   TNTTAG:
-    DISPLAYNAME: '&4&lTNTTag'
+    DISPLAYNAME: '&c&lTNTTag'
     ICON: NAME_TAG
     DESCRIPTION:
       - '{bars}'
@@ -59,7 +59,7 @@ EVENTS:
     ALLOWED_MAPS:
       - Village
   GULAG:
-    DISPLAYNAME: '&4&lGulag'
+    DISPLAYNAME: '&c&lGulag'
     ICON: IRON_FENCE
     DESCRIPTION:
       - '{bars}'
@@ -70,7 +70,7 @@ EVENTS:
     LOBBY_LOCATION: 'null'
     ALLOWED_MAPS: []
   BRACKETS:
-    DISPLAYNAME: '&4&lBrackets'
+    DISPLAYNAME: '&c&lBrackets'
     ICON: IRON_FENCE
     DESCRIPTION:
       - '{bars}'

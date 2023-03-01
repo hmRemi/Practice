@@ -23,7 +23,7 @@ public class CoinsStaffCommand extends BaseCommand {
         String label = command.getLabel();
 
         CC.sender(sender, ChatUtil.NORMAL_LINE);
-        CC.sender(sender, " &4&lCoins Manager");
+        CC.sender(sender, " &c&lCoins Manager");
         CC.sender(sender, "");
         CC.sender(sender, "&4/" + label + " give <player> <amount> &7- &fGive coins to a player");
         CC.sender(sender, "&4/" + label + " set <player> <amount> &7- &fSet coins for a player");

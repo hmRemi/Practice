@@ -96,7 +96,7 @@ QUEUES:
   TYPES:
     UNRANKED:
       ENABLED: true
-      NAME: '&4&lUnranked'
+      NAME: '&c&lUnranked'
       SLOT: 11
       ICON: IRON_SWORD
       LORE:
@@ -108,7 +108,7 @@ QUEUES:
       - '&8&m--------------------------------'
     RANKED:
       ENABLED: true
-      NAME: '&4&lRanked'
+      NAME: '&c&lRanked'
       SLOT: 13
       ICON: DIAMOND_SWORD
       DATA: 0
@@ -122,7 +122,7 @@ QUEUES:
       - '&8&m--------------------------------'
     FFA:
       ENABLED: true
-      NAME: '&4&lFFA'
+      NAME: '&c&lFFA'
       SLOT: 15
       ICON: GOLD_AXE
       DATA: 0
@@ -161,17 +161,17 @@ NAMETAGS:
 # Statistics menu configuration
 STATS_MENU:
   # Menu title
-  TITLE: '&4&l{player} Statistics'
+  TITLE: '&c&l{player} Statistics'
   # Item name
-  ITEM_NAME: '&4&l{kit}'
+  ITEM_NAME: '&c&l{kit}'
   # GUI Size (ROWS)
   SIZE: 6
   # Lore
   DESCRIPTION:
   - '{bars}'
-  - '&4&lElo: &7{elo}'
-  - '&4&lWins: &7{wins}'
-  - '&4&lLosses: &7{losses}'
+  - '&c&lElo: &7{elo}'
+  - '&c&lWins: &7{wins}'
+  - '&c&lLosses: &7{losses}'
   - '{bars}'
 # Points needed to win a clan tournament?
 WINNING-POINTS-CLAN-TOURNAMENT: 10

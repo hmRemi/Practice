@@ -142,7 +142,7 @@ public class CC {
 
         Bukkit.getConsoleSender().sendMessage(CHAT_BAR);
         Bukkit.getConsoleSender().sendMessage(translate(" "));
-        Bukkit.getConsoleSender().sendMessage(translate("     &4&l" + cPractice.get().getName()));
+        Bukkit.getConsoleSender().sendMessage(translate("     &c&l" + cPractice.get().getName()));
         Bukkit.getConsoleSender().sendMessage(translate(""));
         Bukkit.getConsoleSender().sendMessage(translate(" &7| &4Author&7: &f" + cPractice.get().getDescription().getAuthors().toString().replace("[", "").replace("]", "")));
         Bukkit.getConsoleSender().sendMessage(translate(" &7| &4Version&7: &f" + cPractice.get().getDescription().getVersion()));

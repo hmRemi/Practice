@@ -27,7 +27,7 @@ public class RankShopButton extends Button {
 
 
         return new ItemBuilder(Material.NETHER_STAR)
-                .name("&4&lRanks")
+                .name("&c&lRanks")
                 .lore(lore)
                 .build();
     }

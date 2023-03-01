@@ -109,7 +109,7 @@ public class MatchList extends PaginatedMenu {
                     .build();
             } else {
                 return new ItemBuilder(match.getKit().getDisplayIcon().clone())
-                    .name(CC.translate("&4&lFree For All: " + match.getParticipants().size()))
+                    .name(CC.translate("&c&lFree For All: " + match.getParticipants().size()))
                     .lore(lore)
                     .build();
             }

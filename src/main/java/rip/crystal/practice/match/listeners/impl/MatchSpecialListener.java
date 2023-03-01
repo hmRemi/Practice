@@ -156,7 +156,7 @@ public class MatchSpecialListener implements Listener {
             if (profile.getMatch().getKit().getGameRules().isBridge()) {
                 if (player.getLocation().getBlock().getType() == Material.ENDER_PORTAL || player.getLocation().getBlock().getType() == Material.ENDER_PORTAL_FRAME) {
                     if (LocationUtil.isTeamPortal(player)) {
-                        player.sendMessage(CC.translate("&8[&4&lMatch&8] &7You can't enter your own portal"));
+                        player.sendMessage(CC.translate("&8[&c&lMatch&8] &7You can't enter your own portal"));
                         profile.getMatch().onDeath(player);
                         return;
                     }
@@ -172,7 +172,7 @@ public class MatchSpecialListener implements Listener {
                                         .add("{player}", player.getName())
                                         .send(other);
 
-                                match.broadcastTitle("&4&l" + player.getName() + " &7has scored!", "");
+                                match.broadcastTitle("&c&l" + player.getName() + " &7has scored!", "", 50);
                             }));
 
                     GameParticipant<MatchGamePlayer> otherTeam = match.getParticipantA()

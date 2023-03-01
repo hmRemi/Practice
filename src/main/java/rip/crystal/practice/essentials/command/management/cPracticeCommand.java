@@ -71,13 +71,13 @@ public class cPracticeCommand extends BaseCommand {
 
         if(args.length > 0 && args[0].equalsIgnoreCase("help")) {
             sender.sendMessage(CC.CHAT_BAR);
-            sender.sendMessage(CC.translate("&4&lSetup &7&m-&r &4&lHelp"));
+            sender.sendMessage(CC.translate("&c&lSetup &7&m-&r &c&lHelp"));
             sender.sendMessage(CC.CHAT_BAR);
             sender.sendMessage(CC.translate(" &7▢ &4/arena &8(&7&oSetup arenas&8&o)"));
             sender.sendMessage(CC.translate(" &7▢ &4/event &8(&7&oSetup events&8&o)"));
             sender.sendMessage(CC.translate(" &7▢ &4/kit &8(&7&oSetup kits&8&o)"));
             sender.sendMessage(CC.CHAT_BAR);
-            sender.sendMessage(CC.translate("&4&lCommands &7&m-&r &4&lHelp"));
+            sender.sendMessage(CC.translate("&c&lCommands &7&m-&r &c&lHelp"));
             sender.sendMessage(CC.CHAT_BAR);
             sender.sendMessage(CC.translate(" &7▢ &4/cpractice &8(&7&oMain commands&8&o)"));
             sender.sendMessage(CC.translate(" &7▢ &4/leaderboard &8(&7&oView leaderboard&8&o)"));
@@ -91,10 +91,10 @@ public class cPracticeCommand extends BaseCommand {
             return;
         }
         sender.sendMessage(CC.CHAT_BAR);
-        sender.sendMessage(CC.translate("&4&lcPRACTICE &7made by &4ziue"));
+        sender.sendMessage(CC.translate("&c&lcPRACTICE &7made by &4ziue"));
         sender.sendMessage(CC.translate("&7Version: &4" + cPractice.get().getDescription().getVersion()));
         sender.sendMessage(CC.CHAT_BAR);
-        sender.sendMessage(CC.translate("&4&lAdmin &7&m-&r &4&lHelp"));
+        sender.sendMessage(CC.translate("&c&lAdmin &7&m-&r &c&lHelp"));
         sender.sendMessage(CC.translate(" &7▢ &4/cpractice reload &8(&7&oReload configs&8&o)"));
         sender.sendMessage(CC.translate(" &7▢ &4/cpractice help &8(&7&oView help command&8&o)"));
         sender.sendMessage(CC.CHAT_BAR);

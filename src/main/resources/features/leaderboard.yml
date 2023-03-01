@@ -1,7 +1,7 @@
 INVENTORY:
-  TITLE: '&4&lLeaderboard'
+  TITLE: '&c&lLeaderboard'
   GLOBAL_STATS:
-    TITLE: '&4&lTop 10 Global'
+    TITLE: '&c&lTop 10 Global'
     POSITIONS:
       '1':
         - '&4{pos} {name}&7: &7{data}'
@@ -13,7 +13,7 @@ INVENTORY:
       ANOTHER:
         - '&4{pos} {name}&7: &7{data}'
   PERSONAL_STATS:
-    TITLE: '&4&lStatistics'
+    TITLE: '&c&lStatistics'
     KITS_FORMAT: '&4{kit}&7: &7{data}'
     DESCRIPTION:
       - '{bars}'
@@ -22,7 +22,7 @@ INVENTORY:
       - '&4Global&7: &7{elo}'
       - '{bars}'
   KIT:
-    TITLE: '&4&lTop 10 {kit}'
+    TITLE: '&c&lTop 10 {kit}'
     POSITIONS:
       '1':
         - '&4{pos} {name}&7: &7{data}'

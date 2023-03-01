@@ -27,7 +27,7 @@ public class TagShopButton extends Button {
 
 
         return new ItemBuilder(Material.NAME_TAG)
-                .name("&4&lTags")
+                .name("&c&lTags")
                 .lore(lore)
                 .build();
     }

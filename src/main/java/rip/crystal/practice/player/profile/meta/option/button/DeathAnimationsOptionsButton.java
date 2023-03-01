@@ -26,7 +26,7 @@ public class DeathAnimationsOptionsButton extends Button {
         lore.add("&eClick to open Kill Effects Menu!");
 
         return new ItemBuilder(Material.LEATHER_CHESTPLATE)
-                .name("&4&lKill Effects")
+                .name("&c&lKill Effects")
                 .lore(lore)
                 .build();
     }

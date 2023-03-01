@@ -28,7 +28,7 @@ public class KillEffectsMenu extends PaginatedMenu
 
     @Override
     public String getPrePaginatedTitle(final Player player) {
-        return CC.translate("&4&lDeath Effects");
+        return CC.translate("&c&lDeath Effects");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class KillEffectsMenu extends PaginatedMenu
         public ItemStack getButtonItem(final Player player) {
             final Profile profile = Profile.get(player.getUniqueId());
             return new ItemBuilder(type.getMaterial())
-                    .name((profile.getKillEffectType() == this.type) ? "&4&l" + this.type.getName() : (this.type.hasPermission(player) ? (CC.translate("&4&l")) : "&4&l") + this.type.getName())
+                    .name((profile.getKillEffectType() == this.type) ? "&c&l" + this.type.getName() : (this.type.hasPermission(player) ? (CC.translate("&c&l")) : "&c&l") + this.type.getName())
                     .lore(CC.MENU_BAR)
                     .lore("&7Left click to change your")
                     .lore("&7death effect to to " + "&4" + this.type.getName() + "&7.")

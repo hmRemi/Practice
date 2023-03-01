@@ -50,7 +50,7 @@ public class TagShopMenu extends PaginatedMenu
         @Override
         public ItemStack getButtonItem(final Player player) {
             return new ItemBuilder(Material.NAME_TAG)
-                    .name((player.hasPermission("aqua.tags." + type.getName()) ? (CC.translate("&4&l")) : "&4&l") + this.type.getName())
+                    .name((player.hasPermission("aqua.tags." + type.getName()) ? (CC.translate("&c&l")) : "&c&l") + this.type.getName())
                     .lore(CC.MENU_BAR)
                     .lore(player.hasPermission("aqua.tags." + type.getName()) ? "&7You already own this tag" : "&7You don't own this tag.")
                     .lore(player.hasPermission("aqua.tags." + type.getName()) ? "&7Price: None!" : "&4Price: &7" + "500")

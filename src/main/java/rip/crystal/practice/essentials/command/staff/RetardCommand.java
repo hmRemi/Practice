@@ -15,7 +15,7 @@ public class RetardCommand extends BaseCommand {
 		String[] args = commandArgs.getArgs();
 
 		player.sendMessage(CC.CHAT_BAR);
-		player.sendMessage(CC.translate("&4&lOPTIFINE-REDUCER IS A RETARD!"));
+		player.sendMessage(CC.translate("&c&lOPTIFINE-REDUCER IS A RETARD!"));
 		player.sendMessage(CC.CHAT_BAR);
 	}
 }

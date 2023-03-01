@@ -46,7 +46,7 @@ public class PartyAnnounceCommand extends BaseCommand {
             String time = TimeUtil.millisToSeconds(profile.getPartyAnnounceCooldown().getRemaining()); // Get the remaining time of cooldown and init to String.
             // Message to broadcast
             player.sendMessage(CC.CHAT_BAR);
-            player.sendMessage(CC.translate("&4&lPARTY ANNOUNCEMENT"));
+            player.sendMessage(CC.translate("&c&lPARTY ANNOUNCEMENT"));
             player.sendMessage(CC.translate("  &7* &cYou are on cooldown."));
             player.sendMessage(CC.translate("  &7* &cRemaining time: &f" + time));
             player.sendMessage(CC.CHAT_BAR);
@@ -57,9 +57,9 @@ public class PartyAnnounceCommand extends BaseCommand {
 
         // Message to broadcast
         Bukkit.broadcastMessage(CC.CHAT_BAR);
-        Bukkit.broadcastMessage(CC.translate("&4&lPARTY ANNOUNCEMENT"));
-        Bukkit.broadcastMessage(CC.translate("  &7* &4&l" + player.getName() + " &7is hosting a public party!"));
-        Clickable clickHereToJoin = new Clickable(CC.translate("  &7* &7Click &4&lhere &7to join"), CC.translate("&7Click here to join"), "/p join " + player.getName());
+        Bukkit.broadcastMessage(CC.translate("&c&lPARTY ANNOUNCEMENT"));
+        Bukkit.broadcastMessage(CC.translate("  &7* &c&l" + player.getName() + " &7is hosting a public party!"));
+        Clickable clickHereToJoin = new Clickable(CC.translate("  &7* &7Click &c&lhere &7to join"), CC.translate("&7Click here to join"), "/p join " + player.getName());
         Bukkit.getOnlinePlayers().forEach(clickHereToJoin::sendToPlayer);
         Bukkit.broadcastMessage(CC.CHAT_BAR);
     }

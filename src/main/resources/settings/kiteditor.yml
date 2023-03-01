@@ -1,7 +1,7 @@
 KITEDITOR:
   SELECT-KIT:
-    TITLE: '&4&lSelect a kit'
-    NAMECOLOR: '&4&l'
+    TITLE: '&c&lSelect a kit'
+    NAMECOLOR: '&c&l'
     LORE:
     - '&7&m----------------------'
     - '&7Click to edit kit'

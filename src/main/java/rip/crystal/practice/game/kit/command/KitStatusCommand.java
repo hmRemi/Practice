@@ -26,7 +26,7 @@ public class KitStatusCommand extends BaseCommand {
 			return;
 		}
 		player.sendMessage(CC.CHAT_BAR);
-		player.sendMessage(CC.translate("&4&lKits Status &7(" + (kit.isEnabled() ? "&a" : "&c") + kit.getName() + "&7)"));
+		player.sendMessage(CC.translate("&c&lKits Status &7(" + (kit.isEnabled() ? "&a" : "&c") + kit.getName() + "&7)"));
 		player.sendMessage(CC.CHAT_BAR);
 		player.sendMessage(CC.translate(" &7▢ &4Ranked&f: " + (kit.getGameRules().isRanked() ? "&a\u2713" : "&c\u2717")));
 		player.sendMessage(CC.translate(" &7▢ &4Build&f: " + (kit.getGameRules().isBuild() ? "&a\u2713" : "&c\u2717")));

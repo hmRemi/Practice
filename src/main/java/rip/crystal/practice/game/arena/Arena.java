@@ -27,6 +27,7 @@ public class Arena extends Cuboid {
 	@Getter private final static List<Arena> arenas = new ArrayList<>();
 
 	@Getter protected String name;
+	@Getter protected String displayName;
 	@Setter protected Location spawnA;
 	@Setter protected Location spawnB;
 	@Setter private ItemStack displayIcon;

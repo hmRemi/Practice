@@ -60,7 +60,7 @@ public class RankShopMenu extends Menu
         @Override
         public ItemStack getButtonItem(final Player player) {
             return new ItemBuilder(Material.BOOK)
-                    .name((cCore.INSTANCE.getPlayerManagement().getPlayerData(player.getUniqueId()).hasRank(type) ? (CC.translate("&4&l")) : "&4&l") + this.type.getName())
+                    .name((cCore.INSTANCE.getPlayerManagement().getPlayerData(player.getUniqueId()).hasRank(type) ? (CC.translate("&c&l")) : "&c&l") + this.type.getName())
                     .lore(CC.MENU_BAR)
                     .lore(cCore.INSTANCE.getPlayerManagement().getPlayerData(player.getUniqueId()).hasRank(type) ? "&7You already own this rank" : "&7You don't own this rank.")
                     .lore(cCore.INSTANCE.getPlayerManagement().getPlayerData(player.getUniqueId()).hasRank(type) ? "&7Price: None!" : "&4Price: &7" + type.getCoinsCost())

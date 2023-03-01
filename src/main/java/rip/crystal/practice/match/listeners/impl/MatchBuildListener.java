@@ -165,10 +165,17 @@ public class MatchBuildListener implements Listener {
                         if (teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnA()) > blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnB()) : blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnB()) > blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnA())) {
                             if(teamMatch.getState() != MatchState.ENDING_MATCH && opposingTeam.isHasBed()) {
                                 opposingTeam.destroyBed();
-                                blockBreakEvent.getBlock().setType(Material.AIR);
 
+                                teamMatch.broadcastTitle(teamMatch.getParticipantB().containsPlayer(player.getUniqueId()) ? "&cRed's bed broken" : "&9Blue's bed destroyed", "&7By " + (teamMatch.getParticipantB().containsPlayer(player.getUniqueId()) ? "&9" : "&c") + player.getName(), 50);
+
+                                teamMatch.sendMessage(CC.CHAT_BAR);
                                 teamMatch.sendMessage(CC.translate((teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? "&c" : "&9") + player.getName() + " &7has destroyed the bed of " + (teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? "&9Blue" : "&cRed")));
+                                teamMatch.sendMessage(CC.CHAT_BAR);
+
                                 teamMatch.sendSound(Sound.ENDERDRAGON_GROWL, 10, 1);
+
+                                blockBreakEvent.getBlock().setType(Material.AIR);
+                                blockBreakEvent.setCancelled(true);
                             }
                         } else {
                             player.sendMessage(CC.translate("&7You cannot break your own bed."));

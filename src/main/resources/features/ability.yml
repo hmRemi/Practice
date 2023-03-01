@@ -1,7 +1,7 @@
 # ABILITIES CONFIGURATION
 SWITCHER:
   ICON:
-    DISPLAYNAME: '&4&lSwitcher'
+    DISPLAYNAME: '&c&lSwitcher'
     DESCRIPTION:
       - '&7&m------------------------------------------'
       - '&7Swap places with your opponent.'
@@ -22,7 +22,7 @@ SWITCHER:
       - ''
 GUARDIAN_ANGEL:
   ICON:
-    DISPLAYNAME: '&4&lGuardian Angel'
+    DISPLAYNAME: '&c&lGuardian Angel'
     DESCRIPTION:
       - '&7&m------------------------------------------'
       - '&7Right Click to receive full heatlh'
@@ -39,7 +39,7 @@ GUARDIAN_ANGEL:
       - ''
 NINJA_STAR:
   ICON:
-    DISPLAYNAME: '&4&lNinja Star'
+    DISPLAYNAME: '&c&lNinja Star'
     DESCRIPTION:
       - '&7&m------------------------------------------'
       - '&7Right Click to teleport to the player'
@@ -61,7 +61,7 @@ NINJA_STAR:
       - ''
 TANK_INGOT:
   ICON:
-    DISPLAYNAME: '&4&lTank Ingot'
+    DISPLAYNAME: '&c&lTank Ingot'
     DESCRIPTION:
       - '&7Default desc.'
     MATERIAL: IRON_INGOT
@@ -75,7 +75,7 @@ TANK_INGOT:
       - ''
 STRENGTH:
   ICON:
-    DISPLAYNAME: '&4&lStrength'
+    DISPLAYNAME: '&c&lStrength'
     DESCRIPTION:
       - '&7&m------------------------------------------'
       - '&7Right Click to receive strength 2.'
@@ -91,7 +91,7 @@ STRENGTH:
       - ''
 POCKET_BARD:
   ICON:
-    DISPLAYNAME: '&4&lPocket Bard'
+    DISPLAYNAME: '&c&lPocket Bard'
     DESCRIPTION:
       - '&7&m------------------------------------------'
       - '&7Right Click to receive a random effect.'
@@ -108,7 +108,7 @@ POCKET_BARD:
       - ''
 SWAPPER_AXE:
   ICON:
-    DISPLAYNAME: '&4&lSwapper Axe'
+    DISPLAYNAME: '&c&lSwapper Axe'
     DESCRIPTION:
       - '&7Default desc.'
     MATERIAL: DIAMOND_AXE
@@ -127,7 +127,7 @@ SWAPPER_AXE:
       - ''
 SCRAMMBLER:
   ICON:
-    DISPLAYNAME: '&4&lScrambler'
+    DISPLAYNAME: '&c&lScrambler'
     DESCRIPTION:
       - '&7&m------------------------------------------'
       - '&7Hit a player to scramble their inventory.'
@@ -148,7 +148,7 @@ SCRAMMBLER:
       - ''
 COMBO:
   ICON:
-    DISPLAYNAME: '&4&lCombo'
+    DISPLAYNAME: '&c&lCombo'
     DESCRIPTION:
       - '&7&m------------------------------------------'
       - '&7If you are in combat with a player, right click'
@@ -166,7 +166,7 @@ COMBO:
       - ''
 EFFECT_DISABLER:
   ICON:
-    DISPLAYNAME: '&4&lEffect Disabler'
+    DISPLAYNAME: '&c&lEffect Disabler'
     DESCRIPTION:
       - '&7Default desc.'
     MATERIAL: SLIME_BALL
@@ -185,7 +185,7 @@ EFFECT_DISABLER:
       - ''
 LUCKY_INGOT:
   ICON:
-    DISPLAYNAME: '&4&lLucky Ingot'
+    DISPLAYNAME: '&c&lLucky Ingot'
     DESCRIPTION:
       - '&7&m------------------------------------------'
       - '&7Right Click to activate ability.'
@@ -202,7 +202,7 @@ LUCKY_INGOT:
       - ''
 WAYPOINT:
   ICON:
-    DISPLAYNAME: '&4&lWaypoint'
+    DISPLAYNAME: '&c&lWaypoint'
     DESCRIPTION:
       - '&7Default desc.'
     MATERIAL: WATCH
@@ -219,7 +219,7 @@ WAYPOINT:
       - ''
 ANTI_TRAPPER:
   ICON:
-    DISPLAYNAME: '&4&lExotic Bone'
+    DISPLAYNAME: '&c&lExotic Bone'
     DESCRIPTION:
       - '&7&m------------------------------------------'
       - '&7Right click the player 3 times to bone a player'
@@ -242,7 +242,7 @@ ANTI_TRAPPER:
       - ''
 COOKIE:
   ICON:
-    DISPLAYNAME: '&4&lCookie'
+    DISPLAYNAME: '&c&lCookie'
     DESCRIPTION:
       - '&7Default desc.'
     MATERIAL: COOKIE
@@ -256,7 +256,7 @@ COOKIE:
       - ''
 ROCKET:
   ICON:
-    DISPLAYNAME: '&4&lRocket'
+    DISPLAYNAME: '&c&lRocket'
     DESCRIPTION:
       - '&7Default desc.'
     MATERIAL: FIREWORK
@@ -270,7 +270,7 @@ ROCKET:
       - ''
 TIME_WARP:
   ICON:
-    DISPLAYNAME: '&4&lTime Warp'
+    DISPLAYNAME: '&c&lTime Warp'
     DESCRIPTION:
       - '&7&m------------------------------------------'
       - '&7Teleport to your last thrown pearl (10 sec)'

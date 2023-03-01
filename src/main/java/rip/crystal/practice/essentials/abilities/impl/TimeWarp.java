@@ -102,14 +102,14 @@ public class TimeWarp extends Ability {
 
         if (profile.getTimewarp().onCooldown(player)) {
             event.setCancelled(true);
-            player.sendMessage(CC.translate("&7You are on &4&lTime Warp &7cooldown for &4" + DurationFormatter.getRemaining(profile.getTimewarp().getRemainingMilis(player), true, true)));
+            player.sendMessage(CC.translate("&7You are on &c&lTime Warp &7cooldown for &4" + DurationFormatter.getRemaining(profile.getTimewarp().getRemainingMilis(player), true, true)));
             player.updateInventory();
             event.setCancelled(true);
             return;
         }
 
         if (profile.getPartneritem().onCooldown(player)) {
-            player.sendMessage(CC.translate("&7You are on &4&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
+            player.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
             player.updateInventory();
             event.setCancelled(true);
             return;

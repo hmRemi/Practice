@@ -20,7 +20,7 @@ public class ViewMatchMenu extends PaginatedMenu {
 
     @Override
     public String getPrePaginatedTitle(Player player) {
-        return "&4&lRecent Matches&7: &7" + profile.getName();
+        return "&c&lRecent Matches&7: &7" + profile.getName();
     }
 
     @Override

@@ -33,7 +33,7 @@ public class ArenaCommand extends BaseCommand {
         CommandSender sender = commandArgs.getSender();
 
         sender.sendMessage(CC.CHAT_BAR);
-        sender.sendMessage(CC.translate("&4&lArena &7&m-&r &4&lHelp"));
+        sender.sendMessage(CC.translate("&c&lArena &7&m-&r &c&lHelp"));
         sender.sendMessage(CC.translate(" &7▢ &4/arena create &8<&7arena&8> &8<&7SHARED/STANDALONE&8>  &8(&7&oCreate an arena&8&o)"));
         sender.sendMessage(CC.translate(" &7▢ &4/arena setspawn &8<&7arena&8> &8<&7(a/b/[red/blue])&8>  &8(&7&oSet the spawns for an arena&8&o)"));
         sender.sendMessage(CC.translate(" &7▢ &4/arena setauthor &8<&7arena&8> &8<&7author&8>  &8(&7&oSet the author of an arena&8&o)"));

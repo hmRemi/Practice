@@ -80,6 +80,37 @@ public class BasicTeamBedFight extends BasicTeamMatch {
 
     @Override
     public void end() {
+        if (getKit().getGameRules().isBedFight()) {
+            for (GameParticipant<MatchGamePlayer> gameParticipant : getParticipants()) {
+                for (MatchGamePlayer gamePlayer : gameParticipant.getPlayers()) {
+                    gamePlayer.setDead(true);
+                    Player bukkitPlayer = gamePlayer.getPlayer();
+
+                    if (bukkitPlayer != null) {
+                        if(getWinningParticipant() != null) {
+                            if (getWinningParticipant().getConjoinedNames().equals(getParticipantA().getConjoinedNames())) {
+                                bukkitPlayer.sendMessage(CC.translate("&7&m----------&r&7→ &c&lMatch Ended &7&m←-----------"));
+                                bukkitPlayer.sendMessage(CC.translate("&c&lMatch Results"));
+                                bukkitPlayer.sendMessage(CC.translate("&7Winner: &a" + getWinningParticipant().getConjoinedNames()));
+                                bukkitPlayer.sendMessage(CC.translate("&7Loser: &c" + getLosingParticipant().getConjoinedNames()));
+                                bukkitPlayer.sendMessage(CC.translate("&7&m-----------------------------------'"));
+                            } else if (getWinningParticipant().getConjoinedNames().equals(getParticipantB().getConjoinedNames())) {
+                                bukkitPlayer.sendMessage(CC.translate("&7&m----------&r&7→ &c&lMatch Ended &7&m←-----------"));
+                                bukkitPlayer.sendMessage(CC.translate("&c&lMatch Results"));
+                                bukkitPlayer.sendMessage(CC.translate("&7Winner: &a" + getWinningParticipant().getConjoinedNames()));
+                                bukkitPlayer.sendMessage(CC.translate("&7Loser: &c" + getLosingParticipant().getConjoinedNames()));
+                                bukkitPlayer.sendMessage(CC.translate("&7&m-----------------------------------'"));
+                            }
+                        }
+                        if (bukkitPlayer.hasMetadata("lastAttacker")) {
+                            bukkitPlayer.removeMetadata("lastAttacker", cPractice.get());
+                        }
+                    }
+                }
+            }
+            matches.remove(this);
+        }
+
         if (getParticipantA().getPlayers().size() == 1 && getParticipantB().getPlayers().size() == 1) {
             UUID rematchKey = UUID.randomUUID();
 
@@ -240,24 +271,9 @@ public class BasicTeamBedFight extends BasicTeamMatch {
                         return null;
                     }
 
-                    String actualHits = "0";
-                    if ((yours.getLeader().getHits() - opponent.getLeader().getHits()) > 0) {
-                        actualHits = "+" + (yours.getLeader().getHits() - opponent.getLeader().getHits());
-                    }
-                    else if ((yours.getLeader().getHits() - opponent.getLeader().getHits()) < 0) {
-                        actualHits = String.valueOf(yours.getLeader().getHits() - opponent.getLeader().getHits());
-                    }
 
                     if (kit.getGameRules().isBedFight()) {
                         config.getStringList("FIGHTS.1V1.BEDFIGHT-MODE").forEach(line -> {
-                            if (this.getParticipantA().containsPlayer(player.getUniqueId())) {
-                                lines.add(line.replace("{hasBed}", getParticipantA().isHasBed() ? "&a✔" : "&c✗"));
-                                lines.add(line.replace("{hasBed}", getParticipantB().isHasBed() ? "&a✔" : "&c✗"));
-                            } else {
-                                lines.add(line.replace("{hasBed}", getParticipantA().isHasBed() ? "&a✔" : "&c✗"));
-                                lines.add(line.replace("{hasBed}", getParticipantB().isHasBed() ? "&a✔" : "&c✗"));
-                            }
-
                             lines.add(line.replace("{bars}", bars)
                                     .replace("{duration}", getDuration())
                                     .replace("{opponent-color}", Profile.get(opponent.getLeader().getPlayer().getUniqueId()).getColor())
@@ -266,6 +282,8 @@ public class BasicTeamBedFight extends BasicTeamMatch {
                                     .replace("{player-ping}", String.valueOf(BukkitReflection.getPing(player)))
                                     .replace("{arena-author}", getArena().getAuthor())
                                     .replace("{kit}", getKit().getName())
+                                    .replace("{redHasBed}", getParticipantA().isHasBed() ? "&a✔" : "&c✗")
+                                    .replace("{blueHasBed}", getParticipantB().isHasBed() ? "&a✔" : "&c✗")
                             );
                         });
                         return lines;
@@ -430,73 +448,4 @@ public class BasicTeamBedFight extends BasicTeamMatch {
                     .send(spectator);
         }
     }
-
-    @Override
-    public List<BaseComponent[]> generateEndComponents(Player player) {
-        List<BaseComponent[]> componentsList = new ArrayList<>();
-        Profile profile = Profile.get(player.getUniqueId());
-
-        for (String line : Locale.MATCH_END_DETAILS.getStringList(profile.getLocale())) {
-            if (line.equalsIgnoreCase("%INVENTORIES%")) {
-
-                BaseComponent[] winners = generateInventoriesComponents(
-                        new MessageFormat(Locale.MATCH_END_WINNER_INVENTORY.format(profile.getLocale()))
-                                .add("{context}", getParticipantA().getPlayers().size() == 1 ? "" : "s")
-                                .toString(), getWinningParticipant());
-
-                BaseComponent[] losers = generateInventoriesComponents(
-                        new MessageFormat(Locale.MATCH_END_LOSER_INVENTORY.format(profile.getLocale()))
-                                .add("{context}", getParticipantB().getPlayers().size() > 1 ? "s" : "").toString(), getLosingParticipant());
-
-
-                if (getParticipantA().getPlayers().size() == 1 && getParticipantB().getPlayers().size() == 1) {
-                    ChatComponentBuilder builder = new ChatComponentBuilder("");
-
-                    for (BaseComponent component : winners) {
-                        builder.append((TextComponent) component);
-                    }
-
-                    builder.append(new ChatComponentBuilder("&7 - ").create());
-
-                    for (BaseComponent component : losers) {
-                        builder.append((TextComponent) component);
-                    }
-
-                    componentsList.add(builder.create());
-                } else {
-                    componentsList.add(winners);
-                    componentsList.add(losers);
-                }
-
-                continue;
-            }
-
-            if (line.equalsIgnoreCase("%ELO_CHANGES%")) {
-                if (getParticipantA().getPlayers().size() == 1 && getParticipantB().getPlayers().size() == 1 && ranked) {
-                    List<String> sectionLines = new MessageFormat(Locale.MATCH_ELO_CHANGES.getStringList(profile.getLocale()))
-                            .add("{winning_name}", getWinningParticipant().getConjoinedNames())
-                            .add("{winning_elo_mod}", String.valueOf(getWinningParticipant().getLeader().getEloMod()))
-                            .add("{winning_elo_mod_elo}",
-                                    String.valueOf((getWinningParticipant().getLeader().getElo() + getWinningParticipant().getLeader().getEloMod())))
-                            .add("{losser_name}", getLosingParticipant().getConjoinedNames())
-                            .add("{losser_elo_mod}", String.valueOf(getLosingParticipant().getLeader().getEloMod()))
-                            .add("{losser_elo_mod_elo}",
-                                    String.valueOf((getLosingParticipant().getLeader().getElo() - getWinningParticipant().getLeader().getEloMod())))
-                            .toList();
-
-
-                    for (String sectionLine : sectionLines) {
-                        componentsList.add(new ChatComponentBuilder("").parse(sectionLine).create());
-                    }
-                }
-
-                continue;
-            }
-
-            componentsList.add(new ChatComponentBuilder("").parse(line).create());
-        }
-
-        return componentsList;
-    }
-
 }

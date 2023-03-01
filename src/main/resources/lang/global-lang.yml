@@ -1,6 +1,6 @@
 FAILED_LOAD_PROFILE: '&cFailed to load your profile. Try again later.'
 MOTD:
-  - '                  &4&lCrystal Network'
+  - '                  &c&lCrystal Network'
   - '                &4Innovation is coming'
 DISCORD: discord.crystal.rip
 STORE: store.crystal.rip
@@ -8,30 +8,30 @@ TEAMSPEAK: ts.crystal.rip
 TWITTER: '@CrystalNetwork'
 WEBSITE: crystal.rip
 TABLIST:
-  HEADER: '&4&lCrystal Network'
+  HEADER: '&c&lCrystal Network'
   FOOTER: '&7You are currently using 1.8 Minecraft Version.'
 ELO:
   VIEW_FORMAT: " &4{kit} &f{elo}"
   VIEW_YOUR:
     - '{bars}'
-    - ' &4&lElo'
+    - ' &c&lElo'
     - ''
     - '{format}'
     - '{bars}'
   VIEW_OTHER:
     - '{bars}'
-    - ' &4&lElo {color}{player}'
+    - ' &c&lElo {color}{player}'
     - ''
     - '{format}'
     - '{bars}'
 DUEL:
   SELECT:
     ARENA_MENU:
-      TITLE: '&4&lSelect an arena'
+      TITLE: '&c&lSelect an arena'
       MATERIAL: PAPER
-      NAME: '&4&l{name}'
+      NAME: '&c&l{name}'
       RANDOM_MATERIAL: NETHER_STAR
       RANDOM_NAME: '&4Random Arena'
     KIT_MENU:
-      TITLE: '&4&lSelect a kit'
-      NAME: '&4&l{name}'
+      TITLE: '&c&lSelect a kit'
+      NAME: '&c&l{name}'

@@ -27,7 +27,7 @@ public class KillEffectsShopButton extends Button {
 
 
         return new ItemBuilder(Material.REDSTONE)
-                .name("&4&lKill Effects")
+                .name("&c&lKill Effects")
                 .lore(lore)
                 .build();
     }

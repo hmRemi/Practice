@@ -65,7 +65,7 @@ TABLIST:
       text: '{bars}'
       head: '{gray}'
     '2':
-      text: '&4&lSeason 1'
+      text: '&c&lSeason 1'
       head: ''
     '3':
       text: '&7{online}/{slots}'
@@ -208,7 +208,7 @@ TABLIST:
       text: ''
       head: ''
     '9':
-      text: '&4&lYour Information'
+      text: '&c&lYour Information'
       head: '{player}'
     '10':
       text: ' &7➥ &4Name&7: &f{name}'

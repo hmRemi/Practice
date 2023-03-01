@@ -82,7 +82,7 @@ public class PartyEventSelectKitMenu extends Menu {
 					.addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-					.name("&4&l" + kit.getName())
+					.name("&c&l" + kit.getName())
 					.build();
 		}
 
@@ -95,12 +95,12 @@ public class PartyEventSelectKitMenu extends Menu {
 			Profile profile = Profile.get(player.getUniqueId());
 
 			if (profile.getParty() == null) {
-				player.sendMessage(CC.translate("&8[&4&lParty&8] &7You are not in a party."));
+				player.sendMessage(CC.translate("&8[&c&lParty&8] &7You are not in a party."));
 				return;
 			}
 
 			if (profile.getParty().getPlayers().size() <= 1) {
-				player.sendMessage(CC.translate("&8[&4&lParty&8] &7You do not have enough players in your party to start an event."));
+				player.sendMessage(CC.translate("&8[&c&lParty&8] &7You do not have enough players in your party to start an event."));
 				return;
 			}
 
@@ -108,7 +108,7 @@ public class PartyEventSelectKitMenu extends Menu {
 			Arena arena = Arena.getRandomArena(kit);
 
 			if (arena == null) {
-				player.sendMessage(CC.translate("&8[&4&lParty&8] &7There are no available arenas."));
+				player.sendMessage(CC.translate("&8[&c&lParty&8] &7There are no available arenas."));
 				return;
 			}
 

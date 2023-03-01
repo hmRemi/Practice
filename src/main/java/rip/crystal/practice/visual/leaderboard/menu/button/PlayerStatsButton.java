@@ -20,7 +20,7 @@ public class PlayerStatsButton extends Button {
         lore.add(CC.translate("&7&m-------------------"));
         lore.add(CC.translate("&fView your stats"));
         lore.add(CC.translate("&7&m-------------------"));
-        return new ItemBuilder(Material.valueOf(String.valueOf(Material.LEASH))).lore(lore).name(CC.translate("&4&lPlayer Statistics")).build();
+        return new ItemBuilder(Material.valueOf(String.valueOf(Material.LEASH))).lore(lore).name(CC.translate("&c&lPlayer Statistics")).build();
     }
 
     @Override

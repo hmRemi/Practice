@@ -38,7 +38,7 @@ public class PartyPrivacyButton extends Button {
         lore.add("&8&m--------------------------------------");
 
         return new ItemBuilder(Material.REDSTONE)
-                .name("&4&lParty Privacy")
+                .name("&c&lParty Privacy")
                 .lore(lore)
                 .build();
     }

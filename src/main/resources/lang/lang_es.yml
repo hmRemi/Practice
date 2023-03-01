@@ -8,7 +8,7 @@ JOIN_MESSAGES:
 FFA:
   JOIN_MESSAGE:
   - '&7&m------------------------------------------------'
-  - '&4&lFree For All &7┃ {kit}'
+  - '&c&lFree For All &7┃ {kit}'
   - '  &4Players: {players}'
   - ' '
   - '&7&oTo leave, use /ffa leave'
@@ -183,22 +183,22 @@ REMATCH:
   DO_NOT_HAVE_ANYONE: '&cNo tienes a nadie con hacer un rematch.'
   CANCELLED: '&cYa no puedes enviarle un rematch a este jugador.'
   IS_SENT: '&cYa le has enviado un rematch a este jugador.'
-ARROW_DAMAGE_INDICATOR: '&7[&4&lRango de Flecha &e({range})&7] &e{damaged_name} &4
+ARROW_DAMAGE_INDICATOR: '&7[&c&lRango de Flecha &e({range})&7] &e{damaged_name} &4
   ahora es &c{damaged_health} &4{symbol}&e.'
-FISH_DAMAGE_INDICATOR: '&7[&4&lFish&7] &e{damaged_name} &4ahora es &c{damaged_health}
+FISH_DAMAGE_INDICATOR: '&7[&c&lFish&7] &e{damaged_name} &4ahora es &c{damaged_health}
   &4{symbol}&e.'
 VIEWING_INVENTORY: '&eEstás viendo el inventario de &b{target_name}&e''s ...'
 CLAN:
   CREATE: '&aClan {name} creado correctamente.'
   SHOW:
-    - '&4&l{name}''s &4&lClan'
+    - '&c&l{name}''s &c&lClan'
     - '&e&lLíder&7:&f {leader}'
     - '&e&lMiembros&7:&r {members}'
     - '&e&lPuntos&7:&f {points}'
     - '&e&lCategoría&7:&f {category}'
     - '&e&lTorneos Ganados&7:&f {tournament_wins}'
   HELP:
-    - '&4&lClan Help'
+    - '&c&lClan Help'
     - '&7/clan create (name)'
     - '&7/clan info (name)'
     - '&7/clan rename (new_name)'

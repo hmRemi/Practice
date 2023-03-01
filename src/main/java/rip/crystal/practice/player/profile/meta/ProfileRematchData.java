@@ -4,6 +4,7 @@ import rip.crystal.practice.Locale;
 import rip.crystal.practice.game.arena.Arena;
 import rip.crystal.practice.cPractice;
 import rip.crystal.practice.game.kit.Kit;
+import rip.crystal.practice.match.impl.BasicTeamBedFight;
 import rip.crystal.practice.match.impl.BasicTeamMatch;
 import rip.crystal.practice.match.impl.BasicTeamRoundMatch;
 import rip.crystal.practice.match.participant.MatchGamePlayer;
@@ -73,8 +74,6 @@ public class ProfileRematchData {
 			sender.sendMessage(CC.RED + "You cannot duel right now.");
 			return;
 		}
-
-
 
 		for (String line : new MessageFormat(Locale.REMATCH_SENT_REQUEST.format(Profile.get(sender.getUniqueId()).getLocale()))
 							.add("{target_name}", target.getName())
@@ -154,6 +153,8 @@ public class ProfileRematchData {
 		var match = new BasicTeamMatch(null, kit, arena, false, participantA, participantB);
 		if(match.getKit().getGameRules().isBridge()){
 			match = new BasicTeamRoundMatch(null, kit, arena, false, participantA, participantB, cPractice.get().getBridgeRounds());
+		} else if(match.getKit().getGameRules().isBedFight()){
+			match = new BasicTeamBedFight(null, kit, arena, false, participantA, participantB);
 		}
 		match.start();
 	}

@@ -32,13 +32,13 @@ public class Cookie extends Ability {
             Profile profile = Profile.get(player.getUniqueId());
 
             if (profile.getCookie().onCooldown(player)) {
-                player.sendMessage(CC.translate("&7You are on &4&lCookie &7cooldown for &4" + DurationFormatter.getRemaining(profile.getCookie().getRemainingMilis(player), true, true)));
+                player.sendMessage(CC.translate("&7You are on &c&lCookie &7cooldown for &4" + DurationFormatter.getRemaining(profile.getCookie().getRemainingMilis(player), true, true)));
                 player.updateInventory();
                 return;
             }
 
             if(profile.getPartneritem().onCooldown(player)){
-                player.sendMessage(CC.translate("&7You are on &4&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
+                player.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
                 player.updateInventory();
                 return;
             }

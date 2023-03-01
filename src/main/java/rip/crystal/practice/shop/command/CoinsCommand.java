@@ -17,7 +17,7 @@ public class CoinsCommand extends BaseCommand {
         Profile profile = Profile.get(player.getUniqueId());
 
         CC.sender(player, ChatUtil.NORMAL_LINE);
-        CC.sender(player, " &4&lCoins");
+        CC.sender(player, " &c&lCoins");
         CC.sender(player, "");
         CC.sender(player, "&4Your coins: &7" + profile.getCoins());
         CC.sender(player, ChatUtil.NORMAL_LINE);

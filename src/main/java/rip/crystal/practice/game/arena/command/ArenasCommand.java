@@ -28,7 +28,7 @@ public class ArenasCommand extends BaseCommand {
 
 		for (Arena arena : Arena.getArenas()) {
 			if (arena.getType() != ArenaType.DUPLICATE) {
-				ChatComponentBuilder builder = new ChatComponentBuilder("").parse("&7- " + (arena.isSetup() ? "&8[&a&lEnabled&8] &4&l" : "&8[&4&lDisabled&8] &4&l") + arena.getName() + " &7(" + arena.getType().name() + ")");
+				ChatComponentBuilder builder = new ChatComponentBuilder("").parse("&7- " + (arena.isSetup() ? "&8[&a&lEnabled&8] &c&l" : "&8[&c&lDisabled&8] &c&l") + arena.getName() + " &7(" + arena.getType().name() + ")");
 
 				ChatComponentBuilder status = new ChatComponentBuilder("").parse("&7[&cSTATUS&7]");
 				status.attachToEachPart(ChatHelper.hover("&7Click to view this arena's status."));

@@ -95,7 +95,7 @@ public class PartyKickMenu extends PaginatedMenu {
             lore.add("&8&m--------------------------------------");
 
             return new ItemBuilder(Material.SKULL_ITEM)
-                    .name("&4&l" + uuid.getName())
+                    .name("&c&l" + uuid.getName())
                     .lore(lore)
                     .build();
         }
@@ -108,7 +108,7 @@ public class PartyKickMenu extends PaginatedMenu {
             if(!profile.getParty().containsPlayer(uuid.getUniqueId())) return;
 
             if(profile.getParty().getLeader() == uuid) {
-                player.sendMessage(CC.translate("&8[&4&lParty&8] &7You cannot kick yourself from your party."));
+                player.sendMessage(CC.translate("&8[&c&lParty&8] &7You cannot kick yourself from your party."));
                 return;
             }
             playNeutral(player);

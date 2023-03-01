@@ -23,12 +23,12 @@ public class PartyManageCommand extends BaseCommand {
 		Profile profile = Profile.get(player.getUniqueId());
 
 		if (profile.getParty() == null) {
-			player.sendMessage(CC.translate("&8[&4&lParty&8] &7You do not have a party."));
+			player.sendMessage(CC.translate("&8[&c&lParty&8] &7You do not have a party."));
 			return;
 		}
 
 		if(profile.getParty().getLeader() != player) {
-			player.sendMessage(CC.translate("&8[&4&lParty&8] &7Only the leader can use this."));
+			player.sendMessage(CC.translate("&8[&c&lParty&8] &7Only the leader can use this."));
 			return;
 		}
 

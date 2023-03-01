@@ -25,7 +25,7 @@ public class TrailsOptionsButton extends Button {
         lore.add("&eClick to open Trails Menu!");
 
         return new ItemBuilder(Material.BOW)
-                .name("&4&lTrail Effects")
+                .name("&c&lTrail Effects")
                 .lore(lore)
                 .build();
     }

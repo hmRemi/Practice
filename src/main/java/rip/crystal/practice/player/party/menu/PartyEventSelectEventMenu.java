@@ -71,7 +71,7 @@ public class PartyEventSelectEventMenu extends Menu {
 						.lore("&7Fight in a series of 1v1's")
 						.lore("&7until there is a winner")
 						.lore("")
-						.lore("&4&lWIP")
+						.lore("&c&lWIP")
 						.lore(CC.SB_BAR)
 						.build();
 			}

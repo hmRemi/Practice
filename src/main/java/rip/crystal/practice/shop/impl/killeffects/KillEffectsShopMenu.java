@@ -47,7 +47,7 @@ public class KillEffectsShopMenu extends PaginatedMenu
         @Override
         public ItemStack getButtonItem(final Player player) {
             return new ItemBuilder(type.getMaterial())
-                    .name((this.type.hasPermission(player) ? (CC.translate("&4&l")) : "&4&l") + this.type.getName())
+                    .name((this.type.hasPermission(player) ? (CC.translate("&c&l")) : "&c&l") + this.type.getName())
                     .lore(CC.MENU_BAR)
                     .lore(this.type.hasPermission(player) ? "&7You already own this death effect!" : "&7You don't own this death effect.")
                     .lore(this.type.hasPermission(player) ? "&7Price: None!" : "&4Price: &7" + this.type.getPrice())

@@ -33,7 +33,7 @@ public class PartyKickButton extends Button {
 
 
         return new ItemBuilder(Material.REDSTONE)
-                .name("&4&lKick")
+                .name("&c&lKick")
                 .lore(lore)
                 .build();
     }

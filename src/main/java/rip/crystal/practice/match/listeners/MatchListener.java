@@ -2,6 +2,9 @@ package rip.crystal.practice.match.listeners;
 
 import com.google.common.collect.Lists;
 import org.bukkit.*;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.github.paperspigot.Title;
 import rip.crystal.practice.Locale;
 import rip.crystal.practice.cPractice;
@@ -10,8 +13,12 @@ import rip.crystal.practice.game.tournament.Tournament;
 import rip.crystal.practice.match.Match;
 import rip.crystal.practice.match.MatchState;
 import rip.crystal.practice.match.events.MatchEndEvent;
+import rip.crystal.practice.match.impl.BasicTeamBedFight;
+import rip.crystal.practice.match.impl.BasicTeamMatch;
+import rip.crystal.practice.match.participant.MatchGamePlayer;
 import rip.crystal.practice.player.profile.Profile;
 import rip.crystal.practice.player.profile.ProfileState;
+import rip.crystal.practice.player.profile.participant.alone.GameParticipant;
 import rip.crystal.practice.utilities.*;
 import rip.crystal.practice.utilities.chat.CC;
 import org.apache.commons.lang.StringEscapeUtils;
@@ -123,7 +130,6 @@ public class MatchListener implements Listener {
 			if(killer == null) {
 				return;
 			}
-			Profile killerProfile = Profile.get(killer.getUniqueId());
 
 			if (match.getKit().getGameRules().isBridge()) event.getDrops().clear();
 			if (match.getKit().getGameRules().isBedFight()) {
@@ -152,7 +158,7 @@ public class MatchListener implements Listener {
 	}
 
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
-	public void onLow(final PlayerMoveEvent event) {
+	public void onLow(PlayerMoveEvent event) {
 		Player player = event.getPlayer();
 		Profile profile = Profile.get(player.getUniqueId());
 		Match match = profile.getMatch();
@@ -161,7 +167,12 @@ public class MatchListener implements Listener {
 				if (player.getLocation().getBlockY() <= 30) {
 					Player killer = PlayerUtil.getLastAttacker(event.getPlayer());
 					match.sendDeathMessage(event.getPlayer(), killer);
-					profile.getMatch().onDeath(player);
+					if(match.getState() == MatchState.ENDING_MATCH) {
+						BasicTeamMatch teamMatch = (BasicTeamMatch) profile.getMatch();
+						player.teleport(teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? teamMatch.getParticipantB().getLeader().getPlayer().getLocation() : teamMatch.getParticipantA().getLeader().getPlayer().getLocation());
+					} else {
+						profile.getMatch().onDeath(player);
+					}
 				}
 			}
 		}
@@ -335,6 +346,7 @@ public class MatchListener implements Listener {
 
 		if (event.getDamager() instanceof Player) {
 			attacker = (Player) event.getDamager();
+
 		} else if (event.getDamager() instanceof Projectile) {
 			if (((Projectile) event.getDamager()).getShooter() instanceof Player) {
 				attacker = (Player) ((Projectile) event.getDamager()).getShooter();
@@ -342,8 +354,7 @@ public class MatchListener implements Listener {
 				//event.setCancelled(true);
 				return;
 			}
-		}
-		else {
+		} else {
 			//event.setCancelled(true);
 			return;
 		}
@@ -393,6 +404,11 @@ public class MatchListener implements Listener {
 					if (match.getGamePlayer(attacker).getHits() == cPractice.get().getMainConfig().getInteger("MATCH.BOXING_MAX_HITS")) {
 						match.onDeath(damaged);
 					}
+				}
+
+				if (!damaged.canSee(attacker) && attacker.canSee(damaged) || damaged.canSee(attacker) && !attacker.canSee(damaged)) {
+					event.setCancelled(true);
+					return;
 				}
 
 				if (event.getDamager() instanceof Arrow) {

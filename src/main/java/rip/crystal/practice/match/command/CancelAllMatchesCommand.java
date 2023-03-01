@@ -23,8 +23,8 @@ public class CancelAllMatchesCommand extends BaseCommand {
         String[] args = commandArgs.getArgs();
 
         Bukkit.broadcastMessage(CC.CHAT_BAR);
-        Bukkit.broadcastMessage(CC.translate("&8[&4&lMatch&8] &7All matches has been cancelled."));
-        Bukkit.broadcastMessage(CC.translate("&8[&4&lMatch&8] &7Preparing for reboot"));
+        Bukkit.broadcastMessage(CC.translate("&8[&c&lMatch&8] &7All matches has been cancelled."));
+        Bukkit.broadcastMessage(CC.translate("&8[&c&lMatch&8] &7Preparing for reboot"));
         Bukkit.broadcastMessage(CC.CHAT_BAR);
         Match.getMatches().forEach(Match::end);
 

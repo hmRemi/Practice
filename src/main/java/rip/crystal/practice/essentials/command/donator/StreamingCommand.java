@@ -21,11 +21,11 @@ public class StreamingCommand extends BaseCommand {
         String[] args = command.getArgs();
 
         if (args.length == 0) {
-            player.sendMessage(CC.translate("&8[&4&lStream&8] &7/stream <link>"));
+            player.sendMessage(CC.translate("&8[&c&lStream&8] &7/stream <link>"));
         } else {
             Bukkit.broadcastMessage(CC.CHAT_BAR);
-            Bukkit.broadcastMessage(CC.translate("&4&l" + player.getName() + " &7is streaming."));
-            Bukkit.broadcastMessage(CC.translate("&4&lURL: &7" + args[0]));
+            Bukkit.broadcastMessage(CC.translate("&c&l" + player.getName() + " &7is streaming."));
+            Bukkit.broadcastMessage(CC.translate("&c&lURL: &7" + args[0]));
             Bukkit.broadcastMessage(CC.CHAT_BAR);
         }
     }
