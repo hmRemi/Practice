@@ -1,337 +1,2765 @@
-TITLE-TASK: 0.3
-TITLE:
-  - '&fPRACTICE'
-  - '&fPRACTICE'
-  - '&fPRACTICE'
-  - '&7&lP&fRACTICE'
-  - '&7&lPR&fACTICE'
-  - '&7&lPRA&fCTICE'
-  - '&7&lPRAC&fTICE'
-  - '&7&lPRACT&fICE'
-  - '&7&lPRACTI&fCE'
-  - '&7&lPRACTIC&fE'
-  - '&7&lPRACTICE'
-  - '&7&lPRACTICE'
-  - '&fPRACTICE'
-  - '&fPRACTICE'
-FOOTER-ENABLED: true
-FOOTER-TASK: 0.3
-FOOTER:
-  - '&7hy-pvp.com'
-LINES:
-  BARS: '&8&m----------------------'
-  LOBBY:
-    - '&fOnline&7: &c{online}'
-    - '&fFighting&7: &c{in-fights}'
-    - '&fQueueing&7: &c{in-queues}'
-    - ''
-    - '&fDivision&7: &c{division}'
-    - '&fCoins&7: &c{coins}'
-  IN-QUEUE:
-    - '{bars}'
-    - '&f{queue}'
-    - '&fTime&7: &c{elapsed}'
-    - '{ranked}'
-  RANKED-QUEUE: '&fELO Range: &c{min-range} -> {max-range}'
-  PINGRANGE-QUEUE: '&fPing Range: &c{range}'
-  PARTY:
-    LINES:
-      - '{bars}'
-      - '&fYour Party'
-    MEMBERS-FORMAT: ' &f* &c{player}'
-    INFO:
-      - ' &fLeader&7: &c{leader}'
-      - ' &fSize&7: &c{size}'
-CLAN:
-  LINES:
-    - '{bars}'
-    - '&fClan&7: &c{name}'
-    - '  &fOnline&7: &c{size}'
-STAFF_MODE:
-  LOBBY:
-    - '&fSTAFFMODE'
-    - ' &fPlayers&7: &c{players} &7({staffs})'
-    - ' &fIn Fight&7: &c{in-fight}'
-    - ' &fStaff Chat&7: &c{isStaffChat}'
-  SPECTATING:
-    - '&fFight'
-    - ' &fArena&7: &c{arena}'
-    - ' &fKit&7: &c{kit}'
-    - ''
-    - ' &c{playerA}'
-    - ' &fvs'
-    - ' &c{playerB}'
-FIGHTS:
-  SPECTATING:
-    - '&fFight'
-    - ' &fArena&7: &c{arena}'
-    - ' &fKit&7: &c{kit}'
-    - ''
-    - ' &c{playerA}'
-    - ' &fvs'
-    - ' &c{playerB}'
-  SPECTATING_BOXING:
-    - '&fFight'
-    - ' &fArena&7: &c{arena}'
-    - ' &fKit&7: &c{kit}'
-    - ''
-    - '&fHits'
-    - ' &c{playerA}&7: &c{playerA_hits}'
-    - ' &c{playerB}&7: &c{playerB_hits}'
-  FFA:
-    - '&fPlaying FFA:'
-    - ' &fKit&7: &c{kit}'
-    - ''
-    - ' &fPlayers: &c{players}'
-    - ' &fYour Ping: &c{ping}'
-  PARTY-FFA:
-    IS-ALIVE:
-      - '&fOpponents&7: &c{opponents-size}'
-      - '&fDuration&7: &c{duration}'
-    IS-DEAD-OR-SPECTATOR:
-      - '&fKit&7: &c{kit}'
-      - '&fDuration&7: &c{duration}'
-      - '&fTeams&7: &c{teams}'
-  1V1:
-    BOXING-MODE:
-      - '&fOpponent&7: &c{opponent}'
-      - '&fDuration&7: &c{duration}'
-      - ''
-      - '&fPing: &c{player-ping}ms &7┃ &c{opponent-ping}ms'
-      - ''
-      - '&fHits&7: &c{hits}'
-      - ' &fYou&7: &c{your-hits}'
-      - ' &fThem&7: &c{opponent-hits}'
-      - ' &fCombo&7: &c{combo}'
-    BEDFIGHT-MODE:
-      - '&fOpponent: &c{opponent}'
-      - '&fDuration: &c{duration}'
-      - ''
-      - '&cR &fRed: {hasBed}'
-      - '&9B &fBlue: {hasBed}'
-      - ''
-      - '&fPing: &c{player-ping}ms &7┃ &c{opponent-ping}ms'
-    LINES:
-      - '&fOpponent&7: &c{opponent}'
-      - '&fDuration&7: &c{duration}'
-      - ''
-      - '&fPing: &c{player-ping}ms &7┃ &c{opponent-ping}ms'
-      - '{bridge}'
-  SMALL-TEAM:
-    LINES:
-      - '&fDuration&7: &c{duration}'
-      - '&fAuthor&7: &c{arena-author}'
-      - ''
-      - '{bridge}'
-      - '{no-bridge}'
-      - '{rounds}'
-    NO-BRIDGE:
-      PLAYERS-FORMAT: ' {player}'
-      OPPONENTS-FORMAT: ' {opponent}'
+CRATES:
+  Reward:
+    EFFECT:
+      SHAPE: Square
+    PRIZE-AMOUNT: 1
+    BROADCAST:
+      ENABLE: false
+      MESSAGE: '&d{player} &ehas been open a &d{crate} Crate&e!'
+    DISPLAYNAME: '&a&lReward Crate'
+    ITEM:
+      MATERIAL: STAINED_GLASS
+      DATA: 5
+    LORE:
+      - '&7&oPlace the Reward Crate.'
+    KEY:
+      DISPLAYNAME: '&a&lReward Key'
+      ITEM:
+        MATERIAL: INK_SACK
+        DATA: 10
+      SOUND:
+        ENABLE: true
+        TYPE: ORB_PICKUP
+      ENCHANT:
+        ENABLE: true
+        TYPE: DURABILITY
+        LEVEL: 5
+      LORE:
+        - '&7&oRight click on the Reward Crate to open the Key.'
+    HOLOGRAM:
+      ITEM:
+        ENABLE: true
+        MATERIAL: INK_SACK
+        DATA: 10
       LINES:
-        - '&fTeam&7: (&7{team-alive}&7/&c{team-size}&7)'
-        - '{players}'
-        - ''
-        - '&fOpponents&7: &7(&c{opponent-alive}&7/&c{opponent-size}&7)'
-        - '{opponents}'
-  BIG-TEAM:
-    LINES:
-      - '&fDuration&7: &c{duration}'
-      - '&fAuthor&7: &c{arena-author}'
-      - '&fTeam: &7(&c{team-alive}&7/&c{team-size}&7)'
-      - '&fOpponents: &7(&c{opponent-alive}&7/&c{opponent-size}&7)'
-      - '{bridge}'
-      - '{rounds}'
-  BRIDGE-FORMAT:
-    LINES:
-      - '{points}'
-      - ''
-    RED: '&cR &fRed: {string-points}'
-    BLUE: '&9B &fBlue: {string-points}'
-  ON-END-ROUND-FOR-NEXT:
-    - '&fDuration&7: &c{duration}'
-    - '&fAuthor&7: &c{arena-author}'
-  ROUND-START: '&fRounds&7: &r{round}'
-TOURNAMENTS:
-  SOLO:
-    LINES:
-      - '{bars}'
-      - '&fSolo Tournament'
-      - '&fKit&7: &7{kit}'
-      - '&fPlayers&7: &7{size}&7/&c{limit}'
-      - '&fState&7: &7{state}'
-    IN-FIGHT:
-      - '&fRound&7: &7#{round}'
-    ON-END:
-      - '&fWinner: &7{player}'
-  TEAMS:
-    LINES:
-      - '{bars}'
-      - '&fTeams Tournament'
-      - '&fKit&7: &7{kit}'
-      - '&fTeams&7: &7{size}&4/&7{limit}'
-      - '&fState&7: &7{state}'
-    IN-FIGHT:
-      - '&fRound&7: &7#{round}'
-    ON-END:
-      - '&fWinner: &7{player} &7Team'
-  CLANS:
-    LINES:
-      - '{bars}'
-      - '&fClans Tournament'
-      - '&fKit&7: &7{kit}'
-      - '&fTeams&7: &7{size}&4/&7{limit}'
-      - '&fState&7: &7{state}'
-    IN-FIGHT:
-      - '&fRound&7: &7#{round}'
-    ON-END:
-      - '&fClan Winner: &7{player}'
-EVENTS:
-  GULAG:
-    ROUND:
-      - ' &fRound&7: &7{round}'
-    LINES:
-      - '&fEvent &7({event-name})'
-      - ' &fPlayers&7: &7{players}&7/&7{max-players})'
-    WAITING-FOR-PLAYERS:
-      - ' &7Waiting for players'
-    STARTING-EVENT:
-      - ' &7Starting In&7: &4{time}'
-    STARTING-ROUND:
-      - ' &7&l* &fStarting Round&7: &7{time}'
-    PLAYING-ROUND:
-      - '&8{bars}'
-      - '&7{playerA}'
-      - '&4vs'
-      - '&7{playerB}'
-    ENDING-ROUND:
-      - '&8{bars}'
-      - '&7Waiting...'
-    ENDING-EVENT:
-      - ' &fRounds&7: &7{rounds}'
-      - '&8{bars}'
-      - '&fWinner&7: &7{winner}'
-    MAP-VOTES:
-      - '&8{bars}'
-      - '&fMap Votes'
-      - '{votes-format}'
-    VOTES-FORMAT: ' &f{map-name} &7({size} votes)'
-  BRACKETS:
-    ROUND:
-      - ' &fRound&7: &7{round}'
-    LINES:
-      - '&fEvent &7({event-name})'
-      - ' &fPlayers&7: &7{players}&7/&7{max-players})'
-    WAITING-FOR-PLAYERS:
-      - ' &7Waiting for players'
-    STARTING-EVENT:
-      - ' &7Starting In&7: &4{time}'
-    STARTING-ROUND:
-      - ' &7&l* &fStarting Round&7: &7{time}'
-    PLAYING-ROUND:
-      - '&8{bars}'
-      - '{playerA}'
-      - '&cvs'
-      - '{playerB}'
-    ENDING-ROUND:
-      - '&8{bars}'
-      - '&7Waiting...'
-    ENDING-EVENT:
-      - ' &7&l* &fRounds&7: &7{rounds}'
-      - '&8{bars}'
-      - '&fWinner&7: &7{winner}'
-    MAP-VOTES:
-      - '&8{bars}'
-      - '&fMap Votes'
-      - '{votes-format}'
-    VOTES-FORMAT: ' &f{map-name} &7({size} votes)'
-  SUMO:
-    ROUND:
-      - '  &fRound&7: &7{round}'
-    LINES:
-      - '&fEvent &7({event-name})'
-      - ' &fPlayers&7: &7{players}&7/&7{max-players})'
-    WAITING-FOR-PLAYERS:
-      - ' &7Waiting for players'
-    STARTING-EVENT:
-      - ' &7Starting In&7: &4{time}'
-    STARTING-ROUND:
-      - '  &fStarting&7: &7{time}'
-    PLAYING-ROUND:
-      - '&8{bars}'
-      - '&4{playerA}'
-      - '&7vs'
-      - '&4{playerB}'
-    ENDING-ROUND:
-      - '&8{bars}'
-      - '&7Waiting...'
-    ENDING-EVENT:
-      - '  &fRounds&7: &7{rounds}'
-      - '&8{bars}'
-      - '&fWinner&7: &7{winner}'
-    MAP-VOTES:
-      - '&8{bars}'
-      - '&fMap Votes'
-      - '{votes-format}'
-    VOTES-FORMAT: ' &f{map-name} &7({size} votes)'
-  SPLEEF:
-    LINES:
-      - '&fEvent &7({event-name})'
-      - ' &fPlayers&7: &7{players}&7/&7{max-players})'
-    WAITING-FOR-PLAYERS:
-      - ' &7Waiting for players'
-    STARTING-EVENT:
-      - ' &7Starting In&7: &4{time}'
-    ENDING-ROUND:
-      - '&8{bars}'
-      - '&7Waiting...'
-    ENDING-EVENT:
-      - '&8{bars}'
-      - '&fWinner&7: &7{winner}'
-    MAP-VOTES:
-      - '&8{bars}'
-      - '&fMap Votes'
-      - '{votes-format}'
-    VOTES-FORMAT: ' &f{map-name} &7({size} votes)'
-  TNTRUN:
-    LINES:
-      - '&fEvent &7({event-name})'
-      - ' &fPlayers&7: &7{players}&7/&7{max-players})'
-    WAITING-FOR-PLAYERS:
-      - ' &7Waiting for players'
-    STARTING-EVENT:
-      - ' &7Starting In&7: &4{time}'
-    ENDING-ROUND:
-      - '&8{bars}'
-      - '&7Waiting...'
-    ENDING-EVENT:
-      - '&8{bars}'
-      - '&fWinner&7: &7{winner}'
-    MAP-VOTES:
-      - '&8{bars}'
-      - '&fMap Votes'
-      - '{votes-format}'
-    VOTES-FORMAT: ' &f{map-name} &7({size} votes)'
-  TNTTAG:
-    LINES:
-      - '&fEvent &7({event-name})'
-      - ' &fPlayers&7: &7{players}&7/&7{max-players})'
-    WAITING-FOR-PLAYERS:
-      - ' &7Waiting for players'
-    STARTING-EVENT:
-      - ' &7Starting In&7: &4{time}'
-    ENDING-ROUND:
-      - '&8{bars}'
-      - '&7Waiting...'
-    PLAYING-ROUND:
-      - ''
-      - '&4Bomb&7: &7{bomb}'
-      - '&4Remaining&7: &7{time}{context}'
-    ENDING-EVENT:
-      - '&8{bars}'
-      - '&fWinner&7: &7{winner}'
-    MAP-VOTES:
-      - '&8{bars}'
-      - '&fMap Votes'
-      - '{votes-format}'
-    VOTES-FORMAT: ' &f{map-name} &7({size} votes)'
+        - '{crate}'
+        - '&7Left-Click to preview'
+        - '&7Right-Click to open'
+      LIST:
+        '1':
+          WORLD: world
+          X: 28.5
+          Y: 78.0
+          Z: 24.5
+    INVENTORY:
+      SLOTS: 54
+      ITEMS:
+        '1':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '9':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '10':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '18':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '19':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '27':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '28':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '36':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '37':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '45':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '46':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '54':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 5
+        '2':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '3':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '4':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '5':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '6':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '7':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '8':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '11':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '17':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '20':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '26':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '29':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '35':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '38':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '44':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '47':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '48':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '49':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '50':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '51':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '52':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '53':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '39':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Helmet
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '40':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Chestplate
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '41':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Leggings
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '42':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '43':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_BLOCK
+            amount: 16
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '30':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§aReward§8] §7Helmet
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '31':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§aReward§8] §7Chestplate
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '32':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§aReward§8] §7Leggings
+              lore:
+                - §aNight Vision I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '33':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§aReward§8] §7Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '34':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: BOW
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Bow
+              enchants:
+                ARROW_DAMAGE: 5
+                DURABILITY: 3
+                ARROW_INFINITE: 1
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '21':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Helmet
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '22':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Chestplate
+              lore:
+                - §4HellForged IV
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '23':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Leggings
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '24':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '25':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_SWORD
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Sword
+              enchants:
+                DAMAGE_ALL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '12':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Helmet
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '13':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Chestplate
+              lore:
+                - §4HellForged IV
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '14':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Leggings
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '15':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§aReward§8] §7Boots
+              lore:
+                - §4Speed II
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '16':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: IRON_BLOCK
+            amount: 32
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+    LOCATIONS:
+      '1':
+        WORLD: world
+        X: 28
+        Y: 75
+        Z: 24
+        TASK-ID: 9795
+  Koth:
+    EFFECT:
+      SHAPE: Square
+    PRIZE-AMOUNT: 1
+    BROADCAST:
+      ENABLE: false
+      MESSAGE: '&d{player} &ehas been open a &d{crate} Crate&e!'
+    DISPLAYNAME: '&4&lKoth Crate'
+    ITEM:
+      MATERIAL: STAINED_GLASS
+      DATA: 14
+    LORE:
+      - '&7&oPlace the Koth Crate.'
+    KEY:
+      DISPLAYNAME: '&4&lKoth Key'
+      ITEM:
+        MATERIAL: INK_SACK
+        DATA: 1
+      SOUND:
+        ENABLE: true
+        TYPE: ORB_PICKUP
+      ENCHANT:
+        ENABLE: true
+        TYPE: DURABILITY
+        LEVEL: 5
+      LORE:
+        - '&7&oRight click on the Koth Crate to open the Key.'
+    HOLOGRAM:
+      ITEM:
+        ENABLE: true
+        MATERIAL: INK_SACK
+        DATA: 1
+      LINES:
+        - '{crate}'
+        - '&7Left-Click to preview'
+        - '&7Right-Click to open'
+      LIST:
+        '1':
+          WORLD: world
+          X: 33.5
+          Y: 78.0
+          Z: 19.5
+    INVENTORY:
+      SLOTS: 54
+      ITEMS:
+        '1':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '2':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '3':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '4':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '5':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '6':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '7':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '8':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '9':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '10':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '11':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '17':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '18':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '19':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '20':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '26':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '27':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '28':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '29':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '35':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '36':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '37':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '38':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '44':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '45':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '46':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '47':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '48':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '49':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '50':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '51':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '52':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '53':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '54':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '12':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Helmet
+              lore:
+                - §7Invisibility I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '13':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Chestplate
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '14':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Leggings
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '15':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Boots
+              lore:
+                - §4Speed II
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '16':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: IRON_SWORD
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Sword
+              enchants:
+                DAMAGE_ALL: 4
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '21':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Helmet
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '22':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Chestplate
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '23':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Leggings
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '24':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '25':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_SWORD
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Sword
+              enchants:
+                DAMAGE_ALL: 3
+                DURABILITY: 3
+                FIRE_ASPECT: 1
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '30':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Helmet
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '31':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Chestplate
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '32':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Leggings
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '33':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '34':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: IRON_AXE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Axe
+              enchants:
+                DAMAGE_ALL: 5
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '39':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§4Koth§8] §4Helmet
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '40':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§4Koth§8] §4Chestplate
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '41':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§4Koth§8] §4Leggings
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '42':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§4Koth§8] §4Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '43':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: BOW
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§4Koth§8] §4Bow
+              enchants:
+                ARROW_DAMAGE: 6
+                DURABILITY: 3
+                ARROW_INFINITE: 1
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+    LOCATIONS:
+      '1':
+        WORLD: world
+        X: 33
+        Y: 75
+        Z: 19
+        TASK-ID: 393
+  Event:
+    EFFECT:
+      SHAPE: Square
+    PRIZE-AMOUNT: 1
+    BROADCAST:
+      ENABLE: false
+      MESSAGE: '&d{player} &ehas been open a &d{crate} Crate&e!'
+    DISPLAYNAME: '&6&lEvent Crate'
+    ITEM:
+      MATERIAL: STAINED_GLASS
+      DATA: 1
+    LORE:
+      - '&7&oPlace the Event Crate.'
+    KEY:
+      DISPLAYNAME: '&6&lEvent Key'
+      ITEM:
+        MATERIAL: INK_SACK
+        DATA: 14
+      SOUND:
+        ENABLE: true
+        TYPE: ORB_PICKUP
+      ENCHANT:
+        ENABLE: true
+        TYPE: DURABILITY
+        LEVEL: 5
+      LORE:
+        - '&7&oRight click on the Event Crate to open the Key.'
+    HOLOGRAM:
+      ITEM:
+        ENABLE: true
+        MATERIAL: INK_SACK
+        DATA: 14
+      LINES:
+        - '{crate}'
+        - '&7Left-Click to preview'
+        - '&7Right-Click to open'
+      LIST:
+        '1':
+          WORLD: world
+          X: 33.5
+          Y: 78.0
+          Z: 16.5
+    INVENTORY:
+      SLOTS: 54
+      ITEMS:
+        '1':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '2':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '3':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '4':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '5':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '6':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '7':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '8':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '9':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '10':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '11':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '17':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '18':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '19':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '20':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '26':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '27':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '28':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '29':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '35':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '36':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '37':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '38':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '44':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '45':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '46':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '47':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '48':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '49':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '50':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '51':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '52':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '53':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '54':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 1
+        '39':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Helmet
+              lore:
+                - §7Invisibility I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '40':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Chestplate
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '41':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Leggings
+              lore:
+                - §aNight Vision I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '42':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '43':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_BLOCK
+            amount: 64
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '30':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§6Event§8] §7Helmet
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '31':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§6Event§8] §7Chestplate
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '32':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§6Event§8] §7Leggings
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '33':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §8[§6Event§8] §7Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '34':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: BOW
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Bow
+              enchants:
+                ARROW_DAMAGE: 5
+                DURABILITY: 3
+                ARROW_INFINITE: 1
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '21':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Helmet
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '22':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Chestplate
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '23':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Leggings
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '24':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '25':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: IRON_SWORD
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Sword
+              enchants:
+                DAMAGE_ALL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '12':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Helmet
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '13':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Chestplate
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '14':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Leggings
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '15':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Boots
+              lore:
+                - §4Speed II
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '16':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: IRON_SWORD
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §8[§6Event§8] §7Sword
+              enchants:
+                DAMAGE_ALL: 2
+                DURABILITY: 3
+                FIRE_ASPECT: 1
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+    LOCATIONS:
+      '1':
+        WORLD: world
+        X: 33
+        Y: 75
+        Z: 16
+        TASK-ID: 411
+  Legendary:
+    EFFECT:
+      SHAPE: Square
+    PRIZE-AMOUNT: 1
+    BROADCAST:
+      ENABLE: false
+      MESSAGE: '&d{player} &ehas been open a &d{crate} Crate&e!'
+    DISPLAYNAME: '&5&lLegendary Crate'
+    ITEM:
+      MATERIAL: STAINED_GLASS
+      DATA: 10
+    LORE:
+      - '&7&oPlace the Legendary Crate.'
+    KEY:
+      DISPLAYNAME: '&5&lLegendary Key'
+      ITEM:
+        MATERIAL: INK_SACK
+        DATA: 5
+      SOUND:
+        ENABLE: true
+        TYPE: ORB_PICKUP
+      ENCHANT:
+        ENABLE: true
+        TYPE: DURABILITY
+        LEVEL: 5
+      LORE:
+        - '&7&oRight click on the Legendary Crate to open the Key.'
+    HOLOGRAM:
+      ITEM:
+        ENABLE: true
+        MATERIAL: INK_SACK
+        DATA: 5
+      LINES:
+        - '{crate}'
+        - '&7Left-Click to preview'
+        - '&7Right-Click to open'
+      LIST:
+        '1':
+          WORLD: world
+          X: 25.5
+          Y: 78.0
+          Z: 24.5
+    INVENTORY:
+      SLOTS: 54
+      ITEMS:
+        '1':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '9':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '10':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '18':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '19':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '27':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '28':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '36':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '37':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '39':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Helmet
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '40':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Chestplate
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '41':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Leggings
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '42':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '43':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_BLOCK
+            amount: 16
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '45':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '46':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '54':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 10
+        '2':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '3':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '4':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '5':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '6':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '7':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '8':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '11':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '17':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '20':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '26':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '29':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '35':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '38':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '44':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '47':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '48':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '49':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '50':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '51':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '52':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '53':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '30':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §5§lLegendary Helmet
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '31':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §5§lLegendary Chestplate
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '32':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §5§lLegendary Leggings
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '33':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §5§lLegendary Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '34':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: BOW
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Bow
+              enchants:
+                ARROW_DAMAGE: 5
+                DURABILITY: 3
+                ARROW_INFINITE: 1
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '16':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: EMERALD_BLOCK
+            amount: 32
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '21':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Helmet
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '22':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Chestplate
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '23':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Leggings
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '24':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '12':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Helmet
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '13':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Chestplate
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '14':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Leggings
+              lore:
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '15':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Boots
+              lore:
+                - §4Speed II
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 2
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '25':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_SWORD
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §5§lLegendary Sword
+              enchants:
+                DAMAGE_ALL: 2
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+    LOCATIONS:
+      '1':
+        WORLD: world
+        X: 25
+        Y: 75
+        Z: 24
+        TASK-ID: 12630
+  Hysteria:
+    EFFECT:
+      SHAPE: Square
+    PRIZE-AMOUNT: 1
+    BROADCAST:
+      ENABLE: false
+      MESSAGE: '&d{player} &ehas been open a &d{crate} Crate&e!'
+    DISPLAYNAME: '&4&lHysteria Crate'
+    ITEM:
+      MATERIAL: STAINED_GLASS
+      DATA: 14
+    LORE:
+      - '&7&oPlace the Hysteria Crate.'
+    KEY:
+      DISPLAYNAME: '&4&lHysteria Key'
+      ITEM:
+        MATERIAL: INK_SACK
+        DATA: 1
+      SOUND:
+        ENABLE: true
+        TYPE: ORB_PICKUP
+      ENCHANT:
+        ENABLE: true
+        TYPE: DURABILITY
+        LEVEL: 5
+      LORE:
+        - '&7&oRight click on the Hysteria Crate to open the Key.'
+    HOLOGRAM:
+      ITEM:
+        ENABLE: true
+        MATERIAL: INK_SACK
+        DATA: 1
+      LINES:
+        - '{crate}'
+        - '&7Left-Click to preview'
+        - '&7Right-Click to open'
+      LIST:
+        '1':
+          WORLD: world
+          X: 26.5
+          Y: 78.0
+          Z: 17.5
+    INVENTORY:
+      SLOTS: 54
+      ITEMS:
+        '1':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '2':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '3':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '4':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '5':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '6':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '7':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '8':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '9':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '10':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '11':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '17':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '18':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '19':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '20':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '26':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '27':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '28':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '29':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '35':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '36':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '37':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '38':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '44':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '45':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '46':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '47':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '48':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '49':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '50':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '51':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '52':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '53':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 15
+        '54':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: STAINED_GLASS_PANE
+            damage: 14
+        '12':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Helmet
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '13':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Chestplate
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '14':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Leggings
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '15':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Boots
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+                - §4Speed II
+                - §9Implants V
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '16':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: IRON_SWORD
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Sword
+              enchants:
+                DAMAGE_ALL: 4
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '21':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Helmet
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '22':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Chestplate
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '23':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Leggings
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '24':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: GOLD_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '25':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: DIAMOND_SWORD
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Sword
+              enchants:
+                DAMAGE_ALL: 3
+                DURABILITY: 3
+                FIRE_ASPECT: 1
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '30':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Helmet
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '31':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Chestplate
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '32':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Leggings
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '33':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: CHAINMAIL_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '34':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: BOW
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Bow
+              enchants:
+                ARROW_DAMAGE: 6
+                DURABILITY: 3
+                ARROW_INFINITE: 1
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '39':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_HELMET
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §4§lHysteria Helmet
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '40':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_CHESTPLATE
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §4§lHysteria Chestplate
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '41':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_LEGGINGS
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §4§lHysteria Leggings
+              lore:
+                - §4HellForged IV
+                - §4FireResistance I
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '42':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: LEATHER_BOOTS
+            meta:
+              ==: ItemMeta
+              meta-type: LEATHER_ARMOR
+              display-name: §4§lHysteria Boots
+              enchants:
+                PROTECTION_ENVIRONMENTAL: 3
+                DURABILITY: 3
+                PROTECTION_FALL: 4
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+        '43':
+          ITEM:
+            ==: org.bukkit.inventory.ItemStack
+            type: IRON_AXE
+            meta:
+              ==: ItemMeta
+              meta-type: UNSPECIFIC
+              display-name: §4§lHysteria Axe
+              enchants:
+                DAMAGE_ALL: 5
+                DURABILITY: 3
+          CHANCE: 50.0
+          COMMAND:
+            ENABLE: false
+            COMMANDS: {}
+    LOCATIONS:
+      '1':
+        WORLD: world
+        X: 26
+        Y: 75
+        Z: 17
+        TASK-ID: 16373

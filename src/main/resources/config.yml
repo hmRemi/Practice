@@ -1,10 +1,10 @@
 #=================================================#
 #                                                 #
-#             cPractice Configuration             #
+#             HyPractice Configuration             #
 #                                                 #
 #=================================================#
 
-# Use cPractice tablist
+# Use HyPractice tablist
 TABLIST_ENABLE: true
 MESSAGE-REPLY-BOOLEAN: true
 # Lobby Coords

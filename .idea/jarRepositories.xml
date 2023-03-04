@@ -53,6 +53,11 @@
     </remote-repository>
     <remote-repository>
       <option name="id" value="citizens-repo" />
+      <option name="name" value="Citizens Repository" />
+      <option name="url" value="https://maven.citizensnpcs.co/repo" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="citizens-repo" />
       <option name="name" value="citizens-repo" />
       <option name="url" value="https://repo.citizensnpcs.co" />
     </remote-repository>
