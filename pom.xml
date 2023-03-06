@@ -87,11 +87,19 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.alonsoaliaga</groupId>
+            <artifactId>alonsoaleagues</artifactId>
+            <version>0.9.2-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/AlonsoLeagues-v0.9.2-BETA.jar</systemPath>
+        </dependency>
+
+        <dependency>
             <groupId>net.citizensnpcs</groupId>
-            <artifactId>citizens-main</artifactId>
+            <artifactId>api</artifactId>
             <version>2.0.25-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/libs/Citizens-2.0.30-b2895_1.jar</systemPath>
+            <systemPath>${project.basedir}/libs/Citizens-2.0.30-b2954.jar</systemPath>
         </dependency>
 
         <!--spigots-->

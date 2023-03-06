@@ -84,7 +84,7 @@ public class KitButton extends Button {
         lore.add(CC.MENU_BAR);
 
         return new ItemBuilder(kit.getDisplayIcon().getType())
-                .name(HyPractice.get().getLeaderboardConfig().getString("INVENTORY.KIT.TITLE").replace("{kit}", kit.getName()))
+                .name(HyPractice.get().getLeaderboardConfig().getString("INVENTORY.KIT.TITLE").replace("{kit}", kit.getDisplayName()))
                 .durability(kit.getDisplayIcon().getDurability())
                 .lore(lore)
                 .build();

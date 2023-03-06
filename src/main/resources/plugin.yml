@@ -1,6 +1,6 @@
 main: com.hysteria.practice.HyPractice
 name: HyPractice
 version: ${project.version}
-authors: ["ziue"]
+authors: ["Hysteria Development"]
 depend:
   - HolographicDisplays

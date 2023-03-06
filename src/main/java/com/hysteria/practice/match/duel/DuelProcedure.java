@@ -50,7 +50,7 @@ public class DuelProcedure {
 		if (party) {
 			new MessageFormat(Locale.DUEL_SENT_PARTY
 				.format(senderProfile.getLocale()))
-				.add("{kit_name}", kit.getName())
+				.add("{kit_name}", kit.getDisplayName())
 				.add("{target_name}", target.getName())
 				.add("{arena_name}", arena.getName())
 				.add("{party_size}", String.valueOf(targetProfile.getParty().getPlayers().size()))
@@ -58,7 +58,7 @@ public class DuelProcedure {
 
 			for (String msg : new MessageFormat(Locale.DUEL_RECEIVED_PARTY
 								.format(targetProfile.getLocale()))
-								.add("{kit_name}", kit.getName())
+								.add("{kit_name}", kit.getDisplayName())
 								.add("{sender_name}", sender.getName())
 								.add("{arena_name}", arena.getName())
 								.add("{party_size}", String.valueOf(targetProfile.getParty().getPlayers().size()))
@@ -84,14 +84,14 @@ public class DuelProcedure {
 			if(arena.getName() != null) {
 				new MessageFormat(Locale.DUEL_SENT
 						.format(senderProfile.getLocale()))
-						.add("{kit_name}", kit.getName())
+						.add("{kit_name}", kit.getDisplayName())
 						.add("{target_name}", target.getName())
 						.add("{arena_name}", arena.getName())
 						.send(sender);
 
 				for (String msg : new MessageFormat(Locale.DUEL_RECEIVED
 						.format(targetProfile.getLocale()))
-						.add("{kit_name}", kit.getName())
+						.add("{kit_name}", kit.getDisplayName())
 						.add("{sender_name}", sender.getName())
 						.add("{arena_name}", arena.getName())
 						.toList()) {

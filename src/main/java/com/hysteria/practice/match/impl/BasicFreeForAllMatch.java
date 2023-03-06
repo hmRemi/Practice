@@ -165,7 +165,7 @@ public class BasicFreeForAllMatch extends Match {
 					.replace("{opponents-size}", String.valueOf(getRemainingTeams() - 1))));
 		} else {
 			config.getStringList("FIGHTS.PARTY-FFA.IS-DEAD-OR-SPECTATOR").forEach(line -> lines.add(line
-					.replace("{kit}", getKit().getName())
+					.replace("{kit}", getKit().getDisplayName())
 					.replace("{duration}", getDuration())
 					.replace("{teams}", String.valueOf(getRemainingTeams()))));
 		}

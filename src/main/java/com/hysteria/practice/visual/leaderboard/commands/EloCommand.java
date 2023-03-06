@@ -33,7 +33,7 @@ public class EloCommand extends BaseCommand {
                 if (s.contains("{format}")) {
                     Kit.getKits().stream().filter(Kit::isEnabled).filter(kit -> kit.getGameRules().isRanked()).forEach(kit ->
                             player.sendMessage(CC.translate(HyPractice.get().getLangConfig().getString("ELO.VIEW_FORMAT")
-                                    .replace("{kit}", kit.getName())
+                                    .replace("{kit}", kit.getDisplayName())
                                     .replace("{elo}", String.valueOf(Profile.get(target.getUniqueId()).getKitData().get(kit).getElo())))));
                     continue;
                 }
@@ -49,7 +49,7 @@ public class EloCommand extends BaseCommand {
             if (s.contains("{format}")) {
                 Kit.getKits().stream().filter(Kit::isEnabled).filter(kit -> kit.getGameRules().isRanked()).forEach(kit ->
                         player.sendMessage(CC.translate(HyPractice.get().getLangConfig().getString("ELO.VIEW_FORMAT")
-                                .replace("{kit}", kit.getName())
+                                .replace("{kit}", kit.getDisplayName())
                                 .replace("{elo}", String.valueOf(Profile.get(player.getUniqueId()).getKitData().get(kit).getElo())))));
                 continue;
             }

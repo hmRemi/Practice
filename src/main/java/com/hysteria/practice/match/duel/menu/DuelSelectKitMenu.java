@@ -65,7 +65,7 @@ public class DuelSelectKitMenu extends Menu {
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(kit.getDisplayIcon())
-					.name(HyPractice.get().getLangConfig().getString("DUEL.SELECT.KIT_MENU.NAME").replace("{name}", kit.getName()))
+					.name(HyPractice.get().getLangConfig().getString("DUEL.SELECT.KIT_MENU.NAME").replace("{name}", kit.getDisplayName()))
 					.build();
 		}
 
@@ -106,7 +106,5 @@ public class DuelSelectKitMenu extends Menu {
 				new DuelSelectArenaMenu().openMenu(player);
 			}
 		}
-
 	}
-
 }

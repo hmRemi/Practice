@@ -1,5 +1,6 @@
 package com.hysteria.practice.match;
 
+import com.alonsoaliaga.alonsoleagues.api.AlonsoLeaguesAPI;
 import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.Locale;
 import com.hysteria.practice.chunk.ChunkRestorationManager;
@@ -9,9 +10,7 @@ import com.hysteria.practice.game.knockback.Knockback;
 import com.hysteria.practice.game.tournament.Tournament;
 import com.hysteria.practice.match.events.MatchEndEvent;
 import com.hysteria.practice.match.events.MatchStartEvent;
-import com.hysteria.practice.match.impl.BasicTeamLivesFight;
-import com.hysteria.practice.match.impl.BasicTeamMatch;
-import com.hysteria.practice.match.impl.BasicTeamRoundMatch;
+import com.hysteria.practice.match.impl.*;
 import com.hysteria.practice.match.participant.MatchGamePlayer;
 import com.hysteria.practice.match.task.*;
 import com.hysteria.practice.player.cosmetics.impl.killeffects.KillEffectType;
@@ -30,7 +29,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.github.paperspigot.Title;
 import com.hysteria.practice.game.arena.Arena;
 import com.hysteria.practice.game.arena.impl.StandaloneArena;
-import com.hysteria.practice.match.impl.BasicTeamBedFight;
 import com.hysteria.practice.player.profile.participant.alone.GameParticipant;
 import com.hysteria.practice.utilities.chat.CC;
 import lombok.Getter;
@@ -414,6 +412,7 @@ public abstract class Match {
 				if (!gamePlayer.isDisconnected()) {
 					Player player = gamePlayer.getPlayer();
 
+
 					if (player != null) {
 						for (BaseComponent[] components : generateEndComponents(player)) {
 							if(!getKit().getGameRules().isBedFight() && !getKit().getGameRules().isLives()) {
@@ -497,7 +496,7 @@ public abstract class Match {
 		} else if (getKit().getGameRules().isBedFight()) {
 			// Check if the participant has a bed
 			if(getParticipant(dead).isHasBed()) {
-				// Set player as alive if they have a bed
+				//				// Set player as alive if a bed
 				getParticipant(dead).getPlayers().forEach(gamePlayer -> gamePlayer.setDead(false));
 			} else {
 				// Otherwise set the player as dead
@@ -519,25 +518,26 @@ public abstract class Match {
 
 		if(killer != null) {
 			Profile winner = Profile.get(killer.getUniqueId());
-			Match match = winner.getMatch();
 
 			KillEffectType effect = winner.getKillEffectType();
 			if (effect != null && effect.getCallable() != null) {
 				effect.getCallable().call(dead.getPlayer().getLocation().clone().add(0.0, 1.0, 0.0));
 			}
 
-			if(!match.getKit().getGameRules().isBattlerush() && !match.getKit().getGameRules().isBridge() && !match.getKit().getGameRules().isBedFight() || !match.getKit().getGameRules().isLives()) {
-				winner.getKitData().get(match.getKit()).incrementStreak();
+			/*if (match != null) {
+				if (!match.getKit().getGameRules().isBattlerush() && !match.getKit().getGameRules().isBridge() && !match.getKit().getGameRules().isBedFight() && !match.getKit().getGameRules().isLives()) {
+					winner.getKitData().get(match.getKit()).incrementStreak();
 
-				if (profile.getKitData().get(match.getKit()).hasStreak()) {
-					profile.getKitData().get(match.getKit()).resetStreak();
+					if (profile.getKitData().get(match.getKit()).hasStreak()) {
+						profile.getKitData().get(match.getKit()).resetStreak();
+					}
 				}
 			}
 
 			if(!match.getKit().getGameRules().isBridge() && !match.getKit().getGameRules().isBattlerush() && !match.getKit().getGameRules().isBedFight() && !match.getKit().getGameRules().isLives()) {
 				// Add coins to winner
 				winner.addCoins(getRandomNumber(10, 50));
-			}
+			}*/
 		}
 
 		if (killer != null) { // If killer isn't null then add a kill to the player.
@@ -594,12 +594,22 @@ public abstract class Match {
 			if (canEndMatch()) {
 				state = MatchState.ENDING_MATCH;
 				if (killer != null) {
-					killer.sendTitle(new Title(CC.translate("&a&lYou have won"), CC.translate(""), 1, 50, 0));
+					Profile winner = new Profile(killer.getUniqueId());
+
+					killer.sendTitle(new Title(CC.translate("&a&lVICTORY!"), CC.translate("&aYou &7won against &a" + dead.getName()), 1, 100, 0));
+
+					AlonsoLeaguesAPI.addPoints(killer.getUniqueId(), 10);
+					winner.addCoins(getRandomNumber(10, 50));
+
+					killer.sendMessage(CC.translate("&7You have gained &c10 &7experience"));
+					killer.sendMessage(CC.translate("&7You have gained &c10 &7coins"));
+
 				}
 
-				dead.sendTitle(new Title(CC.translate("&c&lYou have lost"), CC.translate("&7Requeue to try again"), 1, 50, 0));
+                if(killer != null) {
+                    dead.sendTitle(new Title(CC.translate("&c&lDEFEAT!"), CC.translate("&cYou &7lost to &c" + killer.getName()), 1, 100, 0));
+                }
 
-				//TaskUtil.runLater(() -> dead.spigot().respawn(), 1L);
 			}
 			logicTask.setNextAction(4);
 		} else {

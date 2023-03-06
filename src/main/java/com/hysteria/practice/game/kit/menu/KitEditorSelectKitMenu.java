@@ -55,7 +55,7 @@ public class KitEditorSelectKitMenu extends Menu {
 					.addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-					.name(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.SELECT-KIT.NAMECOLOR") + kit.getName())
+					.name(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.SELECT-KIT.NAMECOLOR") + kit.getDisplayName())
 					.lore(HyPractice.get().getKiteditorConfig().getStringList("KITEDITOR.SELECT-KIT.LORE"))
 					.build();
 		}

@@ -20,7 +20,5 @@ public class BotFight extends BaseCommand {
         Player player = commandArgs.getPlayer();
 
         player.sendMessage(CC.translate("&7Currently under development"));
-        new BotFightMenu().openMenu(player);
-
     }
 }

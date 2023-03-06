@@ -39,8 +39,9 @@ public class MatchLogicTask extends BukkitRunnable {
 				match.sendMessage(Locale.MATCH_STARTED, new MessageFormat());
 				match.sendSound(Sound.ORB_PICKUP, 1.0F, 1.0F);
 				match.sendMessage(Locale.MATCH_WARNING, new MessageFormat());
+				match.broadcastTitle("&a&lMATCH STARTED!", "&7Good Luck!", 50);
 			} else {
-				match.broadcastTitle("&c&lMatch starting in", "&4" + nextAction, 20);
+				match.broadcastTitle("&a&lStarting in", "&7" + nextAction, 20);
 				match.sendMessage(Locale.MATCH_START_TIMER, new MessageFormat()
 					.add("{time}", String.valueOf(nextAction))
 					.add("{context}", nextAction == 1 ? "" : "s")

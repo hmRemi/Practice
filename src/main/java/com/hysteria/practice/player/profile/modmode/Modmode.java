@@ -87,7 +87,7 @@ public class Modmode {
                             .replace("{playerA}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getPlayer().getName()))
                             .replace("{playerB}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getPlayer().getName()))
                             .replace("{duration}", profile.getMatch().getDuration().replace("{arena}", profile.getMatch().getArena().getName()))
-                            .replace("{kit}", profile.getMatch().getKit().getName())
+                            .replace("{kit}", profile.getMatch().getKit().getDisplayName())
                             .replace("{arena}", profile.getMatch().getArena().getName())
                             .replace("{playerA_hits}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getHits()))
                             .replace("{playerB_hits}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getHits()))));
@@ -97,17 +97,17 @@ public class Modmode {
                             .replace("{playerA}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getPlayer().getName()))
                             .replace("{playerB}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getPlayer().getName()))
                             .replace("{duration}", profile.getMatch().getDuration().replace("{arena}", profile.getMatch().getArena().getName()))
-                            .replace("{kit}", profile.getMatch().getKit().getName())
+                            .replace("{kit}", profile.getMatch().getKit().getDisplayName())
                             .replace("{arena}", profile.getMatch().getArena().getName())
-                            .replace("{redHasBed}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getHits()))
-                            .replace("{blueHasBed}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getHits()))));
+                            .replace("{redHasBed}", ((BasicTeamMatch) profile.getMatch()).getParticipantA().isHasBed() ? "&a✔" : "&c✗")
+                            .replace("{blueHasBed}", ((BasicTeamMatch) profile.getMatch()).getParticipantB().isHasBed() ? "&a✔" : "&c✗")));
                 } else if (teamMatch.getKit().getGameRules().isLives()) {
                     HyPractice.get().getScoreboardConfig().getStringList("STAFF_MODE.SPECTATING_LIVES").forEach(s ->
                         lines.add(s
                             .replace("{playerA}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getPlayer().getName()))
                             .replace("{playerB}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getPlayer().getName()))
                             .replace("{duration}", profile.getMatch().getDuration().replace("{arena}", profile.getMatch().getArena().getName()))
-                            .replace("{kit}", profile.getMatch().getKit().getName())
+                            .replace("{kit}", profile.getMatch().getKit().getDisplayName())
                             .replace("{arena}", profile.getMatch().getArena().getName())
                             .replace("{redLives}", StringUtils.getStringPointLose(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLives(), org.bukkit.ChatColor.RED, 3))
                             .replace("{blueLives}", StringUtils.getStringPointLose(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLives(), org.bukkit.ChatColor.BLUE, 3))));
@@ -117,14 +117,14 @@ public class Modmode {
                             .replace("{playerA}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getPlayer().getName()))
                             .replace("{playerB}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getPlayer().getName()))
                             .replace("{duration}", profile.getMatch().getDuration())
-                            .replace("{kit}", profile.getMatch().getKit().getName())
+                            .replace("{kit}", profile.getMatch().getKit().getDisplayName())
                             .replace("{arena}", profile.getMatch().getArena().getName())));
                 }
             } else {
                 HyPractice.get().getScoreboardConfig().getStringList("STAFF_MODE.SPECTATING").forEach(s ->
                     lines.add(s
                         .replace("{duration}", profile.getMatch().getDuration())
-                        .replace("{kit}", profile.getMatch().getKit().getName())
+                        .replace("{kit}", profile.getMatch().getKit().getDisplayName())
                         .replace("{arena}", profile.getMatch().getArena().getName())));
             }
         } else {

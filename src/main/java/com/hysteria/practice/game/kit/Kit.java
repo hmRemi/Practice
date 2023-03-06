@@ -26,6 +26,7 @@ public class Kit {
 	@Getter private static final List<Kit> kits = new ArrayList<>();
 
 	private final String name;
+	@Setter @Getter private String displayName;
 	@Setter private boolean enabled;
 	@Setter private ItemStack displayIcon;
 	@Setter private int slot;
@@ -48,6 +49,7 @@ public class Kit {
 		FileConfiguration configFile = HyPractice.get().getKitsConfig().getConfiguration();
 		configFile.set(path + ".enabled", enabled);
 		configFile.set(path + ".slot", slot);
+		configFile.set(path + ".displayName", displayName);
 		configFile.set(path + ".icon.material", displayIcon.getType().name());
 		configFile.set(path + ".icon.durability", displayIcon.getDurability());
 
@@ -103,6 +105,7 @@ public class Kit {
 			kit.setEnabled(config.getBoolean(path + ".enabled"));
 
 			kit.setSlot(config.getInt(path + ".slot"));
+			kit.setDisplayName(config.getString(path + ".displayName"));
 
 			kit.setDisplayIcon(new ItemBuilder(Material.valueOf(config.getString(path + ".icon.material")))
 					.durability(config.getInt(path + ".icon.durability"))
@@ -175,6 +178,15 @@ public class Kit {
 	public static Kit getByName(String name) {
 		for (Kit kit : kits) {
 			if (kit.getName().equalsIgnoreCase(name)) {
+				return kit;
+			}
+		}
+		return null;
+	}
+
+	public static Kit getByDisplayName(String name) {
+		for (Kit kit : kits) {
+			if (kit.getDisplayName().equalsIgnoreCase(name)) {
 				return kit;
 			}
 		}

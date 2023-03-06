@@ -30,7 +30,7 @@ public class StatsButton extends Button {
             if (s.contains("{kits}")) {
                 Kit.getKits().stream().filter(kit -> kit.getGameRules().isRanked() && kit.isEnabled()).forEach(kit ->
                         lore.add(HyPractice.get().getLeaderboardConfig().getString("INVENTORY.PERSONAL_STATS.KITS_FORMAT")
-                                .replace("{kit}", kit.getName())
+                                .replace("{kit}", kit.getDisplayName())
                                 .replace("{color}", profile.getColor())
                                 .replace("{data}", String.valueOf(profile.getKitData().get(kit).getElo()))));
                 continue;

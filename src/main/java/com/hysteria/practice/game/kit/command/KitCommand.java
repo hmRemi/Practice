@@ -17,6 +17,7 @@ public class KitCommand extends BaseCommand {
         new KitSetIconCommand();
         new KitToggleComand();
         new KitDeleteCommand();
+        new KitSetDisplayNameCommand();
         new KitStatusCommand();
         new KitRulesCommand();
         new KitSetSlotCommand();
@@ -42,6 +43,7 @@ public class KitCommand extends BaseCommand {
         player.sendMessage(CC.translate(" &7▢ &4/kit setloadout &8<&7kit&8> &8(&7&oSet a kit's loadout&8&o)"));
         player.sendMessage(CC.translate(" &7▢ &4/kit status &8<&7kit&8> &8(&7&oShows the status of kits&8&o)"));
         player.sendMessage(CC.translate(" &7▢ &4/kit setrule &8<&7kit&8> &8<&7rule&8> &8<&7value&8> >&8(&7&oSet a kit's rules&8&o)"));
+        player.sendMessage(CC.translate(" &7▢ &4/kit setdisplayname &8<&7kit&8> &8<&7displayname&8> &8(&7&oSet a kit's displayname&8&o)"));
         player.sendMessage(CC.CHAT_BAR);
     }
 }

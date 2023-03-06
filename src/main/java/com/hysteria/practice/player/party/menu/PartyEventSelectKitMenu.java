@@ -87,7 +87,7 @@ public class PartyEventSelectKitMenu extends Menu {
 					.addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-					.name("&c&l" + kit.getName())
+					.name("&c&l" + kit.getDisplayName())
 					.build();
 		}
 

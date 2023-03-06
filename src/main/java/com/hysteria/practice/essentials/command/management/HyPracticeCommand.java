@@ -8,9 +8,9 @@ import com.hysteria.practice.api.command.CommandArgs;
 import lombok.val;
 import org.bukkit.command.CommandSender;
 
-public class cPracticeCommand extends BaseCommand {
+public class HyPracticeCommand extends BaseCommand {
 
-    @Command(name = "cpractice", aliases = {"cpractice"}, inGameOnly = false, permission = "cpractice.owner")
+    @Command(name = "hypractice", aliases = {"practice"}, inGameOnly = false, permission = "cpractice.owner")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         CommandSender sender = commandArgs.getSender();

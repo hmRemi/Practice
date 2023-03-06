@@ -70,7 +70,7 @@ public class BotMechanics extends BukkitRunnable
             this.swingRangeModifier = 3.0;
             delay = 1;
         }
-        this.runTaskTimerAsynchronously((Plugin) HyPractice.get(), 60L, (long)delay);
+        this.runTaskTimerAsynchronously(HyPractice.get(), 60L, (long)delay);
     }
 
     private void giveKit(final Kit kit) {
@@ -358,6 +358,7 @@ public class BotMechanics extends BukkitRunnable
         }
         if (this.Bot.isSpawned() && this.Bot.getBukkitEntity() != null) {
             if (!this.kit) {
+                System.out.println("Setting kit & not protected");
                 this.Bot.getNpc().setProtected(false);
                 this.giveKit(this.Bot.getKit());
             }
@@ -365,17 +366,22 @@ public class BotMechanics extends BukkitRunnable
                 this.navigation = true;
                 if (this.difficulty == com.hysteria.practice.match.bot.Bot.BotDifficulty.HARD) {
                     this.Bot.getNpc().getNavigator().getLocalParameters().speedModifier(1.33f);
+                    System.out.println("Setting speed hard");
                 }
                 else if (this.difficulty == com.hysteria.practice.match.bot.Bot.BotDifficulty.EXPERT) {
+                    System.out.println("Setting speed expert");
                     this.Bot.getNpc().getNavigator().getLocalParameters().speedModifier(1.66f);
                 }
+                System.out.println("Setting attack range");
                 this.Bot.getNpc().getNavigator().getLocalParameters().attackRange(this.attackRange);
             }
             if (!this.Bot.getBukkitEntity().isDead() && this.Bot.getBukkitEntity().getLocation().getBlockY() < 0) {
+                System.out.println("Setting health");
                 this.Bot.getBukkitEntity().setHealth(0.0);
                 return;
             }
             if (this.Bot.getBukkitEntity().getVelocity().getY() < 0.1 && this.Bot.getBukkitEntity().getVelocity().getY() > -0.0784) {
+                System.out.println("Setting velocity");
                 final Vector v = this.Bot.getNpc().getEntity().getVelocity();
                 this.Bot.getNpc().getEntity().setVelocity(v.setY(-0.0784));
             }
@@ -384,6 +390,7 @@ public class BotMechanics extends BukkitRunnable
                 for (final UUID uuid : this.players) {
                     final Player pl = Bukkit.getPlayer(uuid);
                     if (pl != null && pl.getWorld().getName().equals(this.Bot.getBukkitEntity().getWorld().getName())) {
+                        System.out.println("if player not null and is bot name");
                         final double dis = this.Bot.getBukkitEntity().getLocation().distanceSquared(pl.getLocation());
                         if (dis >= distance) {
                             continue;
@@ -393,24 +400,37 @@ public class BotMechanics extends BukkitRunnable
                     }
                 }
             }
-            if (this.target != null && !this.selfHealing) {
+            /*if (this.target != null && !this.selfHealing) {
                 if (distance <= this.attackRange * this.attackRange * 1.5 && this.random.nextDouble() > 0.2) {
+                    System.out.println("Setting target");
                     this.Bot.getNpc().getNavigator().setTarget((Entity)this.target, true);
                 }
                 else {
+                    System.out.println("Setting target2");
                     this.Bot.getNpc().getNavigator().setTarget(this.target.getLocation());
                 }
+                System.out.println("Setting not paused");
                 this.Bot.getNpc().getNavigator().setPaused(false);
             }
             if (this.Bot.getNpc().getNavigator().getTargetAsLocation() != null) {
+                System.out.println("Setting sprinting");
                 this.Bot.getBukkitEntity().setSprinting(true);
-            }
+            }*/
             final double x = this.attackRange + this.swingRangeModifier + this.random.nextDouble() * 3.0;
+            if(target != null) {
+                this.Bot.getNpc().getNavigator().setTarget((Entity) this.target, true);
+            } else {
+                this.Bot.getNpc().getNavigator().setTarget(Bot.getBukkitEntity().getLocation());
+                this.Bot.getNpc().getNavigator().setPaused(true);
+
+            }
             if (distance < x * x && !this.Bot.getNpc().getNavigator().isPaused() && !this.selfHealing) {
+                System.out.println("Swing");
                 this.Bot.swing();
             }
             if (!this.Bot.getBukkitEntity().isDead()) {
-                this.attemptToHeal();
+                System.out.println("Trying to heal");
+                //this.attemptToHeal();
             }
         }
     }

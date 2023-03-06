@@ -16,10 +16,9 @@ import com.hysteria.practice.essentials.chat.impl.command.ClearChatCommand;
 import com.hysteria.practice.essentials.chat.impl.command.MuteChatCommand;
 import com.hysteria.practice.essentials.chat.impl.command.SlowChatCommand;
 import com.hysteria.practice.essentials.command.donator.*;
-import com.hysteria.practice.essentials.command.management.AdminInformationCommand;
+import com.hysteria.practice.essentials.command.management.HyPracticeCommand;
 import com.hysteria.practice.essentials.command.management.SetSlotsCommand;
 import com.hysteria.practice.essentials.command.management.SetSpawnCommand;
-import com.hysteria.practice.essentials.command.management.cPracticeCommand;
 import com.hysteria.practice.essentials.command.player.*;
 import com.hysteria.practice.essentials.command.staff.*;
 import com.hysteria.practice.game.arena.ArenaListener;
@@ -43,6 +42,7 @@ import com.hysteria.practice.game.knockback.Knockback;
 import com.hysteria.practice.game.tournament.commands.TournamentCommand;
 import com.hysteria.practice.game.tournament.listeners.TournamentListener;
 import com.hysteria.practice.game.tournament.managers.TournamentManager;
+import com.hysteria.practice.match.bot.BotManager;
 import com.hysteria.practice.match.command.*;
 import com.hysteria.practice.match.duel.command.*;
 import com.hysteria.practice.match.listeners.impl.MatchPearlListener;
@@ -129,11 +129,13 @@ public class HyPractice extends JavaPlugin {
 
     private Essentials essentials;
 
+    private BotManager botManager;
+
+    private ChunkRestorationManager chunkRestorationManager;
     private RankManager rankManager;
     private AbilityManager abilityManager;
     private FFAManager ffaManager;
     private ShopSystem shopSystem;
-    private ChunkRestorationManager chunkRestorationManager;
     private Hotbar hotbar;
     private TournamentManager tournamentManager;
 
@@ -166,7 +168,7 @@ public class HyPractice extends JavaPlugin {
 
         CC.loadPlugin();
         
-        if(!HyPractice.get().getDescription().getAuthors().contains("ziue")) {
+        if(!HyPractice.get().getDescription().getAuthors().contains("Hysteria Development")) {
             Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
             Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "You edited the plugin.yml, please don't do that"));
             Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "Please check your plugin.yml and try again."));
@@ -219,6 +221,8 @@ public class HyPractice extends JavaPlugin {
 
         this.ffaManager = new FFAManager();
         this.ffaManager.init();
+
+        this.botManager = new BotManager();
 
         this.shopSystem = new ShopSystem();
         this.chunkRestorationManager = new ChunkRestorationManager();
@@ -474,7 +478,7 @@ public class HyPractice extends JavaPlugin {
         new DayCommand();
         new GameModeCommand();
         new AbilityCommand();
-        new cPracticeCommand();
+        new HyPracticeCommand();
         new HealCommand();
         new LangCommand();
         new LocationCommand();
@@ -498,7 +502,6 @@ public class HyPractice extends JavaPlugin {
         new EloCommand();
         new SetEloCommand();
         new ResetEloCommand();
-        new AdminInformationCommand();
         new CreateWorldCommand();
         new StatsCommand();
         new LeaderboardCommand();

@@ -17,7 +17,7 @@ MOD_MODE: true
 # from there for external things like web pages or other statistical things
 SAVE_METHOD: MONGO
 # Command to execute on purchase of cosmetic
-PURCHASE-COSMETICS-CMD: pex user {player} setpermission cosmetics.killeffects.{effect}
+PURCHASE-COSMETICS-CMD: pex user {player} setpermission cosmetics.killeffect.{effect}
 # Chat formats for GLOBAL & CLAN CHAT
 CHAT:
   # Global chat format

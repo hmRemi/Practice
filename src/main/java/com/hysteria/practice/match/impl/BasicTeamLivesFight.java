@@ -290,7 +290,7 @@ public class BasicTeamLivesFight extends BasicTeamMatch {
                                     .replace("{opponent-ping}", String.valueOf(BukkitReflection.getPing(opponent.getLeader().getPlayer())))
                                     .replace("{player-ping}", String.valueOf(BukkitReflection.getPing(player)))
                                     .replace("{arena-author}", getArena().getAuthor())
-                                    .replace("{kit}", getKit().getName())
+                                    .replace("{kit}", getKit().getDisplayName())
                                     .replace("{redLives}", StringUtils.getStringPointLose(getParticipantA().getLives(), org.bukkit.ChatColor.RED, 3))
                                     .replace("{blueLives}", StringUtils.getStringPointLose(getParticipantB().getLives(), org.bukkit.ChatColor.BLUE, 3))
                             );

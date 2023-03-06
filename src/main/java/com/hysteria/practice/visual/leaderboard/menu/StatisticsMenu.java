@@ -79,7 +79,7 @@ public class StatisticsMenu extends Menu {
                         .replace("{losses}", String.valueOf(kitData.getLost())));
             }
             return new ItemBuilder(kit.getDisplayIcon())
-                    .name(HyPractice.get().getMainConfig().getString("STATS_MENU.ITEM_NAME").replace("{kit}", kit.getName()))
+                    .name(HyPractice.get().getMainConfig().getString("STATS_MENU.ITEM_NAME").replace("{kit}", kit.getDisplayName()))
                     .lore(lore)
                     .build();
         }

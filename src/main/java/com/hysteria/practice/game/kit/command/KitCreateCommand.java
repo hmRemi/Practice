@@ -16,17 +16,21 @@ public class KitCreateCommand extends BaseCommand {
 		String[] args = commandArgs.getArgs();
 
 		if (args.length == 0) {
-			player.sendMessage(CC.RED + "Please usage: /kit create (name)");
+			player.sendMessage(CC.RED + "Please usage: /kit create (name) (displayname)");
 			return;
 		}
 
 		String kitName = args[0];
+		String kitDisplayname = args[1];
+
 		if (Kit.getByName(kitName) != null) {
 			player.sendMessage(CC.RED + "A kit with that name already exists.");
 			return;
 		}
 
 		Kit kit = new Kit(kitName);
+		kit.setDisplayName(kitDisplayname);
+
 		kit.save();
 		Kit.getKits().add(kit);
 

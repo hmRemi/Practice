@@ -1,5 +1,6 @@
 package com.hysteria.practice.visual.scoreboard;
 
+import com.alonsoaliaga.alonsoleagues.api.AlonsoLeaguesAPI;
 import com.google.common.collect.Lists;
 import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.game.event.game.EventGame;
@@ -43,7 +44,7 @@ public class BoardAdapter implements AssembleAdapter {
 				.replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
 				.replace("{in-fights}", String.valueOf(HyPractice.get().getInFights()))
 				.replace("{in-queues}", String.valueOf(HyPractice.get().getInQueues()))
-				.replace("{division}", String.valueOf(getDivision(player)))
+				.replace("{division}", String.valueOf(AlonsoLeaguesAPI.getLeague(player.getUniqueId())))
 				.replace("{coins}", String.valueOf(profile.getCoins()))
 				.replace("{elo}", String.valueOf(EloUtil.getGlobalElo(profile)))));
 		}

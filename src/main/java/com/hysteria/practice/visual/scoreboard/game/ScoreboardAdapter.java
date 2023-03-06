@@ -44,8 +44,8 @@ public class ScoreboardAdapter {
                                     .replace("{duration}", profile.getMatch().getDuration().replace("{arena}", profile.getMatch().getArena().getName()))
                                     .replace("{kit}", profile.getMatch().getKit().getName())
                                     .replace("{arena}", profile.getMatch().getArena().getName())
-                                    .replace("{redHasBed}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantA().getLeader().getHits()))
-                                    .replace("{blueHasBed}", String.valueOf(((BasicTeamMatch) profile.getMatch()).getParticipantB().getLeader().getHits()))));
+                                    .replace("{redHasBed}", ((BasicTeamMatch) profile.getMatch()).getParticipantA().isHasBed() ? "&a✔" : "&c✗")
+                                    .replace("{blueHasBed}", ((BasicTeamMatch) profile.getMatch()).getParticipantB().isHasBed() ? "&a✔" : "&c✗")));
                 } else if (teamMatch.getKit().getGameRules().isLives()) {
                     HyPractice.get().getScoreboardConfig().getStringList("FIGHTS.SPECTATING_LIVES").forEach(s ->
                             lines.add(s

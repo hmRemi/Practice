@@ -25,7 +25,7 @@ public class KitEditEffectsMenu extends Menu {
 
     @Override
     public String getTitle(Player player) {
-        return "&cEditing &f" + kit.getName() + " &ceffects";
+        return "&cEditing &f" + kit.getDisplayName() + " &ceffects";
     }
 
     @Override

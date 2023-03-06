@@ -38,12 +38,12 @@ public class DuelRequest {
 
 		if (sender != null && target != null) {
 			new MessageFormat(Locale.DUEL_SENDER_EXPIRED.format(Profile.get(sender.getUniqueId()).getLocale()))
-					.add("{kit}", kit.getName())
+					.add("{kit}", kit.getDisplayName())
 					.add("{target}", target.getName())
 					.send(sender);
 
 			new MessageFormat(Locale.DUEL_TARGET_EXPIRED.format(Profile.get(target.getUniqueId()).getLocale()))
-					.add("{kit}", kit.getName())
+					.add("{kit}", kit.getDisplayName())
 					.add("{sender}", sender.getName())
 					.send(target);
 		}
