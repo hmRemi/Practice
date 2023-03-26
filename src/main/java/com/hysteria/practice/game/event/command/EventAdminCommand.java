@@ -31,7 +31,7 @@ public class EventAdminCommand extends BaseCommand {
 		player.sendMessage(CC.RED + "Event Admin");
 
 		for (String[] command : HELP) {
-			player.sendMessage(CC.RED + command[0] + CC.GRAY + " - " + CC.WHITE + command[1]);
+			player.sendMessage(CC.GRAY + command[0] + CC.GRAY + " - " + CC.AQUA + command[1]);
 		}
 
 		player.sendMessage(CC.CHAT_BAR);

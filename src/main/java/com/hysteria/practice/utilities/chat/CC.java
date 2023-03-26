@@ -139,23 +139,29 @@ public class CC {
     }
 
     public static void loadPlugin() {
-
         Bukkit.getConsoleSender().sendMessage(CHAT_BAR);
         Bukkit.getConsoleSender().sendMessage(translate(" "));
-        Bukkit.getConsoleSender().sendMessage(translate("     &c&l" + HyPractice.get().getName()));
+        Bukkit.getConsoleSender().sendMessage(translate("     &b&l" + HyPractice.get().getName()));
         Bukkit.getConsoleSender().sendMessage(translate(""));
-        Bukkit.getConsoleSender().sendMessage(translate(" &7| &4Author&7: &f" + HyPractice.get().getDescription().getAuthors().toString().replace("[", "").replace("]", "")));
-        Bukkit.getConsoleSender().sendMessage(translate(" &7| &4Version&7: &f" + HyPractice.get().getDescription().getVersion()));
-        Bukkit.getConsoleSender().sendMessage(translate(" &7| &4Rank System&7: &f" + HyPractice.get().getRankManager().getRankSystem()));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bAuthor&7: &f" + HyPractice.get().getDescription().getAuthors().toString().replace("[", "").replace("]", "")));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bVersion&7: &f" + HyPractice.get().getDescription().getVersion()));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bRank System&7: &f" + HyPractice.get().getRankManager().getRankSystem()));
         Bukkit.getConsoleSender().sendMessage(translate(" "));
-        Bukkit.getConsoleSender().sendMessage(translate(" &7| &4Spigot&7: &f" + HyPractice.get().getServer().getName()));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bSpigot&7: &f" + HyPractice.get().getServer().getName()));
         Bukkit.getConsoleSender().sendMessage(translate(" "));
-        Bukkit.getConsoleSender().sendMessage(translate(" &4Loaded info"));
-        Bukkit.getConsoleSender().sendMessage(translate(" &7| &4Arenas&7: &f" + Arena.getArenas().size()));
-        Bukkit.getConsoleSender().sendMessage(translate(" &7| &4Kits&7: &f" + Kit.getKits().size()));
-        Bukkit.getConsoleSender().sendMessage(translate(" &7| &4Kits Ranked&7: &f" + Kit.getKits().stream().filter(kit -> kit.getGameRules().isRanked()).count()));
-        Bukkit.getConsoleSender().sendMessage(translate(" &7| &4Clans&7: &f" + Clan.getClans().size()));
+        Bukkit.getConsoleSender().sendMessage(translate(" &bLoaded info"));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bArenas&7: &f" + Arena.getArenas().size()));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bKits&7: &f" + Kit.getKits().size()));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bKits Ranked&7: &f" + Kit.getKits().stream().filter(kit -> kit.getGameRules().isRanked()).count()));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bClans&7: &f" + Clan.getClans().size()));
         Bukkit.getConsoleSender().sendMessage(translate(" "));
+        Bukkit.getConsoleSender().sendMessage(translate(" &bMongoDB info"));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bURI&7: &f" + HyPractice.get().getDatabaseConfig().getString("MONGO.URI_LINK")));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bHost&7: &f" + HyPractice.get().getDatabaseConfig().getString("MONGO.HOST")));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bPort&7: &f" + HyPractice.get().getDatabaseConfig().getInteger("MONGO.PORT")));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bDatabase&7: &f" + HyPractice.get().getDatabaseConfig().getString("MONGO.AUTHENTICATION.DATABASE")));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bUsername&7: &f" + HyPractice.get().getDatabaseConfig().getString("MONGO.AUTHENTICATION.USERNAME")));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bPassword&7: &f" + HyPractice.get().getDatabaseConfig().getString("MONGO.AUTHENTICATION.PASSWORD")));
         Bukkit.getConsoleSender().sendMessage(CHAT_BAR);
     }
 }

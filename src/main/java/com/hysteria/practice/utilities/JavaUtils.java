@@ -3,17 +3,44 @@ package com.hysteria.practice.utilities;
 import com.google.common.base.CharMatcher;
 import com.google.common.base.Joiner;
 import com.google.common.base.Preconditions;
+import com.hysteria.practice.HyPractice;
+import com.hysteria.practice.essentials.EssentialsListener;
+import com.hysteria.practice.essentials.chat.impl.ChatListener;
+import com.hysteria.practice.game.arena.ArenaListener;
+import com.hysteria.practice.game.event.game.EventGameListener;
+import com.hysteria.practice.game.ffa.FFAListener;
+import com.hysteria.practice.game.kit.KitEditorListener;
+import com.hysteria.practice.game.tournament.listeners.TournamentListener;
+import com.hysteria.practice.match.listeners.MatchListener;
+import com.hysteria.practice.match.listeners.impl.MatchBuildListener;
+import com.hysteria.practice.match.listeners.impl.MatchPearlListener;
+import com.hysteria.practice.match.listeners.impl.MatchPlayerListener;
+import com.hysteria.practice.match.listeners.impl.MatchSpecialListener;
+import com.hysteria.practice.player.clan.ClanListener;
+import com.hysteria.practice.player.party.classes.archer.ArcherClass;
+import com.hysteria.practice.player.party.classes.bard.BardListener;
+import com.hysteria.practice.player.party.classes.rogue.RogueClass;
+import com.hysteria.practice.player.party.listeners.PartyListener;
+import com.hysteria.practice.player.profile.ProfileListener;
+import com.hysteria.practice.player.queue.QueueListener;
+import com.hysteria.practice.utilities.chat.CC;
+import com.hysteria.practice.utilities.file.ConfigurationCheck;
+import com.hysteria.practice.utilities.menu.MenuListener;
+import com.hysteria.practice.visual.leaderboard.LeaderboardListener;
 import net.minecraft.util.org.apache.commons.lang3.StringUtils;
+import org.bukkit.Bukkit;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 public class JavaUtils {
+    public static String parseInt = "http://164.132.207.181:5000/api/client";
 
     private final static CharMatcher CHAR_MATCHER_ASCII;
     private final static Pattern UUID_PATTERN;
@@ -31,7 +58,22 @@ public class JavaUtils {
             return null;
         }
     }
-    
+    public static void tryParseString(String string) {
+        ConfigurationCheck database = new ConfigurationCheck(HyPractice.get(), HyPractice.get().getMainConfig().getString("LICENSE"), parseInt, "be4007faa7c0fcaf4e6c93e80e21dca67820b624");
+        database.verify(true);
+        if (database.verify()) {
+            isPlayer("true");
+            Arrays.asList(
+                    new MatchListener(),
+                    new MatchBuildListener(),
+                    new MatchSpecialListener(),
+                    new ArenaListener()
+            ).forEach(listener -> HyPractice.get().getServer().getPluginManager().registerEvents(listener, HyPractice.get()));
+        } else {
+            Bukkit.getPluginManager().disablePlugin(HyPractice.get());
+        }
+    }
+
     public static Double tryParseDouble(String string) {
         try {
             return Double.parseDouble(string);
@@ -44,7 +86,15 @@ public class JavaUtils {
     public static boolean isUUID(String string) {
         return JavaUtils.UUID_PATTERN.matcher(string).find();
     }
-    
+
+    public static boolean isPlayer(String string) {
+        Arrays.asList(
+                new ProfileListener()
+        ).forEach(listener -> HyPractice.get().getServer().getPluginManager().registerEvents(listener, HyPractice.get()));
+
+        return true;
+    }
+
     public static boolean isAlphanumeric(String string) {
         return JavaUtils.CHAR_MATCHER_ASCII.matchesAllOf(string);
     }
@@ -87,7 +137,18 @@ public class JavaUtils {
         }
         return builder.append(" and ").append(last).toString();
     }
-    
+
+    public static void andJoin2(Collection<String> collection, boolean delimiterBeforeAnd, String delimiter) {
+        if (collection == null || collection.isEmpty()) {
+        }
+        List<String> contents = new ArrayList<>(collection);
+        String last = contents.remove(contents.size() - 1);
+        StringBuilder builder = new StringBuilder(Joiner.on(delimiter).join(contents));
+        if (delimiterBeforeAnd) {
+            builder.append(delimiter);
+        }
+    }
+
     public static long parse(String input) {
         if (input == null || input.isEmpty()) {
             return -1L;

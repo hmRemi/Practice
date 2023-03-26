@@ -27,6 +27,6 @@ public class KitDeleteCommand extends BaseCommand {
 		}
 
 		kit.delete();
-		player.sendMessage(CC.RED + "You deleted this kit.");
+		player.sendMessage(CC.translate("&7Deleted &b" + kit.getDisplayName() + " &7kit."));
 	}
 }

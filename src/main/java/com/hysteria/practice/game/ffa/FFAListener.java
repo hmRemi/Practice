@@ -47,7 +47,7 @@ public class FFAListener implements Listener {
             Player killer = PlayerUtil.getLastAttacker(event.getEntity());
 
             if (killer != null) {
-                this.broadcastMessage("&4" + player.getName() + " &fwas slain by &4" + killer.getName() + "&f.");
+                this.broadcastMessage("&b" + player.getName() + " &fwas slain by &b" + killer.getName() + "&f.");
             }
 
             profile.setRefillCooldown(new Cooldown(0));
@@ -211,7 +211,7 @@ public class FFAListener implements Listener {
     @EventHandler
     public void onSignChange(SignChangeEvent e) {
         if (e.getLine(0).equalsIgnoreCase("[Refill]")) {
-            e.setLine(0, "§4[Refill]");
+            e.setLine(0, "§b[Refill]");
             e.setLine(1, "§fRight Click");
             e.setLine(2, "§fTo refill!!");
         }
@@ -228,7 +228,7 @@ public class FFAListener implements Listener {
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK) {
             return;
         }
-        if (e.getClickedBlock().getState() instanceof Sign && ((Sign)(e.getClickedBlock().getState())).getLine(0).equalsIgnoreCase("§4[Refill]")) {
+        if (e.getClickedBlock().getState() instanceof Sign && ((Sign)(e.getClickedBlock().getState())).getLine(0).equalsIgnoreCase("§b[Refill]")) {
             if (!profile.getRefillCooldown().hasExpired()) {
                 e.setCancelled(true);
                 String time = TimeUtil.millisToSeconds(profile.getRefillCooldown().getRemaining());

@@ -82,6 +82,12 @@ public class KitGameRuleCommand extends BaseCommand {
                     else player.sendMessage(CC.RED + "Successfully disabled NoFallDamage for " + kit.getName());
                     break;
                 }
+                case "nodamage": {
+                    kit.getGameRules().setNodamage(Boolean.parseBoolean(value));
+                    if (Boolean.parseBoolean(value)) player.sendMessage(CC.GREEN + "Successfully enabled NoDamage for " + kit.getName());
+                    else player.sendMessage(CC.RED + "Successfully disabled NoDamage for " + kit.getName());
+                    break;
+                }
                 case "lives": {
                     kit.getGameRules().setLives(Boolean.parseBoolean(value));
                     if (Boolean.parseBoolean(value)) player.sendMessage(CC.GREEN + "Successfully enabled Lives for " + kit.getName());

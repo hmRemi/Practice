@@ -4,7 +4,6 @@ package com.hysteria.practice.player.profile.meta.option.button;
    Created on 05.11.2021
 */
 
-import com.hysteria.practice.player.cosmetics.impl.trails.menu.TrailsEffectsMenu;
 import com.hysteria.practice.utilities.ItemBuilder;
 import com.hysteria.practice.utilities.menu.Button;
 import com.hysteria.practice.player.profile.Profile;
@@ -32,6 +31,5 @@ public class TrailsOptionsButton extends Button {
     @Override
     public void clicked(Player player, ClickType clickType) {
         Profile profile = Profile.get(player.getUniqueId());
-        new TrailsEffectsMenu().openMenu(player);
     }
 }

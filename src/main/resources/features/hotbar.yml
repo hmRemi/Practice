@@ -3,195 +3,195 @@ HOTBAR_ITEMS:
     SLOT: 1
     MATERIAL: IRON_SWORD
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lUnranked Queue &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lUnranked Queue &7(&b!&7)'
     LORE: []
   QUEUE_JOIN_RANKED:
     SLOT: 2
     MATERIAL: DIAMOND_SWORD
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lRanked Queue &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lRanked Queue &7(&b!&7)'
     LORE: []
   QUEUES_JOIN:
     SLOT: 1
     MATERIAL: DIAMOND_SWORD
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lQueues &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lQueues &7(&b!&7)'
     LORE: []
   SETTINGS:
-    SLOT: 3
-    MATERIAL: CHEST
+    SLOT: 4
+    MATERIAL: WATCH
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lSettings &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lSettings &7(&b!&7)'
     LORE: []
   QUEUE_LEAVE:
     SLOT: 1
     MATERIAL: INK_SACK
     DURABILITY: 1
-    NAME: '&7(&4!&7) &c&lLeave Queue &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lLeave Queue &7(&b!&7)'
     LORE: []
   PARTY_EVENTS:
     SLOT: 1
     MATERIAL: DIAMOND_SWORD
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lParty Events &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lParty Events &7(&b!&7)'
     LORE: []
   PARTY_CREATE:
-    SLOT: 5
+    SLOT: 8
     MATERIAL: NAME_TAG
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lCreate Party &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lCreate Party &7(&b!&7)'
     LORE: []
   PARTY_DISBAND:
     SLOT: 9
     MATERIAL: INK_SACK
     DURABILITY: 1
-    NAME: '&7(&4!&7) &c&lDisband Party &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lDisband Party &7(&b!&7)'
     LORE: []
   PARTY_LEAVE:
     SLOT: 9
-    MATERIAL: BLAZE_POWDER
+    MATERIAL: INK_SACK
     DURABILITY: 1
-    NAME: '&7(&4!&7) &c&lLeave Party &7 (&4!&7)'
+    NAME: '&7(&b!&7) &b&lLeave Party &7 (&b!&7)'
     LORE: []
   PARTY_INFORMATION:
     SLOT: 4
     MATERIAL: SKULL_ITEM
     DURABILITY: 3
-    NAME: '&7(&4!&7) &c&lParty Information &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lParty Information &7(&b!&7)'
     LORE: []
   PARTY_MANAGE:
     SLOT: 5
     MATERIAL: WATCH
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lParty Management &7(&4!&7)'
-    LORE: [ ]
+    NAME: '&7(&b!&7) &b&lParty Management &7(&b!&7)'
+    LORE: []
   CLASS_SELECT:
     SLOT: 3
     MATERIAL: DIAMOND
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lHCF Kits &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lHCF Kits &7(&b!&7)'
     LORE: []
   OTHER_PARTIES:
     SLOT: 6
     MATERIAL: CHEST
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lOther Parties &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lOther Parties &7(&b!&7)'
     LORE: []
   KIT_EDITOR:
-    SLOT: 9
+    SLOT: 6
     MATERIAL: BOOK
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lKit Editor &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lKit Editor &7(&b!&7)'
     LORE: []
   SPECTATE_STOP:
     SLOT: 9
     MATERIAL: INK_SACK
     DURABILITY: 1
-    NAME: '&7(&4!&7) &c&lStop Spectating &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lStop Spectating &7(&b!&7)'
     LORE: []
   VIEW_INVENTORY:
     SLOT: 2
     MATERIAL: BOOK
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lView Inventory &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lView Inventory &7(&b!&7)'
     LORE: []
   EVENT_JOIN:
-    SLOT: 4
+    SLOT: 8
     MATERIAL: NETHER_STAR
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lJoin Event &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lJoin Event &7(&b!&7)'
     LORE: []
   EVENT_LEAVE:
     SLOT: 9
     MATERIAL: NETHER_STAR
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lLeave Event &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lLeave Event &7(&b!&7)'
     LORE: []
   MAP_SELECTION:
     MATERIAL: MAP
     DURABILITY: 0
-    NAME: '&c&l%MAP%'
+    NAME: '&b&l%MAP%'
     LORE: []
   REMATCH_REQUEST:
     SLOT: 3
     MATERIAL: BLAZE_POWDER
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lRequest Rematch &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lRequest Rematch &7(&b!&7)'
     LORE: []
   REMATCH_ACCEPT:
-    SLOT: 3
+    SLOT: 7
     MATERIAL: DIAMOND
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lAccept Rematch &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lAccept Rematch &7(&b!&7)'
     LORE: []
   KIT_SELECTION:
     MATERIAL: ENCHANTED_BOOK
     DURABILITY: 0
-    NAME: '&c&l%KIT%'
+    NAME: '&b&l%KIT%'
     LORE: []
   EVENT_SELECT:
-    SLOT: 7
+    SLOT: 9
     MATERIAL: LEASH
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lHost Event &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lHost Event &7(&b!&7)'
     LORE: []
   LEADERBOARD_MENU:
-    SLOT: 8
-    MATERIAL: SKULL_ITEM
+    SLOT: 5
+    MATERIAL: BEACON
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lLeaderboard &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lLeaderboard &7(&b!&7)'
     LORE: []
   RANDOM_TELEPORT:
     SLOT: 8
     MATERIAL: STICK
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lRandom Teleport &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lRandom Teleport &7(&b!&7)'
     LORE: []
   HIDE_ALL_PLAYERS:
     SLOT: 5
     MATERIAL: NAME_TAG
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lHide Players &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lHide Players &7(&b!&7)'
     LORE: []
   RESET:
     SLOT: 9
     MATERIAL: REDSTONE
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lReset &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lReset &7(&b!&7)'
     LORE: []
   COMPASS:
     SLOT: 1
     MATERIAL: COMPASS
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lPush Forward &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lPush Forward &7(&b!&7)'
     LORE: []
   ONLINE_STAFF:
     SLOT: 2
     MATERIAL: PAPER
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lOnline Staff &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lOnline Staff &7(&b!&7)'
     LORE: []
   VIEW_INVENTORYSTAFF:
     SLOT: 3
     MATERIAL: NETHER_STAR
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lInspect Inventory &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lInspect Inventory &7(&b!&7)'
     LORE: []
   FREEZE:
     SLOT: 7
     MATERIAL: PACKED_ICE
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lFreeze &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lFreeze &7(&b!&7)'
     LORE: []
   VIEWTOURNAMENT:
     SLOT: 3
     MATERIAL: NETHER_STAR
     DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lView Tournament &7(&4!&7)'
+    NAME: '&7(&b!&7) &b&lView Tournament &7(&b!&7)'
     LORE: []
   LEAVETOURNAMENT:
     SLOT: 7
-    MATERIAL: REDSTONE
-    DURABILITY: 0
-    NAME: '&7(&4!&7) &c&lLeave Tournament &7(&4!&7)'
+    MATERIAL: INK_SACK
+    DURABILITY: 1
+    NAME: '&7(&b!&7) &&lLeave Tournament &7(&b!&7)'
     LORE: []

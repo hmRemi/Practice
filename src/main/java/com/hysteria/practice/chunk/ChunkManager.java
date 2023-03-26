@@ -62,8 +62,7 @@ public class ChunkManager {
 				} else {
 					plugin.getLogger().info(" ");
 					plugin.getLogger().info("                ERROR     ERROR    ERROR                ");
-					plugin.getLogger().info("Please make sure you set the Spawn Min & Max Locations!");
-					plugin.getLogger().info("If you did not, remove 'spawnLocation' from settings.yml");
+					plugin.getLogger().info("		Please make sure you set the Spawn Locations");
 					plugin.getLogger().info("                ERROR     ERROR    ERROR                ");
 					plugin.getLogger().info(" ");
 				}

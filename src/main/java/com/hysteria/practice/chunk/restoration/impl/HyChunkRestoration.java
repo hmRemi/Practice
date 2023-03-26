@@ -19,7 +19,7 @@ import com.hysteria.practice.game.arena.impl.StandaloneArena;
  * Arigato! n.n
  */
 @RequiredArgsConstructor
-public class FrostChunkRestoration implements IChunkRestoration {
+public class HyChunkRestoration implements IChunkRestoration {
     private final INekoChunkReset iNekoChunkReset;
     private final ChunkRestorationManager chunkRestorationManager;
 

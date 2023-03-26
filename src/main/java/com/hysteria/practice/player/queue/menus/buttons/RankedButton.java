@@ -29,7 +29,7 @@ public class RankedButton extends Button {
         for (String text : this.config.getStringList("QUEUES.TYPES.RANKED.LORE")) {
             lore.add(text.replace("<kit>", HyPractice.get().getMainConfig().getString("FFA.KIT")));
         }
-        return new ItemBuilder(Material.valueOf(HyPractice.get().getMainConfig().getString("QUEUES.TYPES.RANKED.ICON"))).lore(CC.translate(lore)).amount(1).name(CC.translate(HyPractice.get().getMainConfig().getString("QUEUES.TYPES.RANKED.NAME"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.TYPES.RANKED.DATA")).build();
+        return new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.TYPES.RANKED.ICON"))).lore(CC.translate(lore)).amount(1).name(CC.translate(HyPractice.get().getMenuConfig().getString("QUEUES.TYPES.RANKED.NAME"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.TYPES.RANKED.DATA")).build();
     }
 
     @Override

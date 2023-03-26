@@ -21,13 +21,13 @@ public class PartyEventSelectEventMenu extends Menu {
 
 	@Override
 	public String getTitle(Player player) {
-		return "&4Select an event";
+		return "&bSelect an event";
 	}
 
 	@Override
 	public Map<Integer, Button> getButtons(Player player) {
 		Map<Integer, Button> buttons = new HashMap<>();
-		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 
 		buttons.put(11, new SelectEventButton(PartyEvent.FFA));
@@ -50,7 +50,7 @@ public class PartyEventSelectEventMenu extends Menu {
 		public ItemStack getButtonItem(Player player) {
 			if(partyEvent == PartyEvent.FFA) {
 				return new ItemBuilder(Material.QUARTZ)
-					.name("&4"+ partyEvent.getName())
+					.name("&b"+ partyEvent.getName())
 					.lore(CC.SB_BAR)
 					.lore("&7A fight all against all")
 					.lore("&7And the last one to stay alive wins")
@@ -58,7 +58,7 @@ public class PartyEventSelectEventMenu extends Menu {
 					.build();
 			} else if (partyEvent == PartyEvent.SPLIT) {
 				return new ItemBuilder(Material.REDSTONE)
-						.name("&4" + partyEvent.getName())
+						.name("&b" + partyEvent.getName())
 						.lore(CC.SB_BAR)
 						.lore("&7The party is divided into two")
 						.lore("&7Teams and they fight")
@@ -66,7 +66,7 @@ public class PartyEventSelectEventMenu extends Menu {
 						.build();
 			} else {
 				return new ItemBuilder(Material.DIAMOND_AXE)
-						.name("&4" + partyEvent.getName())
+						.name("&b" + partyEvent.getName())
 						.lore(CC.SB_BAR)
 						.lore("&7Fight in a series of 1v1's")
 						.lore("&7until there is a winner")
@@ -89,7 +89,7 @@ public class PartyEventSelectEventMenu extends Menu {
 			for (Player member : profile.getParty().getListOfPlayers()) {
 				Profile profileMember = Profile.get(member.getUniqueId());
 				if (profileMember.getState() != ProfileState.LOBBY) {
-					player.sendMessage(CC.translate("&4All player of the party have to be in spawn for you to start another event"));
+					player.sendMessage(CC.translate("&7All players must be in spawn to start a party"));
 					player.closeInventory();
 					return;
 				}

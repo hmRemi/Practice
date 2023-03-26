@@ -19,7 +19,7 @@ public class ArenaDeleteCommand extends BaseCommand {
 		if (arena != null) {
 			arena.delete();
 
-			player.sendMessage(CC.translate("Deleted arena &f\"" + arena.getName() + "\""));
+			player.sendMessage(CC.translate("&7Deleted arena &b" + arena.getName()));
 		} else {
 			player.sendMessage(CC.translate("&cAn arena with that name does not exist."));
 		}

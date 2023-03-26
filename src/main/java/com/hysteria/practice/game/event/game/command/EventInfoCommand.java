@@ -22,14 +22,14 @@ public class EventInfoCommand extends BaseCommand {
 
 		EventGame game = EventGame.getActiveGame();
 
-		player.sendMessage(CC.translate("&7(*) &c&lEvent &7(*)"));
-		player.sendMessage(CC.RED + "Player Limit: " + CC.WHITE + game.getMaximumPlayers());
-		player.sendMessage(CC.RED + "Event Type: " + CC.WHITE + game.getEvent().getName());
-		player.sendMessage(CC.RED + "Players: " + CC.WHITE + game.getRemainingPlayers());
-		player.sendMessage(CC.RED + "State: " + CC.WHITE + game.getGameState().getReadable());
+		player.sendMessage(CC.translate("&7(*) &b&lEvent &7(*)"));
+		player.sendMessage(CC.AQUA + "Player Limit: " + CC.WHITE + game.getMaximumPlayers());
+		player.sendMessage(CC.AQUA + "Event Type: " + CC.WHITE + game.getEvent().getName());
+		player.sendMessage(CC.AQUA + "Players: " + CC.WHITE + game.getRemainingPlayers());
+		player.sendMessage(CC.AQUA + "State: " + CC.WHITE + game.getGameState().getReadable());
 
 		if (game.getEvent() instanceof SumoEvent) {
-			player.sendMessage(CC.RED + "Round: " + CC.WHITE + game.getGameLogic().getRoundNumber());
+			player.sendMessage(CC.AQUA + "Round: " + CC.WHITE + game.getGameLogic().getRoundNumber());
 		}
 	}
 }

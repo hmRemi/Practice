@@ -30,7 +30,7 @@ public class ArenaSetAuthorCommand extends BaseCommand {
         }
 
         arena.setAuthor(author);
-        player.sendMessage(CC.translate("&cAuthor of &f" + arena.getName() + "&f has seen set to &c" + author + "&f."));
+        player.sendMessage(CC.translate("&7Author of &b" + arena.getName() + "&7 has seen set to &b" + author + "&7."));
         arena.save();
     }
 }

@@ -23,13 +23,13 @@ public class QueuesMenu extends Menu {
 
     @Override
     public String getTitle(Player player) {
-        return CC.translate(HyPractice.get().getMainConfig().getString("QUEUES.TITLE"));
+        return CC.translate(HyPractice.get().getMenuConfig().getString("QUEUES.TITLE"));
     }
 
     @Override
     public Map<Integer, Button> getButtons(Player player) {
         HashMap<Integer, Button> buttons = new HashMap<>();
-        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 
         this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
         buttons.put(HyPractice.get().getMainConfig().getInteger("QUEUES.TYPES.UNRANKED.SLOT"), new UnrankedButton());

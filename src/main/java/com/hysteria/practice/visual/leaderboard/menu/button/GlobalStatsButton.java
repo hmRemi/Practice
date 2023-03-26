@@ -38,8 +38,7 @@ public class GlobalStatsButton extends Button {
                             .replace("{data}", String.valueOf(EloUtil.getGlobalElo(leaderboard)))
                             .replace("{bars}", CC.MENU_BAR));
                 }
-            }
-            else if (pos.get() == 2) {
+            } else if (pos.get() == 2) {
                 List<String> second = HyPractice.get().getLeaderboardConfig().getStringList("INVENTORY.GLOBAL_STATS.POSITIONS.2");
                 for (String s : second) {
                     lore.add(s
@@ -49,8 +48,7 @@ public class GlobalStatsButton extends Button {
                             .replace("{data}", String.valueOf(EloUtil.getGlobalElo(leaderboard)))
                             .replace("{bars}", CC.MENU_BAR));
                 }
-            }
-            else if (pos.get() == 3) {
+            } else if (pos.get() == 3) {
                 List<String> third = HyPractice.get().getLeaderboardConfig().getStringList("INVENTORY.GLOBAL_STATS.POSITIONS.3");
                 for (String s : third) {
                     lore.add(s
@@ -60,8 +58,7 @@ public class GlobalStatsButton extends Button {
                             .replace("{data}", String.valueOf(EloUtil.getGlobalElo(leaderboard)))
                             .replace("{bars}", CC.MENU_BAR));
                 }
-            }
-            else {
+            } else {
                 List<String> another = HyPractice.get().getLeaderboardConfig().getStringList("INVENTORY.GLOBAL_STATS.POSITIONS.ANOTHER");
                 for (String s : another) {
                     lore.add(s

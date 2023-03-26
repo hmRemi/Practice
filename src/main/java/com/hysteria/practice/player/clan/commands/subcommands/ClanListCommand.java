@@ -15,8 +15,8 @@ public class ClanListCommand extends BaseCommand {
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();
 
-        player.sendMessage(CC.translate("&c&lList of all Clans"));
+        player.sendMessage(CC.translate("&b&lList of all Clans"));
         Clan.getClans().values().forEach(clan ->
-                player.sendMessage(CC.translate("&7- &e" + StringUtils.capitalize(clan.getName().toLowerCase()))));
+                player.sendMessage(CC.translate("&7- &b" + StringUtils.capitalize(clan.getName().toLowerCase()))));
     }
 }

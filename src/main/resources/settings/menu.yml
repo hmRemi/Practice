@@ -1,16 +1,17 @@
+# Settings menu configuration
 SETTINGS-INVENTORY:
-  TITLE: '&c&lPlayer Settings'
+  TITLE: '&b&lPlayer Settings'
   NAME: <setting_name>
   SIZE: 1
-  ENABLED: '&a&l   > '
-  DISABLED: '&c&l   > '
+  ENABLED: '&b&l   > '
+  DISABLED: '&b&l   > '
   UNSELECTED: '&7    '
-  NO-PERMISSION: '&4This feature requires a rank to be accessed, buy it at https://store.hy-pvp.net'
+  NO-PERMISSION: '&b7This feature requires a rank to be accessed, buy it at https://store.hypractice.com'
   TOP-SPLITTER: '&8&m----------------------------'
   BOTTOM-SPLITTER: '&8&m----------------------------'
   SETTINGS:
     RESET_SETTINGS:
-      NAME: '&c&lReset Settings'
+      NAME: '&b&lReset Settings'
       SLOT: 8
       ICON: WATCH
       LORE:
@@ -18,7 +19,7 @@ SETTINGS-INVENTORY:
         - '&7all of your settings.'
       SHOW: true
     DUEL_REQUEST:
-      NAME: '&c&lToggle Duel Requests'
+      NAME: '&b&lToggle Duel Requests'
       SLOT: 0
       ICON: DIAMOND_SWORD
       LORE:
@@ -30,7 +31,7 @@ SETTINGS-INVENTORY:
       O-DISABLED: '&7Don''t allow other players duel you'
       SHOW: true
     NEW-CONVERSATIONS:
-      NAME: '&c&lToggle New Conversations'
+      NAME: '&b&lToggle New Conversations'
       SLOT: 1
       ICON: BOOK
       LORE:
@@ -42,7 +43,7 @@ SETTINGS-INVENTORY:
       O-DISABLED: '&7Don''t allow other message you'
       SHOW: true
     PUBLIC-CHAT:
-      NAME: '&c&lToggle Public Chat'
+      NAME: '&b&lToggle Public Chat'
       SLOT: 2
       ICON: PAPER
       LORE:
@@ -54,7 +55,7 @@ SETTINGS-INVENTORY:
       O-DISABLED: '&7Don''t allow yourself to see public chat'
       SHOW: true
     ALLOW_SPECTATORS:
-      NAME: '&c&lAllow Spectators'
+      NAME: '&b&lAllow Spectators'
       SLOT: 3
       ICON: EMERALD
       LORE:
@@ -65,7 +66,7 @@ SETTINGS-INVENTORY:
       O-DISABLED: '&7Don''t let players spectate your matches'
       SHOW: true
     TOGGLE_SCOREBOARD:
-      NAME: '&c&lToggle Scoreboard'
+      NAME: '&b&lToggle Scoreboard'
       SLOT: 4
       ICON: PAINTING
       LORE:
@@ -76,7 +77,7 @@ SETTINGS-INVENTORY:
       O-DISABLED: '&7Hide match scoreboard'
       SHOW: true
     MESSAGE-SOUNDS:
-      NAME: '&c&lToggle Message Sounds'
+      NAME: '&b&lToggle Message Sounds'
       SLOT: 5
       ICON: FLINT
       LORE:
@@ -87,7 +88,7 @@ SETTINGS-INVENTORY:
       O-DISABLED: '&7Deafen sound on mention'
       SHOW: true
     VANILLA_TAB:
-      NAME: '&c&lShow Vanilla Tablist'
+      NAME: '&b&lShow Vanilla Tablist'
       SLOT: 6
       ICON: QUARTZ
       LORE:
@@ -98,7 +99,7 @@ SETTINGS-INVENTORY:
       O-DISABLED: '&7Show modern tablist'
       SHOW: true
     DEATH_EFFECT_SETTINGS:
-      NAME: '&c&lDeath Effects'
+      NAME: '&b&lDeath Effects'
       SLOT: 7
       ICON: SKULL_ITEM
       LORE:
@@ -106,23 +107,100 @@ SETTINGS-INVENTORY:
         - '&7preferred death effect.'
       SHOW: true
     MATCHMAKING_SETTINGS:
-      NAME: '&c&lMatchmaking Settings'
+      NAME: '&b&lMatchmaking Settings'
       SLOT: 8
       ICON: ENCHANTED_BOOK
       LORE:
         - '&7Click here to modify your'
         - '&7matchmaking settings.'
       SHOW: true
+
+# Matches menu configuration
 MATCH-LIST:
-  TITLE: "&4Current matches &7({amount})"
+  TITLE: "&bCurrent matches &7({amount})"
   SIZE: 3
-  NAME: "&c&l{p1} vs {p2}"
+  NAME: "&b&l{p1} vs {p2}"
   LORE:
     - "&7{type}"
     - ""
-    - "&4Kit: &7{kit}"
-    - "&4Arena: &7{arena}"
-    - "&4Duration: &7{duration}"
-    - "&4Spectators: &7{spectators}"
+    - "&bKit: &7{kit}"
+    - "&bArena: &7{arena}"
+    - "&bDuration: &7{duration}"
+    - "&bSpectators: &7{spectators}"
     - ""
     - "&7» Click to spectate «"
+
+# Queues menu configuration
+QUEUES:
+  # If enabled, multi-queue menu will be enabled & Single queue items will automatically be disabled
+  ENABLED: false
+  # Whether empty menu slots should be filled
+  PLACEHOLDER-ITEMS-ENABLED: true
+  # Item used to fill empty menu slots
+  PLACEHOLDER-ITEM-MATERIAL: STAINED_GLASS_PANE
+  PLACEHOLDER-ITEM-DATA: 7
+  # Menu title
+  TITLE: '&8Queues'
+  # Menu size in ROWS
+  # Each row has 9 slots (0-8)
+  SIZE: 5
+  TYPES:
+    UNRANKED:
+      ENABLED: true
+      NAME: '&b&lUnranked'
+      SLOT: 11
+      ICON: IRON_SWORD
+      LORE:
+        - '&8&m--------------------------------'
+        - '&7Casual 1v1''s matches'
+        - '&7with no loss penalty.'
+        - ' '
+        - '&bClick to play!'
+        - '&8&m--------------------------------'
+    RANKED:
+      ENABLED: true
+      NAME: '&b&lRanked'
+      SLOT: 13
+      ICON: DIAMOND_SWORD
+      DATA: 0
+      LORE:
+        - '&8&m--------------------------------'
+        - '&7Casual 1v1''s matches with'
+        - '&7a ranked aspect to them. This'
+        - '&7includes ELO.'
+        - ' '
+        - '&bClick to play!'
+        - '&8&m--------------------------------'
+    FFA:
+      ENABLED: true
+      NAME: '&b&lFFA'
+      SLOT: 15
+      ICON: GOLD_AXE
+      DATA: 0
+      LORE:
+        - '&8&m--------------------------------'
+        - '&7Make your way through the'
+        - '&7course and beat the others!'
+        - '&7The player to reach the goal wins'
+        - ' '
+        - '&fPlaying: &b<players>'
+        - '&fKit: &b<kit>'
+        - ' '
+        - '&bClick to play!'
+        - '&8&m--------------------------------'
+
+# Statistics menu configuration
+STATS_MENU:
+  # Menu title
+  TITLE: '&b&l{player} Statistics'
+  # Item name
+  ITEM_NAME: '&b&l{kit}'
+  # GUI Size (ROWS)
+  SIZE: 6
+  # Lore
+  DESCRIPTION:
+    - '{bars}'
+    - '&b&lElo: &7{elo}'
+    - '&b&lWins: &7{wins}'
+    - '&b&lLosses: &7{losses}'
+    - '{bars}'

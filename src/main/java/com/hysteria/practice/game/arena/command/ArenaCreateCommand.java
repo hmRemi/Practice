@@ -23,7 +23,7 @@ public class ArenaCreateCommand extends BaseCommand {
 		String[] args = commandArgs.getArgs();
 
 		if (args.length < 2) {
-			player.sendMessage(CC.translate("&7Please use: &4/arena create (name) (type)"));
+			player.sendMessage(CC.translate("&7Please use: &b/arena create (name) (type)"));
 			return;
 		}
 
@@ -32,7 +32,7 @@ public class ArenaCreateCommand extends BaseCommand {
 				.filter(val -> val.name().equalsIgnoreCase(args[1])).findFirst().orElse(null);
 
 		if (arenaType == null) {
-			player.sendMessage(CC.translate("&7Please usage a valid ArenaType: &4SHARED, STANDALONE"));
+			player.sendMessage(CC.translate("&7Please usage a valid ArenaType: &bSHARED, STANDALONE"));
 			return;
 		}
 
@@ -44,15 +44,15 @@ public class ArenaCreateCommand extends BaseCommand {
 					Arena arena = new SharedArena(arenaName, selection.getPoint1(), selection.getPoint2());
 					Arena.getArenas().add(arena);
 
-					player.sendMessage(CC.translate("&7Created new Shared arena &4\"" + arenaName + "\""));
+					player.sendMessage(CC.translate("&7Created new Shared arena &b\"" + arenaName + "\""));
 				} else if (arenaType == ArenaType.STANDALONE) {
 					Arena arena = new StandaloneArena(arenaName, selection.getPoint1(), selection.getPoint2());
 					Arena.getArenas().add(arena);
 
-					player.sendMessage(CC.translate("&7Copied chunk for arena &4\"" + arenaName + "\""));
+					player.sendMessage(CC.translate("&7Copied chunk for arena &b\"" + arenaName + "\""));
 					ChunkRestorationManager.getIChunkRestoration().copy(arena);
 
-					player.sendMessage(CC.translate("&7Created new Standalone arena &4\"" + arenaName + "\""));
+					player.sendMessage(CC.translate("&7Created new Standalone arena &b\"" + arenaName + "\""));
 				}
 			} else {
 				player.sendMessage(CC.RED + "Your selection is incomplete.");

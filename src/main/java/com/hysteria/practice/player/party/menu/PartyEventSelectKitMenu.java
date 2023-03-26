@@ -32,7 +32,7 @@ public class PartyEventSelectKitMenu extends Menu {
 
 	@Override
 	public String getTitle(Player player) {
-		return "&4Select a kit";
+		return "&bSelect a kit";
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class PartyEventSelectKitMenu extends Menu {
 
 		Party party = Profile.get(player.getUniqueId()).getParty();
 
-		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 		for (Kit kit : Kit.getKits()) {
@@ -87,7 +87,7 @@ public class PartyEventSelectKitMenu extends Menu {
 					.addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-					.name("&c&l" + kit.getDisplayName())
+					.name("&b" + kit.getDisplayName())
 					.build();
 		}
 
@@ -100,12 +100,12 @@ public class PartyEventSelectKitMenu extends Menu {
 			Profile profile = Profile.get(player.getUniqueId());
 
 			if (profile.getParty() == null) {
-				player.sendMessage(CC.translate("&8[&c&lParty&8] &7You are not in a party."));
+				player.sendMessage(CC.translate("&8[&b&lParty&8] &7You are not in a party."));
 				return;
 			}
 
 			if (profile.getParty().getPlayers().size() <= 1) {
-				player.sendMessage(CC.translate("&8[&c&lParty&8] &7You do not have enough players in your party to start an event."));
+				player.sendMessage(CC.translate("&8[&b&lParty&8] &7You do not have enough players in your party to start an event."));
 				return;
 			}
 
@@ -113,7 +113,7 @@ public class PartyEventSelectKitMenu extends Menu {
 			Arena arena = Arena.getRandomArena(kit);
 
 			if (arena == null) {
-				player.sendMessage(CC.translate("&8[&c&lParty&8] &7There are no available arenas."));
+				player.sendMessage(CC.translate("&8[&b&lParty&8] &7There are no available arenas."));
 				return;
 			}
 

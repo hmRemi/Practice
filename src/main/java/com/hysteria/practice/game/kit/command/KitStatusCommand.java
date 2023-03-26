@@ -26,26 +26,27 @@ public class KitStatusCommand extends BaseCommand {
 			return;
 		}
 		player.sendMessage(CC.CHAT_BAR);
-		player.sendMessage(CC.translate("&c&lKits Status &7(" + (kit.isEnabled() ? "&a" : "&c") + kit.getName() + "&7)"));
+		player.sendMessage(CC.translate("&b&lKits Status &7(" + (kit.isEnabled() ? "&a" : "&b") + kit.getName() + "&7)"));
 		player.sendMessage(CC.CHAT_BAR);
-		player.sendMessage(CC.translate(" &7▢ &4Ranked&f: " + (kit.getGameRules().isRanked() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Build&f: " + (kit.getGameRules().isBuild() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Spleef&f: " + (kit.getGameRules().isSpleef() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Sumo&f: " + (kit.getGameRules().isSumo() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Soup&f: " + (kit.getGameRules().isSoup() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Parkour&f: " + (kit.getGameRules().isParkour() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4HCF&f: " + (kit.getGameRules().isHcf() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4HCFTrap&f: " + (kit.getGameRules().isHcftrap() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Battle Rush&f: " + (kit.getGameRules().isBattlerush() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Bridge&f: " + (kit.getGameRules().isBridge() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Lives&f: " + (kit.getGameRules().isLives() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4BedFight&f: " + (kit.getGameRules().isBedFight() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Health Regeneration&f: " + (kit.getGameRules().isHealthRegeneration() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4NoFall Damage&f: " + (kit.getGameRules().isNofalldamage() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Anti Food&f: " + (kit.getGameRules().isAntiFood() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Show Health&f: " + (kit.getGameRules().isShowHealth() ? "&a\u2713" : "&c\u2717")));
-		player.sendMessage(CC.translate(" &7▢ &4Hit Delay&f: " + kit.getGameRules().getHitDelay()));
-		player.sendMessage(CC.translate(" &7▢ &4KB Profile&f: " + kit.getGameRules().getKbProfile()));
+		player.sendMessage(CC.translate(" &7▢ &bRanked&f: " + (kit.getGameRules().isRanked() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bBuild&f: " + (kit.getGameRules().isBuild() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bSpleef&f: " + (kit.getGameRules().isSpleef() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bSumo&f: " + (kit.getGameRules().isSumo() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bSoup&f: " + (kit.getGameRules().isSoup() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bParkour&f: " + (kit.getGameRules().isParkour() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bHCF&f: " + (kit.getGameRules().isHcf() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bHCFTrap&f: " + (kit.getGameRules().isHcftrap() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bBattle Rush&f: " + (kit.getGameRules().isBattlerush() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bBridge&f: " + (kit.getGameRules().isBridge() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bLives&f: " + (kit.getGameRules().isLives() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bBedFight&f: " + (kit.getGameRules().isBedFight() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bHealth Regeneration&f: " + (kit.getGameRules().isHealthRegeneration() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bNoFall Damage&f: " + (kit.getGameRules().isNofalldamage() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bNo Damage&f: " + (kit.getGameRules().isNodamage() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bAnti Food&f: " + (kit.getGameRules().isAntiFood() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bShow Health&f: " + (kit.getGameRules().isShowHealth() ? "&a\u2713" : "&b\u2717")));
+		player.sendMessage(CC.translate(" &7▢ &bHit Delay&f: " + kit.getGameRules().getHitDelay()));
+		player.sendMessage(CC.translate(" &7▢ &bKB Profile&f: " + kit.getGameRules().getKbProfile()));
 		player.sendMessage(CC.CHAT_BAR);
 	}
 }

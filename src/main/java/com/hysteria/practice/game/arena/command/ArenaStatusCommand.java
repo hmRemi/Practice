@@ -19,30 +19,30 @@ public class ArenaStatusCommand extends BaseCommand {
 
 		Arena arena = Arena.getByName(args[0]);
 		if (arena != null) {
-			sender.sendMessage(CC.RED + CC.BOLD + "Arena Status " + CC.GRAY + "(" +
+			sender.sendMessage(CC.RED + CC.AQUA + "Arena Status " + CC.GRAY + "(" +
 					(arena.isSetup() ? CC.GREEN : CC.RED) + arena.getName() + CC.GRAY + ")");
 
-			sender.sendMessage(CC.RED + "Cuboid Lower Location: " + CC.GREEN +
+			sender.sendMessage(CC.AQUA + "Cuboid Lower Location: " + CC.GREEN +
 					(arena.getLowerCorner() == null ?
 							StringEscapeUtils.unescapeJava("\u2717") :
 							StringEscapeUtils.unescapeJava("\u2713")));
 
-			sender.sendMessage(CC.RED + "Cuboid Upper Location: " + CC.GREEN +
+			sender.sendMessage(CC.AQUA + "Cuboid Upper Location: " + CC.GREEN +
 					(arena.getUpperCorner() == null ?
 							StringEscapeUtils.unescapeJava("\u2717") :
 							StringEscapeUtils.unescapeJava("\u2713")));
 
-			sender.sendMessage(CC.RED + "Spawn A Location: " + CC.GREEN +
+			sender.sendMessage(CC.AQUA + "Spawn A Location: " + CC.GREEN +
 					(arena.getSpawnA() == null ?
 							StringEscapeUtils.unescapeJava("\u2717") :
 							StringEscapeUtils.unescapeJava("\u2713")));
 
-			sender.sendMessage(CC.RED + "Spawn B Location: " + CC.GREEN +
+			sender.sendMessage(CC.AQUA + "Spawn B Location: " + CC.GREEN +
 					(arena.getSpawnB() == null ?
 							StringEscapeUtils.unescapeJava("\u2717") :
 							StringEscapeUtils.unescapeJava("\u2713")));
 
-			sender.sendMessage(CC.RED + "Kits: " + CC.GREEN + StringUtils.join(arena.getKits(), ", "));
+			sender.sendMessage(CC.AQUA + "Kits: " + CC.GREEN + StringUtils.join(arena.getKits(), ", "));
 		} else {
 			sender.sendMessage(CC.RED + "An arena with that name does not exist.");
 		}

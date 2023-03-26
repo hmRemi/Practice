@@ -10,6 +10,7 @@ import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.player.profile.ProfileState;
 import com.hysteria.practice.utilities.MessageFormat;
+import com.hysteria.practice.utilities.UUIDFetcher;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.GameMode;
@@ -26,12 +27,9 @@ public class FFAManager {
 
     @Getter @Setter private Cuboid ffaSafezone;
 
-    public int killstreak;
-
     public void init() {
         new RefillCooldownTask().runTaskTimer(HyPractice.get(), 2L, 2L);
         new FFAVisiblityTask().runTaskTimer(HyPractice.get(), 2L, 2L);
-
     }
 
     public void firstJoinFfa(Player player, Arena arena) {
@@ -42,7 +40,7 @@ public class FFAManager {
                 .add("{players}", "" + getFFAPlayers().size())
                 .send(player);
 
-        this.broadcastMessage("&4" + player.getName() + " &fhas joined FFA.");
+        this.broadcastMessage("&b" + player.getName() + " &fhas joined FFA.");
 
         joinFFA(player, arena);
     }

@@ -33,19 +33,19 @@ public class ArenaCommand extends BaseCommand {
         CommandSender sender = commandArgs.getSender();
 
         sender.sendMessage(CC.CHAT_BAR);
-        sender.sendMessage(CC.translate("&c&lArena &7&m-&r &c&lHelp"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena create &8<&7arena&8> &8<&7SHARED/STANDALONE&8>  &8(&7&oCreate an arena&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena setspawn &8<&7arena&8> &8<&7(a/b/[red/blue])&8>  &8(&7&oSet the spawns for an arena&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena setauthor &8<&7arena&8> &8<&7author&8>  &8(&7&oSet the author of an arena&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena removekit &8<&7arena&8> &8<&7kit&8>  &8(&7&oRemove a kit from an arena&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena addkit &8<&7arena&8> &8<&7kit&8>  &8(&7&oAdd a kit to an arena&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena teleport &8<&7arena&8> &8(&7&oTeleport to an arena&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena seticon &8<&7arena&8> &8(&7&oSet an icon for the arena&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena status &8<&7arena&8> &8(&7&oView status of all arenas&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena delete &8<&7arena&8> &8(&7&oDelete an arena&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena manage &8(&7&oOpen a gui to manage arenas&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arena wand &8(&7&oGet the arena selection tool&8&o)"));
-        sender.sendMessage(CC.translate(" &7▢ &4/arenas &8(&7&oList all arenas&8&o)"));
+        sender.sendMessage(CC.translate("&b&lArena &7&m-&r &b&lHelp"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena create &8<&7arena&8> &8<&7SHARED/STANDALONE&8>  &8(&7&oCreate an arena&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena setspawn &8<&7arena&8> &8<&7(a/b/[red/blue])&8>  &8(&7&oSet the spawns for an arena&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena setauthor &8<&7arena&8> &8<&7author&8>  &8(&7&oSet the author of an arena&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena removekit &8<&7arena&8> &8<&7kit&8>  &8(&7&oRemove a kit from an arena&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena addkit &8<&7arena&8> &8<&7kit&8>  &8(&7&oAdd a kit to an arena&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena teleport &8<&7arena&8> &8(&7&oTeleport to an arena&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena seticon &8<&7arena&8> &8(&7&oSet an icon for the arena&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena status &8<&7arena&8> &8(&7&oView status of all arenas&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena delete &8<&7arena&8> &8(&7&oDelete an arena&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena manage &8(&7&oOpen a gui to manage arenas&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arena wand &8(&7&oGet the arena selection tool&8&o)"));
+        sender.sendMessage(CC.translate(" &7▢ &b/arenas &8(&7&oList all arenas&8&o)"));
         sender.sendMessage(CC.CHAT_BAR);
     }
 }

@@ -5,6 +5,7 @@ import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.api.command.BaseCommand;
 import com.hysteria.practice.api.command.Command;
 import com.hysteria.practice.api.command.CommandArgs;
+import com.hysteria.practice.utilities.chat.CC;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -31,7 +32,6 @@ public class ArenaRemoveKitCommand extends BaseCommand {
 		arena.getKits().remove(kit.getName());
 		arena.save();
 
-		player.sendMessage(ChatColor.RED + "Removed kit &f\"" + kit.getName() +
-				"\" &cfrom arena &f\"" + arena.getName() + "\"");
+		player.sendMessage(CC.translate("&7Removed kit &b" + kit.getName() + " &7from arena &b" + arena.getName()));
 	}
 }

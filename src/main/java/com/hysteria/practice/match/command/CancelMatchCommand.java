@@ -49,6 +49,6 @@ public class CancelMatchCommand extends BaseCommand {
 		targetProfile.getMatch().end();
 		targetProfile.getMatch().getArena().setActive(false);
 
-		player.sendMessage(CC.translate("&cYou have cancelled " + target.getName() + "'s match."));
+		player.sendMessage(CC.translate("&7You have cancelled &b" + target.getName() + "'s &7match."));
 	}
 }

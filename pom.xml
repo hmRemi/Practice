@@ -86,6 +86,13 @@
     </repositories>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.10.2</version>
+        </dependency>
+
         <dependency>
             <groupId>com.alonsoaliaga</groupId>
             <artifactId>alonsoaleagues</artifactId>

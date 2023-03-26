@@ -44,7 +44,7 @@ public class BoardAdapter implements AssembleAdapter {
 				.replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
 				.replace("{in-fights}", String.valueOf(HyPractice.get().getInFights()))
 				.replace("{in-queues}", String.valueOf(HyPractice.get().getInQueues()))
-				.replace("{division}", String.valueOf(AlonsoLeaguesAPI.getLeague(player.getUniqueId())))
+				.replace("{division}", String.valueOf(HyPractice.get().isAlonsoleagues() ? AlonsoLeaguesAPI.getLeague(player.getUniqueId()) : ""))
 				.replace("{coins}", String.valueOf(profile.getCoins()))
 				.replace("{elo}", String.valueOf(EloUtil.getGlobalElo(profile)))));
 		}

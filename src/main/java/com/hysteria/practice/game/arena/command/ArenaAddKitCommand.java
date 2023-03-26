@@ -31,7 +31,7 @@ public class ArenaAddKitCommand extends BaseCommand {
 		arena.getKits().add(kit.getName());
 		arena.save();
 
-		player.sendMessage(CC.translate("&7Added kit &4" + kit.getName() + " &7to arena &4" + arena.getName()));
+		player.sendMessage(CC.translate("&7Added kit &b" + kit.getName() + " &7to arena &b" + arena.getName()));
 	}
 
 }

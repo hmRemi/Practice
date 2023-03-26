@@ -64,7 +64,7 @@ public class KillEffectsMenu extends PaginatedMenu
         public void clicked(final Player player, final ClickType clickType) {
             final Profile profile = Profile.get(player.getUniqueId());
             if (!this.type.hasPermission(player)) {
-                player.sendMessage(CC.translate("&7You don't have the &4" + this.type.getName() + "&7 death effect. Purchase it at &4store.hy-pvp.net" + "&7."));
+                player.sendMessage(CC.translate("&7You don't have the &4" + this.type.getName() + "&7 death effect. Purchase it at &4store.hypractice.com" + "&7."));
             }
             else if (profile.getKillEffectType() == this.type) {
                 player.sendMessage(CC.translate("&4" + this.type.getName() + "&7 death effect is already selected."));

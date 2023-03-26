@@ -136,6 +136,7 @@ public class Kit {
 			kit.getGameRules().setHealthRegeneration(config.getBoolean(path + ".game-rules.health-regeneration"));
 			kit.getGameRules().setNofalldamage(config.getBoolean(path + ".game-rules.nofalldamage"));
 			kit.getGameRules().setAntiFood(config.getBoolean(path + ".game-rules.antifood"));
+			kit.getGameRules().setNodamage(config.getBoolean(path + ".game-rules.nodamage"));
 			kit.getGameRules().setShowHealth(config.getBoolean(path + ".game-rules.show-health"));
 			kit.getGameRules().setHitDelay(config.getInt(path + ".game-rules.hit-delay"));
 			kit.getGameRules().setRanked(config.getBoolean(path + ".game-rules.ranked"));

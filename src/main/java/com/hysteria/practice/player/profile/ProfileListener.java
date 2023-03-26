@@ -179,11 +179,7 @@ public class ProfileListener implements Listener {
 		player.setMaximumNoDamageTicks(20);
 
 		if (HyPractice.get().getColoredRanksConfig().getConfiguration().contains("groups." + HyPractice.get().getRankManager().getRank().getName(player.getUniqueId()))) {
-			if (cCore.INSTANCE.getPlayerManagement().getPlayerData(player.getUniqueId()).getDisguiseData() != null) {
-				profile.setColor(CC.translate("&a"));
-			} else {
-				profile.setColor(HyPractice.get().getColoredRanksConfig().getString("groups." + HyPractice.get().getRankManager().getRank().getName(player.getUniqueId())));
-			}
+			profile.setColor(HyPractice.get().getColoredRanksConfig().getString("groups." + HyPractice.get().getRankManager().getRank().getName(player.getUniqueId())));
 		} else {
 			profile.setColor("&r");
 			throw new IllegalArgumentException("The colored rank of " + player.getName() + " doesn't exist");

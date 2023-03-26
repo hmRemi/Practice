@@ -598,12 +598,11 @@ public abstract class Match {
 
 					killer.sendTitle(new Title(CC.translate("&a&lVICTORY!"), CC.translate("&aYou &7won against &a" + dead.getName()), 1, 100, 0));
 
-					AlonsoLeaguesAPI.addPoints(killer.getUniqueId(), 10);
-					winner.addCoins(getRandomNumber(10, 50));
-
-					killer.sendMessage(CC.translate("&7You have gained &c10 &7experience"));
-					killer.sendMessage(CC.translate("&7You have gained &c10 &7coins"));
-
+					if(HyPractice.get().isAlonsoleagues()) {
+						AlonsoLeaguesAPI.addPoints(killer.getUniqueId(), 10);
+					}
+					int coins = getRandomNumber(10, 50);
+					winner.setCoins(winner.getCoins() + coins);
 				}
 
                 if(killer != null) {

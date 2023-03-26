@@ -4,7 +4,7 @@ import com.hysteria.practice.chunk.data.NekoChunkData;
 import com.hysteria.practice.chunk.reset.INekoChunkReset;
 import com.hysteria.practice.chunk.reset.impl.VanillaNekoChunkReset;
 import com.hysteria.practice.chunk.restoration.IChunkRestoration;
-import com.hysteria.practice.chunk.restoration.impl.FrostChunkRestoration;
+import com.hysteria.practice.chunk.restoration.impl.HyChunkRestoration;
 import com.hysteria.practice.game.arena.cuboid.Cuboid;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,7 +34,7 @@ public class ChunkRestorationManager {
             iNekoChunkReset = new VanillaNekoChunkReset();
         }
         if (iChunkRestoration == null) { // Let the other plugins create an IChunkRestoration before we load ours.
-            iChunkRestoration = new FrostChunkRestoration(iNekoChunkReset, this);
+            iChunkRestoration = new HyChunkRestoration(iNekoChunkReset, this);
         }
     }
 }

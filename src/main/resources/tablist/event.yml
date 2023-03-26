@@ -52,10 +52,10 @@ TABLIST:
       text: ''
       head: ''
     '18':
-      text: '&cDiscord'
+      text: '&bDiscord'
       head: '{discord}'
     '19':
-      text: '&7discord.gg/crystal'
+      text: '&7discord.hypractice.com'
       head: '{light_purple}'
     '20':
       text: '{bars}'
@@ -65,7 +65,7 @@ TABLIST:
       text: '{bars}'
       head: '{gray}'
     '2':
-      text: '&c&lSeason 1'
+      text: '&b&lSeason 1'
       head: ''
     '3':
       text: '&7{online}/{slots}'
@@ -113,10 +113,10 @@ TABLIST:
       text: ''
       head: ''
     '18':
-      text: '&cTwitter'
+      text: '&bTwitter'
       head: '{twitter}'
     '19':
-      text: '&7@CrystalNetwork'
+      text: '&7@HyPractice'
       head: '{light_purple}'
     '20':
       text: '{bars}'
@@ -135,19 +135,19 @@ TABLIST:
       text: ''
       head: ''
     '5':
-      text: '&c&lEvent Information'
-      head: '{dark_blue}'
+      text: '&b&lEvent Information'
+      head: '{aqua}'
     '6':
-      text: ' &4Name&7: &f{event}'
+      text: ' &bName&7: &f{event}'
       head: ''
     '7':
-      text: ' &4Host&7: {hoster}'
+      text: ' &bHost&7: {hoster}'
       head: ''
     '8':
-      text: ' &4Players&7: {remaining-players}/{max-players}'
+      text: ' &bPlayers&7: {remaining-players}/{max-players}'
       head: ''
     '9':
-      text: ' &4Map&7: &f{map-name}'
+      text: ' &bMap&7: &f{map-name}'
       head: ''
     '10':
       text: ''
@@ -174,10 +174,10 @@ TABLIST:
       text: ''
       head: ''
     '18':
-      text: '&4TeamSpeak'
+      text: '&bTeamSpeak'
       head: '{brayding}'
     '19':
-      text: '&7ts.crystal.rip'
+      text: '&7ts.hypractice.com'
       head: '{light_purple}'
     '20':
       text: '{bars}'
@@ -208,16 +208,16 @@ TABLIST:
       text: ''
       head: ''
     '9':
-      text: '&c&lYour Information'
+      text: '&b&lYour Information'
       head: '{player}'
     '10':
-      text: ' &4Name&7: &f{name}'
+      text: ' &bName&7: &f{name}'
       head: ''
     '11':
-      text: ' &4Rank&7: &f{rank-suffix}'
+      text: ' &bRank&7: &f{rank-suffix}'
       head: ''
     '12':
-      text: ' &4Ping&7: &f{ping}'
+      text: ' &bPing&7: &f{ping}'
       head: ''
     '13':
       text: ''
@@ -235,10 +235,10 @@ TABLIST:
       text: ''
       head: ''
     '18':
-      text: '&4Website'
+      text: '&bWebsite'
       head: '{ziue}'
     '19':
-      text: '&7www.crystal.rip'
+      text: '&7www.hypractice.com'
       head: '{light_purple}'
     '20':
       text: '{bars}'

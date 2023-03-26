@@ -46,7 +46,7 @@ public class EventHostCommand extends BaseCommand {
 			if (!EventGame.getCooldown().hasExpired()) {
 				player.sendMessage(CC.CHAT_BAR);
 				player.sendMessage(CC.DARK_RED + "The event cooldown is active.");
-				player.sendMessage(CC.translate("&4Cooldown: &7" + EventGame.getCooldown().getTimeLeft()));
+				player.sendMessage(CC.translate("&bCooldown: &7" + EventGame.getCooldown().getTimeLeft()));
 				player.sendMessage(CC.CHAT_BAR);
 				return;
 			}

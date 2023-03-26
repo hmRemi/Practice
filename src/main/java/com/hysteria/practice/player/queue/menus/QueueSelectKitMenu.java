@@ -40,18 +40,10 @@ public class QueueSelectKitMenu extends Menu {
 	public Map<Integer, Button> getButtons(Player player) {
 		HashMap<Integer, Button> buttons = new HashMap<>();
 
-		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 
-		buttons.put(48, new FFAButton());
-
 		for (Queue queue : Queue.getQueues()) {
-			if(queue.isRanked() == ranked) {
-				buttons.put(50, new UnrankedButton());
-			} else {
-				buttons.put(50, new RankedButton());
-			}
-
 			if (queue.isRanked() == ranked) buttons.put(queue.getKit().getSlot(), new SelectKitButton(queue));
 		}
 		return buttons;
@@ -59,7 +51,7 @@ public class QueueSelectKitMenu extends Menu {
 
 	@Override
 	public int getSize() {
-		return HyPractice.get().getMainConfig().getInteger("QUEUES.SIZE") * 9;
+		return HyPractice.get().getMenuConfig().getInteger("QUEUES.SIZE") * 9;
 	}
 
 	@AllArgsConstructor

@@ -3,6 +3,7 @@ package com.hysteria.practice.essentials.abilities;
 import com.hysteria.practice.essentials.abilities.impl.*;
 import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.utilities.ItemBuilder;
+import com.hysteria.practice.utilities.JavaUtils;
 import com.hysteria.practice.utilities.TaskUtil;
 import com.hysteria.practice.utilities.chat.CC;
 import lombok.Getter;

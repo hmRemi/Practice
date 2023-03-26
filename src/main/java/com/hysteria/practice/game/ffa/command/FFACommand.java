@@ -25,8 +25,8 @@ public class FFACommand extends BaseCommand {
         Player player = commandArgs.getPlayer();
         String[] args = commandArgs.getArgs();
         if (args.length == 0) {
-            player.sendMessage(CC.translate(("&4/ffa leave &7- &fLeave FFA")));
-            player.sendMessage(CC.translate(("&4/ffa join &7- &fJoin FFA")));
+            player.sendMessage(CC.translate(("&b/ffa leave &7- &fLeave FFA")));
+            player.sendMessage(CC.translate(("&b/ffa join &7- &fJoin FFA")));
         }
     }
 }

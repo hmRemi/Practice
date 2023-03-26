@@ -117,7 +117,7 @@ public class ArenaSetSpawnCommand extends BaseCommand {
 			arena.save();
 
 			player.sendMessage(CC.CHAT_BAR);
-			player.sendMessage(CC.translate( "&cUpdated spawn point&f \"" + pos + "\" &cfor arena &f\"" + arena.getName() + "\""));
+			player.sendMessage(CC.translate( "&7Updated spawn point&b \"" + pos + "\" &7for arena &b\"" + arena.getName() + "\""));
 			player.sendMessage(CC.CHAT_BAR);
 		} else {
 			player.sendMessage(CC.RED + "An arena with that name already exists.");

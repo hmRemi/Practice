@@ -5,7 +5,6 @@ package com.hysteria.practice.player.cosmetics;
 */
 
 import com.hysteria.practice.player.cosmetics.impl.killeffects.KillEffectType;
-import com.hysteria.practice.player.cosmetics.impl.trails.TrailsEffectType;
 import com.hysteria.practice.player.profile.Profile;
 
 import java.util.UUID;
@@ -22,16 +21,6 @@ public class Cosmetic {
     public void setDeathEffect(UUID uuid, KillEffectType deathEffect) {
         Profile profile = Profile.get(uuid);
         profile.setKillEffectType(deathEffect);
-    }
-
-    public String getTrailEffect(UUID uuid) {
-        Profile profile = Profile.get(uuid);
-        return profile.getTrailsEffectType().getName();
-    }
-
-    public void setTrailEffect(UUID uuid, TrailsEffectType deathEffect) {
-        Profile profile = Profile.get(uuid);
-        profile.setTrailsEffectType(deathEffect);
     }
 
     public int getDeathEffects() {

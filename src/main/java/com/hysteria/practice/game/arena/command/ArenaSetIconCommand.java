@@ -29,6 +29,6 @@ public class ArenaSetIconCommand extends BaseCommand {
 
         arena.setDisplayIcon(player.getItemInHand());
         arena.save();
-        player.sendMessage(ChatColor.GREEN + "Kit icon update");
+        player.sendMessage(ChatColor.GREEN + "Kit icon updated");
     }
 }

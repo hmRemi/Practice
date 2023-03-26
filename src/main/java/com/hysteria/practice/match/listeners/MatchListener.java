@@ -327,7 +327,7 @@ public class MatchListener implements Listener {
 				}
 
 				if (profile.getMatch().getKit().getGameRules().isSumo() || profile.getMatch().getKit().getGameRules().isSpleef()
-						|| profile.getMatch().getKit().getGameRules().isBoxing() || profile.getMatch().getKit().getGameRules().isBattlerush() || profile.getMatch().getKit().getGameRules().isLives()) {
+						|| profile.getMatch().getKit().getGameRules().isBoxing() || profile.getMatch().getKit().getGameRules().isBattlerush() || profile.getMatch().getKit().getGameRules().isNodamage()) {
 					event.setDamage(0);
 					player.setHealth(20.0);
 					player.updateInventory();

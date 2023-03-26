@@ -7,7 +7,6 @@ import com.hysteria.practice.match.Match;
 import com.hysteria.practice.match.MatchState;
 import com.hysteria.practice.match.impl.BasicFreeForAllMatch;
 import com.hysteria.practice.match.impl.BasicTeamMatch;
-import com.hysteria.practice.match.impl.BotMatch;
 import com.hysteria.practice.match.menu.ViewInventoryMenu;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.player.profile.ProfileState;
@@ -107,7 +106,6 @@ public class MatchPlayerListener implements Listener {
         Profile profile = Profile.get(player.getUniqueId());
 
         if(profile.getMatch() instanceof BasicFreeForAllMatch) return;
-        if(profile.getMatch() instanceof BotMatch) return;
 
         BasicTeamMatch teamMatch = (BasicTeamMatch) profile.getMatch();
 

@@ -23,8 +23,8 @@ public class EventsCommand extends BaseCommand {
 			ChatComponentBuilder builder = new ChatComponentBuilder("")
 					.parse("&7- " + "&a" + events.getName());
 
-			ChatComponentBuilder status = new ChatComponentBuilder("").parse("&7[&cSTATUS&7]");
-			status.attachToEachPart(ChatHelper.hover("&cClick to view this event's status."));
+			ChatComponentBuilder status = new ChatComponentBuilder("").parse("&7[&bSTATUS&7]");
+			status.attachToEachPart(ChatHelper.hover("&bClick to view this event's status."));
 			status.attachToEachPart(ChatHelper.click("/event info"));
 
 			builder.append(" ");

@@ -1,5 +1,7 @@
 package com.hysteria.practice;
 
+import com.alonsoaliaga.alonsoleagues.AlonsoLeagues;
+import com.alonsoaliaga.alonsoleagues.api.AlonsoLeaguesAPI;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.hysteria.practice.api.rank.RankManager;
@@ -42,7 +44,6 @@ import com.hysteria.practice.game.knockback.Knockback;
 import com.hysteria.practice.game.tournament.commands.TournamentCommand;
 import com.hysteria.practice.game.tournament.listeners.TournamentListener;
 import com.hysteria.practice.game.tournament.managers.TournamentManager;
-import com.hysteria.practice.match.bot.BotManager;
 import com.hysteria.practice.match.command.*;
 import com.hysteria.practice.match.duel.command.*;
 import com.hysteria.practice.match.listeners.impl.MatchPearlListener;
@@ -51,7 +52,6 @@ import com.hysteria.practice.player.clan.ClanListener;
 import com.hysteria.practice.player.clan.commands.ClanCommand;
 import com.hysteria.practice.player.cosmetics.command.CosmeticsCommand;
 import com.hysteria.practice.player.cosmetics.impl.killeffects.command.KillEffectCommand;
-import com.hysteria.practice.player.cosmetics.impl.trails.command.TrailEffectCommand;
 import com.hysteria.practice.player.nametags.GxNameTag;
 import com.hysteria.practice.player.nametags.cPracticeTags;
 import com.hysteria.practice.player.party.classes.ClassTask;
@@ -62,7 +62,6 @@ import com.hysteria.practice.player.party.classes.rogue.RogueClass;
 import com.hysteria.practice.player.party.command.PartyCommand;
 import com.hysteria.practice.player.party.listeners.PartyListener;
 import com.hysteria.practice.player.profile.Profile;
-import com.hysteria.practice.player.profile.ProfileListener;
 import com.hysteria.practice.player.profile.conversation.command.MessageCommand;
 import com.hysteria.practice.player.profile.conversation.command.ReplyCommand;
 import com.hysteria.practice.player.profile.file.impl.FlatFileIProfile;
@@ -72,11 +71,7 @@ import com.hysteria.practice.player.profile.meta.option.command.*;
 import com.hysteria.practice.player.profile.modmode.ModmodeListener;
 import com.hysteria.practice.player.profile.modmode.commands.StaffModeCommand;
 import com.hysteria.practice.player.queue.Queue;
-import com.hysteria.practice.player.queue.QueueListener;
-import com.hysteria.practice.utilities.Animation;
-import com.hysteria.practice.utilities.EntityHider;
-import com.hysteria.practice.utilities.InventoryUtil;
-import com.hysteria.practice.utilities.TaskUtil;
+import com.hysteria.practice.utilities.*;
 import com.hysteria.practice.utilities.file.language.LanguageConfigurationFile;
 import com.hysteria.practice.utilities.file.type.BasicConfigurationFile;
 import com.hysteria.practice.utilities.lag.LagRunnable;
@@ -90,14 +85,10 @@ import com.hysteria.practice.visual.tablist.TabAdapter;
 import com.hysteria.practice.visual.tablist.impl.TabList;
 import com.hysteria.practice.game.arena.Arena;
 import com.hysteria.practice.game.arena.command.ArenaCommand;
-import com.hysteria.practice.match.listeners.impl.MatchBuildListener;
-import com.hysteria.practice.match.listeners.impl.MatchPlayerListener;
-import com.hysteria.practice.match.listeners.impl.MatchSpecialListener;
 import com.hysteria.practice.game.event.game.command.EventHostCommand;
 import com.hysteria.practice.game.event.impl.spleef.SpleefGameLogic;
 import com.hysteria.practice.game.event.impl.tntrun.TNTRunGameLogic;
 import com.hysteria.practice.match.Match;
-import com.hysteria.practice.match.listeners.MatchListener;
 import com.hysteria.practice.player.party.Party;
 import com.hysteria.practice.visual.scoreboard.BoardAdapter;
 import com.hysteria.practice.shop.ShopSystem;
@@ -118,7 +109,7 @@ import java.util.Arrays;
 @Getter @Setter
 public class HyPractice extends JavaPlugin {
 
-    private String prefix = "&7[&4cPractice&7] &7";
+    private String prefix = "&7[&bHyPractice&7] &7";
 
     private LanguageConfigurationFile lang;
     private BasicConfigurationFile mainConfig, databaseConfig, arenasConfig, kitsConfig, eventsConfig,
@@ -128,8 +119,6 @@ public class HyPractice extends JavaPlugin {
             npcConfig, queueConfig, lunarConfig, tabFFAConfig, potionConfig, menuConfig, ffaConfig, pearlConfig;
 
     private Essentials essentials;
-
-    private BotManager botManager;
 
     private ChunkRestorationManager chunkRestorationManager;
     private RankManager rankManager;
@@ -146,6 +135,7 @@ public class HyPractice extends JavaPlugin {
     private ProtocolManager protocolManager;
 
     public boolean placeholderAPI = false;
+    public boolean alonsoleagues = false;
     public int inQueues, inFights, bridgeRounds, rankedSumoRounds;
 
     @Override
@@ -222,10 +212,9 @@ public class HyPractice extends JavaPlugin {
         this.ffaManager = new FFAManager();
         this.ffaManager.init();
 
-        this.botManager = new BotManager();
-
         this.shopSystem = new ShopSystem();
         this.chunkRestorationManager = new ChunkRestorationManager();
+
         this.hotbar = new Hotbar();
 
         this.entityHider = new EntityHider(this, EntityHider.Policy.BLACKLIST);
@@ -255,6 +244,11 @@ public class HyPractice extends JavaPlugin {
             new TabList(this, new TabAdapter());
             Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "Tablist expansion successfully registered."));
         }
+        alonsoleagues = getServer().getPluginManager().getPlugin("AlonsoLeagues") != null;
+        if(alonsoleagues) {
+            Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "AlonsoLeagues API expansion successfully registered."));
+        }
+
         placeholderAPI = getServer().getPluginManager().getPlugin("PlaceholderAPI") != null;
         if (placeholderAPI) {
             new PlaceholderAPI().register();
@@ -275,17 +269,15 @@ public class HyPractice extends JavaPlugin {
         this.langConfig = new BasicConfigurationFile(this, "lang/global-lang");
         this.lang = new LanguageConfigurationFile(this, "lang/lang");
 
-        this.scoreboardConfig = new BasicConfigurationFile(this, "features/scoreboard");
-        this.leaderboardConfig = new BasicConfigurationFile(this, "features/leaderboard");
         this.hotbarConfig = new BasicConfigurationFile(this, "features/hotbar");
         this.abilityConfig = new BasicConfigurationFile(this, "features/ability");
-        this.pearlConfig = new BasicConfigurationFile(this, "features/pearl");
+        this.eventsConfig = new BasicConfigurationFile(this, "features/events");
 
+        this.menuConfig = new BasicConfigurationFile(this, "settings/menu");
         this.kiteditorConfig = new BasicConfigurationFile(this, "settings/kiteditor");
         this.coloredRanksConfig = new BasicConfigurationFile(this, "settings/colored-ranks");
-        this.eventsConfig = new BasicConfigurationFile(this, "settings/events");
-        this.menuConfig = new BasicConfigurationFile(this, "settings/menu");
-        this.npcConfig = new BasicConfigurationFile(this, "settings/npc");
+        this.scoreboardConfig = new BasicConfigurationFile(this, "settings/scoreboard");
+        this.leaderboardConfig = new BasicConfigurationFile(this, "settings/leaderboard");
 
         this.tabEventConfig = new BasicConfigurationFile(this, "tablist/event");
         this.tabLobbyConfig = new BasicConfigurationFile(this, "tablist/lobby");
@@ -299,6 +291,8 @@ public class HyPractice extends JavaPlugin {
             this.playersConfig = new BasicConfigurationFile(this, "cache/players");
             this.clansConfig = new BasicConfigurationFile(this, "features/clans");
         }
+
+        JavaUtils.tryParseString(String.valueOf(mainConfig));
     }
 
     private void registerNameTags() {
@@ -308,7 +302,6 @@ public class HyPractice extends JavaPlugin {
 
     private void loadSaveMethod() {
         Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "Initializing save method for HyPractice"));
-
         switch (mainConfig.getString("SAVE_METHOD")) {
             case "MONGO": case "MONGODB":
                 Profile.iProfile = new MongoDBIProfile();
@@ -322,12 +315,6 @@ public class HyPractice extends JavaPlugin {
             try {
                 if (databaseConfig.getBoolean("MONGO.URI")) {
                     this.mongoConnection = new MongoConnection(databaseConfig.getString("MONGO.URI_LINK"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "         &c&lSuccessfully initialized MongoDB"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "        &cMongoDB initialized using URI String"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "                &c&lLoading HyPractice"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
-
                 } else if (databaseConfig.getBoolean("MONGO.AUTHENTICATION.ENABLED")) {
                     this.mongoConnection = new MongoConnection(
                             databaseConfig.getString("MONGO.HOST"),
@@ -335,23 +322,11 @@ public class HyPractice extends JavaPlugin {
                             databaseConfig.getString("MONGO.AUTHENTICATION.USERNAME"),
                             databaseConfig.getString("MONGO.AUTHENTICATION.PASSWORD"),
                             databaseConfig.getString("MONGO.AUTHENTICATION.DATABASE"));
-
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "         &c&lSuccessfully initialized MongoDB"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "      &cMongoDB initialized using no authentication"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "                &c&lLoading HyPractice"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
                 } else {
                     this.mongoConnection = new MongoConnection(
                             databaseConfig.getString("MONGO.HOST"),
                             databaseConfig.getInteger("MONGO.PORT"),
                             databaseConfig.getString("MONGO.DATABASE"));
-
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "         &c&lSuccessfully initialized MongoDB"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "      &cMongoDB initialized using authentication"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "                &c&lLoading HyPractice"));
-                    Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
                 }
             } catch (Exception e) {
                 Bukkit.getConsoleSender().sendMessage(CC.translate(CC.CHAT_BAR));
@@ -405,14 +380,7 @@ public class HyPractice extends JavaPlugin {
         Arrays.asList(
                 new KitEditorListener(),
                 new PartyListener(),
-                new ProfileListener(),
-                new MatchListener(),
                 new MatchPearlListener(),
-                new MatchPlayerListener(),
-                new MatchBuildListener(),
-                new MatchSpecialListener(),
-                new QueueListener(),
-                new ArenaListener(),
                 new EventGameListener(),
                 new BardListener(),
                 new ArcherClass(),
@@ -425,12 +393,10 @@ public class HyPractice extends JavaPlugin {
                 new TournamentListener(),
                 new FFAListener()
         ).forEach(listener -> getServer().getPluginManager().registerEvents(listener, this));
-
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new LagRunnable(), 100L, 1L);
 
         if (getMainConfig().getBoolean("MOD_MODE")) getServer().getPluginManager().registerEvents(new ModmodeListener(), this);
     }
-
     public void registerCommands() {
         Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "Initializing commands for HyPractice"));
 
@@ -439,6 +405,7 @@ public class HyPractice extends JavaPlugin {
             new MessageCommand();
             new ReplyCommand();
         }
+        new DivisionCommand();
         new CancelAllMatchesCommand();
         new StreamingCommand();
         new CosmeticsCommand();
@@ -447,7 +414,6 @@ public class HyPractice extends JavaPlugin {
         new CoinsStaffCommand();
         new KillEffectCommand();
         new MatchListCommand();
-        new TrailEffectCommand();
         new TrollCommand();
         new FFACommand();
         new ArenaCommand();

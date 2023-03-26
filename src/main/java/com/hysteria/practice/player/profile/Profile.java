@@ -7,7 +7,6 @@ import com.hysteria.practice.essentials.abilities.cooldown.AbilityCooldown;
 import com.hysteria.practice.player.clan.Clan;
 import com.hysteria.practice.player.clan.ClanInvite;
 import com.hysteria.practice.player.cosmetics.impl.killeffects.KillEffectType;
-import com.hysteria.practice.player.cosmetics.impl.trails.TrailsEffectType;
 import com.hysteria.practice.player.profile.conversation.ProfileConversations;
 import com.hysteria.practice.player.profile.file.IProfile;
 import com.hysteria.practice.player.profile.file.impl.FlatFileIProfile;
@@ -79,7 +78,6 @@ public class Profile {
 	private String name, color;
 	private Weight weight;
 	private KillEffectType killEffectType;
-	private TrailsEffectType trailsEffectType;
 	private TabType tabType = TabType.DEFAULT;
 	private Follow follow;
 	private int coins;

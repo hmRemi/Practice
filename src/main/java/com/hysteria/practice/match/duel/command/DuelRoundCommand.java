@@ -23,11 +23,6 @@ public class DuelRoundCommand extends BaseCommand {
         Player player = commandArgs.getPlayer();
         String[] args = commandArgs.getArgs();
 
-        if(cCore.INSTANCE.getServerManagement().isServerRebooting()) {
-            player.sendMessage(CC.translate("&7You cannot duel during a reboot"));
-            return;
-        }
-
         if (args.length == 0) {
             player.sendMessage(CC.RED + "Please usage: /duelround (player)");
             return;

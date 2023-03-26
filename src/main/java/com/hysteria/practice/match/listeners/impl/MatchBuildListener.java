@@ -120,7 +120,7 @@ public class MatchBuildListener implements Listener {
 
                 if(match.getKit().getGameRules().isBedFight()) {
                     int highest = (int) (Math.max(arena.getSpawnA().getY(), arena.getSpawnB().getY()));
-                    highest += 10;
+                    highest += 5;
 
                     if (n2 > highest) {
                         new MessageFormat(Locale.ARENA_REACHED_MAXIMUM.format(profile.getLocale())).send(player);
@@ -167,7 +167,7 @@ public class MatchBuildListener implements Listener {
         Profile profile = Profile.get(player.getUniqueId());
         if (profile.getState() == ProfileState.FIGHTING) {
             Match match = profile.getMatch();
-            if (((match.getKit().getGameRules().isBuild() || match.getKit().getGameRules().isSpleef() || (match.getKit().getGameRules().isHcftrap() && ((BasicTeamMatch)match).getParticipantA().containsPlayer(player.getUniqueId())))) && match.getState() == MatchState.PLAYING_ROUND) {
+            if (match.getKit().getGameRules().isBuild() || match.getKit().getGameRules().isSpleef() || (((match.getKit().getGameRules().isHcftrap() && ((BasicTeamMatch)match).getParticipantA().containsPlayer(player.getUniqueId())))) && match.getState() == MatchState.PLAYING_ROUND) {
                 if (match.getKit().getGameRules().isSpleef()) {
                     if (blockBreakEvent.getBlock().getType() == Material.SNOW_BLOCK || blockBreakEvent.getBlock().getType() == Material.SNOW) {
                         match.getChangedBlocks().add(blockBreakEvent.getBlock().getState());
@@ -189,12 +189,12 @@ public class MatchBuildListener implements Listener {
                     blockBreakEvent.getBlock().setType(Material.AIR);
                     blockBreakEvent.setCancelled(true);
                 } else if (match.getKit().getGameRules().isBedFight()) {
-                    if(blockBreakEvent.getBlock().getType() == Material.BED_BLOCK) {
+                    if (blockBreakEvent.getBlock().getType() == Material.BED_BLOCK) {
                         BasicTeamMatch teamMatch = (BasicTeamMatch) profile.getMatch();
                         GameParticipant<MatchGamePlayer> opposingTeam = teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? teamMatch.getParticipantB() : teamMatch.getParticipantA();
 
                         if (teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnA()) > blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnB()) : blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnB()) > blockBreakEvent.getBlock().getLocation().distance(teamMatch.getArena().getSpawnA())) {
-                            if(teamMatch.getState() != MatchState.ENDING_MATCH && opposingTeam.isHasBed()) {
+                            if (teamMatch.getState() != MatchState.ENDING_MATCH && opposingTeam.isHasBed()) {
                                 opposingTeam.destroyBed();
 
                                 teamMatch.broadcastTitle(teamMatch.getParticipantB().containsPlayer(player.getUniqueId()) ? "&cRed's bed broken" : "&9Blue's bed destroyed", "&7By " + (teamMatch.getParticipantB().containsPlayer(player.getUniqueId()) ? "&9" : "&c") + player.getName(), 50);
@@ -212,10 +212,15 @@ public class MatchBuildListener implements Listener {
                             player.sendMessage(CC.translate("&7You cannot break your own bed."));
                             blockBreakEvent.setCancelled(true);
                         }
+                    } else {
+                        if (!match.getPlacedBlocks().remove(blockBreakEvent.getBlock().getLocation()) && blockBreakEvent.getBlock().getType() != Material.ENDER_STONE && blockBreakEvent.getBlock().getType() != Material.WOOD) {
+                            blockBreakEvent.setCancelled(true);
+                        }
                     }
                 } else if (!match.getPlacedBlocks().remove(blockBreakEvent.getBlock().getLocation())) {
                     blockBreakEvent.setCancelled(true);
                 }
+
             } else {
                 blockBreakEvent.setCancelled(true);
             }

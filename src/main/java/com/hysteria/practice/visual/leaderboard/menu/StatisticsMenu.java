@@ -30,13 +30,13 @@ public class StatisticsMenu extends Menu {
 
     @Override
     public String getTitle(Player player) {
-        return HyPractice.get().getMainConfig().getString("STATS_MENU.TITLE")
+        return HyPractice.get().getMenuConfig().getString("STATS_MENU.TITLE")
             .replace("{player}", this.target.getName());
     }
 
     @Override
     public int getSize() {
-        return 5/*HyPractice.get().getMainConfig().getInteger("QUEUES.SIZE")*/ * 9;
+        return 5 * 9;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class StatisticsMenu extends Menu {
             if (kit.getGameRules().isRanked()) buttons.put(queue.getKit().getSlot(), new KitsItems(kit));
         }*/
 
-        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 
         this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
         Kit.getKits().stream()
@@ -71,7 +71,7 @@ public class StatisticsMenu extends Menu {
             Profile data = Profile.get(target.getUniqueId());
             ProfileKitData kitData = data.getKitData().get(kit);
             List<String> lore = new ArrayList<>();
-            for (String s : HyPractice.get().getMainConfig().getStringList("STATS_MENU.DESCRIPTION")) {
+            for (String s : HyPractice.get().getMenuConfig().getStringList("STATS_MENU.DESCRIPTION")) {
                 lore.add(s.replace("{bars}", CC.MENU_BAR)
                         .replace("{elo}", String.valueOf(kitData.getElo()))
                         .replace("{wins}", String.valueOf(kitData.getWon()))
@@ -79,7 +79,7 @@ public class StatisticsMenu extends Menu {
                         .replace("{losses}", String.valueOf(kitData.getLost())));
             }
             return new ItemBuilder(kit.getDisplayIcon())
-                    .name(HyPractice.get().getMainConfig().getString("STATS_MENU.ITEM_NAME").replace("{kit}", kit.getDisplayName()))
+                    .name(HyPractice.get().getMenuConfig().getString("STATS_MENU.ITEM_NAME").replace("{kit}", kit.getDisplayName()))
                     .lore(lore)
                     .build();
         }

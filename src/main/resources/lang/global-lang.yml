@@ -1,37 +1,37 @@
-FAILED_LOAD_PROFILE: '&cFailed to load your profile. Try again later.'
+FAILED_LOAD_PROFILE: '&bFailed to load your profile. Try again later.'
 MOTD:
-  - '                  &c&lCrystal Network'
-  - '                &4Innovation is coming'
-DISCORD: discord.crystal.rip
-STORE: store.crystal.rip
-TEAMSPEAK: ts.crystal.rip
-TWITTER: '@CrystalNetwork'
-WEBSITE: crystal.rip
+  - '                  &b&lHyPractice'
+  - '            &7High Quality Practice core'
+DISCORD: discord.hypractice.com
+STORE: store.hypractice.com
+TEAMSPEAK: ts.hypractice.com
+TWITTER: '@HyPractice'
+WEBSITE: hypractice.com
 TABLIST:
-  HEADER: '&c&lCrystal Network'
+  HEADER: '&b&lHyPractice'
   FOOTER: '&7You are currently using 1.8 Minecraft Version.'
 ELO:
-  VIEW_FORMAT: " &4{kit} &f{elo}"
+  VIEW_FORMAT: " &b{kit} &f{elo}"
   VIEW_YOUR:
     - '{bars}'
-    - ' &c&lElo'
+    - ' &b&lElo'
     - ''
     - '{format}'
     - '{bars}'
   VIEW_OTHER:
     - '{bars}'
-    - ' &c&lElo {color}{player}'
+    - ' &b&lElo {player}'
     - ''
     - '{format}'
     - '{bars}'
 DUEL:
   SELECT:
     ARENA_MENU:
-      TITLE: '&c&lSelect an arena'
+      TITLE: '&b&lSelect an arena'
       MATERIAL: PAPER
-      NAME: '&c&l{name}'
+      NAME: '&b&l{name}'
       RANDOM_MATERIAL: NETHER_STAR
-      RANDOM_NAME: '&4Random Arena'
+      RANDOM_NAME: '&bRandom Arena'
     KIT_MENU:
-      TITLE: '&c&lSelect a kit'
-      NAME: '&c&l{name}'
+      TITLE: '&b&lSelect a kit'
+      NAME: '&b&l{name}'

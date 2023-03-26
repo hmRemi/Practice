@@ -16,7 +16,7 @@ public class ArenaManagementMenu extends Menu {
 
 	@Override
 	public String getTitle(Player player) {
-		return "&c&lArena Management";
+		return "&b&lArena Management";
 	}
 
 	@Override
@@ -36,16 +36,16 @@ public class ArenaManagementMenu extends Menu {
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(arena.getDisplayIcon())
-					.name("&c" + arena.getName())
+					.name("&b" + arena.getName())
 					.lore("")
-					.lore("&cArena Information:")
-					.lore(" &c↣ &fIs Setup: &c" + arena.isSetup())
-					.lore(" &c↣ &fActive: &c" + arena.isActive())
-					.lore(" &c↣ &fType: &c" + arena.getType().toString())
+					.lore("&bArena Information:")
+					.lore(" &b↣ &fIs Setup: &b" + arena.isSetup())
+					.lore(" &b↣ &fActive: &b" + arena.isActive())
+					.lore(" &b↣ &fType: &b" + arena.getType().toString())
 					.lore("")
-					.lore("&c&lLEFT-CLICK &cto teleport to arena.")
-					.lore("&c&lRIGHT-CLICK &cto see arena status.")
-					.lore("&c&lMIDDLE-CLICK &cto delete arena.")
+					.lore("&b&lLEFT-CLICK &bto teleport to arena.")
+					.lore("&b&lRIGHT-CLICK &bto see arena status.")
+					.lore("&b&lMIDDLE-CLICK &bto delete arena.")
 					.build();
 		}
 

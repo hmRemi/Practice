@@ -27,7 +27,7 @@ public class KitEditorSelectKitMenu extends Menu {
 	public Map<Integer, Button> getButtons(Player player) {
 		Map<Integer, Button> buttons = new HashMap<>();
 
-		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMainConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 
 		Kit.getKits().forEach(kit -> {

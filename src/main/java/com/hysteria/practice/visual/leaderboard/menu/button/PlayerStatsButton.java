@@ -1,6 +1,7 @@
 package com.hysteria.practice.visual.leaderboard.menu.button;
 
 import com.google.common.collect.Lists;
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.utilities.ItemBuilder;
 import com.hysteria.practice.utilities.menu.Button;
 import org.bukkit.Material;
@@ -20,7 +21,7 @@ public class PlayerStatsButton extends Button {
         lore.add(CC.translate("&7&m-------------------"));
         lore.add(CC.translate("&fView your stats"));
         lore.add(CC.translate("&7&m-------------------"));
-        return new ItemBuilder(Material.valueOf(String.valueOf(Material.LEASH))).lore(lore).name(CC.translate("&c&lPlayer Statistics")).build();
+        return new ItemBuilder(Material.valueOf(String.valueOf(Material.LEASH))).lore(lore).name(CC.translate(HyPractice.get().getLeaderboardConfig().getString("INVENTORY.YOUR_STATS.TITLE"))).build();
     }
 
     @Override

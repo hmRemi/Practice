@@ -40,7 +40,6 @@ public class Hotbar {
 				builder.durability(config.getInt(path + "DURABILITY"));
 				builder.name(config.getString(path + "NAME"));
 				builder.lore(config.getStringList(path + "LORE"));
-
 				HotbarEntry hotbarEntry;
 				if (slot > 0) hotbarEntry = new HotbarEntry(builder.build(), slot - 1);
 				else hotbarEntry = new HotbarEntry(builder.build(), -1);

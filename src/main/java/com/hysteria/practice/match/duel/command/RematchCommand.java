@@ -21,11 +21,6 @@ public class RematchCommand extends BaseCommand {
 		Profile profile = Profile.get(player.getUniqueId());
 		ProfileRematchData rematchData = profile.getRematchData();
 
-		if(cCore.INSTANCE.getServerManagement().isServerRebooting()) {
-			player.sendMessage(CC.translate("&7You cannot rematch during a reboot"));
-			return;
-		}
-
 		if (rematchData == null) {
 			new MessageFormat(Locale.REMATCH_DO_NOT_HAVE_ANYONE.format(profile.getLocale()))
 					.send(player);
