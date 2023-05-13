@@ -1,6 +1,6 @@
 package com.hysteria.practice.player.cosmetics.impl.killeffects.command;
 /* 
-   Made by cpractice Development Team
+   Made by hypractice Development Team
    Created on 04.11.2021
 */
 

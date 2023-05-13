@@ -141,6 +141,34 @@ public class EventGame {
 		}
 	}
 
+	public void sendAnnouncement() {
+		for (Player player : Bukkit.getOnlinePlayers()) {
+			Profile profile = Profile.get(player.getUniqueId());
+
+			for (String msg : new MessageFormat(Locale.EVENT_JOIN_BROADCAST
+					.format(profile.getLocale()))
+					.add("{event_name}", event.getName())
+					.add("{event_displayname}", event.getDisplayName())
+					.add("{host_name}", CC.RED + gameHost.getUsername())
+					.toList()) {
+				if (msg.contains("%CLICKABLE%")) {
+					ChatComponentBuilder builder = new ChatComponentBuilder(new MessageFormat(Locale.EVENT_JOIN_CLICKABLE
+							.format(profile.getLocale()))
+							.add("{sender_name}", player.getName())
+							.toString());
+					builder.attachToEachPart(ChatHelper.click("/event join"));
+					builder.attachToEachPart(ChatHelper.hover(new MessageFormat(Locale.EVENT_JOIN_HOVER
+							.format(profile.getLocale()))
+							.toString()));
+
+					player.spigot().sendMessage(builder.create());
+				} else {
+					player.sendMessage(msg);
+				}
+			}
+		}
+	}
+
 	public void broadcastJoinMessage() {
 		for (Player player : Bukkit.getOnlinePlayers()) {
 			Profile profile = Profile.get(player.getUniqueId());

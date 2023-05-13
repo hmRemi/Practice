@@ -19,7 +19,7 @@ public class CoinsStaffCommand extends BaseCommand {
         new CoinsTakeCommand();
     }
 
-    @Command(name = "coinsmanager", aliases = {"coinsm", "cmanager", "cm"}, permission = "cpractice.command.coinsmanager", inGameOnly = false)
+    @Command(name = "coinsmanager", aliases = {"coinsm", "cmanager", "cm"}, permission = "hypractice.command.coinsmanager", inGameOnly = false)
     @Override
     public void onCommand(CommandArgs command) {
         CommandSender sender = command.getSender();

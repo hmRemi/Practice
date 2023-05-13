@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 
 public class CancelMatchCommand extends BaseCommand {
 
-	@Command(name = "cancelmatch", permission = "cpractice.command.cancelmatch")
+	@Command(name = "cancelmatch", permission = "hypractice.command.cancelmatch")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();
@@ -46,8 +46,8 @@ public class CancelMatchCommand extends BaseCommand {
 		if(targetProfile.getMatch().getArena() instanceof StandaloneArena) {
 			ChunkRestorationManager.getIChunkRestoration().reset(targetProfile.getMatch().getArena());
 		}
-		targetProfile.getMatch().end();
 		targetProfile.getMatch().getArena().setActive(false);
+		targetProfile.getMatch().end();
 
 		player.sendMessage(CC.translate("&7You have cancelled &b" + target.getName() + "'s &7match."));
 	}

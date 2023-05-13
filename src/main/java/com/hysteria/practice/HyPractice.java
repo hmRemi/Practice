@@ -11,7 +11,7 @@ import com.hysteria.practice.essentials.Essentials;
 import com.hysteria.practice.essentials.EssentialsListener;
 import com.hysteria.practice.essentials.abilities.AbilityManager;
 import com.hysteria.practice.essentials.abilities.command.AbilityCommand;
-import com.hysteria.practice.essentials.chat.cPracticeChatFormat;
+import com.hysteria.practice.essentials.chat.HyPracticeChatFormat;
 import com.hysteria.practice.essentials.chat.impl.Chat;
 import com.hysteria.practice.essentials.chat.impl.ChatListener;
 import com.hysteria.practice.essentials.chat.impl.command.ClearChatCommand;
@@ -53,7 +53,7 @@ import com.hysteria.practice.player.clan.commands.ClanCommand;
 import com.hysteria.practice.player.cosmetics.command.CosmeticsCommand;
 import com.hysteria.practice.player.cosmetics.impl.killeffects.command.KillEffectCommand;
 import com.hysteria.practice.player.nametags.GxNameTag;
-import com.hysteria.practice.player.nametags.cPracticeTags;
+import com.hysteria.practice.player.nametags.HyPracticeTags;
 import com.hysteria.practice.player.party.classes.ClassTask;
 import com.hysteria.practice.player.party.classes.archer.ArcherClass;
 import com.hysteria.practice.player.party.classes.bard.BardEnergyTask;
@@ -72,6 +72,7 @@ import com.hysteria.practice.player.profile.modmode.ModmodeListener;
 import com.hysteria.practice.player.profile.modmode.commands.StaffModeCommand;
 import com.hysteria.practice.player.queue.Queue;
 import com.hysteria.practice.utilities.*;
+import com.hysteria.practice.utilities.file.ConfigurationCheck;
 import com.hysteria.practice.utilities.file.language.LanguageConfigurationFile;
 import com.hysteria.practice.utilities.file.type.BasicConfigurationFile;
 import com.hysteria.practice.utilities.lag.LagRunnable;
@@ -239,7 +240,7 @@ public class HyPractice extends JavaPlugin {
         BoardAdapter.hook();
         Leaderboard.init();
         PlayerVersionHandler.init();
-        Chat.setChatFormat(new cPracticeChatFormat());
+        Chat.setChatFormat(new HyPracticeChatFormat());
         if (mainConfig.getBoolean("TABLIST_ENABLE")) {
             new TabList(this, new TabAdapter());
             Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "Tablist expansion successfully registered."));
@@ -297,7 +298,7 @@ public class HyPractice extends JavaPlugin {
 
     private void registerNameTags() {
         Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "Initializing nametags for HyPractice"));
-        GxNameTag.registerProvider(new cPracticeTags());
+        GxNameTag.registerProvider(new HyPracticeTags());
     }
 
     private void loadSaveMethod() {

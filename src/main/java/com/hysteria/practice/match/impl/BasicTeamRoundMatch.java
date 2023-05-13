@@ -68,25 +68,22 @@ public class BasicTeamRoundMatch extends BasicTeamMatch {
                     if (bukkitPlayer != null) {
                         if(getWinningParticipant() != null) {
                             if (getWinningParticipant().getConjoinedNames().equals(getParticipantA().getConjoinedNames())) {
-                                bukkitPlayer.sendMessage(CC.translate("&7&m----------&r&7→ &c&lMatch Ended &7&m←-----------"));
-                                bukkitPlayer.sendMessage(CC.translate("&c&lMatch Results"));
-                                bukkitPlayer.sendMessage("");
-                                bukkitPlayer.sendMessage(CC.translate("&cRed Points&7:&7 " + StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.RED, getRoundsToWin())));
-                                bukkitPlayer.sendMessage(CC.translate("&9Blue Points&7:&7 " + StringUtils.getStringPoint(getParticipantB().getRoundWins(), org.bukkit.ChatColor.BLUE, getRoundsToWin())));
-                                bukkitPlayer.sendMessage("");
-                                bukkitPlayer.sendMessage(CC.translate("&7Winner: &a" + getWinningParticipant().getConjoinedNames()));
-                                bukkitPlayer.sendMessage(CC.translate("&7Loser: &c" + getLosingParticipant().getConjoinedNames()));
-                                bukkitPlayer.sendMessage(CC.translate("&7&m-----------------------------------'"));
+                                bukkitPlayer.sendMessage(CC.translate("&8&m---------------------------"));
+                                bukkitPlayer.sendMessage(CC.translate("&6Match Results"));
+                                bukkitPlayer.sendMessage(CC.translate("&aWinner: &f" + getWinningParticipant().getConjoinedNames() + " &7(" + StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.BLUE, getRoundsToWin()) + "&7)"));
+                                if (getLosingParticipant() != null) {
+                                    bukkitPlayer.sendMessage(CC.translate("&cLoser: &f" + getLosingParticipant().getConjoinedNames() + " &7(" + StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.RED, getRoundsToWin()) + "&7)"));
+                                }
+                                bukkitPlayer.sendMessage(CC.translate("&8&m---------------------------"));
+
                             } else if (getWinningParticipant().getConjoinedNames().equals(getParticipantB().getConjoinedNames())) {
-                                bukkitPlayer.sendMessage(CC.translate("&7&m----------&r&7→ &c&lMatch Ended &7&m←-----------"));
-                                bukkitPlayer.sendMessage(CC.translate("&c&lMatch Results"));
-                                bukkitPlayer.sendMessage("");
-                                bukkitPlayer.sendMessage(CC.translate("&9Blue Points&7:&7 " + StringUtils.getStringPoint(getParticipantB().getRoundWins(), ChatColor.BLUE, getRoundsToWin())));
-                                bukkitPlayer.sendMessage(CC.translate("&cRed Points&7:&7 " + StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.RED, getRoundsToWin())));
-                                bukkitPlayer.sendMessage("");
-                                bukkitPlayer.sendMessage(CC.translate("&7Winner: &a" + getWinningParticipant().getConjoinedNames()));
-                                bukkitPlayer.sendMessage(CC.translate("&7Loser: &c" + getLosingParticipant().getConjoinedNames()));
-                                bukkitPlayer.sendMessage(CC.translate("&7&m-----------------------------------'"));
+                                bukkitPlayer.sendMessage(CC.translate("&8&m---------------------------"));
+                                bukkitPlayer.sendMessage(CC.translate("&6Match Results"));
+                                bukkitPlayer.sendMessage(CC.translate("&aWinner: &f" + getWinningParticipant().getConjoinedNames() + " &7(" + StringUtils.getStringPoint(getParticipantA().getRoundWins(), ChatColor.BLUE, getRoundsToWin()) + "&7)"));
+                                if (getLosingParticipant() != null) {
+                                    bukkitPlayer.sendMessage(CC.translate("&cLoser: &f" + getLosingParticipant().getConjoinedNames() + " &7(" + StringUtils.getStringPoint(getParticipantA().getRoundWins(), org.bukkit.ChatColor.RED, getRoundsToWin()) + "&7)"));
+                                }
+                                bukkitPlayer.sendMessage(CC.translate("&8&m---------------------------"));
                             }
                         }
                         if (bukkitPlayer.hasMetadata("lastAttacker")) {

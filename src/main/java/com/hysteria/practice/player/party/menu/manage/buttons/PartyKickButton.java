@@ -1,5 +1,6 @@
 package com.hysteria.practice.player.party.menu.manage.buttons;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.utilities.ItemBuilder;
 import com.hysteria.practice.utilities.menu.Button;
@@ -23,16 +24,10 @@ public class PartyKickButton extends Button {
     public ItemStack getButtonItem(Player player) {
         Profile profile = Profile.get(player.getUniqueId());
 
-        List<String> lore = new ArrayList<>();
-        lore.add("&8&m--------------------------------------");
-        lore.add("&7Kick someone from your party");
-        lore.add("");
-        lore.add("&7&oClick here to select user!");
-        lore.add("&8&m--------------------------------------");
-
+        List<String> lore = HyPractice.get().getMenuConfig().getStringList("PARTY-MENU.KICK.BUTTON.LORE");
 
         return new ItemBuilder(Material.REDSTONE)
-                .name("&c&lKick")
+                .name(HyPractice.get().getMenuConfig().getString("PARTY-MENU.KICK.BUTTON.NAME"))
                 .lore(lore)
                 .build();
     }

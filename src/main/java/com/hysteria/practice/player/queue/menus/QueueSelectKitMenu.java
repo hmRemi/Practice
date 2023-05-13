@@ -40,7 +40,7 @@ public class QueueSelectKitMenu extends Menu {
 	public Map<Integer, Button> getButtons(Player player) {
 		HashMap<Integer, Button> buttons = new HashMap<>();
 
-		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMenuConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 
 		for (Queue queue : Queue.getQueues()) {
@@ -51,7 +51,7 @@ public class QueueSelectKitMenu extends Menu {
 
 	@Override
 	public int getSize() {
-		return HyPractice.get().getMenuConfig().getInteger("QUEUES.SIZE") * 9;
+		return HyPractice.get().getMainConfig().getInteger("QUEUE.SIZE") * 9;
 	}
 
 	@AllArgsConstructor

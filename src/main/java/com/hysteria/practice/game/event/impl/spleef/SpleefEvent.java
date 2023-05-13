@@ -55,6 +55,11 @@ public class SpleefEvent implements Event {
     }
 
     @Override
+    public int getDurability() {
+        return HyPractice.get().getEventsConfig().getInteger("EVENTS.SPLEEF.DATA");
+    }
+
+    @Override
     public Location getLobbyLocation() {
         return lobbyLocation;
     }
@@ -66,7 +71,7 @@ public class SpleefEvent implements Event {
 
     @Override
     public boolean canHost(Player player) {
-        return player.hasPermission("cpractice.event.host.spleef");
+        return player.hasPermission("hypractice.event.host.spleef");
     }
 
     @Override

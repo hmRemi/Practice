@@ -7,10 +7,10 @@ import com.hysteria.practice.player.profile.ProfileState;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class cPracticeTags extends NametagProvider {
+public class HyPracticeTags extends NametagProvider {
 
-    public cPracticeTags() {
-        super("cPracticeTags", 1);
+    public HyPracticeTags() {
+        super("HyPracticeTags", 1);
     }
 
     @Override

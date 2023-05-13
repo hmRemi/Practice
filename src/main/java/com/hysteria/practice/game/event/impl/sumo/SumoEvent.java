@@ -52,6 +52,12 @@ public class SumoEvent implements Event {
 	}
 
 	@Override
+	public int getDurability() {
+		return HyPractice.get().getEventsConfig().getInteger("EVENTS.SUMO.DATA");
+	}
+
+
+	@Override
 	public Location getLobbyLocation() {
 		return lobbyLocation;
 	}
@@ -63,7 +69,7 @@ public class SumoEvent implements Event {
 
 	@Override
 	public boolean canHost(Player player) {
-		return player.hasPermission("cpractice.event.host.sumo");
+		return player.hasPermission("hypractice.event.host.sumo");
 	}
 
 	@Override

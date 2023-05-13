@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class ArenaGenerateCommand extends BaseCommand {
 
-	@Command(name = "arena.generate", permission = "cpractice.arena.admin")
+	@Command(name = "arena.generate", permission = "hypractice.arena.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

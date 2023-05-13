@@ -83,14 +83,13 @@ public class ProfileRematchData {
 			sender.sendMessage(line);
 		}
 
-		List<BaseComponent[]> components = new ArrayList<>();
+		/*List<BaseComponent[]> components = new ArrayList<>();
 
-
-
-		for (String line : new MessageFormat(Locale.REMATCH_RECEIVED_REQUEST.format(Profile.get(target.getUniqueId()).getLocale()))
-							.add("{sender_name}", sender.getName())
-							.add("{arena_name}", arena.getName())
-							.toList()) {
+		for (String line : new MessageFormat(Locale.REMATCH_RECEIVED_REQUEST
+				.format(Profile.get(target.getUniqueId()).getLocale()))
+				.add("{sender_name}", sender.getName())
+				.add("{arena_name}", arena.getName())
+				.toList()) {
 			BaseComponent[] lineComponents = new ChatComponentBuilder("")
 					.parse(line)
 					.attachToEachPart(ChatHelper.hover(Locale.REMATCH_RECEIVED_REQUEST_HOVER.format(Profile.get(target.getUniqueId()).getLocale()).toString()))
@@ -102,6 +101,29 @@ public class ProfileRematchData {
 
 		for (BaseComponent[] line : components) {
 			target.spigot().sendMessage(line);
+		}*/
+
+		for (String msg : new MessageFormat(Locale.REMATCH_RECEIVED_REQUEST
+				.format(Profile.get(target.getUniqueId()).getLocale()))
+				.add("{kit_name}", kit.getDisplayName())
+				.add("{sender_name}", sender.getName())
+				.add("{arena_name}", arena.getName())
+				.toList()) {
+			if (msg.contains("%CLICKABLE%")) {
+				ChatComponentBuilder builder = new ChatComponentBuilder(new MessageFormat(Locale.REMATCH_RECEIVED_CLICKABLE
+						.format(Profile.get(target.getUniqueId()).getLocale()))
+						.add("{sender_name}", sender.getName())
+						.toString());
+
+				builder.attachToEachPart(ChatHelper.click("/rematch " + sender.getName()));
+				builder.attachToEachPart(ChatHelper.hover(new MessageFormat(Locale.REMATCH_RECEIVED_REQUEST_HOVER
+						.format(Profile.get(target.getUniqueId()).getLocale()).toString())
+						.toString()));
+
+				target.spigot().sendMessage(builder.create());
+			} else {
+				target.sendMessage(msg);
+			}
 		}
 
 		this.sent = true;

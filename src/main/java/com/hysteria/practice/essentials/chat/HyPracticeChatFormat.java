@@ -8,7 +8,7 @@ import com.hysteria.practice.utilities.chat.CC;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 
-public class cPracticeChatFormat implements ChatFormat {
+public class HyPracticeChatFormat implements ChatFormat {
     @Override
     public String format(Player sender, Player receiver, String message) {
         Profile senderProfile = Profile.get(sender.getUniqueId());
@@ -19,14 +19,14 @@ public class cPracticeChatFormat implements ChatFormat {
                         .replace("{suffix}", HyPractice.get().getRankManager().getRank().getSuffix(sender.getUniqueId()))
                         .replace("{color}", senderProfile.getColor())
                         .replace("{player}", sender.getName())
-                        .replace("{message}", (sender.hasPermission("cpractice.chat.color") ? CC.translate(message) : CC.strip(message)))
+                        .replace("{message}", (sender.hasPermission("hypractice.chat.color") ? CC.translate(message) : CC.strip(message)))
                         .replace("{clan}", Clan.getByPlayer(sender).getColoredName())));
             return CC.translate(HyPractice.get().getMainConfig().getString("CHAT.CLAN_FORMAT")
                     .replace("{prefix}", HyPractice.get().getRankManager().getRank().getPrefix(sender.getUniqueId()))
                     .replace("{suffix}", HyPractice.get().getRankManager().getRank().getSuffix(sender.getUniqueId()))
                     .replace("{color}", senderProfile.getColor())
                     .replace("{player}", sender.getName())
-                    .replace("{message}", (sender.hasPermission("cpractice.chat.color") ? CC.translate(message) : CC.strip(message)))
+                    .replace("{message}", (sender.hasPermission("hypractice.chat.color") ? CC.translate(message) : CC.strip(message)))
                     .replace("{clan}", Clan.getByPlayer(sender).getColoredName()));
         }
         if (HyPractice.get().isPlaceholderAPI())
@@ -35,12 +35,12 @@ public class cPracticeChatFormat implements ChatFormat {
                     .replace("{suffix}", HyPractice.get().getRankManager().getRank().getSuffix(sender.getUniqueId()))
                     .replace("{color}", senderProfile.getColor())
                     .replace("{player}", sender.getName())
-                    .replace("{message}", (sender.hasPermission("cpractice.chat.color") ? CC.translate(message) : CC.strip(message)))));
+                    .replace("{message}", (sender.hasPermission("hypractice.chat.color") ? CC.translate(message) : CC.strip(message)))));
         return CC.translate(HyPractice.get().getMainConfig().getString("CHAT.DEFAULT_FORMAT")
                 .replace("{prefix}", HyPractice.get().getRankManager().getRank().getPrefix(sender.getUniqueId()))
                 .replace("{suffix}", HyPractice.get().getRankManager().getRank().getSuffix(sender.getUniqueId()))
                 .replace("{color}", senderProfile.getColor())
                 .replace("{player}", sender.getName())
-                .replace("{message}", (sender.hasPermission("cpractice.chat.color") ? CC.translate(message) : CC.strip(message))));
+                .replace("{message}", (sender.hasPermission("hypractice.chat.color") ? CC.translate(message) : CC.strip(message))));
     }
 }

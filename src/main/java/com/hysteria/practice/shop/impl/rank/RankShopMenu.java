@@ -7,15 +7,18 @@ import com.hysteria.practice.utilities.TaskUtil;
 import com.hysteria.practice.utilities.chat.CC;
 import com.hysteria.practice.utilities.menu.Button;
 import com.hysteria.practice.utilities.menu.Menu;
-import net.audidevelopment.core.api.rank.RankData;
-import net.audidevelopment.core.plugin.cCore;
+import meth.crystal.aspirin.api.rank.RankData;
+import meth.crystal.aspirin.plugin.Aspirin;
+import meth.crystal.aspirin.plugin.AspirinAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RankShopMenu extends Menu
@@ -29,10 +32,10 @@ public class RankShopMenu extends Menu
     @Override
     public Map<Integer, Button> getButtons(final Player player) {
         final Map<Integer, Button> buttons = new HashMap<>();
-        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMenuConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
         this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 
-        for (RankData rankData : cCore.INSTANCE.getRankManagement().getRanks()) {
+        for (RankData rankData : Aspirin.INSTANCE.getRankManagement().getRanks()) {
             if(rankData.isPurchasable()) {
                 buttons.put(rankData.getWeight(), new SettingsButton(rankData));
             }
@@ -56,12 +59,16 @@ public class RankShopMenu extends Menu
 
         @Override
         public ItemStack getButtonItem(final Player player) {
+            List<String> lore = new ArrayList<>();
+            for (String text : HyPractice.get().getMenuConfig().getStringList("COIN-SHOP.RANK-SHOP.PURCHASE-LORE")) {
+                lore.add(text
+                        .replace("{price}", type.getCoinsCost() + "")
+                        .replace("{already-own}", AspirinAPI.INSTANCE.getPlayerData(player.getUniqueId()).hasRank(type) ? HyPractice.get().getMenuConfig().getString("COIN-SHOP.RANK-SHOP.ALREADY-OWN") : HyPractice.get().getMenuConfig().getString("COIN-SHOP.RANK-SHOP.NO-PERMS")));
+            }
+
             return new ItemBuilder(Material.BOOK)
-                    .name((cCore.INSTANCE.getPlayerManagement().getPlayerData(player.getUniqueId()).hasRank(type) ? (CC.translate("&c&l")) : "&c&l") + this.type.getName())
-                    .lore(CC.MENU_BAR)
-                    .lore(cCore.INSTANCE.getPlayerManagement().getPlayerData(player.getUniqueId()).hasRank(type) ? "&7You already own this rank" : "&7You don't own this rank.")
-                    .lore(cCore.INSTANCE.getPlayerManagement().getPlayerData(player.getUniqueId()).hasRank(type) ? "&7Price: None!" : "&4Price: &7" + type.getCoinsCost())
-                    .lore(CC.MENU_BAR)
+                    .name(HyPractice.get().getMenuConfig().getString("COIN-SHOP.RANK-SHOP.RANK-NAME") + this.type.getName())
+                    .lore(lore)
                     .build();
         }
 
@@ -69,14 +76,13 @@ public class RankShopMenu extends Menu
         public void clicked(final Player player, final ClickType clickType) {
             Profile profile = Profile.get(player.getUniqueId());
 
-            if (cCore.INSTANCE.getPlayerManagement().getPlayerData(player.getUniqueId()).hasRank(type)) { // If player has permission.
-                player.sendMessage(CC.translate("&7You already own this rank."));
+            if (AspirinAPI.INSTANCE.getPlayerData(player.getUniqueId()).hasRank(type)) { // If player has permission.
+                player.sendMessage(CC.translate(HyPractice.get().getMenuConfig().getString("COIN-SHOP.RANK.ALREADY-OWN")));
                 return;
             } else {
                 if(profile.getCoins() == type.getCoinsCost() || profile.getCoins() > type.getCoinsCost()) {
                     profile.setCoins(profile.getCoins() - type.getCoinsCost());
-                    player.sendMessage(CC.translate("&7You have purchased &4" + type.getName() + " &7for &4" + type.getCoinsCost() + " &7coins."));
-
+                    player.sendMessage(CC.translate(HyPractice.get().getMenuConfig().getString("COIN-SHOP.RANK.PURCHASE").replace("{price}", type.getCoinsCost() + "").replace("{rank}", type.getName())));
                     Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), "setrank " + player.getName() + " " + type.getName() + " 30d" + " global" + " Purchased with coins");
                     return;
                 } else {

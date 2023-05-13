@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class EventRemoveMapCommand extends BaseCommand {
 
-	@Command(name = "event.removemap", permission = "cpractice.event.admin")
+	@Command(name = "event.removemap", permission = "hypractice.event.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

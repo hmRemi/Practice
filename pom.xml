@@ -109,6 +109,14 @@
             <systemPath>${project.basedir}/libs/Citizens-2.0.30-b2954.jar</systemPath>
         </dependency>
 
+        <dependency>
+            <groupId>meth.crystal.aspirin.api</groupId>
+            <artifactId>AspirinAPI</artifactId>
+            <version>dev-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/Aspirin-1.0.jar</systemPath>
+        </dependency>
+
         <!--spigots-->
         <dependency>
             <groupId>org.papermc</groupId>

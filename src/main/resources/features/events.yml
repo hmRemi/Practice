@@ -11,6 +11,7 @@ EVENTS:
       - ' &7Maximum Slots&7: &b{slots}'
   SUMO:
     DISPLAYNAME: '&b&lSumo'
+    DATA: 0
     ICON: FEATHER
     DESCRIPTION:
       - '{bars}'
@@ -25,6 +26,7 @@ EVENTS:
       - Imposter
   SPLEEF:
     DISPLAYNAME: '&b&lSpleef'
+    DATA: 0
     ICON: DIAMOND_SPADE
     DESCRIPTION:
       - '{bars}'
@@ -36,6 +38,7 @@ EVENTS:
     ALLOWED_MAPS: []
   TNTRUN:
     DISPLAYNAME: '&b&lTNTRun'
+    DATA: 0
     ICON: TNT
     DESCRIPTION:
       - '{bars}'
@@ -47,6 +50,7 @@ EVENTS:
     ALLOWED_MAPS: []
   TNTTAG:
     DISPLAYNAME: '&b&lTNTTag'
+    DATA: 0
     ICON: NAME_TAG
     DESCRIPTION:
       - '{bars}'
@@ -60,6 +64,7 @@ EVENTS:
       - Village
   GULAG:
     DISPLAYNAME: '&b&lGulag'
+    DATA: 0
     ICON: IRON_FENCE
     DESCRIPTION:
       - '{bars}'
@@ -71,6 +76,7 @@ EVENTS:
     ALLOWED_MAPS: []
   BRACKETS:
     DISPLAYNAME: '&b&lBrackets'
+    DATA: 0
     ICON: IRON_FENCE
     DESCRIPTION:
       - '{bars}'
@@ -89,5 +95,5 @@ EVENT_MAPS:
 DEFAULT_HOST_SLOTS: 100
 HOST_SLOTS:
   '1':
-    PERMISSION: cpractice.ranks.gold
+    PERMISSION: hypractice.ranks.gold
     SLOTS: 100

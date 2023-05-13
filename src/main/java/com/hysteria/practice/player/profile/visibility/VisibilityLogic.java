@@ -58,7 +58,7 @@ public class VisibilityLogic {
 			if (viewerProfile.getParty() != null && viewerProfile.getParty().containsPlayer(target.getUniqueId())) {
 				viewer.showPlayer(target);
 			} else {
-				if(!target.hasPermission("cpractice.practice.see")) viewer.hidePlayer(target);
+				if(!target.hasPermission("hypractice.practice.see")) viewer.hidePlayer(target);
 				else viewer.showPlayer(target);
 			}
 			TaskUtil.run(() -> GxNameTag.reloadPlayer(target, viewer));
@@ -119,7 +119,7 @@ public class VisibilityLogic {
 				return;
 			}
 			if (viewerProfile.getMatch() == null) {
-				if(!target.hasPermission("cpractice.practice.see")) viewer.hidePlayer(target);
+				if(!target.hasPermission("hypractice.practice.see")) viewer.hidePlayer(target);
 				else viewer.showPlayer(target);
 				TaskUtil.run(() -> GxNameTag.reloadPlayer(target, viewer));
 			} else {

@@ -1,12 +1,17 @@
 package com.hysteria.practice.player.party.command.subcommands;
 /* 
-   Made by cpractice Development Team
+   Made by hypractice Development Team
    Created on 07.11.2021
 */
 
+import com.hysteria.practice.HyPractice;
+import com.hysteria.practice.Locale;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.utilities.Cooldown;
+import com.hysteria.practice.utilities.MessageFormat;
 import com.hysteria.practice.utilities.TimeUtil;
+import com.hysteria.practice.utilities.chat.ChatComponentBuilder;
+import com.hysteria.practice.utilities.chat.ChatHelper;
 import com.hysteria.practice.utilities.chat.Clickable;
 import com.hysteria.practice.player.party.enums.PartyPrivacy;
 import com.hysteria.practice.utilities.chat.CC;
@@ -17,11 +22,13 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.util.List;
+
 public class PartyAnnounceCommand extends BaseCommand {
 
     private boolean sendMessage;
 
-    @Command(name = "party.announce", aliases = {"p.announce"}, permission = "cpractice.party.announce")
+    @Command(name = "party.announce", aliases = {"p.announce"}, permission = "hypractice.party.announce")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();
@@ -55,12 +62,32 @@ public class PartyAnnounceCommand extends BaseCommand {
 
         profile.setPartyAnnounceCooldown(new Cooldown(60_000)); // Set the party announce cooldown to 60 seconds (1 minute)
 
-        // Message to broadcast
-        Bukkit.broadcastMessage(CC.CHAT_BAR);
-        Bukkit.broadcastMessage(CC.translate("&c&lPARTY ANNOUNCEMENT"));
-        Bukkit.broadcastMessage(CC.translate("  &7* &c&l" + player.getName() + " &7is hosting a public party!"));
-        Clickable clickHereToJoin = new Clickable(CC.translate("  &7* &7Click &c&lhere &7to join"), CC.translate("&7Click here to join"), "/p join " + player.getName());
-        Bukkit.getOnlinePlayers().forEach(clickHereToJoin::sendToPlayer);
-        Bukkit.broadcastMessage(CC.CHAT_BAR);
+
+        sendAnnouncement(player);
+
+    }
+
+    public void sendAnnouncement(Player player) {
+        Profile profile = Profile.get(player.getUniqueId());
+
+        for (String msg : new MessageFormat(Locale.PARTY_HOST
+                .format(profile.getLocale()))
+                .add("{player}", player.getName())
+                .toList()) {
+            if (msg.contains("%CLICKABLE%")) {
+                ChatComponentBuilder builder = new ChatComponentBuilder(new MessageFormat(Locale.PARTY_HOST_CLICKABLE
+                        .format(profile.getLocale()))
+                        .add("{sender_name}", player.getName())
+                        .toString());
+                builder.attachToEachPart(ChatHelper.click("/party join " + player.getName()));
+                builder.attachToEachPart(ChatHelper.hover(new MessageFormat(Locale.PARTY_HOST_CLICKABLE
+                        .format(profile.getLocale()))
+                        .toString()));
+
+                player.spigot().sendMessage(builder.create());
+            } else {
+                player.sendMessage(msg);
+            }
+        }
     }
 }

@@ -1,15 +1,15 @@
 package com.hysteria.practice.game.kit.menu;
 
+import com.hysteria.practice.Locale;
 import com.hysteria.practice.HyPractice;
+import com.hysteria.practice.game.kit.Kit;
+import com.hysteria.practice.game.kit.KitLoadout;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.utilities.ItemBuilder;
 import com.hysteria.practice.utilities.MessageFormat;
 import com.hysteria.practice.utilities.menu.Button;
 import com.hysteria.practice.utilities.menu.Menu;
 import com.hysteria.practice.utilities.menu.button.BackButton;
-import com.hysteria.practice.Locale;
-import com.hysteria.practice.game.kit.Kit;
-import com.hysteria.practice.game.kit.KitLoadout;
 import lombok.AllArgsConstructor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class KitManagementMenu extends Menu {
 
-	private static final Button PLACEHOLDER = Button.placeholder(Material.STAINED_GLASS_PANE, (byte) 7, " ");
+	private static final Button PLACEHOLDER = Button.placeholder(Material.STAINED_GLASS_PANE, (byte) 15, " ");
 
 	private final Kit kit;
 
@@ -35,7 +35,7 @@ public class KitManagementMenu extends Menu {
 
 	@Override
 	public String getTitle(Player player) {
-		return HyPractice.get().getKiteditorConfig().getString("KITEDITOR.MANAGE.TITLE").replace("{kit}", kit.getDisplayName());
+		return HyPractice.get().getKiteditorConfig().getString("KITEDITOR.MANAGE.TITLE").replace("{kit}", kit.getName());
 	}
 
 	@Override
@@ -74,20 +74,18 @@ public class KitManagementMenu extends Menu {
 	}
 
 	@AllArgsConstructor
-	private static class DeleteKitButton extends Button {
+	private class DeleteKitButton extends Button {
 
 		private Kit kit;
 		private KitLoadout kitLoadout;
 
 		@Override
 		public ItemStack getButtonItem(Player player) {
-			return new ItemBuilder(Material.STAINED_CLAY)
+			return new ItemBuilder(Material.BED)
 					.name(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.DeleteKitButton.NAME"))
-					.durability(14)
+					.durability(0)
 					.lore(Arrays.asList(
-							"&4Click to delete this kit.",
-							"&4You will &lNOT &cbe able to",
-							"&4recover this kitloadout."
+							" &fClick to delete this kit."
 					))
 					.build();
 		}
@@ -103,7 +101,7 @@ public class KitManagementMenu extends Menu {
 	}
 
 	@AllArgsConstructor
-	private static class CreateKitButton extends Button {
+	private class CreateKitButton extends Button {
 
 		private int index;
 
@@ -111,6 +109,9 @@ public class KitManagementMenu extends Menu {
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(Material.IRON_SWORD)
 					.name(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.CreateKitButton.NAME"))
+					.lore(Arrays.asList(
+							" &fClick to create a profile."
+					))
 					.build();
 		}
 
@@ -119,6 +120,7 @@ public class KitManagementMenu extends Menu {
 			Profile profile = Profile.get(player.getUniqueId());
 			Kit kit = profile.getKitEditorData().getSelectedKit();
 
+			// TODO: this shouldn't be null but sometimes it is?
 			if (kit == null) {
 				player.closeInventory();
 				return;
@@ -145,7 +147,7 @@ public class KitManagementMenu extends Menu {
 	}
 
 	@AllArgsConstructor
-	private static class RenameKitButton extends Button {
+	private class RenameKitButton extends Button {
 
 		private Kit kit;
 		private KitLoadout kitLoadout;
@@ -164,11 +166,12 @@ public class KitManagementMenu extends Menu {
 			Profile profile = Profile.get(player.getUniqueId());
 
 			player.closeInventory();
+			//player.sendMessage(Locale.KIT_EDITOR_START_RENAMING.format(kitLoadout.getCustomName()));
 
 			new MessageFormat(Locale.KIT_EDITOR_START_RENAMING
-				.format(profile.getLocale()))
-				.add("{kit_name}", kitLoadout.getCustomName())
-				.send(player);
+					.format(profile.getLocale()))
+					.add("{kit_name}", kitLoadout.getCustomName())
+					.send(player);
 
 			profile.getKitEditorData().setSelectedKit(kit);
 			profile.getKitEditorData().setSelectedKitLoadout(kitLoadout);
@@ -179,7 +182,7 @@ public class KitManagementMenu extends Menu {
 	}
 
 	@AllArgsConstructor
-	private static class LoadKitButton extends Button {
+	private class LoadKitButton extends Button {
 
 		private int index;
 
@@ -195,6 +198,7 @@ public class KitManagementMenu extends Menu {
 		public void clicked(Player player, int slot, ClickType clickType, int hotbarSlot) {
 			Profile profile = Profile.get(player.getUniqueId());
 
+			// TODO: this shouldn't be null but sometimes it is?
 			if (profile.getKitEditorData().getSelectedKit() == null) {
 				player.closeInventory();
 				return;
@@ -211,13 +215,16 @@ public class KitManagementMenu extends Menu {
 
 			profile.getKitEditorData().setSelectedKitLoadout(kit);
 
+			player.getInventory().setContents(profile.getKitEditorData().getSelectedKitLoadout().getContents());
+			player.updateInventory();
+
 			new KitEditorMenu(index).openMenu(player);
 		}
 
 	}
 
 	@AllArgsConstructor
-	private static class KitDisplayButton extends Button {
+	private class KitDisplayButton extends Button {
 
 		private KitLoadout kitLoadout;
 

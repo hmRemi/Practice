@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 
 public class ResetCommand extends BaseCommand {
 
-    @Command(name = "reset", permission = "cpractice.command.reset")
+    @Command(name = "reset", permission = "hypractice.command.reset")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

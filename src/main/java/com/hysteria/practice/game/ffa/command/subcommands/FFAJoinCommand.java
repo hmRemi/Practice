@@ -1,6 +1,6 @@
 package com.hysteria.practice.game.ffa.command.subcommands;
 /* 
-   Made by cpractice Development Team
+   Made by hypractice Development Team
    Created on 27.11.2021
 */
 

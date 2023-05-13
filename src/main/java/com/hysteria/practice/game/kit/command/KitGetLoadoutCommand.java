@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 public class KitGetLoadoutCommand extends BaseCommand {
 
-	@Command(name = "kit.getloadout", aliases = {"getinv", "getinventory"}, permission = "cpractice.kit.admin")
+	@Command(name = "kit.getloadout", aliases = {"getinv", "getinventory"}, permission = "hypractice.kit.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

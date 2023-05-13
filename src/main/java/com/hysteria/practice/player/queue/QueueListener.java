@@ -34,12 +34,12 @@ public class QueueListener implements Listener {
 				boolean cancelled = true;
 
 				if (hotbarItem == HotbarItem.QUEUE_JOIN_RANKED) {
-					if (!profile.isBusy() && !HyPractice.get().getMainConfig().getBoolean("QUEUES.ENABLED")) {
+					if (!profile.isBusy() && !HyPractice.get().getMenuConfig().getBoolean("QUEUES.ENABLED")) {
 					    Queue.getRankedMenu().openMenu(event.getPlayer());
 					}
-				} else if (hotbarItem == HotbarItem.QUEUES_JOIN && HyPractice.get().getMainConfig().getBoolean("QUEUES.ENABLED")) {
+				} else if (hotbarItem == HotbarItem.QUEUES_JOIN && HyPractice.get().getMenuConfig().getBoolean("QUEUES.ENABLED")) {
                     new QueuesMenu().openMenu(event.getPlayer());
-                } else if (hotbarItem == HotbarItem.QUEUE_JOIN_UNRANKED && !HyPractice.get().getMainConfig().getBoolean("QUEUES.ENABLED")) {
+                } else if (hotbarItem == HotbarItem.QUEUE_JOIN_UNRANKED && !HyPractice.get().getMenuConfig().getBoolean("QUEUES.ENABLED")) {
 					if (!profile.isBusy()) {
                         Queue.getUnRankedMenu().openMenu(event.getPlayer());
 					}

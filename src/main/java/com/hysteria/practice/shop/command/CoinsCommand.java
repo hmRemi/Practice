@@ -16,10 +16,13 @@ public class CoinsCommand extends BaseCommand {
         Player player = commandArgs.getPlayer();
         Profile profile = Profile.get(player.getUniqueId());
 
-        CC.sender(player, ChatUtil.NORMAL_LINE);
-        CC.sender(player, " &c&lCoins");
         CC.sender(player, "");
-        CC.sender(player, "&4Your coins: &7" + profile.getCoins());
-        CC.sender(player, ChatUtil.NORMAL_LINE);
+        CC.sender(player, " &6[COINS] &fEarn coins by playing");
+        CC.sender(player, " &fand winning matches.");
+        CC.sender(player, "");
+        CC.sender(player, " &8▪ &fBalance: &6" + profile.getCoins());
+        CC.sender(player, " ");
+        CC.sender(player, "&7Do /shop to open coin shop.");
+        CC.sender(player, "");
     }
 }

@@ -8,7 +8,7 @@ import com.hysteria.practice.utilities.chat.CC;
 
 public class RetardCommand extends BaseCommand {
 
-	@Command(name = "retard", permission = "cpractice.command.nigga")
+	@Command(name = "retard", permission = "hypractice.command.nigga")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

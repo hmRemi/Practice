@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class ShowAllPlayersCommand extends BaseCommand {
 
-	@Command(name = "showallplayers", permission = "cpractice.command.showallplayers")
+	@Command(name = "showallplayers", permission = "hypractice.command.showallplayers")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

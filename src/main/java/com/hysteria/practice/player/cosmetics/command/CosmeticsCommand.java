@@ -1,6 +1,6 @@
 package com.hysteria.practice.player.cosmetics.command;
 /* 
-   Made by cpractice Development Team
+   Made by hypractice Development Team
    Created on 30.11.2021
 */
 

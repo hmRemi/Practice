@@ -1,6 +1,6 @@
 package com.hysteria.practice.game.tournament.commands.subcommands;
 /*
-   Made by cpractice Development Team
+   Made by hypractice Development Team
    Created on 10.10.2021
 */
 

@@ -16,7 +16,7 @@ import com.hysteria.practice.utilities.chat.CC;
  */
 public class FollowCommand extends BaseCommand {
 
-    @Command(name="follow", permission = "cpractice.follow")
+    @Command(name="follow", permission = "hypractice.follow")
     @Override
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();

@@ -12,7 +12,7 @@ import com.hysteria.practice.api.command.CommandArgs;
 
 public class CoinsSetCommand extends BaseCommand {
 
-    @Command(name = "coinsmanager.set", aliases = {"coinsm.set", "cmanager.set", "cm.set"}, permission = "cpractice.command.coinsmanager.set", inGameOnly = false)
+    @Command(name = "coinsmanager.set", aliases = {"coinsm.set", "cmanager.set", "cm.set"}, permission = "hypractice.command.coinsmanager.set", inGameOnly = false)
     @Override
     public void onCommand(CommandArgs command) {
         CommandSender sender = command.getSender();

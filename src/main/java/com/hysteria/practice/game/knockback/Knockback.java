@@ -37,12 +37,12 @@ public class Knockback {
                 System.out.print("Hooked into CarbonSpigot");
                 break;
             default:
-                //knockbackProfiler = new Default();
-                knockbackProfiler = new CarbonSpigot();
+                knockbackProfiler = new Default();
+                //knockbackProfiler = new CarbonSpigot();
 
-                System.out.print("You don't have a spigot compatible with cpractice's Knockbacks");
-                System.out.print("You don't have a spigot compatible with cpractice's Knockbacks");
-                System.out.print("You don't have a spigot compatible with cpractice's Knockbacks");
+                System.out.print("You don't have a spigot compatible with hypractice's Knockbacks");
+                System.out.print("You don't have a spigot compatible with hypractice's Knockbacks");
+                System.out.print("You don't have a spigot compatible with hypractice's Knockbacks");
                 break;
         }
     }

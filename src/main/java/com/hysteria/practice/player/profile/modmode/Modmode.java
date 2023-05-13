@@ -14,6 +14,7 @@ import com.hysteria.practice.utilities.MessageFormat;
 import com.hysteria.practice.utilities.PlayerUtil;
 import com.hysteria.practice.utilities.StringUtils;
 import com.hysteria.practice.utilities.TaskUtil;
+import meth.crystal.aspirin.plugin.AspirinAPI;
 import net.audidevelopment.core.plugin.cCoreAPI;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -128,15 +129,23 @@ public class Modmode {
                         .replace("{arena}", profile.getMatch().getArena().getName())));
             }
         } else {
-            if (HyPractice.get().getRankManager().getRankSystem().equals("cCore")) {
+            if (HyPractice.get().getRankManager().getRankSystem().equals("Aspirin")) {
                 HyPractice.get().getScoreboardConfig().getStringList("STAFF_MODE.LOBBY").forEach(s ->
-                        lines.add(s
-                                .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-                                .replace("{in-fights}", String.valueOf(HyPractice.get().getInFights()))
-                                .replace("{players}", String.valueOf(Bukkit.getOnlinePlayers().size()))
-                                .replace("{staffs}", String.valueOf(Bukkit.getOnlinePlayers().stream().filter(player1 -> Profile.get(player1.getUniqueId()).getState() == ProfileState.STAFF_MODE).count()))
-                                .replace("{in-fight}", String.valueOf(HyPractice.get().getInFights()))
-                                .replace("{isStaffChat}", String.valueOf(cCoreAPI.INSTANCE.isStaffChat(player)))));
+                    lines.add(s
+                        .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
+                        .replace("{in-fights}", String.valueOf(HyPractice.get().getInFights()))
+                        .replace("{players}", String.valueOf(Bukkit.getOnlinePlayers().size()))
+                        .replace("{staffs}", String.valueOf(Bukkit.getOnlinePlayers().stream().filter(player1 -> Profile.get(player1.getUniqueId()).getState() == ProfileState.STAFF_MODE).count()))
+                        .replace("{in-fight}", String.valueOf(HyPractice.get().getInFights()))
+                        .replace("{isStaffChat}", String.valueOf(AspirinAPI.INSTANCE.isStaffChat(player)))));
+            } else {
+                HyPractice.get().getScoreboardConfig().getStringList("STAFF_MODE.LOBBY").forEach(s ->
+                    lines.add(s
+                        .replace("{online}", String.valueOf(Bukkit.getOnlinePlayers().size()))
+                        .replace("{in-fights}", String.valueOf(HyPractice.get().getInFights()))
+                        .replace("{players}", String.valueOf(Bukkit.getOnlinePlayers().size()))
+                        .replace("{staffs}", String.valueOf(Bukkit.getOnlinePlayers().stream().filter(player1 -> Profile.get(player1.getUniqueId()).getState() == ProfileState.STAFF_MODE).count()))
+                        .replace("{in-fight}", String.valueOf(HyPractice.get().getInFights()))));
             }
         }
 

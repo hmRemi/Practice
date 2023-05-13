@@ -70,7 +70,7 @@ public class SettingUpdateButton extends Button {
                 SettingUpdateButton.playSuccess(player);
                 break;
             } case "matchmakingSettings": {
-                if (!player.hasPermission("cpractice.matchmaking_settings")) {
+                if (!player.hasPermission("hypractice.matchmaking_settings")) {
                     player.sendMessage(CC.translate(this.plugin.getMenuConfig().getString("SETTINGS-INVENTORY.NO-PERMISSION")));
                     SettingUpdateButton.playFail(player);
                     break;

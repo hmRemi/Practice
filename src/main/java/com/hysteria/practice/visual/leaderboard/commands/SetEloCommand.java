@@ -19,7 +19,7 @@ public class SetEloCommand extends BaseCommand {
 
     private final Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
-    @Command(name = "setelo", permission = "cpractice.setelo")
+    @Command(name = "setelo", permission = "hypractice.setelo")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

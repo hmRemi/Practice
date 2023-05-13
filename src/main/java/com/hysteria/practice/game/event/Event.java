@@ -57,6 +57,8 @@ public interface Event {
 
 	List<String> getDescription();
 
+	int getDurability();
+
 	Location getLobbyLocation();
 
 	void setLobbyLocation(Location location);

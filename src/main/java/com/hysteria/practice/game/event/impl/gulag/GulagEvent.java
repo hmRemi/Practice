@@ -52,6 +52,12 @@ public class GulagEvent implements Event {
 	}
 
 	@Override
+	public int getDurability() {
+		return HyPractice.get().getEventsConfig().getInteger("EVENTS.GULAG.DATA");
+	}
+
+
+	@Override
 	public Location getLobbyLocation() {
 		return lobbyLocation;
 	}
@@ -63,7 +69,7 @@ public class GulagEvent implements Event {
 
 	@Override
 	public boolean canHost(Player player) {
-		return player.hasPermission("cpractice.event.host.gulag");
+		return player.hasPermission("hypractice.event.host.gulag");
 	}
 
 	@Override

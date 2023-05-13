@@ -188,7 +188,7 @@ public class ProfileListener implements Listener {
 		HyPractice.get().getEssentials().teleportToSpawn(player);
 		Hotbar.giveHotbarItems(player);
 
-		if(player.hasPermission("cpractice.fly")) {
+		if(player.hasPermission("hypractice.fly")) {
 			player.setAllowFlight(true);
 			player.setFlying(true);
 		}

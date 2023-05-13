@@ -258,7 +258,7 @@ public class TNTTagGameLogic implements EventGameLogic {
                     voteData.addVote(player.getUniqueId());
 
                     game.sendMessage(Locale.EVENT_PLAYER_VOTE, new MessageFormat()
-                        .add("{player_name}", HyPractice.get().getRankManager().getRank().getPrefix(player.getUniqueId()) + player.getName())
+                        .add("{player_name}", player.getName())
                         .add("{map_name}", gameMap.getMapName())
                         .add("{votes}", String.valueOf(voteData.getPlayers().size()))
                     );
@@ -276,7 +276,7 @@ public class TNTTagGameLogic implements EventGameLogic {
         game.getParticipants().add(new GameParticipant<>(new GamePlayer(player.getUniqueId(), player.getName())));
 
         game.sendMessage(Locale.EVENT_PLAYER_JOIN, new MessageFormat()
-            .add("{player_name}", HyPractice.get().getRankManager().getRank().getPrefix(player.getUniqueId()) + player.getName())
+            .add("{player_name}", player.getName())
             .add("{size}", String.valueOf(game.getParticipants().size()))
             .add("{maximum}", String.valueOf(game.getMaximumPlayers()))
         );
@@ -337,7 +337,7 @@ public class TNTTagGameLogic implements EventGameLogic {
                                 game.getGameState() == EventGameState.STARTING_EVENT) {
 
                                 game.sendMessage(Locale.EVENT_PLAYER_LEAVE, new MessageFormat()
-                                    .add("{player_name}", HyPractice.get().getRankManager().getRank().getPrefix(player.getUniqueId()) + player.getName())
+                                    .add("{player_name}", player.getName())
                                     .add("{remaining}", String.valueOf(game.getRemainingPlayers()))
                                     .add("{maximum}", String.valueOf(game.getMaximumPlayers()))
                                 );

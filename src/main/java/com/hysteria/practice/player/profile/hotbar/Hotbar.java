@@ -76,12 +76,13 @@ public class Hotbar {
 		switch (profile.getState()) {
 			case LOBBY: {
 				if (profile.getParty() == null) {
-					if(HyPractice.get().getMainConfig().getBoolean("QUEUES.ENABLED")) {
+					if(HyPractice.get().getMenuConfig().getBoolean("QUEUES.ENABLED")) {
 						itemStacks[getSlot(HotbarItem.QUEUES_JOIN)] = getItem(HotbarItem.QUEUES_JOIN);
 					} else {
 						itemStacks[getSlot(HotbarItem.QUEUE_JOIN_UNRANKED)] = getItem(HotbarItem.QUEUE_JOIN_UNRANKED);
 						itemStacks[getSlot(HotbarItem.QUEUE_JOIN_RANKED)] = getItem(HotbarItem.QUEUE_JOIN_RANKED);
 					}
+
 					itemStacks[getSlot(HotbarItem.KIT_EDITOR)] = getItem(HotbarItem.KIT_EDITOR);
 					itemStacks[getSlot(HotbarItem.SETTINGS)] = getItem(HotbarItem.SETTINGS);
 
@@ -103,7 +104,9 @@ public class Hotbar {
 						itemStacks[getSlot(HotbarItem.PARTY_CREATE)] = getItem(HotbarItem.PARTY_CREATE);
 
 					itemStacks[getSlot(HotbarItem.LEADERBOARD_MENU)] = getItem(HotbarItem.LEADERBOARD_MENU);
-					itemStacks[getSlot(HotbarItem.EVENT_SELECT)] = getItem(HotbarItem.EVENT_SELECT);
+					if(HyPractice.get().getHotbarConfig().getBoolean("EVENT_SELECT.ENABLED")) {
+						itemStacks[getSlot(HotbarItem.EVENT_SELECT)] = getItem(HotbarItem.EVENT_SELECT);
+					}
 				} else {
 					if (profile.getParty().getLeader().getUniqueId().equals(profile.getUuid())) {
 						itemStacks[getSlot(HotbarItem.PARTY_EVENTS)] = getItem(HotbarItem.PARTY_EVENTS);

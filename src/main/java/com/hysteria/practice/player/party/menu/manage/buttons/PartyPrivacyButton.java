@@ -1,5 +1,6 @@
 package com.hysteria.practice.player.party.menu.manage.buttons;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.player.party.enums.PartyPrivacy;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.utilities.ItemBuilder;
@@ -28,15 +29,12 @@ public class PartyPrivacyButton extends Button {
     public ItemStack getButtonItem(Player player) {
         Profile profile = Profile.get(player.getUniqueId());
 
+
         List<String> lore = new ArrayList<>();
-        lore.add("&8&m--------------------------------------");
-        lore.add("&7Privacy: " + profile.getParty().getPrivacy().name());
-        lore.add("");
-        lore.add("&7&oClick here to change Privacy mode");
-        lore.add("&8&m--------------------------------------");
+        HyPractice.get().getMenuConfig().getStringList("PARTY-MENU.PRIVACY.LORE").forEach(s -> lore.add(s.replace("{privacy}", profile.getParty().getPrivacy().name())));
 
         return new ItemBuilder(Material.REDSTONE)
-                .name("&c&lParty Privacy")
+                .name(HyPractice.get().getMenuConfig().getString("PARTY-MENU.PRIVACY.NAME"))
                 .lore(lore)
                 .build();
     }

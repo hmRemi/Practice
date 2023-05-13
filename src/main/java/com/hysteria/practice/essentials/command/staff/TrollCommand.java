@@ -1,6 +1,6 @@
 package com.hysteria.practice.essentials.command.staff;
 /* 
-   Made by cpractice Development Team
+   Made by hypractice Development Team
    Created on 28.11.2021
 */
 
@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 
 public class TrollCommand extends BaseCommand {
 
-    @Command(name="troll", permission = "cpractice.troll")
+    @Command(name="troll", permission = "hypractice.troll")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

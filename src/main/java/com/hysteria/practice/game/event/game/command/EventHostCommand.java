@@ -18,7 +18,7 @@ import java.util.List;
 
 public class EventHostCommand extends BaseCommand {
 
-	@Command(name ="host", permission = "cpractice.event.host")
+	@Command(name ="host", permission = "hypractice.event.host")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();
@@ -80,7 +80,7 @@ public class EventHostCommand extends BaseCommand {
 					game.getVotesData().put(gameMap, new EventGameMapVoteData());
 				}
 
-				game.broadcastJoinMessage();
+				game.sendAnnouncement();
 				game.start();
 				game.getGameLogic().onJoin(player);
 			} catch (Exception e) {
@@ -105,7 +105,7 @@ public class EventHostCommand extends BaseCommand {
 			}
 			slots = Integer.getInteger(args[1]);
 
-			if (!player.hasPermission("cpractice.event.admin")) {
+			if (!player.hasPermission("hypractice.event.admin")) {
 				player.sendMessage(CC.CHAT_BAR);
 				player.sendMessage(CC.RED + "You don't have permissions to host with Slots.");
 				player.sendMessage(CC.CHAT_BAR);
@@ -155,7 +155,7 @@ public class EventHostCommand extends BaseCommand {
 					game.getVotesData().put(gameMap, new EventGameMapVoteData());
 				}
 
-				game.broadcastJoinMessage();
+				game.sendAnnouncement();
 				game.start();
 				game.getGameLogic().onJoin(player);
 			} catch (Exception e) {

@@ -18,7 +18,7 @@ public class KitGameRuleCommand extends BaseCommand {
 
     private final Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
 
-    @Command(name = "kit.setrule", permission = "cpractice.kit.admin")
+    @Command(name = "kit.setrule", permission = "hypractice.kit.admin")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

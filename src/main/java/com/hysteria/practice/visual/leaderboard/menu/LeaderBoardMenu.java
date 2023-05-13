@@ -32,9 +32,9 @@ public class LeaderBoardMenu extends Menu {
     public Map<Integer, Button> getButtons(Player player){
         Map<Integer, Button> buttons = Maps.newHashMap();
 
-        buttons.put(2, new StatsButton(target));
-        buttons.put(4, new PlayerStatsButton());
-        buttons.put(6, new GlobalStatsButton());
+        //buttons.put(2, new StatsButton(target));
+        buttons.put(3, new PlayerStatsButton());
+        buttons.put(5, new GlobalStatsButton());
 
         AtomicInteger pos = new AtomicInteger();
         Kit.getKits().stream()
@@ -44,7 +44,7 @@ public class LeaderBoardMenu extends Menu {
                 .forEach(kit -> {
             pos.getAndIncrement();
 
-            ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+            ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMenuConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
             this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
             buttons.put(kit.getSlot() + 9, new KitButton(kit));
         });

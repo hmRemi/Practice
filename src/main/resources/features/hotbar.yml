@@ -130,6 +130,7 @@ HOTBAR_ITEMS:
     NAME: '&b&l%KIT%'
     LORE: []
   EVENT_SELECT:
+    ENABLED: false
     SLOT: 9
     MATERIAL: LEASH
     DURABILITY: 0

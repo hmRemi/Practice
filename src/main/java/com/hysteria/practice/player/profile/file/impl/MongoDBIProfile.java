@@ -34,7 +34,7 @@ public class MongoDBIProfile implements IProfile {
 
         document.put("lang", profile.getLocale().getAbbreviation());
         document.put("color", profile.getColor());
-        document.put("coins", HyPractice.get().getShopSystem().getCoins(profile.getUuid()));
+        document.put("coins", profile.getCoins());
 
         Document optionsDocument = new Document();
         optionsDocument.put("showScoreboard", profile.getOptions().showScoreboard());
@@ -134,7 +134,7 @@ public class MongoDBIProfile implements IProfile {
 
         if (document.containsKey("color")) profile.setColor(document.getString("color"));
 
-        if (document.containsKey("coins")) HyPractice.get().getShopSystem().setCoins(profile.getUuid(), document.getInteger("coins"));
+        if (document.containsKey("coins")) profile.setCoins(document.getInteger("coins"));
 
         Document options = (Document) document.get("options");
 

@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 
 public class HyPracticeCommand extends BaseCommand {
 
-    @Command(name = "hypractice", aliases = {"practice"}, inGameOnly = false, permission = "cpractice.owner")
+    @Command(name = "hypractice", aliases = {"practice"}, inGameOnly = false, permission = "hypractice.owner")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         CommandSender sender = commandArgs.getSender();

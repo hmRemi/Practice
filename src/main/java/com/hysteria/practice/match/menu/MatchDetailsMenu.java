@@ -26,7 +26,7 @@ public class MatchDetailsMenu extends Menu {
 
 	@Override
 	public String getTitle(Player player) {
-		return "&4Inventory of " + snapshot.getUsername();
+		return "&8Inventory of " + snapshot.getUsername();
 	}
 
 	@Override
@@ -87,8 +87,8 @@ public class MatchDetailsMenu extends Menu {
 
 			if (snapshot != null) {
 				return new ItemBuilder(Material.LEVER)
-						.name("&cOpponent's Inventory")
-						.lore("&fSwitch to &c" + snapshot.getUsername() + "&f's inventory")
+						.name("&6Opponent's Inventory")
+						.lore(" &fSwitch to " + snapshot.getUsername() + "&f's inventory")
 						.build();
 			} else {
 				return new ItemStack(Material.AIR);
@@ -112,7 +112,7 @@ public class MatchDetailsMenu extends Menu {
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(Material.MELON)
-					.name("&cHealth: &a" + health + "/10 &4" + StringEscapeUtils.unescapeJava("\u2764"))
+					.name("&6Health: &f" + health + "/10 &4" + StringEscapeUtils.unescapeJava("\u2764"))
 					.amount((int) (health == 0 ? 1 : health))
 					.build();
 		}
@@ -127,7 +127,7 @@ public class MatchDetailsMenu extends Menu {
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(Material.COOKED_BEEF)
-					.name("&4Hunger: &a" + hunger + "/20")
+					.name("&6Hunger: &f" + hunger + "/20")
 					.amount(hunger == 0 ? 1 : hunger)
 					.build();
 		}
@@ -141,17 +141,17 @@ public class MatchDetailsMenu extends Menu {
 
 		@Override
 		public ItemStack getButtonItem(Player player) {
-			ItemBuilder builder = new ItemBuilder(Material.POTION).name("&4Potion Effects");
+			ItemBuilder builder = new ItemBuilder(Material.POTION).name("&6Potion Effects");
 
 			if (effects.isEmpty()) {
-				builder.lore("&cNo potion effects");
+				builder.lore(" &fNo potion effects");
 			} else {
 				List<String> lore = new ArrayList<>();
 
 				effects.forEach(effect -> {
 					String name = PotionUtil.getName(effect.getType()) + " " + (effect.getAmplifier() + 1);
 					String duration = " (" + TimeUtil.millisToTimer((effect.getDuration() / 20) * 1000L) + ")";
-					lore.add(CC.PINK + name + CC.GRAY + duration);
+					lore.add(CC.GOLD + name + CC.GRAY + duration);
 				});
 
 				builder.lore(lore);
@@ -173,8 +173,8 @@ public class MatchDetailsMenu extends Menu {
 			return new ItemBuilder(Material.POTION)
 					.durability(16421)
 					.amount(potions == 0 ? 1 : potions)
-					.name("&dPotions")
-					.lore("&a" + name + " &ehad &a" + potions + " &epotion" + (potions == 1 ? "" : "s") + " left.")
+					.name("&6Potions")
+					.lore( "&6" + name + " &fhad &6" + potions + " &fpotion" + (potions == 1 ? "" : "s") + " left.")
 					.build();
 		}
 
@@ -188,17 +188,17 @@ public class MatchDetailsMenu extends Menu {
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(Material.PAPER)
-					.name("&4Statistics")
+					.name("&6Statistics")
 					.lore(Arrays.asList(
-							"&fTotal Hits: &4" + snapshot.getTotalHits(),
-							"&fLongest Combo: &4" + snapshot.getLongestCombo(),
-							"&fPotions Thrown: &4" + snapshot.getPotionsThrown(),
-							"&fPotions Missed: &4" + snapshot.getPotionsMissed(),
-							"&fPotion Accuracy: &4" + snapshot.getPotionAccuracy()
+							"&8&m----------------------",
+							" &fTotal Hits: &6" + snapshot.getTotalHits(),
+							" &fLongest Combo: &6" + snapshot.getLongestCombo(),
+							" &fPotions Thrown: &6" + snapshot.getPotionsThrown(),
+							" &fPotions Missed: &6" + snapshot.getPotionsMissed(),
+							" &fPotion Accuracy: &6" + snapshot.getPotionAccuracy(),
+							"&8&m----------------------"
 					))
 					.build();
 		}
-
 	}
-
 }

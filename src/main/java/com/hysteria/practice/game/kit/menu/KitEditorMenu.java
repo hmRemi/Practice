@@ -1,20 +1,20 @@
 package com.hysteria.practice.game.kit.menu;
 
 import com.hysteria.practice.HyPractice;
+import com.hysteria.practice.game.kit.Kit;
+import com.hysteria.practice.game.kit.KitLoadout;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.player.profile.ProfileState;
 import com.hysteria.practice.player.profile.hotbar.Hotbar;
 import com.hysteria.practice.player.profile.meta.ProfileKitData;
 import com.hysteria.practice.utilities.BukkitReflection;
 import com.hysteria.practice.utilities.ItemBuilder;
+import com.hysteria.practice.utilities.PlayerUtil;
 import com.hysteria.practice.utilities.TaskUtil;
+import com.hysteria.practice.utilities.chat.CC;
 import com.hysteria.practice.utilities.menu.Button;
 import com.hysteria.practice.utilities.menu.Menu;
 import com.hysteria.practice.utilities.menu.button.DisplayButton;
-import com.hysteria.practice.game.kit.Kit;
-import com.hysteria.practice.game.kit.KitLoadout;
-import com.hysteria.practice.utilities.PlayerUtil;
-import com.hysteria.practice.utilities.chat.CC;
 import lombok.AllArgsConstructor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -36,8 +36,8 @@ public class KitEditorMenu extends Menu {
 			20, 21, 22, 23, 24, 25, 26, 29, 30, 31, 32, 33, 34, 35, 38, 39, 40, 41, 42, 43, 44, 47, 48, 49, 50, 51, 52,
 			53
 	};
-	private static final int[] BORDER_POSITIONS = new int[]{ 1, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 28, 37, 46 };
-	private static final Button BORDER_BUTTON = Button.placeholder(Material.COAL_BLOCK, (byte) 0, " ");
+	private static final int[] BORDER_POSITIONS = new int[]{ 1, 2, 3, 4, 5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 28, 37, 46 };
+	private static final Button BORDER_BUTTON = Button.placeholder(Material.STAINED_GLASS_PANE, (byte) 15, " ");
 
 	private final int index;
 
@@ -48,7 +48,7 @@ public class KitEditorMenu extends Menu {
 	@Override
 	public String getTitle(Player player) {
 		Profile profile = Profile.get(player.getUniqueId());
-		return "&cEditing: &f" + profile.getKitEditorData().getSelectedKit().getName();
+		return "&8Editing &8" + profile.getKitEditorData().getSelectedKit().getName();
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class KitEditorMenu extends Menu {
 		}
 
 		buttons.put(0, new CurrentKitButton());
-		buttons.put(2, new SaveButton());
+		buttons.put(5, new SaveButton());
 		buttons.put(6, new LoadDefaultKitButton());
 		buttons.put(7, new ClearInventoryButton());
 		buttons.put(8, new CancelButton(index));
@@ -117,7 +117,7 @@ public class KitEditorMenu extends Menu {
 	}
 
 	@AllArgsConstructor
-	private static class ArmorDisplayButton extends Button {
+	private class ArmorDisplayButton extends Button {
 
 		private ItemStack itemStack;
 
@@ -132,42 +132,42 @@ public class KitEditorMenu extends Menu {
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
 					.name(CC.AQUA + BukkitReflection.getItemStackName(itemStack))
-					.lore(CC.RED + "This is automatically equipped.")
+					.lore(CC.WHITE + " This is automatically equipped.")
 					.build();
 		}
 
 	}
 
 	@AllArgsConstructor
-	private static class CurrentKitButton extends Button {
+	private class CurrentKitButton extends Button {
 
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			Profile profile = Profile.get(player.getUniqueId());
-			return new ItemBuilder(Material.NAME_TAG)
+			return new ItemBuilder(Material.MINECART)
 					.addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-					.name("&cEditing: &f" + profile.getKitEditorData().getSelectedKit().getName())
+					.name("&6Editing: &7" + profile.getKitEditorData().getSelectedKit().getName())
 					.build();
 		}
 
 	}
 
 	@AllArgsConstructor
-	private static class ClearInventoryButton extends Button {
+	private class ClearInventoryButton extends Button {
 
 		@Override
 		public ItemStack getButtonItem(Player player) {
-			return new ItemBuilder(Material.STAINED_CLAY)
+			return new ItemBuilder(Material.INK_SACK)
 					.addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-					.durability(7)
-					.name("&cClear Inventory")
+					.durability(12)
+					.name("&bClear Inventory")
 					.lore(Arrays.asList(
-							"&cThis will clear your inventory",
-							"&cso you can start over."
+							" &fThis will clear your inventory",
+							" &fso you can start over."
 					))
 					.build();
 		}
@@ -187,19 +187,19 @@ public class KitEditorMenu extends Menu {
 	}
 
 	@AllArgsConstructor
-	private static class LoadDefaultKitButton extends Button {
+	private class LoadDefaultKitButton extends Button {
 
 		@Override
 		public ItemStack getButtonItem(Player player) {
-			return new ItemBuilder(Material.STAINED_CLAY)
+			return new ItemBuilder(Material.INK_SACK)
 					.addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-					.durability(7)
-					.name(CC.RED + CC.BOLD + "Load default kit")
+					.durability(11)
+					.name(CC.YELLOW + "Load Default")
 					.lore(Arrays.asList(
-							CC.RED + "Click this to load the default kit",
-							CC.RED + "into the kit editing menu."
+							CC.WHITE + " Click this to load the default kit",
+							CC.WHITE + " into the kit editing menu."
 					))
 					.build();
 		}
@@ -222,17 +222,17 @@ public class KitEditorMenu extends Menu {
 	}
 
 	@AllArgsConstructor
-	private static class SaveButton extends Button {
+	private class SaveButton extends Button {
 
 		@Override
 		public ItemStack getButtonItem(Player player) {
-			return new ItemBuilder(Material.STAINED_CLAY)
+			return new ItemBuilder(Material.INK_SACK)
 					.addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-					.durability(5)
+					.durability(2)
 					.name("&aSave")
-					.lore("&cClick this to save your kit.")
+					.lore(" &fClick to save your kit.")
 					.build();
 		}
 
@@ -255,21 +255,21 @@ public class KitEditorMenu extends Menu {
 	}
 
 	@AllArgsConstructor
-	private static class CancelButton extends Button {
+	private class CancelButton extends Button {
 
 		private int index;
 
 		@Override
 		public ItemStack getButtonItem(Player player) {
-			return new ItemBuilder(Material.STAINED_CLAY)
+			return new ItemBuilder(Material.INK_SACK)
 					.addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-					.durability(14)
+					.durability(1)
 					.name("&cCancel")
 					.lore(Arrays.asList(
-							"&cClick this to abort editing your kit,",
-							"&cand return to the kit menu."
+							" &fClick this to abort editing your kit,",
+							" &fand return to the kit menu."
 					))
 					.build();
 		}
@@ -290,7 +290,7 @@ public class KitEditorMenu extends Menu {
 
 	}
 
-	private static class InfiniteItemButton extends DisplayButton {
+	private class InfiniteItemButton extends DisplayButton {
 
 		InfiniteItemButton(ItemStack itemStack) {
 			super(itemStack, false);

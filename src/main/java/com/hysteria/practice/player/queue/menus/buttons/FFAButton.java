@@ -1,6 +1,6 @@
 package com.hysteria.practice.player.queue.menus.buttons;
 /* 
-   Made by cpractice Development Team
+   Made by hypractice Development Team
    Created on 30.11.2021
 */
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class FFAButton extends Button {
 
-    BasicConfigurationFile config = HyPractice.get().getMainConfig();
+    BasicConfigurationFile config = HyPractice.get().getMenuConfig();
 
     @Override
     public ItemStack getButtonItem(Player player) {
@@ -28,7 +28,7 @@ public class FFAButton extends Button {
         for (String text : this.config.getStringList("QUEUES.TYPES.FFA.LORE")) {
             lore.add(text.replace("<kit>", HyPractice.get().getMainConfig().getString("FFA.KIT")).replace("<players>", String.valueOf(HyPractice.get().getFfaManager().getFFAPlayers().size())));
         }
-        return new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.TYPES.FFA.ICON"))).lore(CC.translate(lore)).amount(1).name(CC.translate(HyPractice.get().getMenuConfig().getString("QUEUES.TYPES.FFA.NAME"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.TYPES.FFA.DATA")).build();
+        return new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.TYPES.FFA.ICON"))).lore(CC.translate(lore)).amount(1).name(CC.translate(HyPractice.get().getMenuConfig().getString("QUEUES.TYPES.FFA.NAME"))).durability(HyPractice.get().getMenuConfig().getInteger("QUEUES.TYPES.FFA.DATA")).build();
     }
 
     @Override

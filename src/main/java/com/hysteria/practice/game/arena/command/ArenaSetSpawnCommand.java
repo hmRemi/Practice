@@ -24,7 +24,7 @@ public class ArenaSetSpawnCommand extends BaseCommand {
 	@Getter
 	private Location spawn;
 
-	@Command(name = "arena.setspawn", permission = "cpractice.arena.admin")
+	@Command(name = "arena.setspawn", permission = "hypractice.arena.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

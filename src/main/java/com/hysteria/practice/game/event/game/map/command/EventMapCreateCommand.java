@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class EventMapCreateCommand extends BaseCommand {
 
-	@Command(name = "event.map.create", permission = "cpractice.event.admin")
+	@Command(name = "event.map.create", permission = "hypractice.event.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

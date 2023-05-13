@@ -1,6 +1,6 @@
 package com.hysteria.practice.player.profile.meta.option.button;
 /* 
-   Made by cpractice Development Team
+   Made by hypractice Development Team
    Created on 05.11.2021
 */
 

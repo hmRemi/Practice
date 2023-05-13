@@ -40,7 +40,7 @@ public class EventGameLogicTask extends BukkitRunnable {
 				}
 
 				if (nextAction <= 0) {
-					game.broadcastJoinMessage();
+					game.sendAnnouncement();
 					nextAction = 30;
 				}
 			}

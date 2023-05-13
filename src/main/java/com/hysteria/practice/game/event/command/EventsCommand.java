@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 public class EventsCommand extends BaseCommand {
 
-	@Command(name = "events", permission = "cpractice.event.host")
+	@Command(name = "events", permission = "hypractice.event.host")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

@@ -47,6 +47,11 @@ public class BracketsEvent implements Event {
 	}
 
 	@Override
+	public int getDurability() {
+		return HyPractice.get().getEventsConfig().getInteger("EVENTS.BRACKETS.DATA");
+	}
+
+	@Override
 	public List<String> getDescription() {
 		return HyPractice.get().getEventsConfig().getStringList("EVENTS.BRACKETS.DESCRIPTION");
 	}
@@ -63,7 +68,7 @@ public class BracketsEvent implements Event {
 
 	@Override
 	public boolean canHost(Player player) {
-		return player.hasPermission("cpractice.event.host.brackets");
+		return player.hasPermission("hypractice.event.host.brackets");
 	}
 
 	@Override

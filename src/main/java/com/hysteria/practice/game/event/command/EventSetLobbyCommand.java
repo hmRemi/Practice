@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class EventSetLobbyCommand extends BaseCommand {
 
-	@Command(name = "event.setlobby", permission = "cpractice.event.admin")
+	@Command(name = "event.setlobby", permission = "hypractice.event.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

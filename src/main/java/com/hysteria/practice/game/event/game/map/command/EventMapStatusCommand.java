@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 
 public class EventMapStatusCommand extends BaseCommand {
 
-	@Command(name = "event.map.status", permission = "cpractice.event.admin")
+	@Command(name = "event.map.status", permission = "hypractice.event.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

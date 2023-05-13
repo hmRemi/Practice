@@ -50,12 +50,15 @@ public class ConfigurationCheck {
         System.out.println("--------------------> Login <--------------------");
         System.out.println(" |- Verifying your license...");
         System.out.println(" ");
+
         String[] respo = isValid();
         if (respo[0].equals("2") && Boolean.parseBoolean(respo[3])) {
             System.out.println(" |- Your license is valid.");
             System.out.println(" |- Code: " + respo[2]);
             Arrays.asList(
-                    new MatchPlayerListener()
+                    new MatchBuildListener(),
+                    new MatchPlayerListener(),
+                    new MatchListener()
             ).forEach(listener -> HyPractice.get().getServer().getPluginManager().registerEvents(listener, HyPractice.get()));
             System.out.println("-------------------------------------------------");
             return Boolean.parseBoolean(respo[3]);

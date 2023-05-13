@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class CancelAllMatchesCommand extends BaseCommand {
 
-    @Command(name = "cancelallmatches", permission = "cpractice.command.cancelallmatches")
+    @Command(name = "cancelallmatches", permission = "hypractice.command.cancelallmatches")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class FlyCommand extends BaseCommand {
 
-	@Command(name = "fly", permission = "cpractice.fly")
+	@Command(name = "fly", permission = "hypractice.fly")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

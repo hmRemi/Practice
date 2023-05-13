@@ -602,7 +602,13 @@ public abstract class Match {
 						AlonsoLeaguesAPI.addPoints(killer.getUniqueId(), 10);
 					}
 					int coins = getRandomNumber(10, 50);
-					winner.setCoins(winner.getCoins() + coins);
+					int rankedCoins = getRandomNumber(50, 100);
+
+					if(isRanked()) {
+						winner.addCoins(rankedCoins);
+					} else {
+						winner.addCoins(coins);
+					}
 				}
 
                 if(killer != null) {
@@ -690,7 +696,8 @@ public abstract class Match {
 									dead.spigot().respawn();
 									PlayerUtil.reset(dead);
 
-									dead.teleport(teamRoundMatch.getParticipantB().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getParticipantA().getLeader().getPlayer().getLocation() : teamRoundMatch.getParticipantB().getLeader().getPlayer().getLocation());
+									dead.teleport(spawn.add(0, 2, 0));
+									//dead.teleport(teamRoundMatch.getParticipantB().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getParticipantA().getLeader().getPlayer().getLocation() : teamRoundMatch.getParticipantB().getLeader().getPlayer().getLocation());
 									dead.addPotionEffect(weakness);
 
 									Player player = teamRoundMatch.getParticipantB().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getParticipantA().getLeader().getPlayer() : teamRoundMatch.getParticipantB().getLeader().getPlayer();
@@ -741,7 +748,7 @@ public abstract class Match {
 					Location spawn = teamRoundMatch.getParticipantA().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getArena().getSpawnA() : teamRoundMatch.getArena().getSpawnB();
 					GameParticipant<MatchGamePlayer> opposingTeam = teamRoundMatch.getParticipantA().containsPlayer(dead.getUniqueId()) ? teamRoundMatch.getParticipantA() : teamRoundMatch.getParticipantB();
 
-					if (opposingTeam.isHasBed() && teamRoundMatch.getState() != MatchState.ENDING_MATCH) {
+					if (teamRoundMatch.getState() != MatchState.ENDING_MATCH) {
 						PotionEffect weakness = new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0);
 						new BukkitRunnable() {
 							int respawn = 4;

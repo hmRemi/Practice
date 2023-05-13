@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 public class KitCreateCommand extends BaseCommand {
 
-	@Command(name = "kit.create", permission = "cpractice.kit.admin")
+	@Command(name = "kit.create", permission = "hypractice.kit.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

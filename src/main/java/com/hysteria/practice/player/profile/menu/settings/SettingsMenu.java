@@ -33,7 +33,7 @@ public class SettingsMenu extends Menu {
     @Override
     public Map<Integer, Button> getButtons(Player player) {
         HashMap<Integer, Button> hashMap = new HashMap<>();
-        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+        ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMenuConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 
         this.fillEmptySlots(hashMap, PLACEHOLDER_ITEM);
 

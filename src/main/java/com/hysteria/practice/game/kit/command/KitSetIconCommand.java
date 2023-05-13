@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class KitSetIconCommand extends BaseCommand {
 
-    @Command(name = "kit.seticon", permission = "cpractice.kit.admin")
+    @Command(name = "kit.seticon", permission = "hypractice.kit.admin")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

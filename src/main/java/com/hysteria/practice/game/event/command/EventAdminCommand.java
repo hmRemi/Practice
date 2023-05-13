@@ -22,7 +22,7 @@ public class EventAdminCommand extends BaseCommand {
 			new String[]{ "/event maps", "View all maps" }
 	};
 
-	@Command(name = "event.admin", permission = "cpractice.event.admin")
+	@Command(name = "event.admin", permission = "hypractice.event.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

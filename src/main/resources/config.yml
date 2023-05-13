@@ -56,6 +56,7 @@ FFA:
 
 # Queue configuration
 QUEUE:
+  SIZE: 5
   AMOUNT_PER_FIGHTS: true
   # Unranked Queue settings
   UNRANKED:

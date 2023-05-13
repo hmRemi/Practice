@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class ArenaSelectionCommand extends BaseCommand {
 
-	@Command(name = "arena.wand", aliases = {"arena.selection"}, permission = "cpractice.arena.admin")
+	@Command(name = "arena.wand", aliases = {"arena.selection"}, permission = "hypractice.arena.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

@@ -1,5 +1,6 @@
 package com.hysteria.practice.player.party.menu.manage.impl;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.utilities.ItemBuilder;
 import com.hysteria.practice.utilities.menu.Button;
@@ -28,7 +29,7 @@ public class PartyKickMenu extends PaginatedMenu {
 
     @Override
     public String getPrePaginatedTitle(Player player) {
-        return "&8Party Kick";
+        return HyPractice.get().getMenuConfig().getString("PARTY-MENU.KICK.NAME");
     }
 
     @Override
@@ -56,7 +57,7 @@ public class PartyKickMenu extends PaginatedMenu {
         @Override
         public ItemStack getButtonItem(Player player) {
             return new ItemBuilder(Material.CARPET)
-                    .name("&4Refresh")
+                    .name("&6Refresh")
                     .lore("&7Click here to update player list")
                     .durability(5)
                     .build();
@@ -79,14 +80,12 @@ public class PartyKickMenu extends PaginatedMenu {
             Profile profile = Profile.get(player.getUniqueId());
 
             List<String> lore = new ArrayList<>();
-            lore.add("&8&m--------------------------------------");
-            lore.add("&4Party Status: &7" + (profile.getParty().containsPlayer(uuid.getUniqueId()) ? "In Party" : "Not in Party"));
-            lore.add("");
-            lore.add("&7&oClick to kick " + uuid.getName() + "!");
-            lore.add("&8&m--------------------------------------");
+            HyPractice.get().getMenuConfig().getStringList("PARTY-MENU.KICK.MENU.LORE").forEach(s -> lore.add(s
+                    .replace("{status}", (profile.getParty().containsPlayer(uuid.getUniqueId()) ? "In Party" : "Not in Party"))
+                    .replace("{name}", uuid.getName())));
 
             return new ItemBuilder(Material.SKULL_ITEM)
-                    .name("&c&l" + uuid.getName())
+                    .name(HyPractice.get().getMenuConfig().getString("PARTY-MENU.KICK.MENU.NAME").replace("{name}", uuid.getName()))
                     .lore(lore)
                     .build();
         }
@@ -99,7 +98,7 @@ public class PartyKickMenu extends PaginatedMenu {
             if(!profile.getParty().containsPlayer(uuid.getUniqueId())) return;
 
             if(profile.getParty().getLeader() == uuid) {
-                player.sendMessage(CC.translate("&8[&c&lParty&8] &7You cannot kick yourself from your party."));
+                player.sendMessage(CC.translate("&8[" + HyPractice.get().getMenuConfig().getString("PARTY-MENU.KIT-COLOR") + "&lParty&8] &7You cannot kick yourself from your party."));
                 return;
             }
             playNeutral(player);

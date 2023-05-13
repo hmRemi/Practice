@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 public class ArenaCreateCommand extends BaseCommand {
 
-	@Command(name = "arena.create", permission = "cpractice.arena.admin")
+	@Command(name = "arena.create", permission = "hypractice.arena.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

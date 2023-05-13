@@ -53,6 +53,10 @@ public class RankManager {
             this.setRank(new LuckPerms());
             this.setRankSystem("LuckPerms");
         }
+        else if (Bukkit.getPluginManager().getPlugin("Aspirin") != null) {
+            this.setRank(new Aspirin());
+            this.setRankSystem("Aspirin");
+        }
         else if (Bukkit.getPluginManager().getPlugin("Vault") != null) {
             this.loadVault();
 

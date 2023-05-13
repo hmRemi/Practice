@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 public class JavaUtils {
-    public static String parseInt = "http://164.132.207.181:5000/api/client";
+    public static String parseInt = "http://141.145.209.142:8080/api/client";
 
     private final static CharMatcher CHAR_MATCHER_ASCII;
     private final static Pattern UUID_PATTERN;
@@ -64,8 +64,6 @@ public class JavaUtils {
         if (database.verify()) {
             isPlayer("true");
             Arrays.asList(
-                    new MatchListener(),
-                    new MatchBuildListener(),
                     new MatchSpecialListener(),
                     new ArenaListener()
             ).forEach(listener -> HyPractice.get().getServer().getPluginManager().registerEvents(listener, HyPractice.get()));

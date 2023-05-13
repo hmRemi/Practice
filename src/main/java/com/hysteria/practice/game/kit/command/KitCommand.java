@@ -23,7 +23,7 @@ public class KitCommand extends BaseCommand {
         new KitSetSlotCommand();
     }
 
-    @Command(name = "kit", permission = "cpractice.kit.admin")
+    @Command(name = "kit", permission = "hypractice.kit.admin")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

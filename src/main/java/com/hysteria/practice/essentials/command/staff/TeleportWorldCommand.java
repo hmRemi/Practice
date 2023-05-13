@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class TeleportWorldCommand extends BaseCommand {
 
-	@Command(name = "tpworld", aliases = {"world", "changeworld"}, permission = "cpractice.command.tpworld")
+	@Command(name = "tpworld", aliases = {"world", "changeworld"}, permission = "hypractice.command.tpworld")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

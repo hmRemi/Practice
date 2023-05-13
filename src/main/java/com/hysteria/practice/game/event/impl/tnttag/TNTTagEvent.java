@@ -47,6 +47,11 @@ public class TNTTagEvent implements Event {
     }
 
     @Override
+    public int getDurability() {
+        return HyPractice.get().getEventsConfig().getInteger("EVENTS.TNTTAG.DATA");
+    }
+
+    @Override
     public List<String> getDescription() {
         return HyPractice.get().getEventsConfig().getStringList("EVENTS.TNTTAG.DESCRIPTION");
     }
@@ -63,7 +68,7 @@ public class TNTTagEvent implements Event {
 
     @Override
     public boolean canHost(Player player) {
-        return player.hasPermission("cpractice.event.host.tnttag");
+        return player.hasPermission("hypractice.event.host.tnttag");
     }
 
     @Override

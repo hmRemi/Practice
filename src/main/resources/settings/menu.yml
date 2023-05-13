@@ -115,6 +115,104 @@ SETTINGS-INVENTORY:
         - '&7matchmaking settings.'
       SHOW: true
 
+# Party menu configuration
+PARTY-MENU:
+  # Menu title
+  TITLE: '&6Select an event'
+  KIT-TITLE: '&6Select a kit'
+  KIT-COLOR: '&6'
+  SIZE: 5
+  KICK:
+    NAME: '&7Party Kick'
+    MENU:
+      NAME: '&6{name}'
+      LORE:
+        - '&8&m--------------------------------'
+        - ' &fClick to kick a player'
+        - '&8&m--------------------------------'
+    BUTTON:
+      NAME: '&8Kick a player'
+      LORE:
+        - '&8&m--------------------------------'
+        - ' &fClick to kick a player'
+        - '&8&m--------------------------------'
+  ANNOUNCE:
+    NAME: '&7Announce Party'
+    LORE:
+      - '&8&m--------------------------------'
+      - ' &fCooldown: &6{time}'
+      - ''
+      - '&6Click to announce party'
+      - '&8&m--------------------------------'
+  PRIVACY:
+    NAME: '&7Change Privacy Settings'
+    LORE:
+      - '&8&m--------------------------------'
+      - ' &fPrivacy Mode: &6{privacy}'
+      - ''
+      - '&6Click to change privacy'
+      - '&8&m--------------------------------'
+  TYPES:
+    FFA:
+      ENABLED: true
+      NAME: '&6FFA'
+      SLOT: 11
+      LORE:
+        - '&8&m--------------------------------'
+        - ' &fA fight against all'
+        - ' &flast player alive wins.'
+        - ' '
+        - '&6Click to play!'
+        - '&8&m--------------------------------'
+    SPLIT:
+      ENABLED: true
+      NAME: '&6Split'
+      SLOT: 13
+      LORE:
+        - '&8&m--------------------------------'
+        - ' &fA fight divided into teams'
+        - ' &fwho will then fight for victory'
+        - ' '
+        - '&6Click to play!'
+        - '&8&m--------------------------------'
+    REDROVER:
+      ENABLED: true
+      NAME: '&6Redrover'
+      SLOT: 15
+      LORE:
+        - '&8&m--------------------------------'
+        - ' &fFight in a series of gamemodes'
+        - ' &funtil there is a winner'
+        - ' '
+        - '&6Click to play!'
+        - '&8&m--------------------------------'
+
+# Death Effects menu configuration
+DEATH-EFFECTS:
+  TITLE: "&b&lDeath Effects"
+  NAME: '&b{effect}'
+  NO-PERMISSION: "&cYou don't own this death effect."
+  PERMISSION: "&aClick to select this death effect."
+  ALREADY-SELECTED: "&7That death effect is already selected."
+  ALREADY-OWN: "&7You already own this death effect."
+  NO-FUNDS: "&cYou don't have enough money to purchase this death effect."
+  PURCHASED: "&7You have just purchased {effect} for {coins} coins."
+  PRICE: "&7{price}"
+  SELECTED: '{effect}&7 is now set as your death effect.'
+  PURCHASE-LORE:
+    - '&8&m----------------------'
+    - ' &fPrice: &6{price}'
+    - ' '
+    - '&a{already-own}'
+    - '&8&m----------------------'
+  LORE:
+    - ''
+    - '&7Click to select the {effect} death effect'
+    - ''
+    - '&7Selected death effect: {playerEffect}'
+    - '{viewStatus}'
+    - ''
+
 # Matches menu configuration
 MATCH-LIST:
   TITLE: "&bCurrent matches &7({amount})"
@@ -129,6 +227,97 @@ MATCH-LIST:
     - "&bSpectators: &7{spectators}"
     - ""
     - "&7» Click to spectate «"
+
+# Cosmetics configuration
+COSMETICS:
+  TITLE: '&7Cosmetics'
+  SHOP:
+    ITEM-NAME: '&6Shop'
+    LORE:
+      - '&8&m----------------------'
+      - ' '
+      - '&aClick to open.'
+      - '&8&m----------------------'
+  KILL-EFFECTS:
+    ITEM-NAME: '&6Kill Effects'
+    LORE:
+      - '&8&m----------------------'
+      - ' '
+      - '&aClick to open.'
+      - '&8&m----------------------'
+  TAGS:
+    ITEM-NAME: '&6Tags'
+    LORE:
+      - '&8&m----------------------'
+      - ' '
+      - '&aClick to open.'
+      - '&8&m----------------------'
+
+# Coin shop configuration
+COIN-SHOP:
+  TITLE: '&8Coin Shop'
+
+  RANK:
+    PURCHASE: '&7Purchased {rank} for {price} coins.'
+    ALREADY-OWN: '&7You already own this rank.'
+  TAG:
+    PURCHASE: '&7Purchased {tag} for {price} coins.'
+    ALREADY-OWN: '&7You already own this tag.'
+
+  COSMETICS:
+    ITEM-NAME: '&6Cosmetics'
+    LORE:
+      - '&8&m----------------------'
+      - ' '
+      - '&aClick to open.'
+      - '&8&m----------------------'
+
+  KILL-EFFECTS:
+    ITEM-NAME: '&6Kill Effects'
+    ALREADY-OWN: '&7Already bought'
+    NO-PERMS: '&7No Perms'
+    LORE:
+      - '&8&m----------------------'
+      - ' &fBalance: &6{coins}'
+      - ' '
+      - '&aClick to open.'
+      - '&8&m----------------------'
+
+  RANK-SHOP:
+    ITEM-NAME: '&6Ranks'
+    RANK-NAME: '&6'
+    ALREADY-OWN: '&7Already bought'
+    NO-PERMS: '&7No Perms'
+    PURCHASE-LORE:
+      - '&8&m----------------------'
+      - ' &fPrice: &6{price}'
+      - ' '
+      - '&a{already-own}'
+      - '&8&m----------------------'
+    LORE:
+      - '&8&m----------------------'
+      - ' &fBalance: &6{coins}'
+      - ' '
+      - '&aClick to open.'
+      - '&8&m----------------------'
+
+  TAG-SHOP:
+    ITEM-NAME: '&6Tags'
+    TAG-NAME: '&6'
+    ALREADY-OWN: '&7Already bought'
+    NO-PERMS: '&7No Perms'
+    PURCHASE-LORE:
+      - '&8&m----------------------'
+      - ' &fPrice: &6{price}'
+      - ' '
+      - '&a{already-own}'
+      - '&8&m----------------------'
+    LORE:
+      - '&8&m----------------------'
+      - ' &fBalance: &6{coins}'
+      - ' '
+      - '&aClick to open.'
+      - '&8&m----------------------'
 
 # Queues menu configuration
 QUEUES:
@@ -148,7 +337,7 @@ QUEUES:
     UNRANKED:
       ENABLED: true
       NAME: '&b&lUnranked'
-      SLOT: 11
+      SLOT: 9
       ICON: IRON_SWORD
       LORE:
         - '&8&m--------------------------------'
@@ -160,7 +349,7 @@ QUEUES:
     RANKED:
       ENABLED: true
       NAME: '&b&lRanked'
-      SLOT: 13
+      SLOT: 11
       ICON: DIAMOND_SWORD
       DATA: 0
       LORE:
@@ -171,10 +360,21 @@ QUEUES:
         - ' '
         - '&bClick to play!'
         - '&8&m--------------------------------'
+    EVENT:
+      ENABLED: true
+      NAME: '&b&lEvent'
+      SLOT: 14
+      ICON: WOODEN_SWORD
+      LORE:
+        - '&8&m--------------------------------'
+        - '&7Host an event'
+        - ' '
+        - '&bClick to host!'
+        - '&8&m--------------------------------'
     FFA:
       ENABLED: true
       NAME: '&b&lFFA'
-      SLOT: 15
+      SLOT: 17
       ICON: GOLD_AXE
       DATA: 0
       LORE:

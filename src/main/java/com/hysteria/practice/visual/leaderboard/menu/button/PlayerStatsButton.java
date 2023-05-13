@@ -10,6 +10,7 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import com.hysteria.practice.utilities.chat.CC;
 import com.hysteria.practice.visual.leaderboard.menu.StatisticsMenu;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.ArrayList;
 
@@ -18,10 +19,23 @@ public class PlayerStatsButton extends Button {
     @Override
     public ItemStack getButtonItem(Player player) {
         ArrayList<String> lore = Lists.newArrayList();
-        lore.add(CC.translate("&7&m-------------------"));
-        lore.add(CC.translate("&fView your stats"));
-        lore.add(CC.translate("&7&m-------------------"));
-        return new ItemBuilder(Material.valueOf(String.valueOf(Material.LEASH))).lore(lore).name(CC.translate(HyPractice.get().getLeaderboardConfig().getString("INVENTORY.YOUR_STATS.TITLE"))).build();
+        lore.add(CC.translate("&8&m----------------------"));
+        lore.add(CC.translate(" &fYour own wins, losses,"));
+        lore.add(CC.translate(" &fand ranked statistics."));
+        lore.add(CC.translate(""));
+        lore.add(CC.translate("&aClick to view."));
+        lore.add(CC.translate("&8&m----------------------"));
+
+        ItemStack item = new ItemBuilder(Material.SKULL_ITEM)
+                .durability(3)
+                .name(CC.translate(HyPractice.get().getLeaderboardConfig().getString("INVENTORY.YOUR_STATS.TITLE")))
+                .lore(lore)
+                .build();
+
+        SkullMeta itemMeta = (SkullMeta)item.getItemMeta();
+        itemMeta.setOwner(player.getName());
+        item.setItemMeta(itemMeta);
+        return item;
     }
 
     @Override

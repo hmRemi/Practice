@@ -1,6 +1,6 @@
 package com.hysteria.practice.game.kit.command;
 /* 
-   Made by cpractice Development Team
+   Made by hypractice Development Team
    Created on 11.10.2021
 */
 

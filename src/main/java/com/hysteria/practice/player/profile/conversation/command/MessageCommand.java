@@ -64,7 +64,7 @@ public class MessageCommand extends BaseCommand {
                 player.sendMessage(CC.RED + "That player is not receiving new conversations right now.");
             }
         } else {
-            if(player.hasPermission("cpractice.tpmbypass")) {
+            if(player.hasPermission("hypractice.tpmbypass")) {
                 Conversation conversation = playerProfile.getConversations().getOrCreateConversation(target);
 
                 if (conversation.validate()) {

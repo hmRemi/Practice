@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 public class ViewMatchCommand extends BaseCommand {
 
-    @Command(name = "viewmatch", aliases = {"matches"}, permission = "cpractice.viewmatch")
+    @Command(name = "viewmatch", aliases = {"matches"}, permission = "hypractice.viewmatch")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

@@ -1,6 +1,6 @@
 package com.hysteria.practice.visual.scoreboard.game;
 /* 
-   Made by cpractice Development Team
+   Made by hypractice Development Team
    Created on 27.10.2021
 */
 

@@ -1,5 +1,6 @@
 package com.hysteria.practice.shop.buttons;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.utilities.ItemBuilder;
 import com.hysteria.practice.utilities.menu.Button;
@@ -19,15 +20,12 @@ public class TagShopButton extends Button {
         Profile profile = Profile.get(player.getUniqueId());
 
         List<String> lore = new ArrayList<>();
-        lore.add("&8&m--------------------------------------");
-        lore.add("&7Your coins: " + profile.getCoins());
-        lore.add("");
-        lore.add("&7&oClick here to purchase Tags!");
-        lore.add("&8&m--------------------------------------");
-
+        for (String text : HyPractice.get().getMenuConfig().getStringList("COIN-SHOP.TAG-SHOP.LORE")) {
+            lore.add(text.replace("{coins}", profile.getCoins() + ""));
+        }
 
         return new ItemBuilder(Material.NAME_TAG)
-                .name("&c&lTags")
+                .name(HyPractice.get().getMenuConfig().getString("COIN-SHOP.TAG-SHOP.ITEM-NAME"))
                 .lore(lore)
                 .build();
     }

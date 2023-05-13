@@ -74,7 +74,7 @@ public class CC {
         DARK_PURPLE = ChatColor.DARK_PURPLE.toString();
         DARK_RED = ChatColor.DARK_RED.toString();
         PINK = ChatColor.LIGHT_PURPLE.toString();
-        MENU_BAR = ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "------------------------";
+        MENU_BAR = ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "------------------------";
         CHAT_BAR = ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "------------------------------------------------";
         SB_BAR = ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "----------------------";
         TAB_BAR = ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "-----------------";

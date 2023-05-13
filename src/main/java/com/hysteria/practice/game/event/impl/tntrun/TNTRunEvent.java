@@ -52,6 +52,11 @@ public class TNTRunEvent implements Event {
     }
 
     @Override
+    public int getDurability() {
+        return HyPractice.get().getEventsConfig().getInteger("EVENTS.TNTRUN.DATA");
+    }
+
+    @Override
     public List<String> getDescription() {
         return HyPractice.get().getEventsConfig().getStringList("EVENTS.TNTRUN.DESCRIPTION");
     }
@@ -68,7 +73,7 @@ public class TNTRunEvent implements Event {
 
     @Override
     public boolean canHost(Player player) {
-        return player.hasPermission("cpractice.event.host.tntrun");
+        return player.hasPermission("hypractice.event.host.tntrun");
     }
 
     @Override

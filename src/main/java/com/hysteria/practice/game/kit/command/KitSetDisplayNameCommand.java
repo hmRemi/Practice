@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class KitSetDisplayNameCommand extends BaseCommand {
 
-	@Command(name = "kit.setdisplayname", permission = "cpractice.kit.admin")
+	@Command(name = "kit.setdisplayname", permission = "hypractice.kit.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

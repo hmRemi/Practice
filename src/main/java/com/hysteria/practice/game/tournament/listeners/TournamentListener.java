@@ -27,7 +27,6 @@ public class TournamentListener implements Listener {
 
             if(profile.isInTournament()) {
                 HyPractice.get().getTournamentManager().forceLeave(player);
-
             }
         }
     }

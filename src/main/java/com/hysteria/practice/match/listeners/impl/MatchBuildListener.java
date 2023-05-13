@@ -120,7 +120,7 @@ public class MatchBuildListener implements Listener {
 
                 if(match.getKit().getGameRules().isBedFight()) {
                     int highest = (int) (Math.max(arena.getSpawnA().getY(), arena.getSpawnB().getY()));
-                    highest += 5;
+                    highest += 8;
 
                     if (n2 > highest) {
                         new MessageFormat(Locale.ARENA_REACHED_MAXIMUM.format(profile.getLocale())).send(player);
@@ -199,14 +199,14 @@ public class MatchBuildListener implements Listener {
 
                                 teamMatch.broadcastTitle(teamMatch.getParticipantB().containsPlayer(player.getUniqueId()) ? "&cRed's bed broken" : "&9Blue's bed destroyed", "&7By " + (teamMatch.getParticipantB().containsPlayer(player.getUniqueId()) ? "&9" : "&c") + player.getName(), 50);
 
-                                teamMatch.sendMessage(CC.CHAT_BAR);
-                                teamMatch.sendMessage(CC.translate((teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? "&c" : "&9") + player.getName() + " &7has destroyed the bed of " + (teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? "&9Blue" : "&cRed")));
-                                teamMatch.sendMessage(CC.CHAT_BAR);
+                                teamMatch.sendMessage("");
+                                teamMatch.sendMessage(" &c[BREAK] &f" + player.getName() + " &7has destroyed the bed of " + (teamMatch.getParticipantA().containsPlayer(player.getUniqueId()) ? "&9Blue&f!" : "&cRed&f!"));
+                                teamMatch.sendMessage("");
 
                                 teamMatch.sendSound(Sound.ENDERDRAGON_GROWL, 10, 1);
 
-                                blockBreakEvent.getBlock().setType(Material.AIR);
                                 blockBreakEvent.setCancelled(true);
+                                blockBreakEvent.getBlock().setType(Material.AIR);
                             }
                         } else {
                             player.sendMessage(CC.translate("&7You cannot break your own bed."));

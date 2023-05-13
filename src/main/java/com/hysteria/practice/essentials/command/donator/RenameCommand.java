@@ -10,7 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class RenameCommand extends BaseCommand {
 
-	@Command(name = "rename", permission = "cpractice.command.rename")
+	@Command(name = "rename", permission = "hypractice.command.rename")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

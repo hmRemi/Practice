@@ -11,7 +11,7 @@ import com.hysteria.practice.utilities.chat.CC;
 
 public class ArenaSaveCommand extends BaseCommand {
 
-	@Command(name = "arena.save", permission = "cpractice.arena.admin")
+	@Command(name = "arena.save", permission = "hypractice.arena.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

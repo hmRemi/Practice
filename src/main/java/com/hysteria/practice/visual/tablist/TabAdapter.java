@@ -368,13 +368,15 @@ public class TabAdapter implements GhostlyAdapter {
                 .replace("{teamspeak}", plugin.getLangConfig().getString("TEAMSPEAK"))
                 .replace("{twitter}", plugin.getLangConfig().getString("TWITTER"))
                 .replace("{website}", plugin.getLangConfig().getString("WEBSITE"))
+                .replace("{inqueue}", String.valueOf(plugin.getInQueues()))
+                .replace("{infight}", String.valueOf(plugin.getInFights()))
                 .replace("{ping}", String.valueOf(BukkitReflection.getPing(player)))
                 .replace("{bars}", CC.TAB_BAR)
                 .replace("{event}", event.getEvent().getDisplayName())
                 .replace("{remaining-players}", String.valueOf(event.getRemainingPlayers()))
                 .replace("{max-players}", String.valueOf(event.getMaximumPlayers()))
                 .replace("{map-name}", event.getGameState() == EventGameState.PLAYING_ROUND ? event.getGameMap().getMapName() : "None")
-                .replace("{hoster}", plugin.getRankManager().getRank().getPrefix(event.getGameHost().getUuid()) + event.getGameHost().getUsername());
+                .replace("{hoster}", event.getGameHost().getUsername());
         return string;
     }
 
@@ -506,10 +508,10 @@ public class TabAdapter implements GhostlyAdapter {
                 skin = TabListCommons.TWITTER_TEXTURE;
                 break;
             case "{brayding}":
-                skin = TabListCommons.getSkinData(UUID.fromString("d58ef82d-16e9-45e0-b08a-fb73ab62feaf"));
+                skin = TabListCommons.getSkinData(UUID.fromString("fa3b9ca0-b410-4f03-90a7-3e40eeebc0ee"));
                 break;
             case "{ziue}":
-                skin = TabListCommons.getSkinData(UUID.fromString("148f1abc-6352-41fa-9c91-f666c3b04082"));
+                skin = TabListCommons.getSkinData(UUID.fromString("74e89738-6c9e-4f59-83ef-d365849e6049"));
                 break;
             case "{green}":
                 skin = TabListCommons.GREEN_DOT;

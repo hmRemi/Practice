@@ -4,11 +4,11 @@ import com.hysteria.practice.Locale;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.player.profile.participant.GamePlayer;
 import com.hysteria.practice.utilities.MessageFormat;
-import org.github.paperspigot.Title;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.github.paperspigot.Title;
 
 import java.util.Collections;
 import java.util.List;

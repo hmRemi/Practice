@@ -1,11 +1,13 @@
 package com.hysteria.practice.game.arena.menu;
 
 import com.google.common.collect.Maps;
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.utilities.ItemBuilder;
 import com.hysteria.practice.utilities.menu.Button;
 import com.hysteria.practice.utilities.menu.Menu;
 import com.hysteria.practice.game.arena.Arena;
 import lombok.AllArgsConstructor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
@@ -16,14 +18,17 @@ public class ArenaManagementMenu extends Menu {
 
 	@Override
 	public String getTitle(Player player) {
-		return "&b&lArena Management";
+		return "&8Arena Management";
 	}
 
 	@Override
 	public Map<Integer, Button> getButtons(Player player) {
 		Map<Integer, Button> buttons = Maps.newHashMap();
+		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMenuConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
+
 		for (Arena arena : Arena.getArenas()) {
-			buttons.put(buttons.size(), new SelectArenaButton(arena));
+			buttons.put(buttons.size() + 10, new SelectArenaButton(arena));
 		}
 		return buttons;
 	}

@@ -44,7 +44,7 @@ public class ReplyCommand extends BaseCommand {
                 player.sendMessage(CC.RED + "You can no longer reply to that player.");
             }
         } else {
-            if(player.hasPermission("cpractice.tpmbypass")) {
+            if(player.hasPermission("hypractice.tpmbypass")) {
                 if (conversation.validate()) {
                     conversation.sendMessage(player, Bukkit.getPlayer(conversation.getPartner(player.getUniqueId())), message.toString());
 

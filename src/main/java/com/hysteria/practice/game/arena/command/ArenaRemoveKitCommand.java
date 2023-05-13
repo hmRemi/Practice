@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class ArenaRemoveKitCommand extends BaseCommand {
 
-	@Command(name = "arena.removekit", permission = "cpractice.arena.admin")
+	@Command(name = "arena.removekit", permission = "hypractice.arena.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

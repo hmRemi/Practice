@@ -64,7 +64,7 @@ public class PartyJoinCommand extends BaseCommand {
 
 		int limit;
 
-		if (party.getLeader().hasPermission("cpractice.party.vip")){
+		if (party.getLeader().hasPermission("hypractice.party.vip")){
 			limit = HyPractice.get().getMainConfig().getInteger("PARTY.VIP_LIMIT");
 		} else {
 			limit = HyPractice.get().getMainConfig().getInteger("PARTY.DEFAULT_LIMIT");

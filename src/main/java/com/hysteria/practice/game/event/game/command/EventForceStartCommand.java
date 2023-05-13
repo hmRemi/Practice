@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 
 public class EventForceStartCommand extends BaseCommand {
 
-	@Command(name = "event.forcestart", permission = "cpractice.event.admin")
+	@Command(name = "event.forcestart", permission = "hypractice.event.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

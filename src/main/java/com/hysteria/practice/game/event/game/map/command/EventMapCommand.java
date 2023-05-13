@@ -23,7 +23,7 @@ public class EventMapCommand extends BaseCommand {
         new EventMapStatusCommand();
     }
 
-    @Command(name = "event.map", permission = "cpractice.event.admin")
+    @Command(name = "event.map", permission = "hypractice.event.admin")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

@@ -21,18 +21,18 @@ public class PartyEventSelectEventMenu extends Menu {
 
 	@Override
 	public String getTitle(Player player) {
-		return "&bSelect an event";
+		return HyPractice.get().getMenuConfig().getString("PARTY-MENU.TITLE");
 	}
 
 	@Override
 	public Map<Integer, Button> getButtons(Player player) {
 		Map<Integer, Button> buttons = new HashMap<>();
-		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMainConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
+		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMenuConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 
-		buttons.put(11, new SelectEventButton(PartyEvent.FFA));
-		buttons.put(13, new SelectEventButton(PartyEvent.SPLIT));
-		buttons.put(15, new SelectEventButton(PartyEvent.REDROVER));
+		buttons.put(HyPractice.get().getMenuConfig().getInteger("PARTY-MENU.TYPES.FFA.SLOT"), new SelectEventButton(PartyEvent.FFA));
+		buttons.put(HyPractice.get().getMenuConfig().getInteger("PARTY-MENU.TYPES.SPLIT.SLOT"), new SelectEventButton(PartyEvent.SPLIT));
+		buttons.put(HyPractice.get().getMenuConfig().getInteger("PARTY-MENU.TYPES.REDROVER.SLOT"), new SelectEventButton(PartyEvent.REDROVER));
 		return buttons;
 	}
 
@@ -50,29 +50,18 @@ public class PartyEventSelectEventMenu extends Menu {
 		public ItemStack getButtonItem(Player player) {
 			if(partyEvent == PartyEvent.FFA) {
 				return new ItemBuilder(Material.QUARTZ)
-					.name("&b"+ partyEvent.getName())
-					.lore(CC.SB_BAR)
-					.lore("&7A fight all against all")
-					.lore("&7And the last one to stay alive wins")
-					.lore(CC.SB_BAR)
+					.name(HyPractice.get().getMenuConfig().getString("PARTY-MENU.TYPES.FFA.NAME"))
+					.lore(HyPractice.get().getMenuConfig().getStringList("PARTY-MENU.TYPES.FFA.LORE"))
 					.build();
 			} else if (partyEvent == PartyEvent.SPLIT) {
 				return new ItemBuilder(Material.REDSTONE)
-						.name("&b" + partyEvent.getName())
-						.lore(CC.SB_BAR)
-						.lore("&7The party is divided into two")
-						.lore("&7Teams and they fight")
-						.lore(CC.SB_BAR)
+						.name(HyPractice.get().getMenuConfig().getString("PARTY-MENU.TYPES.SPLIT.NAME"))
+						.lore(HyPractice.get().getMenuConfig().getStringList("PARTY-MENU.TYPES.SPLIT.LORE"))
 						.build();
 			} else {
 				return new ItemBuilder(Material.DIAMOND_AXE)
-						.name("&b" + partyEvent.getName())
-						.lore(CC.SB_BAR)
-						.lore("&7Fight in a series of 1v1's")
-						.lore("&7until there is a winner")
-						.lore("")
-						.lore("&c&lWIP")
-						.lore(CC.SB_BAR)
+						.name(HyPractice.get().getMenuConfig().getString("PARTY-MENU.TYPES.REDROVER.NAME"))
+						.lore(HyPractice.get().getMenuConfig().getStringList("PARTY-MENU.TYPES.REDROVER.LORE"))
 						.build();
 			}
 		}

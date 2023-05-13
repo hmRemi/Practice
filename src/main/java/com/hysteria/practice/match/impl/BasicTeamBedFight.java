@@ -2,7 +2,9 @@ package com.hysteria.practice.match.impl;
 
 import com.google.common.collect.Lists;
 import com.hysteria.practice.HyPractice;
+import com.hysteria.practice.chunk.ChunkRestorationManager;
 import com.hysteria.practice.game.arena.Arena;
+import com.hysteria.practice.game.arena.impl.StandaloneArena;
 import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.match.Match;
 import com.hysteria.practice.match.MatchState;
@@ -75,6 +77,11 @@ public class BasicTeamBedFight extends BasicTeamMatch {
     @Override
     public void end() {
         if (getKit().getGameRules().isBedFight()) {
+
+            if(getArena() instanceof StandaloneArena) {
+                ChunkRestorationManager.getIChunkRestoration().reset(getArena());
+            }
+
             for (GameParticipant<MatchGamePlayer> gameParticipant : getParticipants()) {
                 for (MatchGamePlayer gamePlayer : gameParticipant.getPlayers()) {
                     gamePlayer.setDead(true);
@@ -83,37 +90,22 @@ public class BasicTeamBedFight extends BasicTeamMatch {
                     if (bukkitPlayer != null) {
                         if(getWinningParticipant() != null) {
                             if (getWinningParticipant().getConjoinedNames().equals(getParticipantA().getConjoinedNames())) {
-                                bukkitPlayer.sendMessage(CC.translate("&7&m----------&r&7→ &c&lMatch Ended &7&m←-----------"));
-                                bukkitPlayer.sendMessage(CC.translate("&c&lMatch Results"));
-
-                                bukkitPlayer.sendMessage("");
-                                bukkitPlayer.sendMessage(CC.translate("&cRed Bed&7:&7 " + (getWinningParticipant().isHasBed() ? "&a✔" : "&c✗")));
-                                if(getLosingParticipant() != null) {
-                                    bukkitPlayer.sendMessage(CC.translate("&9Blue Bed&7:&7 " + (getLosingParticipant().isHasBed() ? "&a✔" : "&c✗")));
+                                bukkitPlayer.sendMessage(CC.translate("&8&m---------------------------"));
+                                bukkitPlayer.sendMessage(CC.translate("&6Match Results"));
+                                bukkitPlayer.sendMessage(CC.translate("&aWinner: &f" + getWinningParticipant().getConjoinedNames() + " &7(" + (getWinningParticipant().isHasBed() ? "&a✔" : "&c✗") + "&7)"));
+                                if (getLosingParticipant() != null) {
+                                    bukkitPlayer.sendMessage(CC.translate("&cLoser: &f" + getLosingParticipant().getConjoinedNames() + " &7(" + (getLosingParticipant().isHasBed() ? "&a✔" : "&c✗") + "&7)"));
                                 }
-                                bukkitPlayer.sendMessage("");
+                                bukkitPlayer.sendMessage(CC.translate("&8&m---------------------------"));
 
-                                bukkitPlayer.sendMessage(CC.translate("&7Winner: &a" + getWinningParticipant().getConjoinedNames()));
-                                if(getLosingParticipant() != null) {
-                                    bukkitPlayer.sendMessage(CC.translate("&7Loser: &c" + getLosingParticipant().getConjoinedNames()));
-                                }
-                                bukkitPlayer.sendMessage(CC.translate("&7&m-----------------------------------'"));
                             } else if (getWinningParticipant().getConjoinedNames().equals(getParticipantB().getConjoinedNames())) {
-                                bukkitPlayer.sendMessage(CC.translate("&7&m----------&r&7→ &c&lMatch Ended &7&m←-----------"));
-                                bukkitPlayer.sendMessage(CC.translate("&c&lMatch Results"));
-
-                                bukkitPlayer.sendMessage("");
-                                bukkitPlayer.sendMessage(CC.translate("&9Blue Bed&7:&7 " + (getWinningParticipant().isHasBed() ? "&a✔" : "&c✗")));
-                                if(getLosingParticipant() != null) {
-                                    bukkitPlayer.sendMessage(CC.translate("&cRed Bed&7:&7 " + ((getLosingParticipant().isHasBed() ? "&a✔" : "&c✗"))));
+                                bukkitPlayer.sendMessage(CC.translate("&8&m---------------------------"));
+                                bukkitPlayer.sendMessage(CC.translate("&6Match Results"));
+                                bukkitPlayer.sendMessage(CC.translate("&aWinner: &f" + getWinningParticipant().getConjoinedNames() + " &7(" + (getWinningParticipant().isHasBed() ? "&a✔" : "&c✗") + "&7)"));
+                                if (getLosingParticipant() != null) {
+                                    bukkitPlayer.sendMessage(CC.translate("&cLoser: &f" + getLosingParticipant().getConjoinedNames() + " &7(" + (getLosingParticipant().isHasBed() ? "&a✔" : "&c✗") + "&7)"));
                                 }
-                                bukkitPlayer.sendMessage("");
-
-                                bukkitPlayer.sendMessage(CC.translate("&7Winner: &a" + getWinningParticipant().getConjoinedNames()));
-                                if(getLosingParticipant() != null) {
-                                    bukkitPlayer.sendMessage(CC.translate("&7Loser: &c" + getLosingParticipant().getConjoinedNames()));
-                                }
-                                bukkitPlayer.sendMessage(CC.translate("&7&m-----------------------------------'"));
+                                bukkitPlayer.sendMessage(CC.translate("&8&m---------------------------"));
                             }
                         }
                         if (bukkitPlayer.hasMetadata("lastAttacker")) {

@@ -19,7 +19,7 @@ public class AbilityCommand extends BaseCommand {
 
     private HyPractice plugin = HyPractice.get();
 
-    @Command(name = "ability", permission = "cpractice.command.ability")
+    @Command(name = "ability", permission = "hypractice.command.ability")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

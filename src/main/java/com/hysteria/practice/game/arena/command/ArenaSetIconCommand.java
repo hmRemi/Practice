@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 
 public class ArenaSetIconCommand extends BaseCommand {
 
-    @Command(name = "arena.seticon", permission = "cpractice.arena.admin")
+    @Command(name = "arena.seticon", permission = "hypractice.arena.admin")
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();

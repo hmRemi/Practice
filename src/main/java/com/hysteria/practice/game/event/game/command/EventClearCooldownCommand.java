@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 
 public class EventClearCooldownCommand extends BaseCommand {
 
-	@Command(name = "event.clearcooldown", aliases = {"clearcd"}, permission = "cpractice.event.admin", inGameOnly = false)
+	@Command(name = "event.clearcooldown", aliases = {"clearcd"}, permission = "hypractice.event.admin", inGameOnly = false)
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		CommandSender sender = commandArgs.getSender();

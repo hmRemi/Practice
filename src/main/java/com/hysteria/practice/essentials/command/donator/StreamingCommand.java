@@ -14,7 +14,7 @@ import com.hysteria.practice.utilities.chat.CC;
  */
 public class StreamingCommand extends BaseCommand {
 
-    @Command(name = "stream", aliases = {"stream"}, permission = "cpractice.stream")
+    @Command(name = "stream", aliases = {"stream"}, permission = "hypractice.stream")
     @Override
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();

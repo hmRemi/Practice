@@ -10,7 +10,7 @@ import com.hysteria.practice.utilities.chat.CC;
 
 public class ArenaAddKitCommand extends BaseCommand {
 
-	@Command(name = "arena.addkit", permission = "cpractice.arena.admin")
+	@Command(name = "arena.addkit", permission = "hypractice.arena.admin")
 	@Override
 	public void onCommand(CommandArgs commandArgs) {
 		Player player = commandArgs.getPlayer();

@@ -49,7 +49,7 @@ public class Party {
 
 		this.players.add(player.getUniqueId());
 
-		if (leader.hasPermission("cpractice.party.vip")){
+		if (leader.hasPermission("hypractice.party.vip")){
 			limit = HyPractice.get().getMainConfig().getInteger("PARTY.VIP_LIMIT");
 		} else {
 			limit = HyPractice.get().getMainConfig().getInteger("PARTY.DEFAULT_LIMIT");
@@ -212,13 +212,13 @@ public class Party {
 						.append(", ");
 			}
 		}
-
 		new MessageFormat(Locale.PARTY_INFORMATION.format(profile.getLocale()))
 				.add("{status}", privacy.getReadable())
 				.add("{leader}", leader.getName()) //
 				.add("{members-size}", String.valueOf((getPlayers().size() - 1)))
 				.add("{members}", CC.translate(getListOfPlayers().size() > 1 ? builder.substring(0, builder.length() - 2) : ""))
 				.send(sendTo);
+
 
 	}
 

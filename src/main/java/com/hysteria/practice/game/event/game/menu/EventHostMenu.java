@@ -5,6 +5,8 @@ import com.google.common.collect.Maps;
 import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.Locale;
 import com.hysteria.practice.game.event.Event;
+import com.hysteria.practice.player.cosmetics.impl.killeffects.KillEffectType;
+import com.hysteria.practice.player.cosmetics.impl.killeffects.menu.KillEffectsMenu;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.utilities.ItemBuilder;
 import com.hysteria.practice.utilities.MessageFormat;
@@ -32,7 +34,7 @@ public class EventHostMenu extends Menu {
 
 	@Override
 	public int getSize() {
-		return 5*9;
+		return 3*9;
 	}
 
 	@Override
@@ -41,7 +43,11 @@ public class EventHostMenu extends Menu {
 
 		int pos = 10;
 
-		for (int b = 0; b < Event.events.size(); b++) {
+		for (Event event : Event.events) {
+			buttons.put(buttons.size() + pos, new SelectEventButton(event));
+		}
+
+		/*for (int b = 0; b < Event.events.size(); b++) {
 			Event event = Event.events.get(b);
 			if (b <= 2) {
 				buttons.put(pos++, new SelectEventButton(event));
@@ -71,7 +77,7 @@ public class EventHostMenu extends Menu {
 				pos++;
 				pos++;
 			}
-		}
+		}*/
 
 		return buttons;
 	}
@@ -101,6 +107,7 @@ public class EventHostMenu extends Menu {
 
 			return new ItemBuilder(event.getIcon().clone())
 					.name(event.getDisplayName())
+					.durability(event.getDurability())
 					.lore(lore)
 					.build();
 		}
