@@ -58,7 +58,7 @@ PARTY:
   INVITE:
     - '&b{leader_name} &7has sent you an invite to their party.'
     - '%CLICKABLE%&7Click here or type &b/party join {leader_name} &7to accept.'
-  INVITE_HOVER: '&7Click here to accept.'A
+  INVITE_HOVER: '&7Click here to accept.'
   INVITE_BROADCAST: '&8[&b&lParty&8] &b{player_name} &7has been invited to your party.'
   JOIN: '&8[&b&lParty&8] &b{player_name} &7has joined your party.'
   LEAVE: '&8[&b&lParty&8] &b{player_name} &7has &b{context} &7your party.'
