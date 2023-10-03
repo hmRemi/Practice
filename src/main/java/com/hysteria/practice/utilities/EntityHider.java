@@ -10,7 +10,6 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import com.hysteria.practice.HyPractice;
-import com.hysteria.practice.utilities.file.ConfigurationCheck;
 import lombok.SneakyThrows;
 import net.minecraft.server.v1_8_R3.EntityItem;
 import net.minecraft.server.v1_8_R3.MathHelper;

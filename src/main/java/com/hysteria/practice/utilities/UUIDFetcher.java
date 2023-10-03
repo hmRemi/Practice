@@ -2,7 +2,6 @@ package com.hysteria.practice.utilities;
 
 import com.google.common.collect.ImmutableList;
 import com.hysteria.practice.HyPractice;
-import com.hysteria.practice.utilities.file.ConfigurationCheck;
 import org.bukkit.Bukkit;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

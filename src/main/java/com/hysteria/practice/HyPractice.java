@@ -1,7 +1,5 @@
 package com.hysteria.practice;
 
-import com.alonsoaliaga.alonsoleagues.AlonsoLeagues;
-import com.alonsoaliaga.alonsoleagues.api.AlonsoLeaguesAPI;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.hysteria.practice.api.rank.RankManager;
@@ -46,7 +44,11 @@ import com.hysteria.practice.game.tournament.listeners.TournamentListener;
 import com.hysteria.practice.game.tournament.managers.TournamentManager;
 import com.hysteria.practice.match.command.*;
 import com.hysteria.practice.match.duel.command.*;
+import com.hysteria.practice.match.listeners.MatchListener;
+import com.hysteria.practice.match.listeners.impl.MatchBuildListener;
 import com.hysteria.practice.match.listeners.impl.MatchPearlListener;
+import com.hysteria.practice.match.listeners.impl.MatchPlayerListener;
+import com.hysteria.practice.match.listeners.impl.MatchSpecialListener;
 import com.hysteria.practice.player.clan.Clan;
 import com.hysteria.practice.player.clan.ClanListener;
 import com.hysteria.practice.player.clan.commands.ClanCommand;
@@ -62,6 +64,7 @@ import com.hysteria.practice.player.party.classes.rogue.RogueClass;
 import com.hysteria.practice.player.party.command.PartyCommand;
 import com.hysteria.practice.player.party.listeners.PartyListener;
 import com.hysteria.practice.player.profile.Profile;
+import com.hysteria.practice.player.profile.ProfileListener;
 import com.hysteria.practice.player.profile.conversation.command.MessageCommand;
 import com.hysteria.practice.player.profile.conversation.command.ReplyCommand;
 import com.hysteria.practice.player.profile.file.impl.FlatFileIProfile;
@@ -71,8 +74,8 @@ import com.hysteria.practice.player.profile.meta.option.command.*;
 import com.hysteria.practice.player.profile.modmode.ModmodeListener;
 import com.hysteria.practice.player.profile.modmode.commands.StaffModeCommand;
 import com.hysteria.practice.player.queue.Queue;
+import com.hysteria.practice.player.queue.QueueListener;
 import com.hysteria.practice.utilities.*;
-import com.hysteria.practice.utilities.file.ConfigurationCheck;
 import com.hysteria.practice.utilities.file.language.LanguageConfigurationFile;
 import com.hysteria.practice.utilities.file.type.BasicConfigurationFile;
 import com.hysteria.practice.utilities.lag.LagRunnable;
@@ -292,8 +295,6 @@ public class HyPractice extends JavaPlugin {
             this.playersConfig = new BasicConfigurationFile(this, "cache/players");
             this.clansConfig = new BasicConfigurationFile(this, "features/clans");
         }
-
-        JavaUtils.tryParseString(String.valueOf(mainConfig));
     }
 
     private void registerNameTags() {
@@ -392,6 +393,13 @@ public class HyPractice extends JavaPlugin {
                 new ChatListener(),
                 new LeaderboardListener(),
                 new TournamentListener(),
+                new MatchSpecialListener(),
+                new ArenaListener(),
+                new MatchBuildListener(),
+                new MatchPlayerListener(),
+                new MatchListener(),
+                new QueueListener(),
+                new ProfileListener(),
                 new FFAListener()
         ).forEach(listener -> getServer().getPluginManager().registerEvents(listener, this));
         Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(this, new LagRunnable(), 100L, 1L);
