@@ -2,6 +2,8 @@
 
 HyPractice is a PracticePvP Core for 1.8.
 
+- **Libs:** https://www.mediafire.com/file/uhthp6c3akmltqp/libs.zip/file
+
 ## Guidelines
 
 - You are allowed to use the source code of this project for both personal and commercial purposes.
