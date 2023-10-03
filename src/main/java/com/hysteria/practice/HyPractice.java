@@ -293,7 +293,7 @@ public class HyPractice extends JavaPlugin {
 
         if (mainConfig.getString("SAVE_METHOD").equals("FILE") || mainConfig.getString("SAVE_METHOD").equals("FLATFILE")) {
             this.playersConfig = new BasicConfigurationFile(this, "cache/players");
-            this.clansConfig = new BasicConfigurationFile(this, "features/clans");
+            this.clansConfig = new BasicConfigurationFile(this, "cache/clans");
         }
     }
 
