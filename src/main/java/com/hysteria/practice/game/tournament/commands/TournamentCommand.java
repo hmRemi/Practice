@@ -33,7 +33,7 @@ public class TournamentCommand extends BaseCommand {
         if(player.hasPermission("tournament.admin")) {
             player.sendMessage(CC.CHAT_BAR);
             player.sendMessage(CC.translate("&b&lTournament &7&m-&r &b&lAdmin Help"));
-            player.sendMessage(CC.translate(" &7▢ &b/tournament start &8<&7kit&8> &8(&7&oStart a tournament with kit&8&o)"));
+            player.sendMessage(CC.translate(" &7▢ &b/tournament start &8<&7type&8> <&7kit&8> &8(&7&oStart a tournament with kit&8&o)"));
             player.sendMessage(CC.translate(" &7▢ &b/tournament status &8(&7&oShow status of ongoing tournament&8&o)"));
             player.sendMessage(CC.translate(" &7▢ &b/tournament forcestart &8(&7&oForcestart tournament&8&o)"));
             player.sendMessage(CC.translate(" &7▢ &b/tournament stop &8(&7&oStop the tournament&8&o)"));
