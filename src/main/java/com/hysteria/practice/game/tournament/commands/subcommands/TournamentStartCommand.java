@@ -7,6 +7,8 @@ import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.game.tournament.Tournament;
 import com.hysteria.practice.game.tournament.impl.TournamentSolo;
+import com.hysteria.practice.game.tournament.impl.TournamentClans;
+import com.hysteria.practice.game.tournament.impl.TournamentTeams;
 import com.hysteria.practice.utilities.chat.CC;
 import com.hysteria.practice.api.command.BaseCommand;
 import com.hysteria.practice.api.command.Command;
@@ -27,21 +29,40 @@ public class TournamentStartCommand extends BaseCommand {
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();
         String[] args = commandArgs.getArgs();
-        Tournament<?> tournament = new TournamentSolo();
 
-        if (args.length == 0) {
+        if (args.length < 2) {
             player.sendMessage(CC.CHAT_BAR);
-            player.sendMessage(CC.RED + "Please use /tournament start (kit)");
+            player.sendMessage(CC.RED + "Please use /tournament start (type) (kit)");
             player.sendMessage(CC.CHAT_BAR);
             return;
         }
 
-        Kit kit = Kit.getByName(args[0]);
+        String type = args[0].toLowerCase();
+
+        Kit kit = Kit.getByName(args[1]);
         if (kit == null) {
             player.sendMessage(CC.CHAT_BAR);
             player.sendMessage(CC.RED + "This kit doesn't exist.");
             player.sendMessage(CC.CHAT_BAR);
             return;
+        }
+
+        Tournament<?> tournament;
+        switch (type) {
+            case "solo":
+                tournament = new TournamentSolo();
+                break;
+            case "clans":
+                tournament = new TournamentClans();
+                break;
+            case "teams":
+                tournament = new TournamentTeams();
+                break;
+            default:
+                player.sendMessage(CC.CHAT_BAR);
+                player.sendMessage(CC.RED + "Invalid tournament type. Available types: solo, clans, teams");
+                player.sendMessage(CC.CHAT_BAR);
+                return;
         }
 
         if (Tournament.getTournament() != null) {
@@ -52,10 +73,9 @@ public class TournamentStartCommand extends BaseCommand {
         tournament.setLimit(100);
         tournament.setKit(kit);
         Tournament.setTournament(tournament);
-        Clickable clickable = new Clickable("&7(*) &cTournament has started, click here to join &7(*)", "Click to join", "/tournament join");
 
         Bukkit.getOnlinePlayers().forEach(onlinePlayer -> onlinePlayer.sendMessage(CC.CHAT_BAR));
-        Bukkit.getOnlinePlayers().forEach(clickable::sendToPlayer);
+        Clickable clickable = new Clickable(CC.translate("&7(*) &cTournament has started, click here to join &7(*)"),"Click to join", "/tournament join");
         Bukkit.getOnlinePlayers().forEach(onlinePlayer -> onlinePlayer.sendMessage(CC.CHAT_BAR));
     }
 }
