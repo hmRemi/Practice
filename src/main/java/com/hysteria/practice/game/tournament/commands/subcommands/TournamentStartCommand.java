@@ -56,7 +56,7 @@ public class TournamentStartCommand extends BaseCommand {
                 tournament = new TournamentClans();
                 break;
             case "teams":
-                tournament = new TournamentTeams(); // Assuming you have a TournamentTeams class
+                tournament = new TournamentTeams();
                 break;
             default:
                 player.sendMessage(CC.CHAT_BAR);
@@ -66,9 +66,7 @@ public class TournamentStartCommand extends BaseCommand {
         }
 
         if (Tournament.getTournament() != null) {
-            player.sendMessage(CC.CHAT_BAR);
-            player.sendMessage(CC.RED + "A tournament is already in progress.");
-            player.sendMessage(CC.CHAT_BAR);
+            new MessageFormat(Locale.TOURNAMENT_ALREADY_CREATED.format(Profile.get(player.getUniqueId()).getLocale())).send(player);
             return;
         }
 
@@ -77,7 +75,7 @@ public class TournamentStartCommand extends BaseCommand {
         Tournament.setTournament(tournament);
 
         Bukkit.getOnlinePlayers().forEach(onlinePlayer -> onlinePlayer.sendMessage(CC.CHAT_BAR));
-        Bukkit.getOnlinePlayers().forEach(onlinePlayer -> onlinePlayer.sendMessage(CC.translate("&7(*) &cTournament has started, click here to join &7(*)")));
+        Clickable clickable = new Clickable(CC.translate("&7(*) &cTournament has started, click here to join &7(*)"),"Click to join", "/tournament join");
         Bukkit.getOnlinePlayers().forEach(onlinePlayer -> onlinePlayer.sendMessage(CC.CHAT_BAR));
     }
 }
