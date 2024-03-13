@@ -31,9 +31,7 @@ public class TournamentStartCommand extends BaseCommand {
         String[] args = commandArgs.getArgs();
 
         if (args.length < 2) {
-            player.sendMessage(CC.CHAT_BAR);
             player.sendMessage(CC.RED + "Please use /tournament start (type) (kit)");
-            player.sendMessage(CC.CHAT_BAR);
             return;
         }
 
@@ -41,9 +39,7 @@ public class TournamentStartCommand extends BaseCommand {
 
         Kit kit = Kit.getByName(args[1]);
         if (kit == null) {
-            player.sendMessage(CC.CHAT_BAR);
             player.sendMessage(CC.RED + "This kit doesn't exist.");
-            player.sendMessage(CC.CHAT_BAR);
             return;
         }
 
@@ -59,9 +55,7 @@ public class TournamentStartCommand extends BaseCommand {
                 tournament = new TournamentTeams();
                 break;
             default:
-                player.sendMessage(CC.CHAT_BAR);
                 player.sendMessage(CC.RED + "Invalid tournament type. Available types: solo, clans, teams");
-                player.sendMessage(CC.CHAT_BAR);
                 return;
         }
 
