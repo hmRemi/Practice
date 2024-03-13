@@ -31,11 +31,11 @@ public class TournamentStatusCommand extends BaseCommand {
         }
 
         player.sendMessage(CC.CHAT_BAR);
-        player.sendMessage(CC.translate( "&c&lTournament &7&m-&r &c&lStatus"));
-        player.sendMessage(CC.translate(" &7▢ &4Players: &7" + tournament.getPlayers().size() + "/" + tournament.getLimit()));
-        player.sendMessage(CC.translate(" &7▢ &4Matches: &7" + tournament.getMatches().size()));
-        player.sendMessage(CC.translate(" &7▢ &4Stage: &7" + tournament.getState().getName()));
-        player.sendMessage(CC.translate(" &7▢ &4Kit: &7" + tournament.getKit().getName()));
+        player.sendMessage(CC.translate( "&b&lTournament &7&m-&r &c&lStatus"));
+        player.sendMessage(CC.translate(" &7▢ &bPlayers: &7" + tournament.getPlayers().size() + "/" + tournament.getLimit()));
+        player.sendMessage(CC.translate(" &7▢ &bMatches: &7" + tournament.getMatches().size()));
+        player.sendMessage(CC.translate(" &7▢ &bStage: &7" + tournament.getState().getName()));
+        player.sendMessage(CC.translate(" &7▢ &bKit: &7" + tournament.getKit().getName()));
         player.sendMessage(CC.CHAT_BAR);
     }
 }
