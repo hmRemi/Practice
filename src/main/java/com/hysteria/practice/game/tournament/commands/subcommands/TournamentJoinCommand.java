@@ -11,6 +11,11 @@ import com.hysteria.practice.api.command.CommandArgs;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+/**
+ * @author Hysteria Development
+ * @project Practice
+ * @date 2/12/2023
+ */
 public class TournamentJoinCommand extends BaseCommand {
 
     @Command(name = "tournament.join")
