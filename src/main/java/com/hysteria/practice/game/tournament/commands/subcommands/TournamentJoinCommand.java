@@ -1,18 +1,15 @@
 package com.hysteria.practice.game.tournament.commands.subcommands;
 
+import com.hysteria.practice.game.tournament.Tournament;
+import com.hysteria.practice.game.tournament.impl.TournamentClans;
+import com.hysteria.practice.game.tournament.impl.TournamentSolo;
+import com.hysteria.practice.game.tournament.impl.TournamentTeams;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.api.command.BaseCommand;
 import com.hysteria.practice.api.command.Command;
 import com.hysteria.practice.api.command.CommandArgs;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import com.hysteria.practice.game.tournament.impl.TournamentSolo;
-
-/**
- * @author Hysteria Development
- * @project Practice
- * @date 2/12/2023
- */
 
 public class TournamentJoinCommand extends BaseCommand {
 
@@ -20,7 +17,7 @@ public class TournamentJoinCommand extends BaseCommand {
     @Override
     public void onCommand(CommandArgs commandArgs) {
         Player player = commandArgs.getPlayer();
-        TournamentSolo tournament = (TournamentSolo) TournamentSolo.getTournament();
+        Tournament<?> tournament = Tournament.getTournament();
 
         if (tournament == null) {
             player.sendMessage(ChatColor.RED + "No tournament found.");
@@ -28,7 +25,7 @@ public class TournamentJoinCommand extends BaseCommand {
         }
 
         Profile profile = Profile.get(player.getUniqueId());
-        if(profile.isBusy()) {
+        if (profile.isBusy()) {
             player.sendMessage(ChatColor.RED + "You may not join the tournament in your current state.");
             return;
         }
@@ -37,6 +34,17 @@ public class TournamentJoinCommand extends BaseCommand {
             return;
         }
 
-        tournament.join(player);
+        if (tournament instanceof TournamentSolo) {
+            TournamentSolo soloTournament = (TournamentSolo) tournament;
+            soloTournament.join(player);
+        } else if (tournament instanceof TournamentClans) {
+            TournamentClans clansTournament = (TournamentClans) tournament;
+            clansTournament.join(player);
+        } else if (tournament instanceof TournamentTeams) {
+            TournamentTeams teamsTournament = (TournamentTeams) tournament;
+            teamsTournament.join(player);
+        } else {
+            player.sendMessage(ChatColor.RED + "This command is not applicable for the current tournament type.");
+        }
     }
 }
