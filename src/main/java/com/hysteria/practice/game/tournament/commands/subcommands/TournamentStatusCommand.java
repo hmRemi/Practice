@@ -24,9 +24,7 @@ public class TournamentStatusCommand extends BaseCommand {
         Tournament<?> tournament = Tournament.getTournament();
 
         if (tournament == null || tournament.getState() == TournamentState.ENDED) {
-            player.sendMessage(CC.CHAT_BAR);
             player.sendMessage(ChatColor.RED + "No tournament found.");
-            player.sendMessage(CC.CHAT_BAR);
             return;
         }
 
