@@ -8,7 +8,7 @@ HyPractice is a PracticePvP Core for 1.8.
 
 - You are allowed to use the source code of this project for both personal and commercial purposes.
 - When using the code, you must provide clear and visible credits to the original author(s) by including their names and a link to the original repository.
-- You are not permitted to sell this plugin under a different name. It should always be distributed under the original project name.
+- You're not permitted to sell this plugin; it should only be released for free under the original project name.
 - You should not claim this project as your own or remove any existing copyright notices or license information.
 
 ## Contributing
