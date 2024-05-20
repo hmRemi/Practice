@@ -70,19 +70,19 @@ public class BasicTeamMatch extends Match {
 			if (getKit().getGameRules().isHcf()) {
 				Kit kit;
 				if (party.getArchers().contains(player.getUniqueId())) {
-					kit = Kit.getByName("HCFArcher");
+					kit = HyPractice.get().getKitRepository().getKitByName("HCFArcher");
 					player.getInventory().setArmorContents(Objects.requireNonNull(kit).getKitLoadout().getArmor());
 					player.getInventory().setContents(kit.getKitLoadout().getContents());
 				} else if (party.getBards().contains(player.getUniqueId())) {
-					kit = Kit.getByName("Bard");
+					kit = HyPractice.get().getKitRepository().getKitByName("Bard");
 					player.getInventory().setArmorContents(Objects.requireNonNull(kit).getKitLoadout().getArmor());
 					player.getInventory().setContents(kit.getKitLoadout().getContents());
 				} else if (party.getRogues().contains(player.getUniqueId())) {
-					kit = Kit.getByName("Rogue");
+					kit = HyPractice.get().getKitRepository().getKitByName("Rogue");
 					player.getInventory().setArmorContents(Objects.requireNonNull(kit).getKitLoadout().getArmor());
 					player.getInventory().setContents(kit.getKitLoadout().getContents());
 				} else {
-					kit = Kit.getByName("Diamond");
+					kit = HyPractice.get().getKitRepository().getKitByName("Diamond");
 					player.getInventory().setArmorContents(Objects.requireNonNull(kit).getKitLoadout().getArmor());
 					player.getInventory().setContents(kit.getKitLoadout().getContents());
 				}
@@ -109,9 +109,6 @@ public class BasicTeamMatch extends Match {
 
 		// Teleport the player to their spawn point
 		Location spawn = participantA.containsPlayer(player.getUniqueId()) ? getArena().getSpawnA() : getArena().getSpawnB();
-
-		//if (spawn.getBlock().getType() == Material.AIR) player.teleport(spawn);
-		//else player.teleport(spawn.add(0, 2, 0));
 		player.teleport(spawn);
 	}
 

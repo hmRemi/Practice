@@ -37,7 +37,7 @@ public class LeaderBoardMenu extends Menu {
         buttons.put(5, new GlobalStatsButton());
 
         AtomicInteger pos = new AtomicInteger();
-        Kit.getKits().stream()
+        HyPractice.get().getKitRepository().getKits().stream()
                 .filter(Kit::isEnabled)
                 .filter(kit -> kit.getGameRules().isRanked())
                 .filter(kit -> kit.getDisplayIcon() != null)

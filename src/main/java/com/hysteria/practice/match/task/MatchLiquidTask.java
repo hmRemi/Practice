@@ -10,8 +10,7 @@ public class MatchLiquidTask implements Runnable {
 
     @Override
     public void run() {
-        if (Bukkit.getOnlinePlayers().size() < 1) return;
-
+        if (Bukkit.getOnlinePlayers().isEmpty()) return;
         Bukkit.getOnlinePlayers().forEach(player -> {
             Profile profile = Profile.get(player.getUniqueId());
             if (profile.getState() == ProfileState.FIGHTING) {

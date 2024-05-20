@@ -205,7 +205,7 @@ public class SpleefGameLogic implements EventGameLogic {
                 if (player != null) {
                     player.getInventory().setArmorContents(new ItemStack[4]);
                     player.getInventory().clear();
-                    Kit kit = Kit.getByName("Spleef");
+                    Kit kit = HyPractice.get().getKitRepository().getKitByName("Spleef");
                     player.getInventory().setArmorContents(kit.getKitLoadout().getArmor());
                     player.getInventory().setContents(kit.getKitLoadout().getContents());
                     player.updateInventory();

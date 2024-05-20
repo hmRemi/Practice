@@ -39,13 +39,13 @@ public class LuckyIngot extends Ability {
             Profile profile = Profile.get(player.getUniqueId());
 
             if (profile.getLuckyingot().onCooldown(player)) {
-                player.sendMessage(CC.translate("&7You are on &c&lLucky Ingot &7cooldown for &4" + DurationFormatter.getRemaining(profile.getLuckyingot().getRemainingMilis(player), true, true)));
+                player.sendMessage(CC.translate("&7You are on &c&lLucky Ingot &7cooldown for &4" + DurationFormatter.getRemaining(profile.getLuckyingot().getRemainingMillis(player), true, true)));
                 player.updateInventory();
                 return;
             }
 
             if(profile.getPartneritem().onCooldown(player)){
-                player.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
+                player.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMillis(player), true, true)));
                 player.updateInventory();
                 return;
             }
@@ -73,7 +73,7 @@ public class LuckyIngot extends Ability {
             }
             if (isAbility(player.getItemInHand())) {
                 if (this.hasCooldown(player)) {
-                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getNinjastar().getRemainingMilis(player), true)));
+                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getNinjastar().getRemainingMillis(player), true)));
                     event.setCancelled(true);
                     player.updateInventory();
                 }

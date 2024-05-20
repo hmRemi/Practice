@@ -33,8 +33,8 @@ import com.hysteria.practice.game.event.game.map.vote.command.EventMapVoteComman
 import com.hysteria.practice.game.ffa.FFAListener;
 import com.hysteria.practice.game.ffa.FFAManager;
 import com.hysteria.practice.game.ffa.command.FFACommand;
-import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.game.kit.KitEditorListener;
+import com.hysteria.practice.game.kit.KitRepository;
 import com.hysteria.practice.game.kit.command.HCFClassCommand;
 import com.hysteria.practice.game.kit.command.KitCommand;
 import com.hysteria.practice.game.kit.command.KitsCommand;
@@ -119,27 +119,26 @@ public class HyPractice extends JavaPlugin {
     private BasicConfigurationFile mainConfig, databaseConfig, arenasConfig, kitsConfig, eventsConfig,
             scoreboardConfig, coloredRanksConfig, tabLobbyConfig, tabEventConfig, tabSingleFFAFightConfig,
             tabSingleTeamFightConfig, tabPartyFFAFightConfig, tabPartyTeamFightConfig, leaderboardConfig,
-            langConfig, hotbarConfig, playersConfig, clansConfig, categoriesConfig, abilityConfig, kiteditorConfig,
+            langConfig, hotbarConfig, playersConfig, clansConfig, categoriesConfig, abilityConfig, kitEditorConfig,
             npcConfig, queueConfig, lunarConfig, tabFFAConfig, potionConfig, menuConfig, ffaConfig, pearlConfig;
 
-    private Essentials essentials;
-
     private ChunkRestorationManager chunkRestorationManager;
-    private RankManager rankManager;
+    private TournamentManager tournamentManager;
     private AbilityManager abilityManager;
+    private KitRepository kitRepository;
+    private RankManager rankManager;
     private FFAManager ffaManager;
     private ShopSystem shopSystem;
     private Hotbar hotbar;
-    private TournamentManager tournamentManager;
 
     private EntityHider entityHider;
+    private Essentials essentials;
 
     private MongoConnection mongoConnection;
-
     private ProtocolManager protocolManager;
 
-    public boolean placeholderAPI = false;
-    public boolean alonsoleagues = false;
+    public boolean runningPlaceholderAPI = false;
+    public boolean runningAlonsoLeagues = false;
     public int inQueues, inFights, bridgeRounds, rankedSumoRounds;
 
     @Override
@@ -197,13 +196,12 @@ public class HyPractice extends JavaPlugin {
         }
         Match.cleanup();
         Clan.getClans().values().forEach(clan -> clan.save(false));
-        Kit.getKits().forEach(Kit::save);
+        kitRepository.getKits().forEach(kit -> kitRepository.saveKit(kit));
         Arena.getArenas().forEach(Arena::save);
     }
 
     private void initManagers() {
         Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "Initializing all managers for HyPractice"));
-
         this.essentials = new Essentials(this);
         this.rankManager = new RankManager(this);
         this.rankManager.loadRank();
@@ -214,7 +212,7 @@ public class HyPractice extends JavaPlugin {
         this.protocolManager = ProtocolLibrary.getProtocolManager();
 
         this.ffaManager = new FFAManager();
-        this.ffaManager.init();
+        this.ffaManager.initTasks();
 
         this.shopSystem = new ShopSystem();
         this.chunkRestorationManager = new ChunkRestorationManager();
@@ -226,7 +224,9 @@ public class HyPractice extends JavaPlugin {
 
         this.tournamentManager = new TournamentManager();
 
-        Kit.init();
+        this.kitRepository = new KitRepository();
+        this.kitRepository.loadKits();
+
         Arena.init();
         Profile.init();
         Match.init();
@@ -248,13 +248,13 @@ public class HyPractice extends JavaPlugin {
             new TabList(this, new TabAdapter());
             Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "Tablist expansion successfully registered."));
         }
-        alonsoleagues = getServer().getPluginManager().getPlugin("AlonsoLeagues") != null;
-        if(alonsoleagues) {
+        runningAlonsoLeagues = getServer().getPluginManager().getPlugin("AlonsoLeagues") != null;
+        if(runningAlonsoLeagues) {
             Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "AlonsoLeagues API expansion successfully registered."));
         }
 
-        placeholderAPI = getServer().getPluginManager().getPlugin("PlaceholderAPI") != null;
-        if (placeholderAPI) {
+        runningPlaceholderAPI = getServer().getPluginManager().getPlugin("PlaceholderAPI") != null;
+        if (runningPlaceholderAPI) {
             new PlaceholderAPI().register();
             Bukkit.getConsoleSender().sendMessage(CC.translate(prefix + "Placeholder API expansion successfully registered."));
         }
@@ -278,7 +278,7 @@ public class HyPractice extends JavaPlugin {
         this.eventsConfig = new BasicConfigurationFile(this, "features/events");
 
         this.menuConfig = new BasicConfigurationFile(this, "settings/menu");
-        this.kiteditorConfig = new BasicConfigurationFile(this, "settings/kiteditor");
+        this.kitEditorConfig = new BasicConfigurationFile(this, "settings/kiteditor");
         this.coloredRanksConfig = new BasicConfigurationFile(this, "settings/colored-ranks");
         this.scoreboardConfig = new BasicConfigurationFile(this, "settings/scoreboard");
         this.leaderboardConfig = new BasicConfigurationFile(this, "settings/leaderboard");

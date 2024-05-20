@@ -16,7 +16,6 @@ import java.util.Map;
 
 @AllArgsConstructor
 public class KitAddEffectMenu extends Menu {
-    
     private final Kit kit;
 
     {

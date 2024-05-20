@@ -116,7 +116,7 @@ public class Profile {
 		this.invites = Maps.newHashMap();
 		this.name = Bukkit.getOfflinePlayer(this.uuid).getName();
 
-		Kit.getKits().forEach(kit -> this.kitData.put(kit, new ProfileKitData()));
+		HyPractice.get().getKitRepository().getKits().forEach(kit -> this.kitData.put(kit, new ProfileKitData()));
 	}
 
 	public Player getPlayer() {

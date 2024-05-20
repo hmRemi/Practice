@@ -293,7 +293,7 @@ public class TabAdapter implements GhostlyAdapter {
         Profile profile = Profile.get(player.getUniqueId());
         String event = EventGame.getActiveGame() != null ? EventGame.getActiveGame().getEvent().getDisplayName() :
                 EventGame.getCooldown().hasExpired() ? "None" : TimeUtil.millisToTimer(EventGame.getCooldown().getRemaining());
-        List<Kit> kit = Kit.getKits().stream().filter(Kit::isEnabled).filter(kits -> kits.getGameRules().isRanked()).collect(Collectors.toList());
+        List<Kit> kit = HyPractice.get().getKitRepository().getKits().stream().filter(Kit::isEnabled).filter(kits -> kits.getGameRules().isRanked()).collect(Collectors.toList());
         string = string
                 .replace("{name}", player.getName())
                 .replace("{rank}", plugin.getRankManager().getRank().getName(player.getUniqueId()))
@@ -322,7 +322,7 @@ public class TabAdapter implements GhostlyAdapter {
 
     public String replaceFFA(String string, Player player) {
         Profile profile = Profile.get(player.getUniqueId());
-        List<Kit> kit = Kit.getKits().stream().filter(Kit::isEnabled).filter(kits -> kits.getGameRules().isRanked()).collect(Collectors.toList());
+        List<Kit> kit = HyPractice.get().getKitRepository().getKits().stream().filter(Kit::isEnabled).filter(kits -> kits.getGameRules().isRanked()).collect(Collectors.toList());
         string = string
                 .replace("{name}", player.getName())
                 .replace("{rank}", plugin.getRankManager().getRank().getName(player.getUniqueId()))

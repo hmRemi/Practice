@@ -5,7 +5,6 @@ import org.bukkit.inventory.ItemStack;
 
 @Data
 public class KitLoadout {
-
 	private String customName = "Default";
 	private ItemStack[] armor;
 	private ItemStack[] contents;

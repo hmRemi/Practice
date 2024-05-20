@@ -32,13 +32,13 @@ public class Strength extends Ability {
             Profile profile = Profile.get(player.getUniqueId());
             
             if (profile.getStrength().onCooldown(player)) {
-                player.sendMessage(CC.translate("&7You are on &c&lStrength &7cooldown for &4" + DurationFormatter.getRemaining(profile.getStrength().getRemainingMilis(player), true, true)));
+                player.sendMessage(CC.translate("&7You are on &c&lStrength &7cooldown for &4" + DurationFormatter.getRemaining(profile.getStrength().getRemainingMillis(player), true, true)));
                 player.updateInventory();
                 return;
             }
 
             if(profile.getPartneritem().onCooldown(player)){
-                player.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
+                player.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMillis(player), true, true)));
                 player.updateInventory();
                 return;
             }
@@ -67,7 +67,7 @@ public class Strength extends Ability {
             }
             if (isAbility(player.getItemInHand())) {
                 if (this.hasCooldown(player)) {
-                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getStrength().getRemainingMilis(player), true)));
+                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getStrength().getRemainingMillis(player), true)));
                     event.setCancelled(true);
                     player.updateInventory();
                 }

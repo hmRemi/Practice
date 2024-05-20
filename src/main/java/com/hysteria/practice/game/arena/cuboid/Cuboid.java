@@ -29,7 +29,6 @@ public class Cuboid implements Iterable<Location> {
 				l1.getBlockX(), l1.getBlockY(), l1.getBlockZ(),
 				l2.getBlockX(), l2.getBlockY(), l2.getBlockZ()
 		);
-
 	}
 
 	/**

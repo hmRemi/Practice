@@ -44,12 +44,12 @@ public class PartyEventSelectKitMenu extends Menu {
 		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMenuConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
-		for (Kit kit : Kit.getKits()) {
+		for (Kit kit : HyPractice.get().getKitRepository().getKits()) {
 			if ((partyEvent == PartyEvent.SPLIT /*||*/ /*!kit.getGameRules().isBridge() &&*/ /*party.getListOfPlayers().size() <= 8*/)) {
 				if (kit.isEnabled()) {
 					buttons.put(kit.getSlot(), new SelectKitButton(partyEvent, kit));
 				}
-				buttons.put(Objects.requireNonNull(Kit.getByName("HCF")).getSlot(), new SelectKitButton(partyEvent, Kit.getByName("HCF")));
+				buttons.put(Objects.requireNonNull(HyPractice.get().getKitRepository().getKitByName("HCF")).getSlot(), new SelectKitButton(partyEvent, HyPractice.get().getKitRepository().getKitByName("HCF")));
 
 			} else if ((partyEvent == PartyEvent.FFA)) {
 				if (kit.isEnabled() &&

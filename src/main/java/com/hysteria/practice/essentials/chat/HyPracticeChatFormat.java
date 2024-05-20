@@ -13,7 +13,7 @@ public class HyPracticeChatFormat implements ChatFormat {
     public String format(Player sender, Player receiver, String message) {
         Profile senderProfile = Profile.get(sender.getUniqueId());
         if (Clan.getByPlayer(sender) != null) {
-            if (HyPractice.get().isPlaceholderAPI())
+            if (HyPractice.get().isRunningPlaceholderAPI())
                 return PlaceholderAPI.setPlaceholders(sender, CC.translate(HyPractice.get().getMainConfig().getString("CHAT.CLAN_FORMAT")
                         .replace("{prefix}", HyPractice.get().getRankManager().getRank().getPrefix(sender.getUniqueId()))
                         .replace("{suffix}", HyPractice.get().getRankManager().getRank().getSuffix(sender.getUniqueId()))
@@ -29,7 +29,7 @@ public class HyPracticeChatFormat implements ChatFormat {
                     .replace("{message}", (sender.hasPermission("hypractice.chat.color") ? CC.translate(message) : CC.strip(message)))
                     .replace("{clan}", Clan.getByPlayer(sender).getColoredName()));
         }
-        if (HyPractice.get().isPlaceholderAPI())
+        if (HyPractice.get().isRunningPlaceholderAPI())
             return PlaceholderAPI.setPlaceholders(sender, CC.translate(HyPractice.get().getMainConfig().getString("CHAT.DEFAULT_FORMAT")
                     .replace("{prefix}", HyPractice.get().getRankManager().getRank().getPrefix(sender.getUniqueId()))
                     .replace("{suffix}", HyPractice.get().getRankManager().getRank().getSuffix(sender.getUniqueId()))

@@ -1,5 +1,6 @@
 package com.hysteria.practice.game.kit;
 
+import com.hysteria.practice.Locale;
 import com.hysteria.practice.game.kit.menu.KitEditorSelectKitMenu;
 import com.hysteria.practice.game.kit.menu.KitManagementMenu;
 import com.hysteria.practice.player.profile.Profile;
@@ -7,7 +8,6 @@ import com.hysteria.practice.player.profile.ProfileState;
 import com.hysteria.practice.player.profile.hotbar.Hotbar;
 import com.hysteria.practice.player.profile.hotbar.impl.HotbarItem;
 import com.hysteria.practice.utilities.MessageFormat;
-import com.hysteria.practice.Locale;
 import com.hysteria.practice.utilities.chat.CC;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -24,106 +24,101 @@ import org.bukkit.inventory.Inventory;
 
 public class KitEditorListener implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-	public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event) {
-		Profile profile = Profile.get(event.getPlayer().getUniqueId());
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent event) {
+        Profile profile = Profile.get(event.getPlayer().getUniqueId());
 
-		if (profile.getKitEditorData().isRenaming()) {
-			event.setCancelled(true);
+        if (profile.getKitEditorData().isRenaming()) {
+            event.setCancelled(true);
 
-			if (event.getMessage().length() > 16) {
+            if (event.getMessage().length() > 16) {
 
-				new MessageFormat(Locale.KIT_EDITOR_NAME_TOO_LONG
-					.format(profile.getLocale()))
-					.send(event.getPlayer());
-				return;
-			}
+                new MessageFormat(Locale.KIT_EDITOR_NAME_TOO_LONG
+                        .format(profile.getLocale()))
+                        .send(event.getPlayer());
+                return;
+            }
 
-			String previousName = profile.getKitEditorData().getSelectedKitLoadout().getCustomName();
-			String newName = CC.translate(event.getMessage());
+            String previousName = profile.getKitEditorData().getSelectedKitLoadout().getCustomName();
+            String newName = CC.translate(event.getMessage());
 
-			new MessageFormat(Locale.KIT_EDITOR_RENAMED
-				.format(profile.getLocale()))
-				.add("{previous_name}", previousName)
-				.add("{new_name}", newName)
-				.send(event.getPlayer());
+            new MessageFormat(Locale.KIT_EDITOR_RENAMED
+                    .format(profile.getLocale()))
+                    .add("{previous_name}", previousName)
+                    .add("{new_name}", newName)
+                    .send(event.getPlayer());
 
-			Kit selectedKit = profile.getKitEditorData().getSelectedKit();
+            Kit selectedKit = profile.getKitEditorData().getSelectedKit();
 
-			profile.getKitEditorData().setSelectedKit(null);
-			profile.getKitEditorData().getSelectedKitLoadout().setCustomName(newName);
-			profile.getKitEditorData().setActive(false);
-			profile.getKitEditorData().setRename(false);
+            profile.getKitEditorData().setSelectedKit(null);
+            profile.getKitEditorData().getSelectedKitLoadout().setCustomName(newName);
+            profile.getKitEditorData().setActive(false);
+            profile.getKitEditorData().setRename(false);
 
-			if (profile.getState() != ProfileState.FIGHTING) {
-				new KitManagementMenu(selectedKit).openMenu(event.getPlayer());
-			}
-		}
-	}
+            if (profile.getState() != ProfileState.FIGHTING) {
+                new KitManagementMenu(selectedKit).openMenu(event.getPlayer());
+            }
+        }
+    }
 
-	@EventHandler(priority = EventPriority.HIGH)
-	public void onPlayerInteractEvent(PlayerInteractEvent event) {
-		if (event.getItem() != null && (event.getAction() == Action.RIGHT_CLICK_AIR ||
-		                                event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-			HotbarItem hotbarItem = Hotbar.fromItemStack(event.getItem());
+    @EventHandler(priority = EventPriority.HIGH)
+    public void onPlayerInteractEvent(PlayerInteractEvent event) {
+        if (event.getItem() != null && (event.getAction() == Action.RIGHT_CLICK_AIR ||
+                event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
+            HotbarItem hotbarItem = Hotbar.fromItemStack(event.getItem());
 
-			if (hotbarItem != null) {
-				boolean cancelled = true;
+            if (hotbarItem != null) {
+                boolean cancelled = true;
 
-				if (hotbarItem == HotbarItem.KIT_EDITOR) {
-					Profile profile = Profile.get(event.getPlayer().getUniqueId());
+                if (hotbarItem == HotbarItem.KIT_EDITOR) {
+                    Profile profile = Profile.get(event.getPlayer().getUniqueId());
 
-					if (profile.getState() == ProfileState.LOBBY || profile.getState() == ProfileState.QUEUEING) {
-						new KitEditorSelectKitMenu().openMenu(event.getPlayer());
-					}
-				} else {
-					cancelled = false;
-				}
+                    if (profile.getState() == ProfileState.LOBBY || profile.getState() == ProfileState.QUEUEING) {
+                        new KitEditorSelectKitMenu().openMenu(event.getPlayer());
+                    }
+                } else {
+                    cancelled = false;
+                }
 
-				event.setCancelled(cancelled);
-			}
-		}
-	}
+                event.setCancelled(cancelled);
+            }
+        }
+    }
 
-	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-	public void onInventoryClickEvent(InventoryClickEvent event) {
-		if (event.getWhoClicked() instanceof Player) {
-			Player player = (Player) event.getWhoClicked();
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onInventoryClickEvent(InventoryClickEvent event) {
+        if (event.getWhoClicked() instanceof Player) {
+            Player player = (Player) event.getWhoClicked();
 
-			if (event.getClickedInventory() != null && event.getClickedInventory() instanceof CraftingInventory) {
-				if (player.getGameMode() != GameMode.CREATIVE) {
-					event.setCancelled(true);
-					return;
-				}
-			}
+            if (event.getClickedInventory() != null && event.getClickedInventory() instanceof CraftingInventory) {
+                if (player.getGameMode() != GameMode.CREATIVE) {
+                    event.setCancelled(true);
+                    return;
+                }
+            }
 
-			Profile profile = Profile.get(player.getUniqueId());
+            Profile profile = Profile.get(player.getUniqueId());
 
-			if (profile.getState() != ProfileState.FIGHTING && player.getGameMode() == GameMode.SURVIVAL) {
-				Inventory clicked = event.getClickedInventory();
+            if (profile.getState() != ProfileState.FIGHTING && player.getGameMode() == GameMode.SURVIVAL) {
+                Inventory clicked = event.getClickedInventory();
 
-				if (profile.getKitEditorData().isActive()) {
-					if (clicked == null) {
-						event.setCancelled(true);
-						event.setCursor(null);
-						player.updateInventory();
-					} else if (clicked.equals(player.getOpenInventory().getTopInventory())) {
-						if (event.getCursor().getType() != Material.AIR &&
-						    event.getCurrentItem().getType() == Material.AIR ||
-						    event.getCursor().getType() != Material.AIR &&
-						    event.getCurrentItem().getType() != Material.AIR) {
-							event.setCancelled(true);
-							event.setCursor(null);
-							player.updateInventory();
-						}
-					}
-				} /*else {
-					if (clicked != null && clicked.equals(player.getInventory())) {
-						event.setCancelled(true);
-					}
-				}*/
-			}
-		}
-	}
-
+                if (profile.getKitEditorData().isActive()) {
+                    if (clicked == null) {
+                        event.setCancelled(true);
+                        event.setCursor(null);
+                        player.updateInventory();
+                    } else if (clicked.equals(player.getOpenInventory().getTopInventory())) {
+                        if (event.getCursor().getType() != Material.AIR &&
+                                event.getCurrentItem().getType() == Material.AIR ||
+                                event.getCursor().getType() != Material.AIR &&
+                                        event.getCurrentItem().getType() != Material.AIR) {
+                            event.setCancelled(true);
+                            event.setCursor(null);
+                            player.updateInventory();
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

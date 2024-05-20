@@ -35,7 +35,7 @@ public class KitManagementMenu extends Menu {
 
 	@Override
 	public String getTitle(Player player) {
-		return HyPractice.get().getKiteditorConfig().getString("KITEDITOR.MANAGE.TITLE").replace("{kit}", kit.getName());
+		return HyPractice.get().getKitEditorConfig().getString("KITEDITOR.MANAGE.TITLE").replace("{kit}", kit.getName());
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class KitManagementMenu extends Menu {
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(Material.BED)
-					.name(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.DeleteKitButton.NAME"))
+					.name(HyPractice.get().getKitEditorConfig().getString("KITEDITOR.DeleteKitButton.NAME"))
 					.durability(0)
 					.lore(Arrays.asList(
 							" &fClick to delete this kit."
@@ -101,14 +101,14 @@ public class KitManagementMenu extends Menu {
 	}
 
 	@AllArgsConstructor
-	private class CreateKitButton extends Button {
+	private static class CreateKitButton extends Button {
 
 		private int index;
 
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(Material.IRON_SWORD)
-					.name(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.CreateKitButton.NAME"))
+					.name(HyPractice.get().getKitEditorConfig().getString("KITEDITOR.CreateKitButton.NAME"))
 					.lore(Arrays.asList(
 							" &fClick to create a profile."
 					))
@@ -155,8 +155,8 @@ public class KitManagementMenu extends Menu {
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(Material.SIGN)
-					.name(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.RenameKitButton.NAME"))
-					.lore(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.RenameKitButton.LORE"))
+					.name(HyPractice.get().getKitEditorConfig().getString("KITEDITOR.RenameKitButton.NAME"))
+					.lore(HyPractice.get().getKitEditorConfig().getString("KITEDITOR.RenameKitButton.LORE"))
 					.build();
 		}
 
@@ -189,8 +189,8 @@ public class KitManagementMenu extends Menu {
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(Material.BOOK)
-					.name(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.LoadKitButton.NAME"))
-					.lore(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.LoadKitButton.LORE"))
+					.name(HyPractice.get().getKitEditorConfig().getString("KITEDITOR.LoadKitButton.NAME"))
+					.lore(HyPractice.get().getKitEditorConfig().getString("KITEDITOR.LoadKitButton.LORE"))
 					.build();
 		}
 
@@ -231,7 +231,7 @@ public class KitManagementMenu extends Menu {
 		@Override
 		public ItemStack getButtonItem(Player player) {
 			return new ItemBuilder(Material.BOOK)
-					.name(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.KitDisplayButton.NAME").replace("{kit}", kitLoadout.getCustomName()))
+					.name(HyPractice.get().getKitEditorConfig().getString("KITEDITOR.KitDisplayButton.NAME").replace("{kit}", kitLoadout.getCustomName()))
 					.build();
 		}
 

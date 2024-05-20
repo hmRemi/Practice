@@ -18,14 +18,13 @@ public class FFAJoinCommand extends BaseCommand {
     @Command(name="ffa.join")
     @Override
     public void onCommand(CommandArgs commandArgs) {
-        Player player = commandArgs.getPlayer();
-        String[] args = commandArgs.getArgs();
-        Profile profile = Profile.get(player.getUniqueId());
+        final Player player = commandArgs.getPlayer();
+        final Profile profile = Profile.get(player.getUniqueId());
 
         if(profile.getState() != ProfileState.LOBBY) {
             return;
         }
 
-        HyPractice.get().getFfaManager().firstJoinFfa(player, Arena.getByName("FFA"));
+        HyPractice.get().getFfaManager().handleFirstFFAJoin(player, Arena.getByName("FFA"));
     }
 }

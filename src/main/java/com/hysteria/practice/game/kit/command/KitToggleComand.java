@@ -1,5 +1,6 @@
 package com.hysteria.practice.game.kit.command;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.utilities.chat.CC;
 import com.hysteria.practice.api.command.BaseCommand;
@@ -21,14 +22,14 @@ public class KitToggleComand extends BaseCommand {
             return;
         }
 
-        Kit kit = Kit.getByName(args[0]);
+        Kit kit = HyPractice.get().getKitRepository().getKitByName(args[0]);
         if (kit == null) {
             player.sendMessage(CC.RED + "This kit doesn't exist.");
             return;
         }
 
         kit.setEnabled(!kit.isEnabled());
-        kit.save();
+        HyPractice.get().getKitRepository().saveKit(kit);
         player.sendMessage(ChatColor.GREEN + "Kit is now " + (kit.isEnabled() ? "enabled" : "disabled"));
     }
 }

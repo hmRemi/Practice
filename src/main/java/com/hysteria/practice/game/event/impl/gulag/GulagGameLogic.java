@@ -242,7 +242,7 @@ public class GulagGameLogic implements EventGameLogic {
 				if (player != null) {
 					player.getInventory().setArmorContents(new ItemStack[4]);
 					player.getInventory().clear();
-					Kit kit = Kit.getByName("Gulag");
+					Kit kit = HyPractice.get().getKitRepository().getKitByName("Gulag");
 					player.getInventory().setArmorContents(kit.getKitLoadout().getArmor());
 					player.getInventory().setContents(kit.getKitLoadout().getContents());
 					player.updateInventory();

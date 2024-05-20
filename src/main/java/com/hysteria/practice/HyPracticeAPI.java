@@ -14,7 +14,7 @@ public class HyPracticeAPI {
     }
 
     public static Kit getKit(String name) {
-        return Kit.getByName(name);
+        return HyPractice.get().getKitRepository().getKitByName(name);
     }
 
     public static Arena getRandomArena(Kit kit) {

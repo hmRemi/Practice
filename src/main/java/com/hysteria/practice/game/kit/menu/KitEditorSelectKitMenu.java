@@ -20,7 +20,7 @@ public class KitEditorSelectKitMenu extends Menu {
 
 	@Override
 	public String getTitle(Player player) {
-		return HyPractice.get().getKiteditorConfig().getString("KITEDITOR.SELECT-KIT.TITLE");
+		return HyPractice.get().getKitEditorConfig().getString("KITEDITOR.SELECT-KIT.TITLE");
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class KitEditorSelectKitMenu extends Menu {
 		ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMenuConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
 
-		Kit.getKits().forEach(kit -> {
+		HyPractice.get().getKitRepository().getKits().forEach(kit -> {
 			if (kit.isEnabled()) {
 				buttons.put(kit.getSlot(), new KitDisplayButton(kit));
 			}
@@ -55,8 +55,8 @@ public class KitEditorSelectKitMenu extends Menu {
 					.addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
 					.addItemFlag(ItemFlag.HIDE_ENCHANTS)
 					.addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-					.name(HyPractice.get().getKiteditorConfig().getString("KITEDITOR.SELECT-KIT.NAMECOLOR") + kit.getDisplayName())
-					.lore(HyPractice.get().getKiteditorConfig().getStringList("KITEDITOR.SELECT-KIT.LORE"))
+					.name(HyPractice.get().getKitEditorConfig().getString("KITEDITOR.SELECT-KIT.NAMECOLOR") + kit.getDisplayName())
+					.lore(HyPractice.get().getKitEditorConfig().getStringList("KITEDITOR.SELECT-KIT.LORE"))
 					.build();
 		}
 

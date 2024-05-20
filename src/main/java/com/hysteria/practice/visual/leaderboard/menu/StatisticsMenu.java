@@ -50,7 +50,7 @@ public class StatisticsMenu extends Menu {
         ItemStack PLACEHOLDER_ITEM = new ItemBuilder(Material.valueOf(HyPractice.get().getMenuConfig().getString("QUEUES.PLACEHOLDER-ITEM-MATERIAL"))).durability(HyPractice.get().getMenuConfig().getInteger("QUEUES.PLACEHOLDER-ITEM-DATA")).name("&b").build();
 
         this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
-        Kit.getKits().stream()
+        HyPractice.get().getKitRepository().getKits().stream()
                 .filter(Kit::isEnabled)
                 .filter(kit -> kit.getGameRules().isRanked())
                 .filter(kit -> kit.getDisplayIcon() != null)

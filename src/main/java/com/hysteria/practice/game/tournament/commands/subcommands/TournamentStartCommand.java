@@ -1,5 +1,6 @@
 package com.hysteria.practice.game.tournament.commands.subcommands;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.utilities.MessageFormat;
 import com.hysteria.practice.utilities.chat.Clickable;
 import com.hysteria.practice.Locale;
@@ -39,7 +40,7 @@ public class TournamentStartCommand extends BaseCommand {
 
         String type = args[0].toLowerCase();
 
-        Kit kit = Kit.getByName(args[1]);
+        Kit kit = HyPractice.get().getKitRepository().getKitByName(args[1]);
         if (kit == null) {
             player.sendMessage(CC.CHAT_BAR);
             player.sendMessage(CC.RED + "This kit doesn't exist.");

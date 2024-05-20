@@ -43,9 +43,6 @@ public class CancelMatchCommand extends BaseCommand {
 				.add("<cancelled_by>", player.getName())
 				.send(player);
 
-		if(targetProfile.getMatch().getArena() instanceof StandaloneArena) {
-			ChunkRestorationManager.getIChunkRestoration().reset(targetProfile.getMatch().getArena());
-		}
 		targetProfile.getMatch().getArena().setActive(false);
 		targetProfile.getMatch().end();
 

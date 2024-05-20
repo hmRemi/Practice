@@ -20,7 +20,7 @@ public class DivisionCommand extends BaseCommand {
     public void onCommand(CommandArgs command) {
         Player player = command.getPlayer();
 
-        if(HyPractice.get().isAlonsoleagues()) {
+        if(HyPractice.get().isRunningAlonsoLeagues()) {
             new DivisionMenu().openMenu(player);
         } else {
             Bukkit.getConsoleSender().sendMessage("AlonsoLeagues is required.");

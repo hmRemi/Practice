@@ -33,7 +33,7 @@ public class FFAButton extends Button {
 
     @Override
     public void clicked(Player player, int slot, ClickType clickType, int hotbarButton) {
-        HyPractice.get().getFfaManager().firstJoinFfa(player, Arena.getByName("FFA"));
+        HyPractice.get().getFfaManager().handleFirstFFAJoin(player, Arena.getByName("FFA"));
     }
 }
 

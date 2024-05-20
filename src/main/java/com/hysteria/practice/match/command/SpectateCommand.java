@@ -45,7 +45,6 @@ public class SpectateCommand extends BaseCommand {
 		}
 
 		Profile targetProfile = Profile.get(target.getUniqueId());
-
 		if (targetProfile.getState() != ProfileState.FIGHTING) {
 			player.sendMessage(CC.RED + "That player is not in a match.");
 			return;

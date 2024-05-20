@@ -6,7 +6,7 @@ import com.hysteria.practice.player.profile.ProfileState;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class FFAVisiblityTask extends BukkitRunnable {
+public class FFAVisibilityTask extends BukkitRunnable {
 
 	@Override
 	public void run() {
@@ -14,15 +14,8 @@ public class FFAVisiblityTask extends BukkitRunnable {
 			Profile profile = Profile.get(player.getUniqueId());
 			for (Profile target : HyPractice.get().getFfaManager().getFFAPlayers()) {
 				Player targetPlayer = target.getPlayer();
-				if (targetPlayer == null) {
-					return;
-				}
-				if (profile.getState() != ProfileState.FFA) {
-					return;
-				}
-				if (target.getState() != ProfileState.FFA) {
-					return;
-				}
+				if (targetPlayer == null || profile.getState() != ProfileState.FFA || target.getState() != ProfileState.FFA)
+					continue;
 				player.showPlayer(targetPlayer);
 				targetPlayer.showPlayer(player);
 			}

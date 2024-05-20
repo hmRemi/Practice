@@ -10,22 +10,18 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class RefillCooldownTask extends BukkitRunnable {
 
-	@Override
-	public void run() {
-		for (Player player : HyPractice.get().getServer().getOnlinePlayers()) {
-			Profile profile = Profile.get(player.getUniqueId());
+    @Override
+    public void run() {
+        for (Player player : HyPractice.get().getServer().getOnlinePlayers()) {
+            Profile profile = Profile.get(player.getUniqueId());
+            if (profile.getState() != ProfileState.FFA) return;
+            if (!profile.getRefillCooldown().hasExpired()) return;
+            if (profile.getRefillCooldown().isNotified()) return;
 
-			if (profile.getState() == ProfileState.FFA) {
-				if (profile.getRefillCooldown().hasExpired()) {
-					if (!profile.getRefillCooldown().isNotified()) {
-						profile.getRefillCooldown().setNotified(true);
-						new MessageFormat(Locale.FFA_REFILL_COOLDOWN_EXPIRED
-								.format(profile.getLocale()))
-								.send(player);
-					}
-				}
-			}
-		}
-	}
-
+            profile.getRefillCooldown().setNotified(true);
+            new MessageFormat(Locale.FFA_REFILL_COOLDOWN_EXPIRED
+                    .format(profile.getLocale()))
+                    .send(player);
+        }
+    }
 }

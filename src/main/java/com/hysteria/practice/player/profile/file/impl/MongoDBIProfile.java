@@ -154,7 +154,7 @@ public class MongoDBIProfile implements IProfile {
 
         for (String key : kitStatistics.keySet()) {
             Document kitDocument = (Document) kitStatistics.get(key);
-            Kit kit = Kit.getByName(key);
+            Kit kit = HyPractice.get().getKitRepository().getKitByName(key);
 
             if (kit != null) {
                 ProfileKitData profileKitData = new ProfileKitData();
@@ -172,7 +172,7 @@ public class MongoDBIProfile implements IProfile {
                 Document matchesDocument = (Document) o;
                 String winningParticipant = matchesDocument.getString("winningParticipant");
                 String losingParticipant = matchesDocument.getString("losingParticipant");
-                Kit kit = Kit.getByName(matchesDocument.getString("kit"));
+                Kit kit = HyPractice.get().getKitRepository().getKitByName(matchesDocument.getString("kit"));
                 int newWinnerElo = matchesDocument.getInteger("newWinnerElo");
                 int newLoserElo = matchesDocument.getInteger("newLoserElo");
                 String date = matchesDocument.getString("date");
@@ -185,7 +185,7 @@ public class MongoDBIProfile implements IProfile {
 
         if (document.containsKey("loadouts")) {
             for (String key : kitsDocument.keySet()) {
-                Kit kit = Kit.getByName(key);
+                Kit kit = HyPractice.get().getKitRepository().getKitByName(key);
 
                 if (kit != null) {
                     JsonArray kitsArray = new JsonParser().parse(kitsDocument.getString(key)).getAsJsonArray();

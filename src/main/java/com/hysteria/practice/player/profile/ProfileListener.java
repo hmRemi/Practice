@@ -63,7 +63,7 @@ public class ProfileListener implements Listener {
 	public void onPlayerDropItemEvent(PlayerDropItemEvent event) {
 		Profile profile = Profile.get(event.getPlayer().getUniqueId());
 
-		if (profile.getState() != ProfileState.FIGHTING) {
+		if (profile.getState() != ProfileState.FIGHTING && profile.getState() != ProfileState.FFA) {
 			if (event.getPlayer().getGameMode() != GameMode.CREATIVE || !event.getPlayer().isOp()) {
 				event.setCancelled(true);
 			}

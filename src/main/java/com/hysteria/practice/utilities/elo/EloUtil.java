@@ -1,5 +1,6 @@
 package com.hysteria.practice.utilities.elo;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.player.profile.Profile;
 
@@ -59,7 +60,7 @@ public class EloUtil {
 
 	public static int getGlobalElo(Profile profile) {
 		int[] wrapper = new int[2];
-		Stream<Kit> kit = Kit.getKits().stream().filter(kits -> kits.getGameRules().isRanked());
+		Stream<Kit> kit = HyPractice.get().getKitRepository().getKits().stream().filter(kits -> kits.getGameRules().isRanked());
 		kit.forEach(kits -> {
 			wrapper[0] = wrapper[0] + 1;
 			wrapper[1] = wrapper[1] + profile.getKitData().get(kits).getElo();

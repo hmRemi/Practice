@@ -33,7 +33,7 @@ public class Leaderboard {
             leaderboards.addAll(Profile.getProfiles().values());
 
             kitLeaderboards.clear();
-            Kit.getKits().stream().filter(kit -> kit.getGameRules().isRanked()).forEach(kit -> {
+            HyPractice.get().getKitRepository().getKits().stream().filter(kit -> kit.getGameRules().isRanked()).forEach(kit -> {
                 List<LeaderboardKitsEntry> entry = Lists.newArrayList();
                 Profile.getProfiles().values().stream()
                         .sorted(Comparator.comparingInt((Profile o) -> o.getKitData().get(kit).getElo()).reversed())
@@ -151,7 +151,7 @@ public class Leaderboard {
         HologramsAPI.registerPlaceholder(HyPractice.get(), "{clantop" + 4 + "_category}", 30,
                 new TopClanCategory(4));
 
-        Kit.getKits().stream().filter(kit -> kit.getGameRules().isRanked()).forEach(kit -> {
+        HyPractice.get().getKitRepository().getKits().stream().filter(kit -> kit.getGameRules().isRanked()).forEach(kit -> {
             HologramsAPI.registerPlaceholder(HyPractice.get(), "{top" + 0 + kit.getName().toLowerCase() + "_elo}",
                     30, new TopKitElo(kit.getName(), 0));
 

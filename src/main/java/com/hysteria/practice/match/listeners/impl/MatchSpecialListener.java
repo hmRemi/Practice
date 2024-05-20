@@ -20,6 +20,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.inventory.ItemStack;
@@ -68,6 +69,55 @@ public class MatchSpecialListener implements Listener {
                     }
                 }
             }
+        }
+    }
+
+    @EventHandler
+    private void onFireball(PlayerInteractEvent event) {
+        final Player player = event.getPlayer();
+        final Profile profile = Profile.get(player.getUniqueId());
+
+        if (profile.getState() != ProfileState.FIGHTING) return;
+
+        if (event.getItem() == null) return;
+        if (!(event.getItem().getType() == Material.FIREBALL)) return;
+
+        if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            event.setCancelled(true);
+            Fireball fireball = player.launchProjectile(Fireball.class);
+            fireball.setIsIncendiary(false);
+            fireball.setYield(0.0F);
+            fireball.setVelocity(player.getLocation().getDirection().multiply(0.3));
+        }
+    }
+
+    @EventHandler
+    private void onFireballHit(ProjectileHitEvent event) {
+        if (event.getEntity() instanceof Fireball) {
+            Fireball fireball = (Fireball) event.getEntity();
+            fireball.getWorld().createExplosion(fireball.getLocation(), 0.0F, false);
+            fireball.getNearbyEntities(2.0, 2.0, 2.0).forEach(entity -> {
+                if (entity instanceof Player) {
+                    Player player = (Player) entity;
+
+                    Vector direction = player.getLocation().getDirection().normalize();
+
+                    double pitch = player.getLocation().getPitch();
+                    double heightMultiplier = Math.sin(Math.toRadians(pitch)) * 2;
+                    double speedMultiplier = player.isSprinting() ? 1.0 : 0.5;
+                    double thresholdAngle = 70;
+
+                    if (pitch < thresholdAngle) {
+                        direction.multiply(-1);
+                    }
+
+                    Vector adjustedVelocity = direction.multiply(speedMultiplier).add(new Vector(0, heightMultiplier, 0));
+                    Vector currentVelocity = player.getVelocity();
+                    Vector newVelocity = currentVelocity.add(adjustedVelocity);
+
+                    player.setVelocity(newVelocity);
+                }
+            });
         }
     }
 

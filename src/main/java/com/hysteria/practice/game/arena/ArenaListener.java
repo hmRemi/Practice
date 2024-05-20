@@ -125,9 +125,8 @@ public class ArenaListener implements Listener {
 
 	@EventHandler
 	public void onBlockIgnite(BlockIgniteEvent event) {
-		if (event.getCause() == BlockIgniteEvent.IgniteCause.LIGHTNING) {
-			event.setCancelled(true);
-		}
+		if (event.getCause() != BlockIgniteEvent.IgniteCause.LIGHTNING) return;
+		event.setCancelled(true);
 	}
 
 	@EventHandler

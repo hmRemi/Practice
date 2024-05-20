@@ -55,7 +55,7 @@ public class TimeWarp extends Ability {
             }
             if (isAbility(player.getItemInHand())) {
                 if (this.hasCooldown(player)) {
-                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getTimewarp().getRemainingMilis(player), true)));
+                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getTimewarp().getRemainingMillis(player), true)));
                     event.setCancelled(true);
                     player.updateInventory();
                 }
@@ -102,14 +102,14 @@ public class TimeWarp extends Ability {
 
         if (profile.getTimewarp().onCooldown(player)) {
             event.setCancelled(true);
-            player.sendMessage(CC.translate("&7You are on &c&lTime Warp &7cooldown for &4" + DurationFormatter.getRemaining(profile.getTimewarp().getRemainingMilis(player), true, true)));
+            player.sendMessage(CC.translate("&7You are on &c&lTime Warp &7cooldown for &4" + DurationFormatter.getRemaining(profile.getTimewarp().getRemainingMillis(player), true, true)));
             player.updateInventory();
             event.setCancelled(true);
             return;
         }
 
         if (profile.getPartneritem().onCooldown(player)) {
-            player.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(player), true, true)));
+            player.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMillis(player), true, true)));
             player.updateInventory();
             event.setCancelled(true);
             return;

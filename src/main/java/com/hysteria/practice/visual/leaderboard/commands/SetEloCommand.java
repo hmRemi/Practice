@@ -1,5 +1,6 @@
 package com.hysteria.practice.visual.leaderboard.commands;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.utilities.MessageFormat;
 import com.hysteria.practice.Locale;
 import com.hysteria.practice.game.kit.Kit;
@@ -30,7 +31,7 @@ public class SetEloCommand extends BaseCommand {
             return;
         }
 
-        Kit kit = Kit.getByName(args[0]);
+        Kit kit = HyPractice.get().getKitRepository().getKitByName(args[0]);
         if (kit == null) {
             player.sendMessage(CC.RED + "Please insert a valid Kit.");
             return;

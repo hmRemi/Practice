@@ -44,14 +44,14 @@ public class Switcher extends Ability {
             Profile profile = Profile.get(shooter.getUniqueId());
 
             if (profile.getSwitcher().onCooldown(shooter)) {
-                shooter.sendMessage(CC.translate("&7You are on &c&lSwitcher &7cooldown for &4" + DurationFormatter.getRemaining(profile.getSwitcher().getRemainingMilis(shooter), true, true)));
+                shooter.sendMessage(CC.translate("&7You are on &c&lSwitcher &7cooldown for &4" + DurationFormatter.getRemaining(profile.getSwitcher().getRemainingMillis(shooter), true, true)));
                 shooter.updateInventory();
                 event.setCancelled(true);
                 return;
             }
 
             if(profile.getPartneritem().onCooldown(shooter)){
-                shooter.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMilis(shooter), true, true)));
+                shooter.sendMessage(CC.translate("&7You are on &c&lPartner Item &7cooldown &7for &4" + DurationFormatter.getRemaining(profile.getPartneritem().getRemainingMillis(shooter), true, true)));
                 shooter.updateInventory();
                 event.setCancelled(true);
                 return;
@@ -76,7 +76,7 @@ public class Switcher extends Ability {
             }
             if (isAbility(player.getItemInHand())) {
                 if (this.hasCooldown(player)) {
-                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getSwitcher().getRemainingMilis(player), true)));
+                    player.sendMessage(CC.translate("&7You are on cooldown for &4" + DurationFormatter.getRemaining(profile.getSwitcher().getRemainingMillis(player), true)));
                     event.setCancelled(true);
                     player.updateInventory();
                 }

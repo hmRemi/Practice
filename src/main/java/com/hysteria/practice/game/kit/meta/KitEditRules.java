@@ -7,9 +7,9 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
+@Getter
+@Setter
 public class KitEditRules {
-
-	@Getter @Setter private boolean allowPotionFill;
-	@Getter private final List<ItemStack> editorItems = Lists.newArrayList();
-
+	private boolean allowPotionFill;
+	private final List<ItemStack> editorItems = Lists.newArrayList();
 }

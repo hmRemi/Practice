@@ -151,8 +151,8 @@ public class CC {
         Bukkit.getConsoleSender().sendMessage(translate(" "));
         Bukkit.getConsoleSender().sendMessage(translate(" &bLoaded info"));
         Bukkit.getConsoleSender().sendMessage(translate(" &7| &bArenas&7: &f" + Arena.getArenas().size()));
-        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bKits&7: &f" + Kit.getKits().size()));
-        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bKits Ranked&7: &f" + Kit.getKits().stream().filter(kit -> kit.getGameRules().isRanked()).count()));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bKits&7: &f" + HyPractice.get().getKitRepository().getKits().size()));
+        Bukkit.getConsoleSender().sendMessage(translate(" &7| &bKits Ranked&7: &f" + HyPractice.get().getKitRepository().getKits().stream().filter(kit -> kit.getGameRules().isRanked()).count()));
         Bukkit.getConsoleSender().sendMessage(translate(" &7| &bClans&7: &f" + Clan.getClans().size()));
         Bukkit.getConsoleSender().sendMessage(translate(" "));
         Bukkit.getConsoleSender().sendMessage(translate(" &bMongoDB info"));

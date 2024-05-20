@@ -1,5 +1,6 @@
 package com.hysteria.practice.game.kit.command;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.utilities.chat.CC;
 import com.hysteria.practice.api.command.BaseCommand;
@@ -20,7 +21,7 @@ public class KitGetLoadoutCommand extends BaseCommand {
 			return;
 		}
 
-		Kit kit = Kit.getByName(args[0]);
+		Kit kit = HyPractice.get().getKitRepository().getKitByName(args[0]);
 		if (kit == null) {
 			player.sendMessage(CC.RED + "A kit with that name does not exist.");
 			return;

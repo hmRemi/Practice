@@ -22,8 +22,8 @@ public class FFACommand extends BaseCommand {
     @Command(name = "ffa")
     @Override
     public void onCommand(CommandArgs commandArgs) {
-        Player player = commandArgs.getPlayer();
-        String[] args = commandArgs.getArgs();
+        final Player player = commandArgs.getPlayer();
+        final String[] args = commandArgs.getArgs();
         if (args.length == 0) {
             player.sendMessage(CC.translate(("&b/ffa leave &7- &fLeave FFA")));
             player.sendMessage(CC.translate(("&b/ffa join &7- &fJoin FFA")));

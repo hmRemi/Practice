@@ -1,5 +1,6 @@
 package com.hysteria.practice.game.arena.command;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.game.arena.Arena;
 import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.api.command.BaseCommand;
@@ -22,7 +23,7 @@ public class ArenaAddKitCommand extends BaseCommand {
 			return;
 		}
 
-		Kit kit = Kit.getByName(args[1]);
+		Kit kit = HyPractice.get().getKitRepository().getKitByName(args[1]);
 		if (kit == null) {
 			player.sendMessage(CC.translate("&7A kit with that name does not exist."));
 			return;

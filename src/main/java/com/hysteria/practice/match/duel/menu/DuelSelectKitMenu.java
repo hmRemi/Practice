@@ -30,13 +30,13 @@ public class DuelSelectKitMenu extends Menu {
 		Profile profile = Profile.get(player.getUniqueId());
 
 		this.fillEmptySlots(buttons, PLACEHOLDER_ITEM);
-		for (Kit kit : Kit.getKits()) {
+		for (Kit kit : HyPractice.get().getKitRepository().getKits()) {
 			if (kit.isEnabled()) {
 				buttons.put(kit.getSlot(), new SelectKitButton(kit));
 			}
 
 			if(profile.getParty() != null) {
-				buttons.put(28, new SelectKitButton(Kit.getByName("HCF")));
+				buttons.put(28, new SelectKitButton(HyPractice.get().getKitRepository().getKitByName("HCF")));
 			}
 		}
 

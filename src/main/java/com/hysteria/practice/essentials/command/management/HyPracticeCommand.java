@@ -34,7 +34,7 @@ public class HyPracticeCommand extends BaseCommand {
             sender.sendMessage(CC.translate("&7▢ &bEventsConfig reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));
             HyPractice.get().getKitsConfig().reload();
             sender.sendMessage(CC.translate("&7▢ &bKitsConfig reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));
-            HyPractice.get().getKiteditorConfig().reload();
+            HyPractice.get().getKitEditorConfig().reload();
             sender.sendMessage(CC.translate("&7▢ &bKiteditorConfig reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));
             HyPractice.get().getLeaderboardConfig().reload();
             sender.sendMessage(CC.translate("&7▢ &bLeaderboardConfig reloaded in &8(&7" + (System.currentTimeMillis() - start) + "ms &8) &7▢"));

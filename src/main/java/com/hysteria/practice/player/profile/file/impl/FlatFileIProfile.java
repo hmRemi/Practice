@@ -126,7 +126,7 @@ public class FlatFileIProfile implements IProfile {
 
         for (String key : kitStatisticsSection.getKeys(false)) {
             ConfigurationSection kitSection = kitStatisticsSection.getConfigurationSection(key);
-            Kit kit = Kit.getByName(key);
+            Kit kit = HyPractice.get().getKitRepository().getKitByName(key);
 
             if (kit != null) {
                 ProfileKitData profileKitData = new ProfileKitData();
@@ -147,7 +147,7 @@ public class FlatFileIProfile implements IProfile {
 
                 String winningParticipant = matchSection.getString("winningParticipant");
                 String losingParticipant = matchSection.getString("losingParticipant");
-                Kit kit = Kit.getByName(matchSection.getString("kit"));
+                Kit kit = HyPractice.get().getKitRepository().getKitByName(matchSection.getString("kit"));
                 int newWinnerElo = matchSection.getInt("newWinnerElo");
                 int newLoserElo = matchSection.getInt("newLoserElo");
                 String date = matchSection.getString("date");
@@ -160,7 +160,7 @@ public class FlatFileIProfile implements IProfile {
 
         if (section.contains("loadouts")) {
             for (String key : kitsSection.getKeys(false)) {
-                Kit kit = Kit.getByName(key);
+                Kit kit = HyPractice.get().getKitRepository().getKitByName(key);
 
                 if (kit != null) {
                     JsonArray kitsArray = new JsonParser().parse(kitsSection.getString(key)).getAsJsonArray();

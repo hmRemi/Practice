@@ -1,5 +1,6 @@
 package com.hysteria.practice.game.kit.command;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.utilities.chat.CC;
 import com.hysteria.practice.api.command.BaseCommand;
@@ -29,17 +30,10 @@ public class KitGameRuleCommand extends BaseCommand {
             return;
         }
 
-        Kit kit = Kit.getByName(args[0]);
+        Kit kit = HyPractice.get().getKitRepository().getKitByName(args[0]);
         String rule = args[1];
         if (kit == null) {
             player.sendMessage(CC.RED + "A kit with that name does not exist.");
-            return;
-        }
-        if (args.length == 1 && args[1].equalsIgnoreCase("effect"))  {
-            player.sendMessage(CC.RED + "Please use: ");
-            player.sendMessage(CC.RED + "/kit setrule " + kit.getName() + " effect list");
-            player.sendMessage(CC.RED + "/kit setrule " + kit.getName() + " effect add (effect) (amplifier)");
-            player.sendMessage(CC.RED + "/kit setrule " + kit.getName() + " effect remove (effect)");
             return;
         }
 
@@ -243,7 +237,7 @@ public class KitGameRuleCommand extends BaseCommand {
                     break;
                 }
             }
-            kit.save();
+            HyPractice.get().getKitRepository().saveKit(kit);
         } else {
             if (rule.equalsIgnoreCase("editoritems")) {
                 kit.getEditRules().getEditorItems().clear();

@@ -37,8 +37,6 @@ public class Arena extends Cuboid {
 	@Getter @Setter List<Integer> ratingList = new ArrayList<>();
 	@Getter @Setter private Double rating;
 
-	private final transient Map<Long, ChunkSnapshot> chunkSnapshots = Maps.newHashMap();
-
 	public Arena(String name, Location location1, Location location2) {
 		super(location1, location2);
 		this.name = name;

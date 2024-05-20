@@ -1,5 +1,6 @@
 package com.hysteria.practice.utilities;
 
+import com.hysteria.practice.HyPractice;
 import com.hysteria.practice.game.kit.Kit;
 import com.hysteria.practice.match.impl.BasicTeamMatch;
 import com.hysteria.practice.player.profile.Profile;
@@ -107,10 +108,11 @@ public class KitUtils {
         Kit kit;
 
         if(teamMatch.getParticipantA() != null || teamMatch.getParticipantB() != null) {
+            assert teamMatch.getParticipantA() != null;
             if (teamMatch.getParticipantA().containsPlayer(player.getUniqueId())) {
-                kit = Kit.getByName("BaseTrapper");
+                kit = HyPractice.get().getKitRepository().getKitByName("BaseTrapper");
             } else {
-                kit = Kit.getByName("BaseRaider");
+                kit = HyPractice.get().getKitRepository().getKitByName("BaseRaider");
             }
             assert kit != null;
             player.getInventory().setArmorContents(kit.getKitLoadout().getArmor());

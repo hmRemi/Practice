@@ -242,7 +242,7 @@ public class BracketsGameLogic implements EventGameLogic {
 
 				if (player != null) {
 					PlayerUtil.reset(player);
-					Kit kit = Kit.getByName("NoDebuff");
+					Kit kit = HyPractice.get().getKitRepository().getKitByName("NoDebuff");
 					player.getInventory().setArmorContents(kit.getKitLoadout().getArmor());
 					player.getInventory().setContents(kit.getKitLoadout().getContents());
 					player.updateInventory();

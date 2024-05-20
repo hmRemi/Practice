@@ -21,10 +21,8 @@ public class FFALeaveCommand extends BaseCommand {
     @Command(name="ffa.leave")
     @Override
     public void onCommand(CommandArgs commandArgs) {
-        Player player = commandArgs.getPlayer();
-        String[] args = commandArgs.getArgs();
-
-        Profile profile = Profile.get(player.getUniqueId());
+        final Player player = commandArgs.getPlayer();
+        final Profile profile = Profile.get(player.getUniqueId());
 
         if (profile.getState() != ProfileState.FFA) {
             player.sendMessage(CC.translate("&cYou can only use this command in FFA Arena."));
@@ -37,11 +35,5 @@ public class FFALeaveCommand extends BaseCommand {
         profile.setState(ProfileState.LOBBY);
         Hotbar.giveHotbarItems(player);
         HyPractice.get().getEssentials().teleportToSpawn(player);
-    }
-
-    private void broadcastMessage(String message) {
-        for (Profile ffaPlayer : HyPractice.get().getFfaManager().getFFAPlayers()) {
-            ffaPlayer.msg(message);
-        }
     }
 }

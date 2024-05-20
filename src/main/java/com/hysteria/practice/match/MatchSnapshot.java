@@ -7,10 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Data
 public class MatchSnapshot {
@@ -18,15 +15,17 @@ public class MatchSnapshot {
 	@Getter
 	private static Map<UUID, MatchSnapshot> snapshots = new HashMap<>();
 
-	private final UUID uuid;
 	private final String username;
-	private UUID opponent;
 	private final double health;
-	private final int hunger;
-	private final ItemStack[] armor, contents;
-	private final Collection<PotionEffect> effects;
+	private final UUID uuid;
+
 	private int potionsThrown, potionsMissed, longestCombo, totalHits;
+	private final int hunger;
+
+	private final Collection<PotionEffect> effects;
+	private final ItemStack[] armor, contents;
 	private long createdAt;
+	private UUID opponent;
 
 	public MatchSnapshot(Player player, boolean dead) {
 		this.uuid = player.getUniqueId();
@@ -40,15 +39,9 @@ public class MatchSnapshot {
 	}
 
 	public int getRemainingPotions() {
-		int amount = 0;
-
-		for (ItemStack itemStack : this.contents) {
-			if (itemStack != null && itemStack.getType() == Material.POTION && itemStack.getDurability() == 16421) {
-				amount++;
-			}
-		}
-
-		return amount;
+		return (int) Arrays.stream(contents)
+				.filter(itemStack -> itemStack != null && itemStack.getType() == Material.POTION && itemStack.getDurability() == 16421)
+				.count();
 	}
 
 	public boolean shouldDisplayRemainingPotions() {
@@ -70,13 +63,6 @@ public class MatchSnapshot {
 	}
 
 	public static MatchSnapshot getByName(String name) {
-		for (MatchSnapshot snapshot : snapshots.values()) {
-			if (snapshot.getUsername().equalsIgnoreCase(name)) {
-				return snapshot;
-			}
-		}
-
-		return null;
+		return snapshots.values().stream().filter(snapshot -> snapshot.getUsername().equals(name)).findFirst().orElse(null);
 	}
-
 }
