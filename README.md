@@ -14,7 +14,6 @@ HyPractice is a feature-rich, high-quality Practice PvP core designed specifical
 - [Usage](#usage)
 - [Guidelines](#guidelines)
 - [Contributing](#contributing)
-- [License](#license)
 - [Author](#author)
 
 ## Installation
