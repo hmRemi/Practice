@@ -1,6 +1,6 @@
 # HyPractice
 
-HyPractice is a Practice PvP Core for Minecraft 1.8.
+HyPractice is a feature-rich, high-quality Practice PvP core designed specifically for Minecraft 1.8. It provides a robust and customizable foundation for creating Practice PvP servers, offering a variety of essential features and tools to enhance gameplay and ensure a seamless experience. With its advanced match systems, player management tools, and integration with popular plugins like AquaCore, PhoenixCore, LuckPerms, Vault, PermissionsEx, AlonsoLeagues, HolographicDisplays, ProtocolLib and loads of other plugins, HyPractice is the perfect choice for anyone looking to build a competitive PvP environment. Whether you're hosting tournaments, practice sessions, or casual duels, HyPractice delivers a smooth and enjoyable PvP experience for both players and server admins.
 
 ## Features
 
