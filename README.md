@@ -25,7 +25,8 @@ HyPractice is a Practice PvP Core for Minecraft 1.8.
 3. Move the downloaded HyPractice.jar file into the plugins directory.
 4. Ensure you have the **HolographicDisplays** and **ProtocolLib** plugins installed, as they are both required for HyPractice to work properly.
 5. Restart your server to load the plugin.
-   > **Note**: Additional libraries may be required. Download the necessary dependencies [here](https://www.mediafire.com/file/uhthp6c3akmltqp/libs.zip/file)
+
+> **Note**: If you're opening the source code to work with it, additional libraries are required to set up the workspace. Download the necessary dependencies [here](https://www.mediafire.com/file/uhthp6c3akmltqp/libs.zip/file).
 
 ## Usage
 
