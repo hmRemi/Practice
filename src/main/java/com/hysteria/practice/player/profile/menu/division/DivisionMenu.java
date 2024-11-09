@@ -3,20 +3,9 @@ package com.hysteria.practice.player.profile.menu.division;
 import com.alonsoaliaga.alonsoleagues.AlonsoLeagues;
 import com.alonsoaliaga.alonsoleagues.api.AlonsoLeaguesAPI;
 import com.alonsoaliaga.alonsoleagues.others.LeagueData;
-import com.hysteria.practice.HyPractice;
-import com.hysteria.practice.player.profile.Profile;
-import com.hysteria.practice.shop.impl.rank.RankShopMenu;
-import com.hysteria.practice.shop.impl.tag.TagShopMenu;
 import com.hysteria.practice.utilities.ItemBuilder;
-import com.hysteria.practice.utilities.TaskUtil;
-import com.hysteria.practice.utilities.chat.CC;
 import com.hysteria.practice.utilities.menu.Button;
 import com.hysteria.practice.utilities.menu.Menu;
-import meth.crystal.aspirin.api.tags.Tag;
-import meth.crystal.aspirin.plugin.Aspirin;
-import net.audidevelopment.core.api.rank.RankData;
-import net.audidevelopment.core.plugin.cCore;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -53,8 +42,7 @@ public class DivisionMenu extends Menu {
         return 4 * 9;
     }
 
-    private static class DivisionButton extends Button
-    {
+    private static class DivisionButton extends Button {
         private final LeagueData type;
 
         @Override

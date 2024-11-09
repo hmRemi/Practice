@@ -300,6 +300,13 @@
             <systemPath>${project.basedir}/libs/AquaCoreAPI.jar</systemPath>
         </dependency>
         <dependency>
+            <groupId>cc.insidious.akuma</groupId>
+            <artifactId>api</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/Akuma-API-1.2.8-SNAPSHOT.jar</systemPath>
+        </dependency>
+        <dependency>
             <groupId>dev.phoenix.phoenix</groupId>
             <artifactId>PhoenixAPI</artifactId>
             <version>dev-SNAPSHOT</version>

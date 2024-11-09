@@ -5,8 +5,6 @@ package com.hysteria.practice.player.profile.meta.option.button;
 */
 
 import com.hysteria.practice.HyPractice;
-import com.hysteria.practice.player.cosmetics.impl.killeffects.menu.KillEffectsMenu;
-import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.utilities.ItemBuilder;
 import com.hysteria.practice.utilities.menu.Button;
 import meth.crystal.aspirin.menus.tags.TagsMenu;
@@ -24,12 +22,10 @@ public class TagsOptionsButton extends Button {
                 .name(HyPractice.get().getMenuConfig().getString("COSMETICS.TAGS.ITEM-NAME"))
                 .lore(HyPractice.get().getMenuConfig().getStringList("COSMETICS.TAGS.LORE"))
                 .build();
-
     }
 
     @Override
     public void clicked(Player player, ClickType clickType) {
-        Profile profile = Profile.get(player.getUniqueId());
         new TagsMenu().open(player);
     }
 }
