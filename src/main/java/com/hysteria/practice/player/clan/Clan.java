@@ -7,16 +7,17 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hysteria.practice.HyPractice;
-import com.hysteria.practice.utilities.MessageFormat;
-import com.hysteria.practice.utilities.TaskUtil;
-import com.hysteria.practice.utilities.file.type.BasicConfigurationFile;
 import com.hysteria.practice.Locale;
 import com.hysteria.practice.player.profile.Profile;
 import com.hysteria.practice.player.profile.file.impl.FlatFileIProfile;
 import com.hysteria.practice.player.profile.file.impl.MongoDBIProfile;
+import com.hysteria.practice.utilities.MessageFormat;
+import com.hysteria.practice.utilities.TaskUtil;
 import com.hysteria.practice.utilities.chat.CC;
-import com.mongodb.Block;
+import com.hysteria.practice.utilities.file.type.BasicConfigurationFile;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.ReplaceOptions;
 import lombok.Getter;
@@ -37,21 +38,26 @@ import java.util.stream.Collectors;
 public class Clan {
 
     private static ConfigurationSection config;
-    @Getter private static final Map<String, Clan> clans = Maps.newHashMap();
-    @Getter public static MongoCollection<Document> collection;
+    @Getter
+    private static final Map<String, Clan> clans = Maps.newHashMap();
+    @Getter
+    public static MongoCollection<Document> collection;
 
-    @Setter private String name;
-    @Setter private ChatColor color = ChatColor.WHITE;
+    @Setter
+    private String name;
+    @Setter
+    private ChatColor color = ChatColor.WHITE;
     private final UUID leader;
     private final List<UUID> members = Lists.newArrayList();
-    @Setter private int points = 0, tournamentWins = 0;
+    @Setter
+    private int points = 0, tournamentWins = 0;
 
-    public Clan(String name, UUID leader){
+    public Clan(String name, UUID leader) {
         this.name = name;
         this.leader = leader;
     }
 
-    public String getColoredName(){
+    public String getColoredName() {
         return color + name;
     }
 
@@ -59,18 +65,18 @@ public class Clan {
         return clans.values().stream().filter(clan -> clan.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
     }
 
-    public static Clan getByPlayer(Player player){
+    public static Clan getByPlayer(Player player) {
         return clans.values().stream().filter(clan -> clan.getMembers().contains(player.getUniqueId())).findFirst().orElse(null);
     }
 
-    public List<String> getOffPlayers(){
+    public List<String> getOffPlayers() {
         return members.stream()
                 .filter(uuid -> Bukkit.getPlayer(uuid) == null || !Bukkit.getPlayer(uuid).isOnline())
                 .map(UUID::toString)
                 .collect(Collectors.toList());
     }
 
-    public List<Player> getOnPlayers(){
+    public List<Player> getOnPlayers() {
         return members.stream()
                 .filter(uuid -> Bukkit.getPlayer(uuid) != null)
                 .map(Bukkit::getPlayer)
@@ -79,12 +85,12 @@ public class Clan {
 
     public void show(Player player) {
         new MessageFormat(Locale.CLAN_SHOW.format(Profile.get(player.getUniqueId()).getLocale()))
-            .add("{name}", name)
-            .add("{members}", Objects.requireNonNull(Bukkit.getOfflinePlayer(members()).getName()))
-            .add("{points}", String.valueOf(points))
-            .add("{leader}", Objects.requireNonNull(Bukkit.getOfflinePlayer(leader)).getName())
-            .add("{tournament_wins}", String.valueOf(tournamentWins))
-            .send(player);
+                .add("{name}", name)
+                .add("{members}", Objects.requireNonNull(Bukkit.getOfflinePlayer(members()).getName()))
+                .add("{points}", String.valueOf(points))
+                .add("{leader}", Objects.requireNonNull(Bukkit.getOfflinePlayer(leader)).getName())
+                .add("{tournament_wins}", String.valueOf(tournamentWins))
+                .send(player);
     }
 
 
@@ -106,7 +112,7 @@ public class Clan {
     }
 
     public void disband(Player player) {
-        if(!player.getUniqueId().equals(leader) && !player.hasPermission("hypractice.clan.disband")) {
+        if (!player.getUniqueId().equals(leader) && !player.hasPermission("hypractice.clan.disband")) {
             new MessageFormat(Locale.CLAN_ERROR_ONLY_OWNER
                     .format(Profile.get(player.getUniqueId()).getLocale()))
                     .send(player);
@@ -116,11 +122,11 @@ public class Clan {
         leader.setClan(null);
         TaskUtil.runAsync(leader::save);
         TaskUtil.runAsync(() ->
-            members.forEach(uuid -> {
-            Profile profileMember = Profile.get(uuid);
-            profileMember.setClan(null);
-            profileMember.save();
-        }));
+                members.forEach(uuid -> {
+                    Profile profileMember = Profile.get(uuid);
+                    profileMember.setClan(null);
+                    profileMember.save();
+                }));
         broadcast(Locale.CLAN_DISBAND, new MessageFormat().add("{player_name}", player.getName()));
         members.clear();
 
@@ -131,44 +137,43 @@ public class Clan {
     private void delete() {
         if (Profile.getIProfile() instanceof MongoDBIProfile) {
             collection.deleteOne(Filters.eq("name", this.name));
-        }
-        else if (Profile.getIProfile() instanceof FlatFileIProfile) {
+        } else if (Profile.getIProfile() instanceof FlatFileIProfile) {
             config.set("clans." + this.name, null);
             HyPractice.get().getClansConfig().save();
             HyPractice.get().getClansConfig().reload();
         }
     }
 
-    public void addPoints(int points){
+    public void addPoints(int points) {
         this.points += points;
     }
 
-    public void removePoints(int points){
+    public void removePoints(int points) {
         this.points -= points;
     }
 
     public void chat(Player sender, String message) {
         getOnPlayers().forEach(player ->
                 player.sendMessage(CC.translate(HyPractice.get().getMainConfig().getString("CHAT.CLAN_MESSAGE_FORMAT")
-                        .replace("{clan}", name)
-                        .replace("{prefix}", HyPractice.get().getRankManager().getRank().getPrefix(sender.getUniqueId()))
-                        .replace("{suffix}", HyPractice.get().getRankManager().getRank().getSuffix(sender.getUniqueId()))
-                        .replace("{player}", sender.getName()))
+                                .replace("{clan}", name)
+                                .replace("{prefix}", HyPractice.get().getRankManager().getRank().getPrefix(sender.getUniqueId()))
+                                .replace("{suffix}", HyPractice.get().getRankManager().getRank().getSuffix(sender.getUniqueId()))
+                                .replace("{player}", sender.getName()))
                         .replace("{message}", message)));
     }
 
-    public void broadcast(String msg){
+    public void broadcast(String msg) {
         getOnPlayers().forEach(online -> online.sendMessage(CC.translate(msg)));
     }
 
-    public void broadcast(Locale locale, MessageFormat messageFormat){
+    public void broadcast(Locale locale, MessageFormat messageFormat) {
         getOnPlayers().forEach(online -> {
             messageFormat.setMessage(locale.format(Profile.get(online.getUniqueId()).getLocale()));
             messageFormat.send(online);
         });
     }
 
-    public List<String> getClanScoreboard(){
+    public List<String> getClanScoreboard() {
         List<String> lines = Lists.newArrayList();
         BasicConfigurationFile config = HyPractice.get().getScoreboardConfig();
         String bars = config.getString("LINES.BARS");
@@ -180,15 +185,19 @@ public class Clan {
         return lines;
     }
 
-    public static void init(){
+    public static void init() {
         if (Profile.getIProfile() instanceof MongoDBIProfile) {
             collection = HyPractice.get().getMongoConnection().getMongoDatabase().getCollection("clans");
-            collection.find().forEach((Block<Document>) document -> {
-                Clan clan = new Clan(document.getString("name"), UUID.fromString(document.getString("owner")));
-                if (document.containsKey("points")) clan.setPoints(document.getInteger("points"));
-                if (document.containsKey("color")) clan.setColor(ChatColor.valueOf(document.getString("color")));
-                if (document.containsKey("players")) {
-                    if (document.get("players") instanceof String) {
+
+            FindIterable<Document> findIterable = collection.find();
+
+            try (MongoCursor<Document> cursor = findIterable.iterator()) {
+                while (cursor.hasNext()) {
+                    Document document = cursor.next();
+                    Clan clan = new Clan(document.getString("name"), UUID.fromString(document.getString("owner")));
+                    if (document.containsKey("points")) clan.setPoints(document.getInteger("points"));
+                    if (document.containsKey("color")) clan.setColor(ChatColor.valueOf(document.getString("color")));
+                    if (document.containsKey("players") && document.get("players") instanceof String) {
                         JsonArray playersArray = new JsonParser().parse(document.getString("players")).getAsJsonArray();
                         for (JsonElement jsonElement : playersArray) {
                             JsonObject jsonObject = jsonElement.getAsJsonObject();
@@ -196,25 +205,22 @@ public class Clan {
                             clan.getMembers().add(uuid);
                         }
                     }
+                    clans.put(clan.getName(), clan);
                 }
-                clans.put(clan.getName(), clan);
-            });
-        }
-        else if (Profile.getIProfile() instanceof FlatFileIProfile) {
+            }
+        } else if (Profile.getIProfile() instanceof FlatFileIProfile) {
             config = HyPractice.get().getClansConfig().getConfiguration().getConfigurationSection("clans");
             for (String key : config.getKeys(false)) {
                 ConfigurationSection section = config.getConfigurationSection(key);
                 Clan clan = new Clan(key, UUID.fromString(section.getString("owner")));
                 if (section.contains("points")) clan.setPoints(section.getInt("points"));
                 if (section.contains("color")) clan.setColor(ChatColor.valueOf(section.getString("color")));
-                if (section.contains("players")) {
-                    if (section.get("players") instanceof String) {
-                        JsonArray playersArray = new JsonParser().parse(section.getString("players")).getAsJsonArray();
-                        for (JsonElement jsonElement : playersArray) {
-                            JsonObject jsonObject = jsonElement.getAsJsonObject();
-                            UUID uuid = UUID.fromString(jsonObject.get("uuid").getAsString());
-                            clan.getMembers().add(uuid);
-                        }
+                if (section.contains("players") && section.get("players") instanceof String) {
+                    JsonArray playersArray = new JsonParser().parse(section.getString("players")).getAsJsonArray();
+                    for (JsonElement jsonElement : playersArray) {
+                        JsonObject jsonObject = jsonElement.getAsJsonObject();
+                        UUID uuid = UUID.fromString(jsonObject.get("uuid").getAsString());
+                        clan.getMembers().add(uuid);
                     }
                 }
                 clans.put(clan.getName(), clan);
@@ -224,11 +230,11 @@ public class Clan {
         TaskUtil.runTimerAsync(() -> clans.values().forEach(Clan::save), 3600, 3600);
     }
 
-    public void save(){
+    public void save() {
         save(true);
     }
 
-    public void save(boolean async){
+    public void save(boolean async) {
         if (Profile.getIProfile() instanceof MongoDBIProfile) {
             Document document = new Document();
             document.put("name", this.name);
@@ -244,14 +250,13 @@ public class Clan {
             if (playersArray.size() > 0) {
                 document.put("players", playersArray.toString());
             }
-            if(async){
+            if (async) {
                 TaskUtil.runAsync(() ->
                         collection.replaceOne(Filters.eq("name", this.name), document, new ReplaceOptions().upsert(true)));
-            }else {
+            } else {
                 collection.replaceOne(Filters.eq("name", this.name), document, new ReplaceOptions().upsert(true));
             }
-        }
-        else if (Profile.getIProfile() instanceof FlatFileIProfile) {
+        } else if (Profile.getIProfile() instanceof FlatFileIProfile) {
             ConfigurationSection section;
             if (config.getConfigurationSection(this.name) != null) section = config.getConfigurationSection(this.name);
             else section = config.createSection(this.name);
